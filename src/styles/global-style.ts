@@ -1,16 +1,12 @@
 import { createGlobalStyle } from 'styled-components'
+import designTokens from './design-tokens'
 
 const styled = { createGlobalStyle }
 
 const GlobalStyle = styled.createGlobalStyle`
 	:root {
-		--accent-color: #007bff;
-		--neutral-color: #151515;
-		--neutral-inverted-color: #ffffff;
-		/* --system-color:  */
-
 		--global-padding: 1rem;
-		--global-rouning: 0.75rem;
+		--global-rounding: 0.75rem;
 
 		--colour-app-background: #0d0d0d;
 		--colour-app-on-background-active: #ffffff;
@@ -227,98 +223,6 @@ const GlobalStyle = styled.createGlobalStyle`
 
 		--padding-card-container: 1.5rem;
 		--spacing-card-container: 1rem;
-
-		--spacing-xxxsm: 0.25rem;
-		--spacing-xxsm: 0.5rem;
-		--spacing-xsm: 1rem;
-		--spacing-sm: 1.5rem;
-		--spacing-md: 2rem;
-		--spacing-lg: 2.5rem;
-		--spacing-xlg: 3rem;
-		--spacing-xxlg: 4rem;
-		--spacing-xxxlg: 10rem;
-
-		--accent-primary-default-active: #3879fa;
-		--accent-primary-default-inactive: #3879fa80;
-		--accent-primary-default-pressed: #0c37ee;
-		--accent-primary-default-hover: #5ca0fc;
-		--accent-primary-inverted-active: #ffffff;
-		--accent-primary-inverted-inactive: #ffffff80;
-		--accent-primary-inverted-pressed: #5ca0fc;
-		--accent-primary-inverted-hover: #c3dcff;
-
-		--neutral-primary-default-active: #0d0d0d;
-		--neutral-primary-default-inactive: #0d0d0d80;
-		--neutral-primary-default-pressed: #252525;
-		--neutral-primary-default-hover: #3d3d3d;
-		--neutral-primary-inverted-active: #ffffff;
-		--neutral-primary-inverted-inactive: #ffffff80;
-		--neutral-primary-inverted-pressed: #cfcfcf;
-		--neutral-primary-inverted-hover: #ffffff;
-		--neutral-secondary-default-active: #252525;
-		--neutral-secondary-default-inactive: #25252580;
-		--neutral-secondary-default-pressed: #0d0d0d;
-		--neutral-secondary-default-hover: #3d3d3d;
-		--neutral-secondary-inverted-active: #ffffff;
-		--neutral-secondary-inverted-inactive: #ffffff80;
-		--neutral-secondary-inverted-pressed: #cfcfcf;
-		--neutral-secondary-inverted-hover: #ffffff;
-
-		--system-primary-default-active: #ff0000;
-		--system-primary-default-inactive: #ff000080;
-		--system-primary-default-pressed: #c20202;
-		--system-primary-default-hover: #ff6565;
-		--system-primary-inverted-active: #ffffff;
-		--system-primary-inverted-inactive: #ffffff80;
-		--system-primary-inverted-pressed: #ffb7b7;
-		--system-primary-inverted-hover: #ffdada;
-
-		--grayscale-0: #ffffff;
-		--grayscale-50: #f3f3f3;
-		--grayscale-100: #e7e7e7;
-		--grayscale-200: #cfcfcf;
-		--grayscale-300: #b6b6b6;
-		--grayscale-400: #9e9e9e;
-		--grayscale-500: #868686;
-		--grayscale-600: #6e6e6e;
-		--grayscale-700: #555555;
-		--grayscale-800: #3d3d3d;
-		--grayscale-900: #252525;
-		--grayscale-1000: #0d0d0d;
-
-		--pointblue-50: #c3dcff;
-		--pointblue-100: #87c5fe;
-		--pointblue-200: #5ca0fc;
-		--pointblue-300: #3879fa;
-		--pointblue-400: #1e55f5;
-		--pointblue-500: #0c37ee;
-		--pointblue-600: #021fdf;
-		--pointblue-700: #000fba;
-		--pointblue-800: #000472;
-		--pointblue-900: #000033;
-
-		--systemred-50: #ffeded;
-		--systemred-100: #ffdada;
-		--systemred-200: #ffb7b7;
-		--systemred-300: #ff9090;
-		--systemred-400: #ff6565;
-		--systemred-500: #ff3636;
-		--systemred-600: #ff0000;
-		--systemred-700: #c20202;
-		--systemred-800: #850101;
-		--systemred-900: #470000;
-
-		--font-weight-lt: 200;
-		--font-weight-md: 400;
-		--font-weight-hv: 700;
-		--font-weight-xhv: 900;
-		--font-leading-narrow: 100%;
-		--font-leading-default: 150%;
-		--font-size-sm: 0.75rem;
-		--font-size-md: 1rem;
-		--font-size-lg: 1.25rem;
-		--font-size-xlg: 1.75rem;
-		--font-typeface: Pretendard Variable;
 	}
 
 	body {
@@ -331,13 +235,13 @@ const GlobalStyle = styled.createGlobalStyle`
 
 		overscroll-behavior: none;
 
-		background-color: #151515;
-		color: #ffffff;
+		background-color: ${designTokens.colour.grayscale[1000]};
+		color: ${designTokens.colour.grayscale[0]};
 
-		font-family: var(--font-typeface), -apple-system, BlinkMacSystemFont,
-			system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
-			'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-			'Segoe UI Symbol', sans-serif;
+		font-family: ${designTokens.typo.typeface}, -apple-system,
+			BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+			'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+			'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 
@@ -346,7 +250,7 @@ const GlobalStyle = styled.createGlobalStyle`
 		-ms-user-select: none;
 		user-select: none;
 
-		line-height: var(--font-leading-default);
+		line-height: ${designTokens.typo.leading.default};
 		text-align: center;
 	}
 

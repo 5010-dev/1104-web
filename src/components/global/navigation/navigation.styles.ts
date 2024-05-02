@@ -14,8 +14,5 @@ export const NavigationContainer = styled.header`
 
 	padding: var(--grid-app-margin);
 
-	/* background-color: var(--primary-color); // this for testing */
-
-	div {
-	}
+	/* background-color: ${({ theme }) => theme.colour.accent.primary.active}; */
 `
