@@ -125,6 +125,8 @@ export const DesignSystem: DefaultTheme = {
 			width: designTokens.layout.dimension.horizontal.full,
 			maxWidth: designTokens.layout.dimension.horizontal.maxFull,
 			minWidth: designTokens.layout.dimension.horizontal.minFull,
+			height: designTokens.layout.dimension.vertical.full,
+			minHeight: designTokens.layout.dimension.vertical.fit,
 			padding: {
 				desktop: designTokens.layout.spacing.xxxlg,
 				tablet: designTokens.layout.spacing.xxlg,
