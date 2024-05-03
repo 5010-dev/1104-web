@@ -1,10 +1,13 @@
-import { ReactComponent as Logo } from '../../../assets/logo/1104-logo-white.svg'
+import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
+import { ReactComponent as Logo } from '../../../assets/logo/1104-logo-white.svg'
 import { NavigationContainer } from './navigation.styles'
 
 export default function Navigation() {
+	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const handleClick = (): void => {
 		console.log('menu cliecked')
 	}
@@ -15,9 +18,11 @@ export default function Navigation() {
 				<Logo id="logo" />
 			</div>
 			<div className="nav-bar-container" id="nav-bar-right-container">
-				<button id="menu-icon">
-					<FontAwesomeIcon icon={faBars} onClick={handleClick} />
-				</button>
+				{deviceType !== 'desktop' ? (
+					<button id="menu-icon">
+						<FontAwesomeIcon icon={faBars} onClick={handleClick} />
+					</button>
+				) : null}
 			</div>
 		</NavigationContainer>
 	)

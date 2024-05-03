@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+import { useDeviceTypeStore } from './store/deviceTypeStore'
+import useDeviceType from './hooks/useDeviceType'
 
 import DesignSystem from './styles/design-system'
 import GlobalStyle from './styles/global-style'
@@ -12,6 +14,14 @@ import Footer from './components/global/footer/footer.component'
 import './App.css'
 
 function App() {
+	const deviceType = useDeviceType()
+	// const storedDeviceType = useDeviceTypeStore((state) => state.deviceType)
+	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
+
+	useEffect(() => {
+		updateDeviceType(deviceType)
+	}, [deviceType, updateDeviceType])
+
 	return (
 		<Router>
 			<ThemeProvider theme={DesignSystem}>

@@ -15,6 +15,7 @@ interface TypoTokens {
 }
 
 interface LayoutTokens {
+	breakpoint: DesignToken<number>
 	dimension: {
 		horizontal: DesignToken<string>
 		vertical: DesignToken<string>
@@ -100,6 +101,7 @@ export const designTokens: DesignTokens = {
 		},
 	},
 	layout: {
+		breakpoint: { desktop: 1024, tablet: 800, mobile: 380 },
 		dimension: {
 			horizontal: {
 				full: '100vw',

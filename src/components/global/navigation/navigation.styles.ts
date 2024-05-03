@@ -39,7 +39,7 @@ export const NavigationContainer = styled.header`
 			user-select: none;
 
 			width: 2.5rem;
-			font-size: 1.5rem;
+			font-size: 1.75rem;
 		}
 	}
 	div#nav-bar-left-container {
