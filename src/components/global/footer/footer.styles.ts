@@ -1,18 +1,21 @@
 import styled from 'styled-components'
 
 export const FooterContainer = styled.div`
-	width: 100%;
+	width: ${({ theme }) => theme.layout.page.width};
 
 	display: flex;
 	justify-content: center;
-	gap: 0.5rem;
+	gap: 0.25rem;
 
-	padding: var(--grid-app-margin);
+	padding: ${({ theme }) => theme.layout.page.padding};
 
-	font-size: var(--typo-caption-font-size);
-	font-weight: var(--typo-caption-font-weight);
+	font-family: ${({ theme }) => theme.typo.caption.typeface};
+	font-size: ${({ theme }) => theme.typo.caption.size};
+	font-weight: ${({ theme }) => theme.typo.caption.weight};
+	line-height: ${({ theme }) => theme.typo.caption.leading};
+	letter-spacing: ${({ theme }) => theme.typo.caption.kerning};
 
 	span {
-		font-weight: 600;
+		font-weight: bold;
 	}
 `

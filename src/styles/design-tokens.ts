@@ -95,8 +95,8 @@ export const designTokens: DesignTokens = {
 			narrow: '120%',
 		},
 		kerning: {
-			default: '-0.025rem',
-			tight: '-0.05rem',
+			default: '-0.0125rem',
+			tight: '-0.025rem',
 		},
 	},
 	layout: {
