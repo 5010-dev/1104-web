@@ -1,4 +1,4 @@
-type DesignToken = { [key: string | number]: string | number }
+type DesignToken<T extends string | number = string> = Record<string, T>
 
 interface ColourTokens {
 	grayscale: DesignToken
@@ -7,18 +7,23 @@ interface ColourTokens {
 }
 
 interface TypoTokens {
-	typeface: DesignToken
-	size: DesignToken
-	weight: DesignToken
-	leading: DesignToken
-	kerning: DesignToken
+	typeface: DesignToken<string>
+	size: DesignToken<string>
+	weight: DesignToken<number>
+	leading: DesignToken<string>
+	kerning: DesignToken<string>
 }
 
 interface LayoutTokens {
+	dimension: {
+		horizontal: DesignToken<string>
+		vertical: DesignToken<string>
+	}
 	spacing: DesignToken
 	radii: DesignToken
-	borderWidth: DesignToken
-	borderStyle: DesignToken
+	depth: DesignToken
+	weight: DesignToken<string>
+	style: DesignToken<string>
 }
 
 interface DesignTokens {
@@ -95,6 +100,20 @@ export const designTokens: DesignTokens = {
 		},
 	},
 	layout: {
+		dimension: {
+			horizontal: {
+				full: '100vw',
+				maxFull: '70rem',
+				minFull: '20rem',
+				fill: '100%',
+				fit: 'fit-content',
+			},
+			vertical: {
+				full: '100vh',
+				fill: '100%',
+				fit: 'fit-content',
+			},
+		},
 		spacing: {
 			sm: '0.5rem',
 			md: '0.75rem',
@@ -113,12 +132,21 @@ export const designTokens: DesignTokens = {
 			lg: '1rem',
 			xlg: '1.5rem',
 			xxlg: '2rem',
+			max: '100vw',
 		},
-		borderWidth: {
+		depth: {
+			sm: '0.5rem',
+			md: '0.75rem',
+			lg: '1rem',
+			xlg: '1.5rem',
+			xxlg: '2rem',
+			xxxlg: '4rem',
+		},
+		weight: {
 			default: '0.125rem',
 			thin: '0.0625rem',
 		},
-		borderStyle: {
+		style: {
 			default: 'solid',
 		},
 	},

@@ -120,6 +120,64 @@ export const DesignSystem: DefaultTheme = {
 			kerning: designTokens.typo.kerning.default,
 		},
 	},
+	layout: {
+		page: {
+			width: designTokens.layout.dimension.horizontal.full,
+			maxWidth: designTokens.layout.dimension.horizontal.maxFull,
+			minWidth: designTokens.layout.dimension.horizontal.minFull,
+			padding: designTokens.layout.spacing.xlg,
+			gutter: designTokens.layout.spacing.xlg,
+		},
+		section: {
+			width: designTokens.layout.dimension.horizontal.fill,
+			padding: 'none',
+			gutter: designTokens.layout.spacing.lg,
+		},
+		container: {
+			width: designTokens.layout.dimension.horizontal.fill,
+			padding: designTokens.layout.spacing.md,
+			gutter: designTokens.layout.spacing.md,
+		},
+		component: {
+			width: designTokens.layout.dimension.horizontal.fill,
+			padding: designTokens.layout.spacing.md,
+			gutter: designTokens.layout.spacing.sm,
+		},
+	},
+	shape: {
+		outlined: {
+			rounding: {
+				border: designTokens.layout.weight.default,
+				borderRadii: designTokens.layout.radii.max,
+			},
+			rounded1: {
+				border: designTokens.layout.weight.default,
+				borderRadii: designTokens.layout.radii.xlg,
+			},
+			rounded2: {
+				border: designTokens.layout.weight.default,
+				borderRadii: designTokens.layout.radii.lg,
+			},
+			rounded3: {
+				border: designTokens.layout.weight.default,
+				borderRadii: designTokens.layout.radii.sm,
+			},
+			flat: { border: designTokens.layout.weight.default, borderRadii: 'none' },
+		},
+		filled: {
+			rounding: { border: 'none', borderRadii: designTokens.layout.radii.max },
+			rounded1: { border: 'none', borderRadii: designTokens.layout.radii.xlg },
+			rounded2: { border: 'none', borderRadii: designTokens.layout.radii.lg },
+			rounded3: { border: 'none', borderRadii: designTokens.layout.radii.sm },
+			flat: { border: 'none', borderRadii: 'none' },
+		},
+	},
+	elevation: {
+		layer0: '0 0 0',
+		layer1: `${designTokens.layout.depth.sm} 0 0`,
+		layer2: `${designTokens.layout.depth.lg} 0 ${designTokens.layout.depth.sm}`,
+		layer3: `${designTokens.layout.depth.xxlg} 0 ${designTokens.layout.depth.lg}`,
+	},
 }
 
 export default DesignSystem
