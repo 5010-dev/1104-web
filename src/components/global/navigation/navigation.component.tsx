@@ -35,7 +35,6 @@ export default function Navigation() {
 			$deviceType={deviceType}
 			$isOverlaped={true}
 			$isScrolled={isScrolled}
-			// animate={{ backgroundColor: isScrolled ? '#ffffff' : 'transparent' }}
 		>
 			<div className="nav-bar-container" id="nav-bar-left-container">
 				<Logo id="logo" />

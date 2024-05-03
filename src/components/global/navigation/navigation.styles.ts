@@ -15,7 +15,7 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 
 	position: ${(props) => (props.$isOverlaped ? 'fixed' : 'sticky')};
 	top: 0;
-	z-index: 1;
+	z-index: 10;
 
 	display: flex;
 	flex-direction: row;

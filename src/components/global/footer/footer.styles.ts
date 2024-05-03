@@ -31,7 +31,6 @@ export const FooterContainer = styled.div<DeviceTypeStyledProp>`
 	font-weight: ${({ theme }) => theme.typo.caption.weight};
 	line-height: ${({ theme }) => theme.typo.caption.leading};
 	letter-spacing: ${({ theme }) => theme.typo.caption.kerning};
-
 	color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
 
 	span {
