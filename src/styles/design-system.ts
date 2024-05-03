@@ -22,13 +22,13 @@ export const DesignSystem: DefaultTheme = {
 		accent: {
 			primary: {
 				active: designTokens.colour.pointblue[300],
-				inactive: hexToRgba(designTokens.colour.pointblue[300], 0.8),
+				inactive: hexToRgba(designTokens.colour.pointblue[300], 0.5),
 				pressed: designTokens.colour.pointblue[500],
 				hover: designTokens.colour.pointblue[200],
 			},
 			secondary: {
 				active: designTokens.colour.grayscale[0],
-				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.8),
+				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.5),
 				pressed: designTokens.colour.pointblue[500],
 				hover: designTokens.colour.pointblue[50],
 			},
@@ -42,7 +42,7 @@ export const DesignSystem: DefaultTheme = {
 			},
 			secondary: {
 				active: designTokens.colour.grayscale[0],
-				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.8),
+				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.5),
 				pressed: designTokens.colour.grayscale[200],
 				hover: designTokens.colour.grayscale[0],
 			},
@@ -50,13 +50,13 @@ export const DesignSystem: DefaultTheme = {
 		system: {
 			primary: {
 				active: designTokens.colour.systemred[600],
-				inactive: hexToRgba(designTokens.colour.systemred[600], 0.8),
+				inactive: hexToRgba(designTokens.colour.systemred[600], 0.5),
 				pressed: designTokens.colour.systemred[700],
 				hover: designTokens.colour.systemred[400],
 			},
 			secondary: {
 				active: designTokens.colour.grayscale[0],
-				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.8),
+				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.5),
 				pressed: designTokens.colour.systemred[200],
 				hover: designTokens.colour.systemred[100],
 			},

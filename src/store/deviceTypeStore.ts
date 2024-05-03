@@ -1,12 +1,15 @@
 import { create } from 'zustand'
 import { DeviceType } from '../types/deviceType'
 
-export interface DeviceTypeStore {
+export interface DeviceTypeState {
 	deviceType: DeviceType
-	updateDeviceType: (deviceType: DeviceType) => void
 }
 
-export const useDeviceTypeStore = create<DeviceTypeStore>((set) => ({
+export interface DeviceTypeAction {
+  updateDeviceType: (deviceType: DeviceType) => void
+}
+
+export const useDeviceTypeStore = create<DeviceTypeState & DeviceTypeAction>((set) => ({
 	deviceType: 'desktop',
 	updateDeviceType: (deviceType) => set({ deviceType: deviceType }),
 }))

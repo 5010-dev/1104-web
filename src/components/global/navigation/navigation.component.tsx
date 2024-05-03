@@ -1,19 +1,42 @@
+import { useState, useEffect } from 'react'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { useScroll } from 'framer-motion'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { ReactComponent as Logo } from '../../../assets/logo/1104-logo-white.svg'
 import { NavigationContainer } from './navigation.styles'
 
 export default function Navigation() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+
+	const [isScrolled, setIsScrolled] = useState(false)
+	const { scrollYProgress } = useScroll()
+
 	const handleClick = (): void => {
 		console.log('menu cliecked')
 	}
 
+	useEffect(() => {
+		scrollYProgress.on('change', (latest) => {
+			if (latest > 0.1) {
+				setIsScrolled(true)
+			} else {
+				setIsScrolled(false)
+			}
+		})
+	}, [scrollYProgress])
+
 	return (
-		<NavigationContainer $deviceType={deviceType}>
+		<NavigationContainer
+			$deviceType={deviceType}
+			$isOverlaped={true}
+			$isScrolled={isScrolled}
+			// animate={{ backgroundColor: isScrolled ? '#ffffff' : 'transparent' }}
+		>
 			<div className="nav-bar-container" id="nav-bar-left-container">
 				<Logo id="logo" />
 			</div>
