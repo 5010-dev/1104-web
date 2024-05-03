@@ -1,6 +1,8 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useContentsStore } from '../../../store/contentsStore'
 
+import Button from '../../../components/global/button/button.component'
+
 import { HomeContainer } from './home.styles'
 
 export default function Home() {
@@ -12,7 +14,16 @@ export default function Home() {
 			<div id="text-container">
 				<h1 id="display">{text.display}</h1>
 				<h3 id="subheading">{text.subheading}</h3>
+				<Button
+					type="button"
+					appearance="neutral"
+					hierarchy="secondary"
+					shape="rounding"
+					text={text.ctaButtonText}
+					handleClick={() => console.log('button clicked')}
+				/>
 			</div>
+			<img id="mockup-image" src={image.mockupImage} alt={image.mockupImage} />
 		</HomeContainer>
 	)
 }

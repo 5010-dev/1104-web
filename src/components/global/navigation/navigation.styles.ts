@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { DeviceTypeStyledProp } from '../../../types/deviceType'
+import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
 
 type NavigationContainerProps = {
 	$isOverlaped?: boolean

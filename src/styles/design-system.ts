@@ -136,6 +136,7 @@ export const DesignSystem: DefaultTheme = {
 		},
 		section: {
 			width: designTokens.layout.dimension.horizontal.fill,
+			maxWidth: designTokens.layout.dimension.horizontal.midFull,
 			padding: 'none',
 			gutter: designTokens.layout.spacing.xlg,
 		},
@@ -146,7 +147,10 @@ export const DesignSystem: DefaultTheme = {
 		},
 		component: {
 			width: designTokens.layout.dimension.horizontal.fill,
-			padding: designTokens.layout.spacing.md,
+			padding: {
+				default: designTokens.layout.spacing.md,
+				lg: designTokens.layout.spacing.xlg,
+			},
 			gutter: designTokens.layout.spacing.md,
 		},
 	},

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { DeviceTypeStyledProp } from '../../../types/deviceType'
+import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
 
 export const PageLayoutContainer = styled.div<DeviceTypeStyledProp>`
 	width: 100%;

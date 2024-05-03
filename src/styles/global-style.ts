@@ -17,7 +17,7 @@ const GlobalStyle = styled.createGlobalStyle`
 		background-color: ${designTokens.colour.grayscale[1000]};
 		color: ${designTokens.colour.grayscale[0]};
 
-		font-family: ${designTokens.typo.typeface}, -apple-system,
+		font-family: ${designTokens.typo.typeface.default}, -apple-system,
 			BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
 			'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
 			'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;

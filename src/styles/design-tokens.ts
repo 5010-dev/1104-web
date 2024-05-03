@@ -106,6 +106,7 @@ export const designTokens: DesignTokens = {
 			horizontal: {
 				full: '100vw',
 				maxFull: '70rem',
+				midFull: '50rem',
 				minFull: '20rem',
 				fill: '100%',
 				fit: 'auto',

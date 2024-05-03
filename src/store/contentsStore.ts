@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
-import backgroundImage from '../assets/img/home-about-img.jpeg'
+import backgroundImage from '../assets/img/home-about-image.jpeg'
+import mockupImage from '../assets/img/home-mockup-image.png'
 
 export interface ContentsState {
 	home: {
@@ -21,7 +22,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 	home: {
 		image: {
 			backgroundImage: backgroundImage,
-			mockupImage: '',
+			mockupImage: mockupImage,
 		},
 		text: {
 			display: 'Elevate your investing journey',
