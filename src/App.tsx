@@ -15,7 +15,6 @@ import './App.css'
 
 function App() {
 	const deviceType = useDeviceType()
-	// const storedDeviceType = useDeviceTypeStore((state) => state.deviceType)
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
 
 	useEffect(() => {

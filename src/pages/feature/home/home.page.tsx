@@ -1,5 +1,8 @@
 import { HomeContainer } from './home.styles'
+import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
 export default function Home() {
-	return <HomeContainer>HOME</HomeContainer>
+	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+
+	return <HomeContainer $deviceType={deviceType}>HOME</HomeContainer>
 }

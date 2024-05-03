@@ -1,6 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const NavigationContainer = styled.header`
+import { DeviceTypeStyledProp } from '../../../types/deviceType'
+
+export const NavigationContainer = styled.header<DeviceTypeStyledProp>`
 	width: ${({ theme }) => theme.layout.component.width};
 
 	position: sticky;
@@ -12,7 +14,25 @@ export const NavigationContainer = styled.header`
 	justify-content: space-between;
 	align-items: center;
 
-	padding: ${({ theme }) => theme.layout.page.padding};
+	${(props) =>
+		props.$deviceType === 'desktop'
+			? css`
+					padding: ${({ theme }) => theme.layout.page.padding.tablet}
+						${({ theme }) => theme.layout.page.padding.desktop};
+			  `
+			: null}
+	${(props) =>
+		props.$deviceType === 'tablet'
+			? css`
+					padding: ${({ theme }) => theme.layout.page.padding.tablet};
+			  `
+			: null}
+      ${(props) =>
+		props.$deviceType === 'mobile'
+			? css`
+					padding: ${({ theme }) => theme.layout.page.padding.mobile};
+			  `
+			: null}
 
 	div.nav-bar-container {
 		display: flex;

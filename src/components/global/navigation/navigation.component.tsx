@@ -13,7 +13,7 @@ export default function Navigation() {
 	}
 
 	return (
-		<NavigationContainer>
+		<NavigationContainer $deviceType={deviceType}>
 			<div className="nav-bar-container" id="nav-bar-left-container">
 				<Logo id="logo" />
 			</div>
