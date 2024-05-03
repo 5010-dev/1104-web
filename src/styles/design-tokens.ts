@@ -71,11 +71,13 @@ export const designTokens: DesignTokens = {
 	typo: {
 		typeface: { default: 'Pretendard Variable' },
 		size: {
-			xxlg: '4rem',
-			xlg: '2rem',
-			lg: '1.5rem',
+			xxxlg: '4rem',
+			xxlg: '2rem',
+			xlg: '1.5rem',
+			lg: '1.25rem',
 			md: '1rem',
 			sm: '0.75rem',
+			xsm: '0.5rem',
 		},
 		weight: {
 			xhv: 900,
@@ -88,8 +90,8 @@ export const designTokens: DesignTokens = {
 			narrow: '120%',
 		},
 		kerning: {
-			default: '-0.05rem',
-			tight: '-0.15rem',
+			default: '-0.025rem',
+			tight: '-0.05rem',
 		},
 	},
 	layout: {

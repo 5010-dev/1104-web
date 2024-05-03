@@ -62,7 +62,64 @@ export const DesignSystem: DefaultTheme = {
 			},
 		},
 	},
-	typo: {},
+	typo: {
+		display: {
+			typeface: designTokens.typo.typeface,
+			size: designTokens.typo.size.xxxlg,
+			weight: designTokens.typo.weight.xhv,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		},
+		heading1: {
+			typeface: designTokens.typo.typeface,
+			size: designTokens.typo.size.xxlg,
+			weight: designTokens.typo.weight.hv,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		},
+		heading2: {
+			typeface: designTokens.typo.typeface,
+			size: designTokens.typo.size.xlg,
+			weight: designTokens.typo.weight.hv,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		},
+		heading3: {
+			typeface: designTokens.typo.typeface,
+			size: designTokens.typo.size.lg,
+			weight: designTokens.typo.weight.hv,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		},
+		subheading: {
+			typeface: designTokens.typo.typeface,
+			size: designTokens.typo.size.md,
+			weight: designTokens.typo.weight.hv,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		},
+		body: {
+			typeface: designTokens.typo.typeface,
+			size: designTokens.typo.size.md,
+			weight: designTokens.typo.weight.md,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		},
+		caption: {
+			typeface: designTokens.typo.typeface,
+			size: designTokens.typo.size.sm,
+			weight: designTokens.typo.weight.lt,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		},
+		overline: {
+			typeface: designTokens.typo.typeface,
+			size: designTokens.typo.size.xsm,
+			weight: designTokens.typo.weight.lt,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		},
+	},
 }
 
 export default DesignSystem

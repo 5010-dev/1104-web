@@ -251,6 +251,7 @@ const GlobalStyle = styled.createGlobalStyle`
 		user-select: none;
 
 		line-height: ${designTokens.typo.leading.default};
+		letter-spacing: ${designTokens.typo.kerning.default};
 		text-align: center;
 	}
 
