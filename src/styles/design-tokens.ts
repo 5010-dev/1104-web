@@ -92,8 +92,8 @@ export const designTokens: DesignTokens = {
 			lt: 200,
 		},
 		leading: {
-			default: '150%',
-			narrow: '120%',
+			default: '160%',
+			narrow: '110%',
 		},
 		kerning: {
 			default: '-0.0125rem',
@@ -108,12 +108,12 @@ export const designTokens: DesignTokens = {
 				maxFull: '70rem',
 				minFull: '20rem',
 				fill: '100%',
-				fit: 'fit-content',
+				fit: 'auto',
 			},
 			vertical: {
 				full: '100vh',
 				fill: '100%',
-				fit: 'fit-content',
+				fit: 'auto',
 			},
 		},
 		spacing: {

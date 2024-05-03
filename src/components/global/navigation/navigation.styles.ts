@@ -53,7 +53,7 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 
 		#logo {
 			width: 5rem;
-			height: fit-content;
+			height: auto;
 		}
 
 		button#menu-icon {
@@ -77,6 +77,6 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 		width: 100%;
 	}
 	div#nav-bar-right-container {
-		width: fit-content;
+		width: auto;
 	}
 `
