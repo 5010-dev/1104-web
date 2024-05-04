@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
 import { getDeviceTypePadding } from '../../../utils/deviceUtils'

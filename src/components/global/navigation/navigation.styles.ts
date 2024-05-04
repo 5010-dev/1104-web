@@ -1,8 +1,9 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
 import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
 import { getDeviceTypePadding } from '../../../utils/deviceUtils'
+import { hexToRgba } from '../../../utils/colourUtils'
 
 type NavigationContainerProps = {
 	$isOverlaped?: boolean
@@ -30,10 +31,21 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 	padding-right: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'page')};
 
-	background-color: ${(props) =>
-		props.$isScrolled
-			? `${props.theme.colour.neutral.primary.active}`
-			: 'rgba(0, 0, 0, 0)'};
+	${({ theme, $isScrolled }) =>
+		$isScrolled
+			? css`
+					background-color: ${hexToRgba(
+						theme.colour.neutral.primary.active,
+						0.5,
+					)};
+					backdrop-filter: blur(1rem);
+			  `
+			: css`
+					background-color: ${hexToRgba(
+						theme.colour.neutral.primary.active,
+						0,
+					)};
+			  `}
 	transition: background-color 0.25s;
 
 	div.nav-bar-container {
