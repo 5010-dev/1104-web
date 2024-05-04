@@ -41,7 +41,7 @@ export default function Navigation() {
 			</div>
 			<div className="nav-bar-container" id="nav-bar-right-container">
 				{deviceType !== 'desktop' ? (
-					<button id="menu-icon">
+					<button id="menu-icon" aria-label="menu-button">
 						<FontAwesomeIcon icon={faBars} onClick={handleClick} />
 					</button>
 				) : null}

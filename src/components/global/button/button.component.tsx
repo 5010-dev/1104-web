@@ -12,6 +12,7 @@ export default function Button(props: ButtonProps) {
 		disabled,
 		id,
 		type,
+		accessibleName,
 	} = props
 
 	return (
@@ -23,6 +24,7 @@ export default function Button(props: ButtonProps) {
 			disabled={disabled}
 			id={id}
 			type={type}
+			aria-label={accessibleName}
 		>
 			{icon}
 			{text ? <span>{text}</span> : null}

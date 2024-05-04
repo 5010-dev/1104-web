@@ -14,6 +14,7 @@ export interface ButtonProps {
 	disabled?: boolean
 	id?: string
 	type?: 'submit' | 'button' | 'reset'
+	accessibleName?: string
 }
 
 export type ButtonContainerProps = {
