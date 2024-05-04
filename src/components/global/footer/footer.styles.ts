@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
+import { getDeviceTypePadding } from '../../../utils/deviceUtils'
 
 export const FooterContainer = styled.div<DeviceTypeStyledProp>`
 	width: ${({ theme }) => theme.layout.page.width};
@@ -11,22 +12,8 @@ export const FooterContainer = styled.div<DeviceTypeStyledProp>`
 	align-items: center;
 	/* gap: 1rem; */
 
-	${(props) =>
-		props.$deviceType === 'desktop' &&
-		css`
-			padding: ${({ theme }) => theme.layout.page.padding.tablet}
-				${({ theme }) => theme.layout.page.padding.desktop};
-		`}
-	${(props) =>
-		props.$deviceType === 'tablet' &&
-		css`
-			padding: ${({ theme }) => theme.layout.page.padding.tablet};
-		`}
-      ${(props) =>
-		props.$deviceType === 'mobile' &&
-		css`
-			padding: ${({ theme }) => theme.layout.page.padding.mobile};
-		`}
+	padding: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'page')};
 
 	font-family: ${({ theme }) => theme.typo.caption.typeface};
 	font-size: ${({ theme }) => theme.typo.caption.size};

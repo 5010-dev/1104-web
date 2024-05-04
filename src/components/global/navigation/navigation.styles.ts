@@ -1,20 +1,21 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
+import { getDeviceTypePadding } from '../../../utils/deviceUtils'
 
 type NavigationContainerProps = {
 	$isOverlaped?: boolean
 	$isScrolled?: boolean
 }
-
 type CombinedProps = DeviceTypeStyledProp & NavigationContainerProps
 
 export const NavigationContainer = styled(motion.header)<CombinedProps>`
-	width: ${({ theme }) => theme.layout.component.width};
-
 	position: ${(props) => (props.$isOverlaped ? 'fixed' : 'sticky')};
 	top: 0;
+
+	width: ${({ theme }) => theme.layout.component.width};
+
 	z-index: 10;
 
 	display: flex;
@@ -22,22 +23,12 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 	justify-content: space-between;
 	align-items: center;
 
-	${(props) =>
-		props.$deviceType === 'desktop' &&
-		css`
-			padding: ${({ theme }) => theme.layout.page.padding.tablet}
-				${({ theme }) => theme.layout.page.padding.desktop};
-		`}
-	${(props) =>
-		props.$deviceType === 'tablet' &&
-		css`
-			padding: ${({ theme }) => theme.layout.page.padding.tablet};
-		`}
-	${(props) =>
-		props.$deviceType === 'mobile' &&
-		css`
-			padding: 1rem ${({ theme }) => theme.layout.page.padding.mobile};
-		`}
+	padding-top: ${({ theme }) => theme.layout.page.padding.mobile};
+	padding-bottom: ${({ theme }) => theme.layout.page.padding.mobile};
+	padding-left: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'page')};
+	padding-right: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'page')};
 
 	background-color: ${(props) =>
 		props.$isScrolled
