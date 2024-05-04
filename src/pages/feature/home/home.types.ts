@@ -1,4 +1,4 @@
-import DesignSystem from '../../../styles/design-system'
+import DesignSystem from '../../../styles/design-system/design-system.theme'
 
 export type Typography = typeof DesignSystem.typo
 export type TypographyVariant = keyof Typography

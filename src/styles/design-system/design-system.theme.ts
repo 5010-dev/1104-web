@@ -1,21 +1,15 @@
 import { DefaultTheme } from 'styled-components'
-import designTokens from './design-tokens'
-
-function hexToRgba(hex: string | number, alpha: number): string {
-	let hexValue: string
-
-	if (typeof hex === 'string') {
-		hexValue = hex
-	} else {
-		hexValue = hex.toString()
-	}
-
-	const r = parseInt(hexValue.slice(1, 3), 16)
-	const g = parseInt(hexValue.slice(3, 5), 16)
-	const b = parseInt(hexValue.slice(5, 7), 16)
-
-	return `rgba(${r}, ${g}, ${b}, ${alpha})`
-}
+import designTokens from '../degisn-tokens/design-tokens.tokens'
+import { hexToRgba } from '../../utils/colourUtils'
+import {
+	ColourHierarchy,
+	ColourVariant,
+	TypoVariant,
+	LayoutVariant,
+	ShapeHierarchy,
+	ShapeVariant,
+	ElevationHierarchy,
+} from './design-system.types'
 
 export const DesignSystem: DefaultTheme = {
 	colour: {
@@ -25,43 +19,44 @@ export const DesignSystem: DefaultTheme = {
 				inactive: hexToRgba(designTokens.colour.pointblue[300], 0.5),
 				pressed: designTokens.colour.pointblue[500],
 				hover: designTokens.colour.pointblue[200],
-			},
+			} as ColourVariant,
 			secondary: {
 				active: designTokens.colour.grayscale[0],
 				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.5),
 				pressed: designTokens.colour.pointblue[500],
 				hover: designTokens.colour.pointblue[50],
-			},
-		},
+			} as ColourVariant,
+		} as ColourHierarchy,
 		neutral: {
 			primary: {
 				active: designTokens.colour.grayscale[1000],
 				inactive: designTokens.colour.grayscale[1000],
 				pressed: designTokens.colour.grayscale[900],
 				hover: designTokens.colour.grayscale[800],
-			},
+			} as ColourVariant,
 			secondary: {
 				active: designTokens.colour.grayscale[0],
 				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.5),
 				pressed: designTokens.colour.grayscale[200],
 				hover: designTokens.colour.grayscale[0],
-			},
-		},
+			} as ColourVariant,
+		} as ColourHierarchy,
 		system: {
 			primary: {
 				active: designTokens.colour.systemred[600],
 				inactive: hexToRgba(designTokens.colour.systemred[600], 0.5),
 				pressed: designTokens.colour.systemred[700],
 				hover: designTokens.colour.systemred[400],
-			},
+			} as ColourVariant,
 			secondary: {
 				active: designTokens.colour.grayscale[0],
 				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.5),
 				pressed: designTokens.colour.systemred[200],
 				hover: designTokens.colour.systemred[100],
-			},
-		},
+			} as ColourVariant,
+		} as ColourHierarchy,
 	},
+
 	typo: {
 		display: {
 			typeface: designTokens.typo.typeface.default,
@@ -69,57 +64,58 @@ export const DesignSystem: DefaultTheme = {
 			weight: designTokens.typo.weight.xhv,
 			leading: designTokens.typo.leading.narrow,
 			kerning: designTokens.typo.kerning.default,
-		},
+		} as TypoVariant,
 		heading1: {
 			typeface: designTokens.typo.typeface.default,
 			size: designTokens.typo.size.xxlg,
 			weight: designTokens.typo.weight.hv,
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
-		},
+		} as TypoVariant,
 		heading2: {
 			typeface: designTokens.typo.typeface.default,
 			size: designTokens.typo.size.xlg,
 			weight: designTokens.typo.weight.hv,
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
-		},
+		} as TypoVariant,
 		heading3: {
 			typeface: designTokens.typo.typeface.default,
 			size: designTokens.typo.size.lg,
 			weight: designTokens.typo.weight.hv,
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
-		},
+		} as TypoVariant,
 		subheading: {
 			typeface: designTokens.typo.typeface.default,
 			size: designTokens.typo.size.md,
 			weight: designTokens.typo.weight.hv,
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
-		},
+		} as TypoVariant,
 		body: {
 			typeface: designTokens.typo.typeface.default,
 			size: designTokens.typo.size.md,
 			weight: designTokens.typo.weight.md,
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
-		},
+		} as TypoVariant,
 		caption: {
 			typeface: designTokens.typo.typeface.default,
 			size: designTokens.typo.size.sm,
 			weight: designTokens.typo.weight.lt,
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
-		},
+		} as TypoVariant,
 		overline: {
 			typeface: designTokens.typo.typeface.default,
 			size: designTokens.typo.size.xsm,
 			weight: designTokens.typo.weight.lt,
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
-		},
+		} as TypoVariant,
 	},
+
 	layout: {
 		page: {
 			width: designTokens.layout.dimension.horizontal.full,
@@ -133,18 +129,18 @@ export const DesignSystem: DefaultTheme = {
 				mobile: designTokens.layout.spacing.xlg,
 			},
 			gutter: designTokens.layout.spacing.xxlg,
-		},
+		} as LayoutVariant,
 		section: {
 			width: designTokens.layout.dimension.horizontal.fill,
 			maxWidth: designTokens.layout.dimension.horizontal.midFull,
 			padding: 'none',
 			gutter: designTokens.layout.spacing.xlg,
-		},
+		} as LayoutVariant,
 		container: {
 			width: designTokens.layout.dimension.horizontal.fill,
 			padding: designTokens.layout.spacing.md,
 			gutter: designTokens.layout.spacing.lg,
-		},
+		} as LayoutVariant,
 		component: {
 			width: designTokens.layout.dimension.horizontal.fill,
 			padding: {
@@ -152,42 +148,59 @@ export const DesignSystem: DefaultTheme = {
 				lg: designTokens.layout.spacing.xlg,
 			},
 			gutter: designTokens.layout.spacing.md,
-		},
+		} as LayoutVariant,
 	},
+
 	shape: {
 		outlined: {
 			rounding: {
 				border: designTokens.layout.weight.default,
 				borderRadii: designTokens.layout.radii.max,
-			},
+			} as ShapeVariant,
 			rounded1: {
 				border: designTokens.layout.weight.default,
 				borderRadii: designTokens.layout.radii.xlg,
-			},
+			} as ShapeVariant,
 			rounded2: {
 				border: designTokens.layout.weight.default,
 				borderRadii: designTokens.layout.radii.lg,
-			},
+			} as ShapeVariant,
 			rounded3: {
 				border: designTokens.layout.weight.default,
 				borderRadii: designTokens.layout.radii.sm,
-			},
-			flat: { border: designTokens.layout.weight.default, borderRadii: 'none' },
-		},
+			} as ShapeVariant,
+			flat: {
+				border: designTokens.layout.weight.default,
+				borderRadii: 'none',
+			} as ShapeVariant,
+		} as ShapeHierarchy,
 		filled: {
-			rounding: { border: 'none', borderRadii: designTokens.layout.radii.max },
-			rounded1: { border: 'none', borderRadii: designTokens.layout.radii.xlg },
-			rounded2: { border: 'none', borderRadii: designTokens.layout.radii.lg },
-			rounded3: { border: 'none', borderRadii: designTokens.layout.radii.sm },
-			flat: { border: 'none', borderRadii: 'none' },
-		},
+			rounding: {
+				border: 'none',
+				borderRadii: designTokens.layout.radii.max,
+			} as ShapeVariant,
+			rounded1: {
+				border: 'none',
+				borderRadii: designTokens.layout.radii.xlg,
+			} as ShapeVariant,
+			rounded2: {
+				border: 'none',
+				borderRadii: designTokens.layout.radii.lg,
+			} as ShapeVariant,
+			rounded3: {
+				border: 'none',
+				borderRadii: designTokens.layout.radii.sm,
+			} as ShapeVariant,
+			flat: { border: 'none', borderRadii: 'none' } as ShapeVariant,
+		} as ShapeHierarchy,
 	},
+
 	elevation: {
 		layer0: '0 0 0',
 		layer1: `${designTokens.layout.depth.sm} 0 0`,
 		layer2: `${designTokens.layout.depth.lg} 0 ${designTokens.layout.depth.sm}`,
 		layer3: `${designTokens.layout.depth.xxlg} 0 ${designTokens.layout.depth.lg}`,
-	},
+	} as ElevationHierarchy,
 }
 
 export default DesignSystem

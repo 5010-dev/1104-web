@@ -151,7 +151,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
 		`${theme.layout.component.padding.default} ${theme.layout.component.padding.lg}`};
 	border-radius: ${({ theme, $shape }) =>
 		($shape === 'rounding' && `${theme.shape.filled.rounding.borderRadii}`) ||
-		($shape === 'rounded' && `${theme.shape.filled.rounded.borderRadii}`)};
+		($shape === 'rounded' && `${theme.shape.filled.rounded2.borderRadii}`)};
 
 	background-color: ${({ theme, $appearance, $hierarchy }) =>
 		getBackgroundColor(theme, $appearance, $hierarchy)};

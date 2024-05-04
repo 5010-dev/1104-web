@@ -1,39 +1,15 @@
-type DesignToken<T extends string | number = string> = Record<string, T>
+import {
+	DesignTokens,
+	ColourTokens,
+	TypoTokens,
+	LayoutTokens,
+} from './design-tokens.types'
 
-interface ColourTokens {
-	grayscale: DesignToken
-	pointblue: DesignToken
-	systemred: DesignToken
-}
-
-interface TypoTokens {
-	typeface: DesignToken<string>
-	size: DesignToken<string>
-	weight: DesignToken<number>
-	leading: DesignToken<string>
-	kerning: DesignToken<string>
-}
-
-interface LayoutTokens {
-	breakpoint: DesignToken<number>
-	dimension: {
-		horizontal: DesignToken<string>
-		vertical: DesignToken<string>
-	}
-	spacing: DesignToken
-	radii: DesignToken
-	depth: DesignToken
-	weight: DesignToken<string>
-	style: DesignToken<string>
-}
-
-interface DesignTokens {
-	colour: ColourTokens
-	typo: TypoTokens
-	layout: LayoutTokens
-}
-
+/**
+ * 디자인 토큰 객체
+ */
 export const designTokens: DesignTokens = {
+	// 색상 토큰
 	colour: {
 		grayscale: {
 			0: '#ffffff',
@@ -73,7 +49,9 @@ export const designTokens: DesignTokens = {
 			800: '#850101',
 			900: '#470000',
 		},
-	},
+	} as ColourTokens,
+
+	// 타이포그래피 토큰
 	typo: {
 		typeface: { default: 'Pretendard Variable' },
 		size: {
@@ -99,7 +77,9 @@ export const designTokens: DesignTokens = {
 			default: '-0.0125rem',
 			tight: '-0.025rem',
 		},
-	},
+	} as TypoTokens,
+
+	// 레이아웃 토큰
 	layout: {
 		breakpoint: { desktop: 1024, tablet: 800, mobile: 380 },
 		dimension: {
@@ -152,7 +132,7 @@ export const designTokens: DesignTokens = {
 		style: {
 			default: 'solid',
 		},
-	},
+	} as LayoutTokens,
 }
 
 export default designTokens

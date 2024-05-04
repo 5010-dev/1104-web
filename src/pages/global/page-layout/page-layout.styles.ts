@@ -1,6 +1,25 @@
-import styled, { css } from 'styled-components'
+import styled, { DefaultTheme } from 'styled-components'
 
-import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
+import {
+	DeviceType,
+	DeviceTypeStyledProp,
+} from '../../../types/deviceType.types'
+
+/**
+ * 디바이스 타입에 따른 패딩 스타일을 반환하는 함수
+ * @param props 스타일 컴포넌트에 전달되는 props
+ * @returns 디바이스 타입에 맞는 패딩 스타일
+ */
+const getDeviceTypePadding = (theme: DefaultTheme, deviceType: DeviceType) => {
+	switch (deviceType) {
+		case 'desktop':
+			return theme.layout.page.padding.desktop
+		case 'tablet':
+			return theme.layout.page.padding.tablet
+		case 'mobile':
+			return theme.layout.page.padding.mobile
+	}
+}
 
 export const PageLayoutContainer = styled.div<DeviceTypeStyledProp>`
 	width: 100%;
@@ -14,21 +33,8 @@ export const PageLayoutContainer = styled.div<DeviceTypeStyledProp>`
 	align-items: center;
 	gap: ${({ theme }) => theme.layout.page.gutter};
 
-	${(props) =>
-		props.$deviceType === 'desktop' &&
-		css`
-			padding: ${({ theme }) => theme.layout.page.padding.desktop};
-		`}
-	${(props) =>
-		props.$deviceType === 'tablet' &&
-		css`
-			padding: ${({ theme }) => theme.layout.page.padding.tablet};
-		`}
-      ${(props) =>
-		props.$deviceType === 'mobile' &&
-		css`
-			padding: ${({ theme }) => theme.layout.page.padding.mobile};
-		`}
+	padding: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType)};
 `
 
 export default PageLayoutContainer

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import designTokens from './design-tokens'
+import designTokens from './degisn-tokens/design-tokens.tokens'
 
 const styled = { createGlobalStyle }
 
