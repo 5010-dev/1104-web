@@ -38,6 +38,7 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 						theme.colour.neutral.primary.active,
 						0.5,
 					)};
+					-webkit-backdrop-filter: blur(1rem);
 					backdrop-filter: blur(1rem);
 			  `
 			: css`
