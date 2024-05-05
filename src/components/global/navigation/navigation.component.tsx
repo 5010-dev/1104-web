@@ -22,7 +22,7 @@ export default function Navigation() {
 
 	useEffect(() => {
 		scrollYProgress.on('change', (latest) => {
-			if (latest > 0.1) {
+			if (latest > 0.001) {
 				setIsScrolled(true)
 			} else {
 				setIsScrolled(false)
