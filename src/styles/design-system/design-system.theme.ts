@@ -44,6 +44,12 @@ export const DesignSystem: DefaultTheme = {
 				pressed: designTokens.colour.grayscale[200],
 				hover: designTokens.colour.grayscale[0],
 			} as ColourVariant,
+			tertiary: {
+				active: designTokens.colour.grayscale[900],
+				inactive: hexToRgba(designTokens.colour.grayscale[900], 0.5),
+				pressed: designTokens.colour.grayscale[1000],
+				hover: designTokens.colour.grayscale[800],
+			},
 		} as ColourHierarchy,
 		system: {
 			primary: {
@@ -127,25 +133,27 @@ export const DesignSystem: DefaultTheme = {
 			minWidth: designTokens.layout.dimension.horizontal.minFull,
 			height: designTokens.layout.dimension.vertical.full,
 			minHeight: designTokens.layout.dimension.vertical.fit,
+			padding: 'none',
+			gutter: designTokens.layout.spacing.xhg,
+		} as LayoutVariant,
+		section: {
+			width: designTokens.layout.dimension.horizontal.fill,
+			maxWidth: designTokens.layout.dimension.horizontal.maxFull,
+			minHeight: designTokens.layout.dimension.vertical.full,
 			padding: {
 				lg: designTokens.layout.spacing.xxxlg,
 				default: designTokens.layout.spacing.xxlg,
 				sm: designTokens.layout.spacing.xlg,
 			},
-			gutter: designTokens.layout.spacing.xxlg,
-		} as LayoutVariant,
-		section: {
-			width: designTokens.layout.dimension.horizontal.fill,
-			maxWidth: designTokens.layout.dimension.horizontal.midFull,
-			padding: 'none',
 			gutter: designTokens.layout.spacing.xlg,
 		} as LayoutVariant,
 		container: {
 			width: designTokens.layout.dimension.horizontal.fill,
+			maxWidth: designTokens.layout.dimension.horizontal.midFull,
 			padding: {
-				lg: designTokens.layout.spacing.lg,
-				default: designTokens.layout.spacing.lg,
-				sm: designTokens.layout.spacing.md,
+				lg: designTokens.layout.spacing.xlg,
+				default: designTokens.layout.spacing.xlg,
+				sm: designTokens.layout.spacing.lg,
 			},
 			gutter: designTokens.layout.spacing.lg,
 		} as LayoutVariant,

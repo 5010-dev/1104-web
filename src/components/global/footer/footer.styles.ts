@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 
-import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
+import { DeviceType } from '../../../store/deviceTypeStore'
 import { getDeviceTypePadding } from '../../../utils/deviceUtils'
 import { getTypography } from '../../../utils/typoUtils'
 
-export const FooterContainer = styled.div<DeviceTypeStyledProp>`
+type FooterContainerProps = {
+	$deviceType: DeviceType
+}
+
+export const FooterContainer = styled.div<FooterContainerProps>`
 	width: ${({ theme }) => theme.layout.page.width};
 
 	display: flex;
@@ -14,14 +18,14 @@ export const FooterContainer = styled.div<DeviceTypeStyledProp>`
 	/* gap: 1rem; */
 
 	padding: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'page')};
+		getDeviceTypePadding(theme, $deviceType, 'section')};
 
 	${({ theme }) => getTypography(theme, 'caption')}
 	color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
 
 	div#disclaimer-container {
-		width: ${({ theme }) => theme.layout.component.width};
-		max-width: ${({ theme }) => theme.layout.page.maxWidth};
+		width: ${({ theme }) => theme.layout.section.width};
+		max-width: ${({ theme }) => theme.layout.section.maxWidth};
 
 		display: flex;
 		flex-direction: column;

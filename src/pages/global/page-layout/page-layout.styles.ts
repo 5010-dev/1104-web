@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
-import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
+import { DeviceType } from '../../../store/deviceTypeStore'
 import { getDeviceTypePadding } from '../../../utils/deviceUtils'
 
-export const PageLayoutContainer = styled.div<DeviceTypeStyledProp>`
+type PageLayoutContainerProps = {
+	$deviceType: DeviceType
+}
+
+export const PageLayoutContainer = styled.div<PageLayoutContainerProps>`
 	width: 100%;
 	min-width: ${({ theme }) => theme.layout.page.minWidth};
 	/* min-height: calc(100vh - 4.25rem); */

@@ -1,5 +1,6 @@
 import { create } from 'zustand'
-import { DeviceType } from '../types/deviceType.types'
+
+export type DeviceType = 'desktop' | 'tablet' | 'mobile'
 
 export interface DeviceTypeState {
 	deviceType: DeviceType

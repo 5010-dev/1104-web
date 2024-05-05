@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components'
-import { DeviceType } from '../types/deviceType.types'
+import { DeviceType } from '../store/deviceTypeStore'
 import { LayoutSystem } from '../styles/design-system/design-system.types'
 
 /**

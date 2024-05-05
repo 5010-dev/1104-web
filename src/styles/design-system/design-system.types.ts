@@ -7,6 +7,7 @@ export interface ColourSystem {
 export type ColourHierarchy = {
 	primary: ColourVariant
 	secondary: ColourVariant
+	tertiary?: ColourVariant
 }
 
 export type ColourVariant = {

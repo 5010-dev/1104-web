@@ -16,6 +16,14 @@ export interface ContentsState {
 			linkText: string
 		}
 	}
+	about: {
+		text: {
+			heading: string
+			body: string
+			caption: string
+		}
+		items: { subheading: string; heading: string }[]
+	}
 	footer: {
 		simpleDisclaimer: string[]
 	}
@@ -43,6 +51,28 @@ export const useContentsStore = create<ContentsState>((set) => ({
 			'차트 플랫폼을 위한 기술 분석 도구 제공업체로서 당사는 고객의 개인 거래 계좌나 중개 계좌에 접근할 수 없습니다. 따라서 당사가 제공하는 콘텐츠나 도구를 기반으로 고객이 전체 트레이더보다 더 나은 성과를 거둔다고 믿을 이유가 없습니다.',
 			'이 사이트에 사용된 차트는 대부분의 도구가 구축된 TradingView에서 제공합니다. TradingView®는 TradingView, Inc.의 등록 상표입니다. (www.TradingView.com) TradingView®는 여기에 설명된 서비스의 소유자, 개발자 또는 제공자와 제휴하지 않습니다.',
 			'이것은 당사의 전체 면책 조항을 나타내지 않으므로, 전체 면책 조항을 꼭 읽어 보시기 바랍니다.',
+		],
+	},
+	about: {
+		text: {
+			heading:
+				'우리는 모든 투자자들이 사용할 수 있는 전략적 투자 시스템을 만들고 있어요.',
+			body: '1104 R&I는 교육과 IT 기술을 접목, 각 분야의 전문가들과 함께 투자 시장의 모든 것을 총망라한 5010 매매 전략을 개발하고 보급했어요. 나아가 1104 R&I는 최신 기술과 응용 수학을 통해 획기적인 계량적 투자 시스템을 만들고자 노력하고 있어요.',
+			caption: '2023. 3. ~ 현재까지',
+		},
+		items: [
+			{
+				subheading: '5010 매매 전략을 경험한 투자자 수',
+				heading: '1,274+',
+			},
+			{
+				subheading: '5010 매매 전략의 R&D 기간',
+				heading: '4년+',
+			},
+			{
+				subheading: '5010 매매 전략 누적 연구 투자액',
+				heading: '5억 원+',
+			},
 		],
 	},
 }))
