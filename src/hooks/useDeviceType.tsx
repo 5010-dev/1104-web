@@ -16,7 +16,9 @@ export default function useDeviceType(): DeviceType {
 		query: `(min-width: ${designTokens.layout.breakpoint.desktop}px)`,
 	})
 	const isTablet = useMediaQuery({
-		query: `(min-width: ${designTokens.layout.breakpoint.tablet}px) and (max-width: designTokens.layout.breakpoint.desktop - 1)`,
+		query: `(min-width: ${
+			designTokens.layout.breakpoint.tablet
+		}px) and (max-width: ${designTokens.layout.breakpoint.desktop - 1}px)`,
 	})
 	const isMobile = useMediaQuery({
 		query: `(max-width: ${designTokens.layout.breakpoint.tablet - 1}px)`,

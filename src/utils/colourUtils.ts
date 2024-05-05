@@ -1,3 +1,10 @@
+import { DefaultTheme } from 'styled-components'
+import {
+	ColourSystem,
+	ColourHierarchy,
+	ColourVariant,
+} from '../styles/design-system/design-system.types'
+
 /**
  * 헥스 색상 코드를 RGBA 색상 코드로 변환합니다.
  *
@@ -31,3 +38,43 @@ export function hexToRgba(hex: string | number, alpha: number): string {
 
 	return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
+
+/**
+ * 컴포넌트의 색상을 결정하는 함수
+ *
+ * @param theme 테마 객체
+ * @param appearance 컴포넌트의 외관 타입 ('accent', 'neutral', 'system' 중 하나)
+ * @param hierarchy 컴포넌트의 계층 타입 ('primary', 'secondary' 중 하나)
+ * @param state 컴포넌트의 상태 ('active', 'hover', 'pressed', 'inactive' 중 하나)
+ *
+ * @returns 주어진 외관, 계층, 상태에 해당하는 컴포넌트 색상
+ */
+export const getColour = (
+	theme: DefaultTheme,
+	appearance: keyof ColourSystem,
+	hierarchy: keyof ColourHierarchy,
+	state: keyof ColourVariant,
+) => theme.colour[appearance][hierarchy][state]
+
+/**
+ * 컴포넌트의 반전된 색상을 결정하는 함수
+ *
+ * 컴포넌트의 계층 타입에 따라 반전된 색상을 반환합니다.
+ * 'primary' 계층일 경우 'secondary' 색상을, 'secondary' 계층일 경우 'primary' 색상을 반환합니다.
+ *
+ * @param theme 테마 객체
+ * @param appearance 컴포넌트의 외관 타입 ('accent', 'neutral', 'system' 중 하나)
+ * @param hierarchy 컴포넌트의 계층 타입 ('primary', 'secondary' 중 하나)
+ * @param state 컴포넌트의 상태 ('active', 'hover', 'pressed', 'inactive' 중 하나)
+ *
+ * @returns 주어진 외관, 계층, 상태에 해당하는 컴포넌트의 반전된 색상
+ */
+export const getInvertedColour = (
+	theme: DefaultTheme,
+	appearance: keyof ColourSystem,
+	hierarchy: keyof ColourHierarchy,
+	state: keyof ColourVariant,
+) =>
+	hierarchy === 'primary'
+		? theme.colour[appearance].secondary[state]
+		: theme.colour[appearance].primary[state]

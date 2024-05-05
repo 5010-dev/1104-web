@@ -24,8 +24,10 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 	justify-content: space-between;
 	align-items: center;
 
-	padding-top: ${({ theme }) => theme.layout.page.padding.mobile};
-	padding-bottom: ${({ theme }) => theme.layout.page.padding.mobile};
+	padding-top: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'container')};
+	padding-bottom: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'container')};
 	padding-left: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'page')};
 	padding-right: ${({ theme, $deviceType }) =>
@@ -56,7 +58,7 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 		align-items: center;
 
 		#logo {
-			width: 5rem;
+			width: 3.5rem;
 			height: auto;
 		}
 

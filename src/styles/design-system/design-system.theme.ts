@@ -128,9 +128,9 @@ export const DesignSystem: DefaultTheme = {
 			height: designTokens.layout.dimension.vertical.full,
 			minHeight: designTokens.layout.dimension.vertical.fit,
 			padding: {
-				desktop: designTokens.layout.spacing.xxxlg,
-				tablet: designTokens.layout.spacing.xxlg,
-				mobile: designTokens.layout.spacing.xlg,
+				sm: designTokens.layout.spacing.xlg,
+				default: designTokens.layout.spacing.xxlg,
+				lg: designTokens.layout.spacing.xxxlg,
 			},
 			gutter: designTokens.layout.spacing.xxlg,
 		} as LayoutVariant,
@@ -142,12 +142,17 @@ export const DesignSystem: DefaultTheme = {
 		} as LayoutVariant,
 		container: {
 			width: designTokens.layout.dimension.horizontal.fill,
-			padding: designTokens.layout.spacing.md,
+			padding: {
+				sm: designTokens.layout.spacing.md,
+				default: designTokens.layout.spacing.lg,
+				lg: designTokens.layout.spacing.lg,
+			},
 			gutter: designTokens.layout.spacing.lg,
 		} as LayoutVariant,
 		component: {
 			width: designTokens.layout.dimension.horizontal.fill,
 			padding: {
+				sm: designTokens.layout.spacing.sm,
 				default: designTokens.layout.spacing.md,
 				lg: designTokens.layout.spacing.xlg,
 			},

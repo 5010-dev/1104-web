@@ -1,7 +1,11 @@
 import { MouseEventHandler, ReactElement } from 'react'
+import {
+	ColourSystem,
+	ColourHierarchy,
+} from '../../../styles/design-system/design-system.types'
 
-export type ButtonAppearance = 'accent' | 'neutral' | 'system'
-export type ButtonHierarchy = 'primary' | 'secondary'
+export type ButtonAppearance = keyof ColourSystem
+export type ButtonHierarchy = keyof ColourHierarchy
 export type ButtonShape = 'rounding' | 'rounded'
 
 export interface ButtonProps {

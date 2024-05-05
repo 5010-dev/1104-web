@@ -1,5 +1,6 @@
 import { ButtonProps } from './button.types'
-import { ButtonContainer } from './button.styles'
+import { ButtonContainer, getButtonVariants } from './button.styles'
+import { useTheme } from 'styled-components'
 
 export default function Button(props: ButtonProps) {
 	const {
@@ -15,6 +16,8 @@ export default function Button(props: ButtonProps) {
 		accessibleName,
 	} = props
 
+	const theme = useTheme()
+
 	return (
 		<ButtonContainer
 			$appearance={appearance}
@@ -24,7 +27,11 @@ export default function Button(props: ButtonProps) {
 			disabled={disabled}
 			id={id}
 			type={type}
-			aria-label={accessibleName}
+			aria-labelledby={accessibleName}
+			variants={getButtonVariants(theme, appearance, hierarchy)}
+			initial="initial"
+			whileHover={disabled ? undefined : 'hover'}
+			whileTap={disabled ? undefined : 'pressed'}
 		>
 			{icon}
 			{text ? <span>{text}</span> : null}

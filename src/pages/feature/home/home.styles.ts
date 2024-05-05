@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { getTypography } from '../../../utils/typoUtils'
-import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
-
+import { getColour } from '../../../utils/colourUtils'
 import { HomeContainerProps } from './home.types'
+
+import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
 
 export const HomeContainer = styled(PageLayoutContainer)<HomeContainerProps>`
 	position: relative;
@@ -47,12 +48,14 @@ export const HomeContainer = styled(PageLayoutContainer)<HomeContainerProps>`
 
 		h1#display {
 			${({ theme }) => getTypography(theme, 'display')}
-			color: ${({ theme }) => theme.colour.neutral.secondary.active};
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
 		h3#subheading {
 			${({ theme }) => getTypography(theme, 'subheading')}
-			color: ${({ theme }) => theme.colour.neutral.secondary.active};
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 	}
 

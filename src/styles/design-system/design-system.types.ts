@@ -53,13 +53,7 @@ export type LayoutVariant = {
 	gutter: string
 }
 
-export type PaddingVariant =
-	| {
-			desktop: string
-			tablet: string
-			mobile: string
-	  }
-	| { default: string; lg: string }
+export type PaddingVariant = { sm: string; default: string; lg: string }
 
 export interface ShapeSystem {
 	outlined: ShapeHierarchy

@@ -1,5 +1,6 @@
-import { DeviceType } from '../types/deviceType.types'
 import { DefaultTheme } from 'styled-components'
+import { DeviceType } from '../types/deviceType.types'
+import { LayoutSystem } from '../styles/design-system/design-system.types'
 
 /**
  * 디바이스 타입에 따른 패딩 스타일을 반환하는 함수
@@ -11,15 +12,15 @@ import { DefaultTheme } from 'styled-components'
 export const getDeviceTypePadding = (
 	theme: DefaultTheme,
 	deviceType: DeviceType,
-	componentType: string,
+	componentType: keyof LayoutSystem,
 ) => {
 	switch (deviceType) {
 		case 'desktop':
-			return theme.layout[componentType].padding.desktop
+			return theme.layout[componentType].padding.lg
 		case 'tablet':
-			return theme.layout[componentType].padding.tablet
+			return theme.layout[componentType].padding.default
 		case 'mobile':
-			return theme.layout[componentType].padding.mobile
+			return theme.layout[componentType].padding.sm
 		default:
 			return ''
 	}
