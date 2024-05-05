@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { DeviceTypeStyledProp } from '../../../types/deviceType.types'
 import { getDeviceTypePadding } from '../../../utils/deviceUtils'
+import { getTypography } from '../../../utils/typoUtils'
 
 export const FooterContainer = styled.div<DeviceTypeStyledProp>`
 	width: ${({ theme }) => theme.layout.page.width};
@@ -15,11 +16,7 @@ export const FooterContainer = styled.div<DeviceTypeStyledProp>`
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'page')};
 
-	font-family: ${({ theme }) => theme.typo.caption.typeface};
-	font-size: ${({ theme }) => theme.typo.caption.size};
-	font-weight: ${({ theme }) => theme.typo.caption.weight};
-	line-height: ${({ theme }) => theme.typo.caption.leading};
-	letter-spacing: ${({ theme }) => theme.typo.caption.kerning};
+	${({ theme }) => getTypography(theme, 'caption')}
 	color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
 
 	div#disclaimer-container {

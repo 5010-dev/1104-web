@@ -2,13 +2,17 @@ import { DefaultTheme } from 'styled-components'
 import designTokens from '../degisn-tokens/design-tokens.tokens'
 import { hexToRgba } from '../../utils/colourUtils'
 import {
+	ColourSystem,
 	ColourHierarchy,
 	ColourVariant,
+	TypoSystem,
 	TypoVariant,
+	LayoutSystem,
 	LayoutVariant,
+	ShapeSystem,
 	ShapeHierarchy,
 	ShapeVariant,
-	ElevationHierarchy,
+	ElevationSystem,
 } from './design-system.types'
 
 export const DesignSystem: DefaultTheme = {
@@ -55,7 +59,7 @@ export const DesignSystem: DefaultTheme = {
 				hover: designTokens.colour.systemred[100],
 			} as ColourVariant,
 		} as ColourHierarchy,
-	},
+	} as ColourSystem,
 
 	typo: {
 		display: {
@@ -114,7 +118,7 @@ export const DesignSystem: DefaultTheme = {
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
 		} as TypoVariant,
-	},
+	} as TypoSystem,
 
 	layout: {
 		page: {
@@ -149,7 +153,7 @@ export const DesignSystem: DefaultTheme = {
 			},
 			gutter: designTokens.layout.spacing.md,
 		} as LayoutVariant,
-	},
+	} as LayoutSystem,
 
 	shape: {
 		outlined: {
@@ -193,14 +197,14 @@ export const DesignSystem: DefaultTheme = {
 			} as ShapeVariant,
 			flat: { border: 'none', borderRadii: 'none' } as ShapeVariant,
 		} as ShapeHierarchy,
-	},
+	} as ShapeSystem,
 
 	elevation: {
 		layer0: '0 0 0',
 		layer1: `${designTokens.layout.depth.sm} 0 0`,
 		layer2: `${designTokens.layout.depth.lg} 0 ${designTokens.layout.depth.sm}`,
 		layer3: `${designTokens.layout.depth.xxlg} 0 ${designTokens.layout.depth.lg}`,
-	} as ElevationHierarchy,
+	} as ElevationSystem,
 }
 
 export default DesignSystem

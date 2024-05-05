@@ -1,3 +1,9 @@
+export interface ColourSystem {
+	accent: ColourHierarchy
+	neutral: ColourHierarchy
+	system: ColourHierarchy
+}
+
 export type ColourHierarchy = {
 	primary: ColourVariant
 	secondary: ColourVariant
@@ -10,12 +16,41 @@ export type ColourVariant = {
 	hover: string
 }
 
+export interface TypoSystem {
+	display: TypoVariant
+	heading1: TypoVariant
+	heading2: TypoVariant
+	heading3: TypoVariant
+	subheading: TypoVariant
+	body: TypoVariant
+	caption: TypoVariant
+	overline: TypoVariant
+}
+
 export type TypoVariant = {
 	typeface: string
 	size: string
 	weight: string | number
 	leading: string
 	kerning: string
+}
+
+export interface LayoutSystem {
+	page: LayoutVariant
+	section: LayoutVariant
+	container: LayoutVariant
+	component: LayoutVariant
+}
+
+export type LayoutVariant = {
+	width: string
+	maxWidth?: string
+	minWith?: string
+	height?: string
+	maxHeight?: string
+	minHeight?: string
+	padding: string | PaddingVariant
+	gutter: string
 }
 
 export type PaddingVariant =
@@ -25,6 +60,11 @@ export type PaddingVariant =
 			mobile: string
 	  }
 	| { default: string; lg: string }
+
+export interface ShapeSystem {
+	outlined: ShapeHierarchy
+	filled: ShapeHierarchy
+}
 
 export type ShapeHierarchy = {
 	rounding: ShapeVariant
@@ -39,18 +79,7 @@ export type ShapeVariant = {
 	borderRadii: string
 }
 
-export type LayoutVariant = {
-	width: string
-	maxWidth?: string
-	minWith?: string
-	height?: string
-	maxHeight?: string
-	minHeight?: string
-	padding: string | PaddingVariant
-	gutter: string
-}
-
-export type ElevationHierarchy = {
+export interface ElevationSystem {
 	layer0: string
 	layer1: string
 	layer2: string

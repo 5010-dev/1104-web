@@ -1,32 +1,8 @@
-import styled, { DefaultTheme } from 'styled-components'
+import styled from 'styled-components'
+import { getTypography } from '../../../utils/typoUtils'
 import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
 
-import {
-	Typography,
-	TypographyVariant,
-	Color,
-	HomeContainerProps,
-} from './home.types'
-
-/**
- * 타이포그래피 속성을 설정하는 함수
- * @param theme 테마 객체
- * @param typography 타이포그래피 속성 객체
- * @param color 글자 색상
- * @returns 타이포그래피 속성이 적용된 CSS 코드
- */
-const setTypography = (
-	theme: DefaultTheme,
-	typography: Typography[TypographyVariant],
-	color: Color,
-) => `
-  font-family: ${typography.typeface};
-  font-size: ${typography.size};
-  font-weight: ${typography.weight};
-  line-height: ${typography.leading};
-  letter-spacing: ${typography.kerning};
-  color: ${color};
-`
+import { HomeContainerProps } from './home.types'
 
 export const HomeContainer = styled(PageLayoutContainer)<HomeContainerProps>`
 	position: relative;
@@ -70,21 +46,13 @@ export const HomeContainer = styled(PageLayoutContainer)<HomeContainerProps>`
 		z-index: 2;
 
 		h1#display {
-			${({ theme }) =>
-				setTypography(
-					theme,
-					theme.typo.display,
-					theme.colour.neutral.secondary.active,
-				)}
+			${({ theme }) => getTypography(theme, 'display')}
+			color: ${({ theme }) => theme.colour.neutral.secondary.active};
 		}
 
 		h3#subheading {
-			${({ theme }) =>
-				setTypography(
-					theme,
-					theme.typo.subheading,
-					theme.colour.neutral.secondary.active,
-				)}
+			${({ theme }) => getTypography(theme, 'subheading')}
+			color: ${({ theme }) => theme.colour.neutral.secondary.active};
 		}
 	}
 

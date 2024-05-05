@@ -6,6 +6,8 @@ import {
 	ButtonContainerProps,
 } from './button.types'
 
+import { getTypography } from '../../../utils/typoUtils'
+
 /**
  * 버튼의 배경색을 결정하는 함수
  * @param theme 테마 객체
@@ -157,12 +159,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
 		getBackgroundColor(theme, $appearance, $hierarchy)};
 
 	span {
-		font-family: ${({ theme }) => theme.typo.subheading.typeface};
-		font-size: ${({ theme }) => theme.typo.subheading.size};
-		font-weight: ${({ theme }) => theme.typo.subheading.weight};
-		line-height: ${({ theme }) => theme.typo.subheading.leading};
-		letter-spacing: ${({ theme }) => theme.typo.subheading.kerning};
-
+		${({ theme }) => getTypography(theme, 'subheading')}
 		color: ${({ theme, $appearance, $hierarchy }) =>
 			getTextColor(theme, $appearance, $hierarchy)};
 	}
