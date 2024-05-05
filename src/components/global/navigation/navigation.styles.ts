@@ -67,7 +67,7 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 			cursor: pointer;
 
 			display: flex;
-			justify-content: center;
+			justify-content: flex-end;
 			align-items: center;
 
 			-webkit-user-select: none;
@@ -76,7 +76,7 @@ export const NavigationContainer = styled(motion.header)<CombinedProps>`
 			user-select: none;
 
 			width: 2.5rem;
-			font-size: 1.75rem;
+			font-size: 1.5rem;
 		}
 	}
 	div#nav-bar-left-container {
