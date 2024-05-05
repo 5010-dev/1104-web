@@ -27,6 +27,11 @@ export const getButtonVariants = (
 		backgroundColor: getColour(theme, $appearance, $hierarchy, 'pressed'),
 		color: getInvertedColour(theme, $appearance, $hierarchy, 'pressed'),
 	},
+	disabled: {
+		backgroundColor: getColour(theme, $appearance, $hierarchy, 'inactive'),
+		color: getInvertedColour(theme, $appearance, $hierarchy, 'inactive'),
+		cursor: 'not-allowed',
+	},
 })
 
 export const ButtonContainer = styled(motion.button)<ButtonContainerProps>`
@@ -47,15 +52,9 @@ export const ButtonContainer = styled(motion.button)<ButtonContainerProps>`
 
 	span {
 		${({ theme }) => getTypography(theme, 'subheading')}
-		color: ${({ theme, $appearance, $hierarchy }) =>
-			getInvertedColour(theme, $appearance, $hierarchy, 'active')};
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		background-color: ${({ theme, $appearance, $hierarchy }) =>
-			getColour(theme, $appearance, $hierarchy, 'active')};
-		color: ${({ theme, $appearance, $hierarchy }) =>
-			getColour(theme, $appearance, $hierarchy, 'inactive')};
+		color: ${({ theme, $appearance, $hierarchy, disabled }) =>
+			disabled
+				? getInvertedColour(theme, $appearance, $hierarchy, 'inactive')
+				: getInvertedColour(theme, $appearance, $hierarchy, 'active')};
 	}
 `

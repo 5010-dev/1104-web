@@ -21,13 +21,13 @@ export const DesignSystem: DefaultTheme = {
 			primary: {
 				active: designTokens.colour.pointblue[300],
 				inactive: hexToRgba(designTokens.colour.pointblue[300], 0.5),
-				pressed: designTokens.colour.pointblue[500],
+				pressed: designTokens.colour.pointblue[400],
 				hover: designTokens.colour.pointblue[200],
 			} as ColourVariant,
 			secondary: {
 				active: designTokens.colour.grayscale[0],
 				inactive: hexToRgba(designTokens.colour.grayscale[0], 0.5),
-				pressed: designTokens.colour.pointblue[500],
+				pressed: designTokens.colour.pointblue[100],
 				hover: designTokens.colour.pointblue[50],
 			} as ColourVariant,
 		} as ColourHierarchy,
@@ -128,9 +128,9 @@ export const DesignSystem: DefaultTheme = {
 			height: designTokens.layout.dimension.vertical.full,
 			minHeight: designTokens.layout.dimension.vertical.fit,
 			padding: {
-				sm: designTokens.layout.spacing.xlg,
-				default: designTokens.layout.spacing.xxlg,
 				lg: designTokens.layout.spacing.xxxlg,
+				default: designTokens.layout.spacing.xxlg,
+				sm: designTokens.layout.spacing.xlg,
 			},
 			gutter: designTokens.layout.spacing.xxlg,
 		} as LayoutVariant,
@@ -143,18 +143,18 @@ export const DesignSystem: DefaultTheme = {
 		container: {
 			width: designTokens.layout.dimension.horizontal.fill,
 			padding: {
-				sm: designTokens.layout.spacing.md,
-				default: designTokens.layout.spacing.lg,
 				lg: designTokens.layout.spacing.lg,
+				default: designTokens.layout.spacing.lg,
+				sm: designTokens.layout.spacing.md,
 			},
 			gutter: designTokens.layout.spacing.lg,
 		} as LayoutVariant,
 		component: {
 			width: designTokens.layout.dimension.horizontal.fill,
 			padding: {
-				sm: designTokens.layout.spacing.sm,
-				default: designTokens.layout.spacing.md,
 				lg: designTokens.layout.spacing.xlg,
+				default: designTokens.layout.spacing.md,
+				sm: designTokens.layout.spacing.sm,
 			},
 			gutter: designTokens.layout.spacing.md,
 		} as LayoutVariant,

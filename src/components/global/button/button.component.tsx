@@ -32,6 +32,7 @@ export default function Button(props: ButtonProps) {
 			initial="initial"
 			whileHover={disabled ? undefined : 'hover'}
 			whileTap={disabled ? undefined : 'pressed'}
+			animate={disabled ? 'disabled' : 'initial'}
 		>
 			{icon}
 			{text ? <span>{text}</span> : null}
