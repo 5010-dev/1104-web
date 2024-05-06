@@ -2,6 +2,9 @@ import { create } from 'zustand'
 
 import backgroundImage from '../assets/img/home-about-image.jpeg'
 import mockupImage from '../assets/img/home-mockup-image.png'
+import serviceImage1 from '../assets/img/service-image-1.png'
+import serviceImage2 from '../assets/img/service-image-2.png'
+import serviceImage3 from '../assets/img/service-image-3.png'
 
 export interface ContentsState {
 	home: {
@@ -72,6 +75,31 @@ export const useContentsStore = create<ContentsState>((set) => ({
 			{
 				subheading: '5010 매매 전략 누적 연구 투자액',
 				heading: '5억 원+',
+			},
+		],
+	},
+	service: {
+		items: [
+			{
+				imgUrl: serviceImage1,
+				caption: '5010 매매 전략',
+				heading: '절대 지지 않는 방법이 계속해서 이기는 방법이다.',
+				body: '쉽고 명확하고 과학적인 방법으로. 5010 매매 전략은 투자 시장의 모든 것을 총망라한, 단순 기법이 아닌 전략으로서의 투자 교육입니다.',
+				buttonText: '5010 매매 전략 자세히 보기 →',
+			},
+			{
+				imgUrl: serviceImage2,
+				caption: '5010 인디케이터',
+				heading: '가격 형성 원리에 입각한 매매 보조 지표',
+				body: '5010 매매 전략을 보조하기 위해 개발되었습니다. 가장 단순하고 명확하게, 기계적인 매매가 가능하도록, 그래서 누구나 사용할 수 있도록 만들었습니다.',
+				buttonText: '5010 인디케이터 자세히 보기 →',
+			},
+			{
+				imgUrl: serviceImage3,
+				caption: '1104 R&I 공식 커뮤니티',
+				heading: '투자는 단거리 경주가 아닌 끝없는 마라톤',
+				body: '여러분이 초심을 잃지 않고 나아갈 수 있도록, 잘못된 투자 방식 교정과 동기부여 지속 제공을 통해 페이스 페이커가 되어 여러분과 함께 합니다.',
+				buttonText: '커뮤니티 참여하기 →',
 			},
 		],
 	},
