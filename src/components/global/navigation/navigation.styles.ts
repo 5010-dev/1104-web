@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
 import { DeviceType } from '../../../store/deviceTypeStore'
-import { getDeviceTypePadding } from '../../../utils/deviceUtils'
-import { hexToRgba } from '../../../utils/colourUtils'
+import { getDeviceTypePadding } from '../../../utils/device.utils'
+import { hexToRgba } from '../../../utils/colour.utils'
 
 type NavigationContainerProps = {
 	$deviceType: DeviceType

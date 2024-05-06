@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components'
 import designTokens from '../degisn-tokens/design-tokens.tokens'
-import { hexToRgba } from '../../utils/colourUtils'
+import { hexToRgba } from '../../utils/colour.utils'
 import {
 	ColourSystem,
 	ColourHierarchy,

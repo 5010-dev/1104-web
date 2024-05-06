@@ -80,3 +80,8 @@ export interface ElevationSystem {
 	layer2: string
 	layer3: string
 }
+
+export type ComponentAppearance = keyof ColourSystem
+export type ComponentHierarchy = keyof ColourHierarchy
+export type ComponentState = keyof ColourVariant
+export type ComponentShape = [keyof ShapeSystem, keyof ShapeHierarchy]

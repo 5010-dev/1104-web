@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { getTypography } from '../../../utils/typoUtils'
-import { getColour } from '../../../utils/colourUtils'
+import { getTypography } from '../../../utils/typo.utils'
+import { getColour } from '../../../utils/colour.utils'
 import { SectionContainer } from '../../global/section/section.styles'
 
 import { HeroContainerProps } from './hero.types'

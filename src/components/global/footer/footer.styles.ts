@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 import { DeviceType } from '../../../store/deviceTypeStore'
-import { getDeviceTypePadding } from '../../../utils/deviceUtils'
-import { getTypography } from '../../../utils/typoUtils'
+import { getDeviceTypePadding } from '../../../utils/device.utils'
+import { getTypography } from '../../../utils/typo.utils'
 
 type FooterContainerProps = {
 	$deviceType: DeviceType

@@ -18,7 +18,7 @@ export default function Hero() {
 					type="button"
 					appearance="neutral"
 					hierarchy="secondary"
-					shape="rounding"
+					shape={['filled', 'rounding']}
 					text={text.ctaButtonText}
 					handleClick={() => console.log('button clicked')}
 				/>

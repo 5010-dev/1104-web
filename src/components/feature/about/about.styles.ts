@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { SectionContainer } from '../../global/section/section.styles'
 
-import { getTypography } from '../../../utils/typoUtils'
+import { getTypography } from '../../../utils/typo.utils'
 
 export const AboutContainer = styled(SectionContainer)`
 	width: ${({ theme }) => theme.layout.section.width};
@@ -32,44 +32,56 @@ export const AboutContainer = styled(SectionContainer)`
 			${({ theme }) => getTypography(theme, 'body')}
 			color: ${({ theme }) => theme.colour.neutral.secondary.active};
 		}
+	}
+
+	div#second-row {
+		width: ${({ theme }) => theme.layout.section.width};
+
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		gap: ${({ theme }) => theme.layout.component.gutter};
 
 		span#caption {
 			${({ theme }) => getTypography(theme, 'caption')}
 			color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
 		}
-	}
 
-	div#items-container {
-		width: ${({ theme }) => theme.layout.container.width};
+		div#items-container {
+			width: ${({ theme }) => theme.layout.container.width};
 
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: flex-start;
-		gap: ${({ theme }) => theme.layout.container.gutter};
-		flex-wrap: wrap;
-
-		div.item-container {
-			flex: 1 0 auto;
 			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
+			flex-direction: row;
+			justify-content: center;
 			align-items: flex-start;
-			gap: ${({ theme }) => theme.layout.component.gutter};
-			padding: ${({ theme }) => theme.layout.component.padding.lg};
-			border-radius: ${({ theme }) => theme.shape.filled.rounded2.borderRadii};
-			text-align: left;
+			gap: ${({ theme }) => theme.layout.container.gutter};
+			flex-wrap: wrap;
 
-			background-color: ${({ theme }) => theme.colour.neutral.tertiary.active};
+			div.item-container {
+				flex: 1 0 auto;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+				gap: ${({ theme }) => theme.layout.component.gutter};
+				padding: ${({ theme }) => theme.layout.component.padding.lg};
+				border-radius: ${({ theme }) =>
+					theme.shape.filled.rounded2.borderRadii};
+				text-align: left;
 
-			h3.item-subheading {
-				${({ theme }) => getTypography(theme, 'heading3')}
-				color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
-			}
+				background-color: ${({ theme }) =>
+					theme.colour.neutral.tertiary.active};
 
-			h3.item-heading {
-				${({ theme }) => getTypography(theme, 'display')}
-				color: ${({ theme }) => theme.colour.neutral.secondary.active};
+				h3.item-subheading {
+					${({ theme }) => getTypography(theme, 'heading3')}
+					color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
+				}
+
+				h3.item-heading {
+					${({ theme }) => getTypography(theme, 'display')}
+					color: ${({ theme }) => theme.colour.neutral.secondary.active};
+				}
 			}
 		}
 	}

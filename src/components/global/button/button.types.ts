@@ -1,17 +1,14 @@
 import { MouseEventHandler, ReactElement } from 'react'
 import {
-	ColourSystem,
-	ColourHierarchy,
+	ComponentAppearance,
+	ComponentHierarchy,
+	ComponentShape,
 } from '../../../styles/design-system/design-system.types'
 
-export type ButtonAppearance = keyof ColourSystem
-export type ButtonHierarchy = keyof ColourHierarchy
-export type ButtonShape = 'rounding' | 'rounded'
-
 export interface ButtonProps {
-	appearance: ButtonAppearance
-	hierarchy: ButtonHierarchy
-	shape: ButtonShape
+	appearance: ComponentAppearance
+	hierarchy: ComponentHierarchy
+	shape: ComponentShape
 	icon?: ReactElement
 	text?: string
 	handleClick?: MouseEventHandler<HTMLButtonElement>
@@ -19,10 +16,4 @@ export interface ButtonProps {
 	id?: string
 	type?: 'submit' | 'button' | 'reset'
 	accessibleName?: string
-}
-
-export type ButtonContainerProps = {
-	$shape: ButtonShape
-	$appearance: ButtonAppearance
-	$hierarchy: ButtonHierarchy
 }

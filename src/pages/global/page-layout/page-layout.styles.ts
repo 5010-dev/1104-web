@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { DeviceType } from '../../../store/deviceTypeStore'
-import { getDeviceTypePadding } from '../../../utils/deviceUtils'
+import { getDeviceTypePadding } from '../../../utils/device.utils'
 
 type PageLayoutContainerProps = {
 	$deviceType: DeviceType
