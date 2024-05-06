@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import { getPadding } from '../../../utils/style.utils'
 import { getTypography } from '../../../utils/typo.utils'
 
-export const ButtonContainer = styled(motion.button)`
+import { ButtonContainerProps } from './button.types'
+
+export const ButtonContainer = styled(motion.button)<ButtonContainerProps>`
 	all: unset;
 	cursor: pointer;
 	user-select: none;
@@ -12,8 +15,7 @@ export const ButtonContainer = styled(motion.button)`
 	justify-content: center;
 	align-items: center;
 	gap: ${({ theme }) => theme.layout.component.gutter};
-	padding: ${({ theme }) =>
-		`${theme.layout.component.padding.default} ${theme.layout.component.padding.lg}`};
+	padding: ${({ theme, $size }) => getPadding(theme, $size)};
 
 	span {
 		${({ theme }) => getTypography(theme, 'subheading')}

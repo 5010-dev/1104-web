@@ -34,7 +34,9 @@ export default function About() {
 				text="더 알아보기"
 				appearance="neutral"
 				hierarchy="secondary"
-				shape={['outlined', 'rounding']}
+				stroke="outlined"
+				shape="rounding"
+				size="md"
 			/>
 		</AboutContainer>
 	)

@@ -1,8 +1,8 @@
 import { DefaultTheme } from 'styled-components'
 import {
-	ColourSystem,
-	ColourHierarchy,
-	ColourVariant,
+	ComponentAppearance,
+	ComponentHierarchy,
+	ComponentState,
 } from '../styles/design-system/design-system.types'
 
 /**
@@ -51,9 +51,9 @@ export function hexToRgba(hex: string | number, alpha: number): string {
  */
 export const getColour = (
 	theme: DefaultTheme,
-	appearance: keyof ColourSystem,
-	hierarchy: keyof ColourHierarchy,
-	state: keyof ColourVariant,
+	appearance: ComponentAppearance,
+	hierarchy: ComponentHierarchy,
+	state: ComponentState,
 ) => theme.colour[appearance][hierarchy][state]
 
 /**
@@ -71,9 +71,9 @@ export const getColour = (
  */
 export const getInvertedColour = (
 	theme: DefaultTheme,
-	appearance: keyof ColourSystem,
-	hierarchy: keyof ColourHierarchy,
-	state: keyof ColourVariant,
+	appearance: ComponentAppearance,
+	hierarchy: ComponentHierarchy,
+	state: ComponentState,
 ) =>
 	hierarchy === 'primary'
 		? theme.colour[appearance].secondary[state]

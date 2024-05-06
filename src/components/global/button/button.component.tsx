@@ -7,7 +7,9 @@ export default function Button(props: ButtonProps) {
 	const {
 		appearance,
 		hierarchy,
+		stroke,
 		shape,
+		size,
 		icon,
 		text,
 		handleClick,
@@ -23,10 +25,17 @@ export default function Button(props: ButtonProps) {
 		<ButtonContainer
 			onClick={handleClick}
 			disabled={disabled}
+			$size={size ? size : 'md'}
 			id={id}
 			type={type ? type : 'button'}
 			aria-labelledby={accessibleName}
-			variants={getComponentVariants(theme, appearance, hierarchy, shape)}
+			variants={getComponentVariants(
+				theme,
+				appearance,
+				hierarchy,
+				stroke,
+				shape,
+			)}
 			initial="initial"
 			whileHover={disabled ? undefined : 'hover'}
 			whileTap={disabled ? undefined : 'pressed'}

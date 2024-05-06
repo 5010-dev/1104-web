@@ -84,4 +84,6 @@ export interface ElevationSystem {
 export type ComponentAppearance = keyof ColourSystem
 export type ComponentHierarchy = keyof ColourHierarchy
 export type ComponentState = keyof ColourVariant
-export type ComponentShape = [keyof ShapeSystem, keyof ShapeHierarchy]
+export type ComponentStroke = keyof ShapeSystem
+export type ComponentShape = keyof ShapeHierarchy
+export type ComponentSize = 'lg' | 'md' | 'sm'
