@@ -74,7 +74,7 @@ export const AboutContainer = styled(SectionContainer)`
 					theme.colour.neutral.tertiary.active};
 
 				h3.item-subheading {
-					${({ theme }) => getTypography(theme, 'heading3')}
+					${({ theme }) => getTypography(theme, 'subheading')}
 					color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
 				}
 

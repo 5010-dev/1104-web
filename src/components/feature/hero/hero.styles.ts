@@ -19,6 +19,7 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	padding-top: 8rem;
 
 	background-image: url(${(props) => props.$imageUrl});
+	background-attachment: fixed;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
