@@ -1,6 +1,8 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useContentsStore } from '../../../store/contentsStore'
 
+import Card from '../../global/card/card.component'
+
 import { ResultContainer } from './result.styles'
 
 export default function Result() {
@@ -14,6 +16,7 @@ export default function Result() {
 					<span id="section-category-text">RESULT</span>
 					<h1 id="section-heading">{heading}</h1>
 				</div>
+				<Card />
 			</div>
 		</ResultContainer>
 	)

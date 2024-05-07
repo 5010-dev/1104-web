@@ -15,7 +15,7 @@ import { getColour, getInvertedColour } from './colour.utils'
  * @param theme 테마 객체
  * @param appearance 컴포넌트의 외관 타입 ('accent', 'neutral', 'system' 중 하나)
  * @param hierarchy 컴포넌트의 계층 타입 ('primary', 'secondary' 중 하나)
- * @param shape 컴포넌트의 외곽선 속성 ('outlined', 'filled' 중 하나)
+ * @param stroke 컴포넌트의 외곽선 속성 ('outlined', 'filled' 중 하나)
  * @param shape 컴포넌트의 모양 속성 ('rounding', 'rounded1', 'rounded2', 'rounded3', flat 중 하나)
  * @returns 컴포넌트의 상태에 따른 스타일 객체
  */
