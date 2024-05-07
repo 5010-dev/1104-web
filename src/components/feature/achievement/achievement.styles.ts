@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+
 import { SectionContainer } from '../../global/section/section.styles'
 import { getTypography } from '../../../utils/typo.utils'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
