@@ -36,6 +36,14 @@ export interface ContentsState {
 			buttonText: string
 		}[]
 	}
+	achievement: {
+		heading: string
+		items: {
+			caption: string
+			heading: string
+			body: string
+		}[]
+	}
 	footer: {
 		simpleDisclaimer: string[]
 	}
@@ -109,6 +117,31 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				heading: '투자는 단거리 경주가 아닌 끝없는 마라톤',
 				body: '여러분이 초심을 잃지 않고 나아갈 수 있도록, 잘못된 투자 방식 교정과 동기부여 지속 제공을 통해 페이스 페이커가 되어 여러분과 함께 합니다.',
 				buttonText: '커뮤니티 참여하기 →',
+			},
+		],
+	},
+	achievement: {
+		heading: '1104 R&I가 지금까지 달성한 성과들',
+		items: [
+			{
+				caption: '2023 KMONG AWARDS',
+				heading: '신인상 수상',
+				body: '최고의 전문가를 뽑는 2023년 크몽 어워즈에서 당년 신규 론칭한 서비스 중 우수 성과 TOP10에 선정, 신인상 수상',
+			},
+			{
+				caption: 'KMONG 상위 2% 프리미엄 서비스',
+				heading: 'PRIME 달성',
+				body: '100만 건의 크몽 거래 분석과 인터뷰, 레퍼런스 체크를 통해 크몽에서 직접 엄선한 상위 2% 전문가 서비스에 선정',
+			},
+			{
+				caption: 'KMONG 전문가 최고 등급',
+				heading: 'MASTER 달성',
+				body: '2024년 2월 기준, 누적 판매 건수 421건, 고객 만족도 5.0, 주문 성공률 100%, 크몽 전문가 최고 등급 달성 및 유지',
+			},
+			{
+				caption: 'WADIZ 펀딩',
+				heading: '4억+ 달성',
+				body: '1,106명 펀딩 참여하여 2024. 02. 21. 펀딩 성공적으로 종료, 2024년 4월 기준 고객 만족도 5.0 (46개 리뷰) 달성',
 			},
 		],
 	},

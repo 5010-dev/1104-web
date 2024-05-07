@@ -15,7 +15,7 @@ export const ServiceContainer = styled(SectionContainer)`
 		margin-top: ${({ theme }) => theme.layout.section.gutter};
 
 		display: flex;
-		flex-direction: row;
+		flex-direction: row-reverse;
 		justify-content: flex-start;
 		align-items: center;
 		gap: ${({ theme }) => theme.layout.section.gutter};
@@ -66,6 +66,6 @@ export const ServiceContainer = styled(SectionContainer)`
 	}
 
 	> *:nth-child(even) {
-		flex-direction: row-reverse !important;
+		flex-direction: row !important;
 	}
 `

@@ -9,12 +9,14 @@ export default function Footer() {
 
 	return (
 		<FooterContainer $deviceType={deviceType}>
-			<div id="disclaimer-container">
-				{simpleDisclaimer.map((item, index) => (
-					<p key={index}>{item}</p>
-				))}
-				<div id="copyright-text">
-					<span>© Copyright 1104 R&I.</span>All rights Reserved
+			<div id="components-container">
+				<div id="disclaimer-container">
+					{simpleDisclaimer.map((item, index) => (
+						<p key={index}>{item}</p>
+					))}
+					<div id="copyright-text">
+						<span>© Copyright 1104 R&I.</span>All rights Reserved
+					</div>
 				</div>
 			</div>
 		</FooterContainer>

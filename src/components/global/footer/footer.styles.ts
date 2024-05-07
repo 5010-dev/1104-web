@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { SectionContainer } from '../section/section.styles'
 import { DeviceType } from '../../../store/deviceTypeStore'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
@@ -8,36 +9,45 @@ type FooterContainerProps = {
 	$deviceType: DeviceType
 }
 
-export const FooterContainer = styled.div<FooterContainerProps>`
-	width: ${({ theme }) => theme.layout.page.width};
-
-	display: flex;
-	flex-direction: column;
+export const FooterContainer = styled(SectionContainer)<FooterContainerProps>`
 	justify-content: center;
 	align-items: center;
-	/* gap: 1rem; */
 
-	padding: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'section')};
+	padding: 0;
 
 	${({ theme }) => getTypography(theme, 'caption')}
 	color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
 
-	div#disclaimer-container {
+	div#components-container {
 		width: ${({ theme }) => theme.layout.section.width};
 		max-width: ${({ theme }) => theme.layout.section.maxWidth};
 
 		display: flex;
 		flex-direction: column;
-		text-align: left;
-		gap: 1rem;
+		justify-content: flex-start;
+		align-items: center;
 
-		div#copyright-text {
+		margin-top: ${({ theme }) => theme.layout.section.gutter};
+		/* margin-bottom: ${({ theme }) => theme.layout.section.gutter}; */
+
+		padding: ${({ theme, $deviceType }) =>
+			getDeviceTypePadding(theme, $deviceType, 'section')};
+
+		div#disclaimer-container {
+			width: ${({ theme }) => theme.layout.container.width};
+
 			display: flex;
-			gap: 0.25rem;
+			flex-direction: column;
+			text-align: left;
+			gap: 1rem;
 
-			span {
-				font-weight: bold;
+			div#copyright-text {
+				display: flex;
+				gap: 0.25rem;
+
+				span {
+					font-weight: bold;
+				}
 			}
 		}
 	}
