@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import backgroundImage from '../assets/img/home-about-image.jpeg'
+import backgroundImage from '../assets/img/home-about-image.png'
 import mockupImage from '../assets/img/home-mockup-image.png'
 import serviceImage1 from '../assets/img/service-image-1.png'
 import serviceImage2 from '../assets/img/service-image-2.png'
