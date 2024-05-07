@@ -21,22 +21,24 @@ export default function Achievement() {
 				<div id="items-container">
 					{items.map((item, index) => (
 						<div key={index} className="item-container">
-							<div className="heading-container">
+							<div className="title-container">
 								<span className="caption">{item.caption}</span>
 								<h2 className="heading">{item.heading}</h2>
 							</div>
-							<p className="body">{item.body}</p>
-							<Button
-								className="link-button"
-								accessibleName="Link Button"
-								icon={<FontAwesomeIcon icon={faUpRightFromSquare} />}
-								text="더 보기"
-								appearance="neutral"
-								hierarchy="primary"
-								stroke="outlined"
-								shape="rounding"
-								size="sm"
-							/>
+							<div className="body-container">
+								<p className="body">{item.body}</p>
+								<Button
+									className="link-button"
+									accessibleName="Link Button"
+									icon={<FontAwesomeIcon icon={faUpRightFromSquare} />}
+									text={deviceType === 'mobile' ? '' : '더 보기'}
+									appearance="neutral"
+									hierarchy="secondary"
+									stroke="filled"
+									shape="rounding"
+									size="sm"
+								/>
+							</div>
 						</div>
 					))}
 				</div>

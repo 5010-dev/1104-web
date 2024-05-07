@@ -20,7 +20,7 @@ export const AchievementContainer = styled(SectionContainer)`
 		width: ${({ theme }) => theme.layout.section.width};
 		max-width: ${({ theme }) => theme.layout.section.maxWidth};
 
-		margin-top: ${({ theme }) => theme.layout.section.gutter};
+		margin-top: ${({ theme }) => theme.layout.container.gutter};
 
 		display: flex;
 		flex-direction: column;
@@ -50,12 +50,9 @@ export const AchievementContainer = styled(SectionContainer)`
 			width: ${({ theme }) => theme.layout.container.width};
 
 			display: flex;
-			flex-direction: row;
+			flex-direction: column;
 			justify-content: flex-start;
 			align-items: flex-start;
-			flex-wrap: wrap;
-
-			/* gap: ${({ theme }) => theme.layout.container.gutter}; */
 
 			div.item-container {
 				width: ${({ theme }) => theme.layout.component.width};
@@ -65,7 +62,8 @@ export const AchievementContainer = styled(SectionContainer)`
 				justify-content: flex-start;
 				align-items: flex-start;
 
-				gap: ${({ theme }) => theme.layout.component.gutter};
+				gap: ${({ theme, $deviceType }) =>
+					$deviceType === 'desktop' ? '' : `${theme.layout.component.gutter}`};
 
 				padding: ${({ theme, $deviceType }) =>
 					`${getDeviceTypePadding(theme, $deviceType, 'section')} 0`};
@@ -78,23 +76,40 @@ export const AchievementContainer = styled(SectionContainer)`
 						'inactive',
 					)}`};
 
-				span.caption {
-					${({ theme }) => getTypography(theme, 'caption')}
-					color: ${({ theme }) => theme.colour.accent.primary.active};
+				div.title-container {
+					span.caption {
+						${({ theme }) => getTypography(theme, 'caption')}
+						color: ${({ theme }) => theme.colour.accent.primary.active};
+					}
+
+					h2.heading {
+						width: ${({ theme }) => theme.layout.component.width};
+
+						${({ theme }) => getTypography(theme, 'heading2')}
+						color: ${({ theme }) => theme.colour.neutral.primary.active};
+					}
 				}
 
-				h2.heading {
-					${({ theme }) => getTypography(theme, 'heading2')}
-					color: ${({ theme }) => theme.colour.neutral.primary.active};
-				}
+				div.body-container {
+					width: ${({ theme }) => theme.layout.container.width};
 
-				p.body {
-					${({ theme }) => getTypography(theme, 'body')}
-					color: ${({ theme }) => theme.colour.neutral.primary.active};
-				}
+					display: flex;
+					flex-direction: row;
+					justify-content: flex-start;
+					align-items: center;
+					flex-wrap: wrap;
 
-				.link-button {
-					flex-direction: row-reverse;
+					gap: ${({ theme }) => theme.layout.component.gutter};
+
+					p.body {
+						flex: 1 1 80%;
+						${({ theme }) => getTypography(theme, 'body')}
+						color: ${({ theme }) => theme.colour.neutral.primary.active};
+					}
+
+					.link-button {
+						flex-direction: row-reverse;
+					}
 				}
 			}
 		}
