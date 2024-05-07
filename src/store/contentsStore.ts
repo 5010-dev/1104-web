@@ -1,10 +1,10 @@
 import { create } from 'zustand'
 
-import backgroundImage from '../assets/img/home-about-image.png'
+import backgroundImage from '../assets/img/home-about-image.jpg'
 import mockupImage from '../assets/img/home-mockup-image.png'
-import serviceImage1 from '../assets/img/service-image-1.png'
-import serviceImage2 from '../assets/img/service-image-2.png'
-import serviceImage3 from '../assets/img/service-image-3.png'
+import serviceImage1 from '../assets/img/service-image-1.jpg'
+import serviceImage2 from '../assets/img/service-image-2.jpg'
+import serviceImage3 from '../assets/img/service-image-3.jpg'
 
 export interface ContentsState {
 	home: {
