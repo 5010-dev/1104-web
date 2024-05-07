@@ -145,7 +145,7 @@ export const DesignSystem: DefaultTheme = {
 				default: designTokens.layout.spacing.xxlg,
 				sm: designTokens.layout.spacing.xlg,
 			},
-			gutter: designTokens.layout.spacing.xlg,
+			gutter: designTokens.layout.spacing.xxxlg,
 		} as LayoutVariant,
 		container: {
 			width: designTokens.layout.dimension.horizontal.fill,

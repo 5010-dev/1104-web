@@ -18,6 +18,7 @@ export interface ButtonProps {
 	handleClick?: MouseEventHandler<HTMLButtonElement>
 	disabled?: boolean
 	id?: string
+	className?: string
 	type?: 'submit' | 'button' | 'reset'
 	accessibleName?: string
 }

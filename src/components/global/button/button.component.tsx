@@ -15,6 +15,7 @@ export default function Button(props: ButtonProps) {
 		handleClick,
 		disabled,
 		id,
+		className,
 		type,
 		accessibleName,
 	} = props
@@ -27,6 +28,7 @@ export default function Button(props: ButtonProps) {
 			disabled={disabled}
 			$size={size ? size : 'md'}
 			id={id}
+			className={className}
 			type={type ? type : 'button'}
 			aria-labelledby={accessibleName}
 			variants={getComponentVariants(

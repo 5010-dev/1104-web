@@ -27,6 +27,15 @@ export interface ContentsState {
 		}
 		items: { subheading: string; heading: string }[]
 	}
+	service: {
+		items: {
+			imgUrl: string
+			caption: string
+			heading: string
+			body: string
+			buttonText: string
+		}[]
+	}
 	footer: {
 		simpleDisclaimer: string[]
 	}
