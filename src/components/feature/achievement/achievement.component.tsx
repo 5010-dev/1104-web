@@ -1,11 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useContentsStore } from '../../../store/contentsStore'
 
 import { AchievementContainer } from './achievement.styles'
-import Button from '../../global/button/button.component'
+import AchievementItem from '../achievement-item/achievement-item.component'
 
 export default function Achievement() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -20,26 +17,13 @@ export default function Achievement() {
 				</div>
 				<div id="items-container">
 					{items.map((item, index) => (
-						<div key={index} className="item-container">
-							<div className="title-container">
-								<span className="caption">{item.caption}</span>
-								<h2 className="heading">{item.heading}</h2>
-							</div>
-							<div className="body-container">
-								<p className="body">{item.body}</p>
-								<Button
-									className="link-button"
-									accessibleName="Link Button"
-									icon={<FontAwesomeIcon icon={faUpRightFromSquare} />}
-									text={deviceType === 'mobile' ? '' : '더 보기'}
-									appearance="neutral"
-									hierarchy="secondary"
-									stroke="filled"
-									shape="rounding"
-									size="sm"
-								/>
-							</div>
-						</div>
+						<AchievementItem
+							key={index}
+							caption={item.caption}
+							heading={item.heading}
+							body={item.body}
+							linkUrl={item.linkUrl}
+						/>
 					))}
 				</div>
 			</div>

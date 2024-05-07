@@ -6,6 +6,13 @@ import serviceImage1 from '../assets/img/service-image-1.webp'
 import serviceImage2 from '../assets/img/service-image-2.webp'
 import serviceImage3 from '../assets/img/service-image-3.webp'
 
+export type AchievementItem = {
+	caption: string
+	heading: string
+	body: string
+	linkUrl: string
+}
+
 export interface ContentsState {
 	home: {
 		image: {
@@ -38,11 +45,7 @@ export interface ContentsState {
 	}
 	achievement: {
 		heading: string
-		items: {
-			caption: string
-			heading: string
-			body: string
-		}[]
+		items: AchievementItem[]
 	}
 	footer: {
 		simpleDisclaimer: string[]
@@ -127,21 +130,25 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				caption: '2023 KMONG AWARDS',
 				heading: '신인상 수상',
 				body: '최고의 전문가를 뽑는 2023년 크몽 어워즈에서 당년 신규 론칭한 서비스 중 우수 성과 TOP10에 선정, 신인상 수상',
+				linkUrl: 'https://kmong.com/events/kmong-awards/2023',
 			},
 			{
 				caption: 'KMONG 상위 2% 프리미엄 서비스',
 				heading: 'PRIME 달성',
 				body: '100만 건의 크몽 거래 분석과 인터뷰, 레퍼런스 체크를 통해 크몽에서 직접 엄선한 상위 2% 전문가 서비스에 선정',
+				linkUrl: 'https://kmong.com/gig/475614',
 			},
 			{
 				caption: 'KMONG 전문가 최고 등급',
 				heading: 'MASTER 달성',
 				body: '2024년 2월 기준, 누적 판매 건수 421건, 고객 만족도 5.0, 주문 성공률 100%, 크몽 전문가 최고 등급 달성 및 유지',
+				linkUrl: 'https://kmong.com/gig/455172',
 			},
 			{
 				caption: 'WADIZ 펀딩',
 				heading: '4억+ 달성',
 				body: '1,106명 펀딩 참여하여 2024. 02. 21. 펀딩 성공적으로 종료, 2024년 4월 기준 고객 만족도 5.0 (46개 리뷰) 달성',
+				linkUrl: 'https://www.wadiz.kr/web/campaign/detail/224157',
 			},
 		],
 	},
