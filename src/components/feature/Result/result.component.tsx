@@ -5,7 +5,7 @@ import { ResultContainer } from './result.styles'
 
 export default function Result() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { heading, items } = useContentsStore((state) => state.result)
+	const { heading } = useContentsStore((state) => state.result)
 
 	return (
 		<ResultContainer $deviceType={deviceType}>
