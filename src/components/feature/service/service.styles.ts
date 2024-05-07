@@ -46,6 +46,7 @@ export const ServiceContainer = styled(SectionContainer)`
 
 			span.caption {
 				${({ theme }) => getTypography(theme, 'body')}
+				font-weight: bold;
 				color: ${({ theme }) => theme.colour.accent.primary.active};
 			}
 

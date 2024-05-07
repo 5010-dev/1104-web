@@ -20,6 +20,7 @@ export const AboutContainer = styled(SectionContainer)`
 
 		span#section-category-text {
 			${({ theme }) => getTypography(theme, 'body')}
+			font-weight: bold;
 			color: ${({ theme }) => theme.colour.accent.primary.active};
 		}
 
@@ -78,7 +79,7 @@ export const AboutContainer = styled(SectionContainer)`
 					color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
 				}
 
-				h3.item-heading {
+				h2.item-heading {
 					${({ theme }) => getTypography(theme, 'display')}
 					color: ${({ theme }) => theme.colour.neutral.secondary.active};
 				}

@@ -29,7 +29,7 @@ export default function AchievementItem(props: AchievementItemProps) {
 				<p className="body">{body}</p>
 				<Button
 					className="link-button"
-					accessibleName="Link Button"
+					accessibleName={`Link to ${caption}`}
 					icon={<FontAwesomeIcon icon={faUpRightFromSquare} />}
 					text={deviceType === 'mobile' ? '' : '더 보기'}
 					appearance="neutral"

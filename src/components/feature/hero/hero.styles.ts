@@ -54,7 +54,7 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
-		h3#subheading {
+		h2#subheading {
 			${({ theme }) => getTypography(theme, 'subheading')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};

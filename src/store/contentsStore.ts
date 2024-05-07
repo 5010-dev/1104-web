@@ -13,6 +13,16 @@ export type AchievementItem = {
 	linkUrl: string
 }
 
+export type ReviewItem = {
+	voice: string
+	imgUrl: string
+	period: string
+	result: string
+	note: string
+	comment: string
+	linkUrl: string
+}
+
 export interface ContentsState {
 	home: {
 		image: {
@@ -46,6 +56,10 @@ export interface ContentsState {
 	achievement: {
 		heading: string
 		items: AchievementItem[]
+	}
+	result: {
+		heading: string
+		items: ReviewItem[]
 	}
 	footer: {
 		simpleDisclaimer: string[]
@@ -149,6 +163,55 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				heading: '4억+ 달성',
 				body: '1,106명 펀딩 참여하여 2024. 02. 21. 펀딩 성공적으로 종료, 2024년 4월 기준 고객 만족도 5.0 (46개 리뷰) 달성',
 				linkUrl: 'https://www.wadiz.kr/web/campaign/detail/224157',
+			},
+		],
+	},
+	result: {
+		heading: '1104 R&I를 만나고 달라진 투자자들',
+		items: [
+			{
+				voice:
+					'그 흔한 주식과 코인 투자 경험도 없고 차트조차 본 적 없는데 가능할까?',
+				imgUrl: '',
+				period: '2023. 04. 25. ~ 07. 12. 기준 (3달)',
+				result: '수익률 600% 달성했었습니다.',
+				note: '이후 5010팀 스카웃',
+				comment:
+					'차트를 본적도 없던 수강생조차 단지 노력만으로 값진 성과를 만들어 냈습니다.',
+				linkUrl: '',
+			},
+			{
+				voice:
+					'내 나이 45, 아이들 수저를 금으로 만들어주고 싶은데 너무 늦진 않았을까?',
+				imgUrl: '',
+				period: '2023. 06. 12. ~ 07. 14. 기준 (1달)',
+				result: '수익률 200% 달성했었습니다.',
+				note: '승률 90% 이상 유지',
+				comment:
+					'45세의 나이, 그리고 처음 접하는 재테크. 꾸준한 연습만으로 결국 해내셨습니다.',
+				linkUrl: '',
+			},
+			{
+				voice:
+					'다년간 트레이딩을 했는데도 시드가 늘지 않아, 분명 이유가 있겠지?',
+				imgUrl: '',
+				period: '2023. 06. 14. ~ 06. 22. 기준 (1주)',
+				result: '수익률 200% 달성했었습니다.',
+				note: '1주간 $15,000 수익',
+				comment:
+					'기본기가 탄탄한 수강생이 1104 R&I를 만나면 그 시너지는 더욱 극대화될 수 있습니다.',
+				linkUrl: '',
+			},
+			{
+				voice:
+					'정말 안해본 공부가 없고 안써본 보조 지표가 없는데, 뭐가 문제지?',
+				imgUrl: '',
+				period: '2023. 04. 06. ~ 07. 22. 기준 (3달)',
+				result: '수익률 1,000% 달성했었습니다.',
+				note: '3달간 $100,000 수익',
+				comment:
+					'경력자일수록 단순 명확한 5010 매매 전략의 진가를 알아보고 계십니다.',
+				linkUrl: '',
 			},
 		],
 	},

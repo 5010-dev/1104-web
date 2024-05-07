@@ -25,6 +25,7 @@ export const AchievementItemContainer = styled(SectionContainer)`
 	div.title-container {
 		span.caption {
 			${({ theme }) => getTypography(theme, 'caption')}
+			font-weight: bold;
 			color: ${({ theme }) => theme.colour.accent.primary.active};
 		}
 

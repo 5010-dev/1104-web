@@ -4,7 +4,7 @@ import { SectionContainer } from '../../global/section/section.styles'
 import { getTypography } from '../../../utils/typo.utils'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 
-export const AchievementContainer = styled(SectionContainer)`
+export const ResultContainer = styled(SectionContainer)`
 	width: ${({ theme }) => theme.layout.page.width};
 
 	gap: ${({ theme }) => theme.layout.page.gutter};
@@ -45,15 +45,6 @@ export const AchievementContainer = styled(SectionContainer)`
 				${({ theme }) => getTypography(theme, 'heading1')}
 				color: ${({ theme }) => theme.colour.neutral.primary.active};
 			}
-		}
-
-		div#items-container {
-			width: ${({ theme }) => theme.layout.container.width};
-
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			align-items: flex-start;
 		}
 	}
 `

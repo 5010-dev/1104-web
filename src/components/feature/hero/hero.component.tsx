@@ -13,7 +13,7 @@ export default function Hero() {
 		<HeroContainer $deviceType={deviceType} $imageUrl={image.backgroundImage}>
 			<div id="text-container">
 				<h1 id="display">{text.display}</h1>
-				<h3 id="subheading">{text.subheading}</h3>
+				<h2 id="subheading">{text.subheading}</h2>
 				<Button
 					type="button"
 					appearance="neutral"

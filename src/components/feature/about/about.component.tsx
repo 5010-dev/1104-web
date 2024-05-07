@@ -16,6 +16,7 @@ export default function About() {
 		<AboutContainer $deviceType={deviceType}>
 			<div id="text-container">
 				<span id="section-category-text">ABOUT</span>
+
 				<h1 id="heading">{heading}</h1>
 				<p id="body">{body}</p>
 			</div>
@@ -25,7 +26,7 @@ export default function About() {
 					{items.map((item, index) => (
 						<div key={index} className="item-container">
 							<h3 className="item-subheading">{item.subheading}</h3>
-							<h3 className="item-heading">{item.heading}</h3>
+							<h2 className="item-heading">{item.heading}</h2>
 						</div>
 					))}
 				</div>
