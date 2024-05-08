@@ -37,14 +37,12 @@ const useSafariDetection = (): {
 
 	useEffect(() => {
 		const userAgent = navigator.userAgent.toLowerCase()
-		const platform = navigator.platform
-
 		const isSafari = /safari/.test(userAgent) && !/chrome/.test(userAgent)
-		const isIOS =
-			platform === 'iPad' || platform === 'iPhone' || platform === 'iPod'
+		const isIOS = /ipad|iphone|ipod/.test(userAgent)
+		const isIPad = /ipad/.test(userAgent)
 
-		setIsSafariMobile(isSafari && isIOS && /mobile/.test(userAgent))
-		setIsSafariTablet(isSafari && isIOS && /tablet/.test(userAgent))
+		setIsSafariMobile(isSafari && isIOS && !isIPad)
+		setIsSafariTablet(isSafari && isIOS && isIPad)
 	}, [])
 
 	return { isSafariMobile, isSafariTablet }
