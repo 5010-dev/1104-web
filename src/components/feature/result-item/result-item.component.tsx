@@ -3,21 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { ResultItemProps } from './result-item.types'
 
 import Button from '../../global/button/button.component'
 import { ResultItemContainer } from './result-item.styles'
 
-type ResultItemProps = {
-	voice: string
-	name: string
-	period: string
-	result: string
-	note: string
-	comment: string
-}
-
 export default function ResultItem(props: ResultItemProps) {
-	const { voice, name, period, result, note, comment } = props
+	const { voice, name, period, result, note, comment, imgUrl } = props
 
 	const [isActivated, setIsActivated] = useState<boolean>(false)
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -33,6 +25,8 @@ export default function ResultItem(props: ResultItemProps) {
 			$hierarchy="primary"
 			$stroke="filled"
 			$shape="rounded2"
+			$imgUrl={imgUrl}
+			$isActivated={isActivated}
 		>
 			{isActivated ? (
 				<div className="contents-container" id="active-contents-container">

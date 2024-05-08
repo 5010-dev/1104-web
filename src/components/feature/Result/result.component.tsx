@@ -26,6 +26,8 @@ export default function Result() {
 							result={item.result}
 							note={item.note}
 							comment={item.comment}
+							imgUrl={item.imgUrl}
+							linkUrl=""
 						/>
 					))}
 				</div>

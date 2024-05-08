@@ -5,6 +5,10 @@ import mockupImage from '../assets/img/home-mockup-image.webp'
 import serviceImage1 from '../assets/img/service-image-1.webp'
 import serviceImage2 from '../assets/img/service-image-2.webp'
 import serviceImage3 from '../assets/img/service-image-3.webp'
+import resultImage1 from '../assets/img/result-persona-image-1.webp'
+import resultImage2 from '../assets/img/result-persona-image-2.webp'
+import resultImage3 from '../assets/img/result-persona-image-3.webp'
+import resultImage4 from '../assets/img/result-persona-image-4.webp'
 
 export type AchievementItem = {
 	caption: string
@@ -174,7 +178,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				voice:
 					'그 흔한 주식과 코인 투자 경험도 없고 차트조차 본 적 없는데 가능할까?',
 				name: 'Jaden',
-				imgUrl: '',
+				imgUrl: resultImage1,
 				period: '2023. 04. 25. ~ 07. 12. 기준 (3달)',
 				result: '수익률 600%',
 				note: '이후 5010팀 스카웃',
@@ -186,7 +190,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				voice:
 					'내 나이 45, 아이들 수저를 금으로 만들어주고 싶은데 너무 늦진 않았을까?',
 				name: '아쿠마',
-				imgUrl: '',
+				imgUrl: resultImage2,
 				period: '2023. 06. 12. ~ 07. 14. 기준 (1달)',
 				result: '수익률 200%',
 				note: '승률 90% 이상 유지',
@@ -198,7 +202,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				voice:
 					'다년간 트레이딩을 했는데도 시드가 늘지 않아, 분명 이유가 있겠지?',
 				name: '최태민',
-				imgUrl: '',
+				imgUrl: resultImage3,
 				period: '2023. 06. 14. ~ 06. 22. 기준 (1주)',
 				result: '수익률 200%',
 				note: '1주간 $15,000 수익',
@@ -210,7 +214,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				voice:
 					'정말 안해본 공부가 없고 안써본 보조 지표가 없는데, 뭐가 문제지?',
 				name: '얼마나좋아',
-				imgUrl: '',
+				imgUrl: resultImage4,
 				period: '2023. 04. 06. ~ 07. 22. 기준 (3달)',
 				result: '수익률 1,000%',
 				note: '3달간 $100,000 수익',
