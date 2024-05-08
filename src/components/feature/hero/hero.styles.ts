@@ -24,13 +24,17 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	background-repeat: no-repeat;
 	/* background-attachment: ${({ $deviceType }) =>
 		$deviceType === 'mobile' ? 'none' : 'fixed'}; */
-	background-attachment: fixed;
+
+	background-attachment: ${({ $isSafariMobile, $isSafariTablet }) =>
+		$isSafariMobile || $isSafariTablet ? 'scroll' : 'fixed'};
+
+	/* background-attachment: fixed;
 
 	@supports (-webkit-appearance: none) {
 		@media (pointer: coarse) {
 			background-attachment: scroll;
 		}
-	}
+	} */
 
 	&::before {
 		content: '';
