@@ -65,7 +65,8 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 
 		p#name {
 			${({ theme }) => getTypography(theme, 'body')}
-			color: ${({ theme }) => theme.colour.neutral.primary.active};
+			color: ${({ theme }) =>
+				hexToRgba(theme.colour.neutral.primary.active, 0.5)};
 		}
 	}
 

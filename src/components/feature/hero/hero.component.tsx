@@ -4,13 +4,19 @@ import { useContentsStore } from '../../../store/contentsStore'
 import Button from '../../global/button/button.component'
 
 import { HeroContainer } from './hero.styles'
+import useChromeBasedDetection from '../../../hooks/useChromeBasedDetection'
 
 export default function Hero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useContentsStore((state) => state.home)
+	const { isChromeBasedBrowser } = useChromeBasedDetection()
 
 	return (
-		<HeroContainer $deviceType={deviceType} $imageUrl={image.backgroundImage}>
+		<HeroContainer
+			$deviceType={deviceType}
+			$imageUrl={image.backgroundImage}
+			$isChromeBasedBrowser={isChromeBasedBrowser}
+		>
 			<div id="text-container">
 				<h1 id="display">{text.display}</h1>
 				<h2 id="subheading">{text.subheading}</h2>

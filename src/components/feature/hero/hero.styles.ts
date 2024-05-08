@@ -27,18 +27,18 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 
 	background-attachment: fixed;
 
-	/* @supports (-webkit-appearance: none) {
+	@supports (-webkit-appearance: none) {
 		@media (pointer: coarse) {
-			background-attachment: scroll;
+			background-attachment: ${({ $isChromeBasedBrowser }) =>
+				$isChromeBasedBrowser ? 'fixed' : 'scroll'};
 		}
 	}
-	*/
 
-	@media not all and (min-resolution: 0.001dpcm) {
+	/* @media not all and (min-resolution: 0.001dpcm) {
 		@supports (-webkit-appearance: none) {
 			background-attachment: scroll;
 		}
-	}
+	} */
 
 	&::before {
 		content: '';
