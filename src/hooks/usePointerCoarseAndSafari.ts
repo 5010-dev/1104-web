@@ -12,9 +12,6 @@ const usePointerCoarseAndSafari = (): boolean => {
 	)
 
 	useEffect(() => {
-		const mediaQuery = '(pointer: coarse)'
-		const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-
 		const handleMediaQueryChange = (event: MediaQueryListEvent) => {
 			setIsPointerCoarseAndSafari(event.matches && isSafari)
 		}
