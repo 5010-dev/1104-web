@@ -26,8 +26,10 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 		$deviceType === 'mobile' ? 'none' : 'fixed'}; */
 	background-attachment: fixed;
 
-	@supports (-webkit-overflow-scrolling: touch) {
-		background-attachment: scroll;
+	@supports (-webkit-appearance: none) {
+		@media (pointer: coarse) {
+			background-attachment: scroll;
+		}
 	}
 
 	&::before {
