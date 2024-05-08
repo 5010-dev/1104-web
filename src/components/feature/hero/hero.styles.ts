@@ -34,10 +34,10 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	}
 	*/
 
-	_::-webkit-full-page-media,
-	_:future,
-	:root .safari_only {
-		background-attachment: scroll;
+	@media not all and (min-resolution: 0.001dpcm) {
+		@supports (-webkit-appearance: none) {
+			background-attachment: scroll;
+		}
 	}
 
 	&::before {

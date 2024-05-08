@@ -14,7 +14,7 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 
 	width: ${({ theme }) => theme.layout.component.width};
 	min-height: ${({ $deviceType }) =>
-		$deviceType === 'mobile' ? '22rem' : '28rem'};
+		$deviceType === 'mobile' ? '20rem' : '22.5rem'};
 
 	justify-content: space-between;
 	align-items: center;
@@ -30,7 +30,7 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 		background-position: right 0 top 80%;
 		background-repeat: no-repeat;
 		background-size: ${({ $deviceType }) =>
-			$deviceType === 'mobile' ? 'auto 70%' : '60% auto'};
+			$deviceType === 'mobile' ? 'auto 70%' : '40% auto'};
 		z-index: 0;
 
 		${({ $isActivated }) =>
@@ -70,7 +70,7 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 	}
 
 	div#active-contents-container {
-		gap: ${({ theme }) => theme.layout.section.gutter};
+		gap: ${({ theme }) => theme.layout.container.gutter};
 
 		div#text-container {
 			span#period {
@@ -80,13 +80,15 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 
 			h3#result {
 				display: flex;
-				flex-direction: column;
+				flex-direction: row;
+				align-items: center;
+				flex-wrap: wrap;
 
 				${({ theme }) => getTypography(theme, 'heading1')}
 				line-height: 130%;
 				color: ${({ theme }) => theme.colour.neutral.primary.active};
 
-				margin-bottom: ${({ theme }) => theme.layout.component.gutter};
+				/* margin-bottom: ${({ theme }) => theme.layout.component.gutter}; */
 
 				span#result-surfix {
 					${({ theme }) => getTypography(theme, 'heading2')}
