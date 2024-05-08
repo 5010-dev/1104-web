@@ -5,8 +5,11 @@ import { useState, useEffect } from 'react'
  * @returns {boolean} 포인터 디바이스가 coarse이고 사파리 브라우저인지 여부
  */
 const usePointerCoarseAndSafari = (): boolean => {
-	const [isPointerCoarseAndSafari, setIsPointerCoarseAndSafari] =
-		useState(false)
+	const mediaQuery = '(pointer: coarse)'
+	const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+	const [isPointerCoarseAndSafari, setIsPointerCoarseAndSafari] = useState(
+		window.matchMedia(mediaQuery).matches && isSafari,
+	)
 
 	useEffect(() => {
 		const mediaQuery = '(pointer: coarse)'
