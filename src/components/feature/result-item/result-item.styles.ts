@@ -13,7 +13,8 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 	position: relative;
 
 	width: ${({ theme }) => theme.layout.component.width};
-	min-height: 30rem;
+	min-height: ${({ $deviceType }) =>
+		$deviceType === 'mobile' ? '22rem' : '28rem'};
 
 	justify-content: space-between;
 	align-items: center;
@@ -29,7 +30,7 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 		background-position: right 0 top 80%;
 		background-repeat: no-repeat;
 		background-size: ${({ $deviceType }) =>
-			$deviceType === 'mobile' ? 'auto 50%' : '60% auto'};
+			$deviceType === 'mobile' ? 'auto 70%' : '60% auto'};
 		z-index: 0;
 
 		${({ $isActivated }) =>

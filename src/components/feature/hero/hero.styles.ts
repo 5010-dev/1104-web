@@ -22,8 +22,13 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-attachment: ${({ $deviceType }) =>
-		$deviceType === 'mobile' ? 'none' : 'fixed'};
+	/* background-attachment: ${({ $deviceType }) =>
+		$deviceType === 'mobile' ? 'none' : 'fixed'}; */
+	background-attachment: fixed;
+
+	@supports (-webkit-overflow-scrolling: touch) {
+		background-attachment: scroll;
+	}
 
 	&::before {
 		content: '';
