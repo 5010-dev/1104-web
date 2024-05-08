@@ -142,7 +142,7 @@ export const DesignSystem: DefaultTheme = {
 			minHeight: designTokens.layout.dimension.vertical.full,
 			padding: {
 				lg: designTokens.layout.spacing.xxxlg,
-				default: designTokens.layout.spacing.xxlg,
+				default: designTokens.layout.spacing.xxxlg,
 				sm: designTokens.layout.spacing.xlg,
 			},
 			gutter: designTokens.layout.spacing.xxxlg,

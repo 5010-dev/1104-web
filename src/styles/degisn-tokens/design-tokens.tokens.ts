@@ -81,7 +81,7 @@ export const designTokens: DesignTokens = {
 
 	// 레이아웃 토큰
 	layout: {
-		breakpoint: { desktop: 1024, tablet: 800, mobile: 380 },
+		breakpoint: { desktop: 1024, tablet: 680, mobile: 380 },
 		dimension: {
 			horizontal: {
 				full: '100vw',

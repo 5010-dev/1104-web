@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme, css } from 'styled-components'
 import {
 	ComponentState,
 	ComponentAppearance,
@@ -8,7 +8,7 @@ import {
 	ComponentSize,
 } from '../styles/design-system/design-system.types'
 
-import { getColour, getInvertedColour } from './colour.utils'
+import { getColour, getInvertedColour, hexToRgba } from './colour.utils'
 
 /**
  * 컴포넌트의 상태에 따른 스타일을 생성하는 함수
@@ -85,5 +85,49 @@ export const getPadding = (theme: DefaultTheme, size: ComponentSize) => {
 			return `${theme.layout.component.padding.default} ${theme.layout.component.padding.lg}`
 		case 'sm':
 			return `${theme.layout.component.padding.sm} ${theme.layout.component.padding.default}`
+	}
+}
+
+/**
+ * 컨테이너 스타일을 생성하는 함수
+ * @param theme 테마 객체
+ * @param appearance 컴포넌트의 외관 타입 ('accent', 'neutral', 'system' 중 하나)
+ * @param hierarchy 컴포넌트의 계층 타입 ('primary', 'secondary' 중 하나)
+ * @param stroke 컴포넌트의 외곽선 속성 ('outlined', 'filled' 중 하나)
+ * @param shape 컴포넌트의 모양 속성 ('rounding', 'rounded1', 'rounded2', 'rounded3', flat 중 하나)
+ * @returns 컨테이너 스타일을 나타내는 CSS 문자열
+ */
+export const getContainerStyle = (
+	theme: DefaultTheme,
+	appearance: ComponentAppearance,
+	hierarchy: ComponentHierarchy,
+	stroke: ComponentStroke,
+	shape: ComponentShape,
+) => {
+	// 선택된 stroke와 shape에 해당하는 border와 borderRadii 값을 가져옴
+	const { border, borderRadii } = theme.shape[stroke][shape]
+
+	// stroke 타입에 따라 다른 스타일을 적용
+	switch (stroke) {
+		case 'outlined':
+			return css`
+				border: ${border} solid
+					${hexToRgba(getColour(theme, appearance, hierarchy, 'active'), 0.08)};
+				border-radius: ${borderRadii};
+				background-color: none;
+				color: ${getColour(theme, appearance, hierarchy, 'active')};
+			`
+		case 'filled':
+			return css`
+				border: none;
+				border-radius: ${borderRadii};
+				background-color: ${hexToRgba(
+					getColour(theme, appearance, hierarchy, 'active'),
+					0.08,
+				)};
+				color: ${getColour(theme, appearance, hierarchy, 'active')};
+			`
+		default:
+			throw new Error(`Unsupported button shape: ${stroke}`)
 	}
 }

@@ -13,8 +13,9 @@ export type AchievementItem = {
 	linkUrl: string
 }
 
-export type ReviewItem = {
+export type ResultItem = {
 	voice: string
+	name: string
 	imgUrl: string
 	period: string
 	result: string
@@ -59,7 +60,7 @@ export interface ContentsState {
 	}
 	result: {
 		heading: string
-		items: ReviewItem[]
+		items: ResultItem[]
 	}
 	footer: {
 		simpleDisclaimer: string[]
@@ -172,9 +173,10 @@ export const useContentsStore = create<ContentsState>((set) => ({
 			{
 				voice:
 					'그 흔한 주식과 코인 투자 경험도 없고 차트조차 본 적 없는데 가능할까?',
+				name: 'Jaden',
 				imgUrl: '',
 				period: '2023. 04. 25. ~ 07. 12. 기준 (3달)',
-				result: '수익률 600% 달성했었습니다.',
+				result: '수익률 600%',
 				note: '이후 5010팀 스카웃',
 				comment:
 					'차트를 본적도 없던 수강생조차 단지 노력만으로 값진 성과를 만들어 냈습니다.',
@@ -183,9 +185,10 @@ export const useContentsStore = create<ContentsState>((set) => ({
 			{
 				voice:
 					'내 나이 45, 아이들 수저를 금으로 만들어주고 싶은데 너무 늦진 않았을까?',
+				name: '아쿠마',
 				imgUrl: '',
 				period: '2023. 06. 12. ~ 07. 14. 기준 (1달)',
-				result: '수익률 200% 달성했었습니다.',
+				result: '수익률 200%',
 				note: '승률 90% 이상 유지',
 				comment:
 					'45세의 나이, 그리고 처음 접하는 재테크. 꾸준한 연습만으로 결국 해내셨습니다.',
@@ -194,9 +197,10 @@ export const useContentsStore = create<ContentsState>((set) => ({
 			{
 				voice:
 					'다년간 트레이딩을 했는데도 시드가 늘지 않아, 분명 이유가 있겠지?',
+				name: '최태민',
 				imgUrl: '',
 				period: '2023. 06. 14. ~ 06. 22. 기준 (1주)',
-				result: '수익률 200% 달성했었습니다.',
+				result: '수익률 200%',
 				note: '1주간 $15,000 수익',
 				comment:
 					'기본기가 탄탄한 수강생이 1104 R&I를 만나면 그 시너지는 더욱 극대화될 수 있습니다.',
@@ -205,9 +209,10 @@ export const useContentsStore = create<ContentsState>((set) => ({
 			{
 				voice:
 					'정말 안해본 공부가 없고 안써본 보조 지표가 없는데, 뭐가 문제지?',
+				name: '얼마나좋아',
 				imgUrl: '',
 				period: '2023. 04. 06. ~ 07. 22. 기준 (3달)',
-				result: '수익률 1,000% 달성했었습니다.',
+				result: '수익률 1,000%',
 				note: '3달간 $100,000 수익',
 				comment:
 					'경력자일수록 단순 명확한 5010 매매 전략의 진가를 알아보고 계십니다.',
