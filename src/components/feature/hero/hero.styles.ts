@@ -23,17 +23,8 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	background-position: center;
 	background-repeat: no-repeat;
 
-	/* background-attachment: fixed;
-
-	@supports (-webkit-appearance: none) {
-		@media (pointer: coarse) {
-			background-attachment: ${({ $isChromeBasedBrowser }) =>
-		$isChromeBasedBrowser ? 'fixed' : 'scroll'};
-		}
-	} */
-
-	background-attachment: ${({ $isChromeBasedBrowser }) =>
-		$isChromeBasedBrowser ? 'scroll' : 'fixed'};
+	background-attachment: ${({ $isPointerCoarseAndSafari }) =>
+		$isPointerCoarseAndSafari ? 'scroll' : 'fixed'};
 
 	&::before {
 		content: '';

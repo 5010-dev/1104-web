@@ -8,5 +8,5 @@ export type Color = string
 export type HeroContainerProps = {
 	$deviceType: DeviceType
 	$imageUrl: string
-	$isChromeBasedBrowser: boolean
+	$isPointerCoarseAndSafari: boolean
 }

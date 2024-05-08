@@ -1,25 +1,9 @@
-// import { useEffect, useState } from 'react'
-
-// const useChromeBasedDetection = (): { isChromeBasedBrowser: boolean } => {
-// 	const [isChromeBasedBrowser, setIsChromeBasedBrowser] = useState(false)
-
-// 	useEffect(() => {
-// 		const userAgent = navigator.userAgent.toLowerCase()
-// 		setIsChromeBasedBrowser(
-// 			/chrome/.test(userAgent) ||
-// 				/edg/.test(userAgent) ||
-// 				/opera/.test(userAgent) ||
-// 				/firefox/.test(userAgent),
-// 		)
-// 	}, [])
-
-// 	return { isChromeBasedBrowser }
-// }
-
-// export default useChromeBasedDetection
-
 import { useState, useEffect } from 'react'
 
+/**
+ * 포인터 디바이스가 coarse이고 사파리 브라우저인지 여부를 반환하는 커스텀 훅
+ * @returns {boolean} 포인터 디바이스가 coarse이고 사파리 브라우저인지 여부
+ */
 const usePointerCoarseAndSafari = (): boolean => {
 	const [isPointerCoarseAndSafari, setIsPointerCoarseAndSafari] =
 		useState(false)
@@ -41,7 +25,7 @@ const usePointerCoarseAndSafari = (): boolean => {
 		return () => {
 			mediaQueryList.removeEventListener('change', handleMediaQueryChange)
 		}
-	}, [])
+	}, []) // 컴포넌트 마운트 시에만 실행
 
 	return isPointerCoarseAndSafari
 }

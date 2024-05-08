@@ -4,7 +4,7 @@ import { useContentsStore } from '../../../store/contentsStore'
 import Button from '../../global/button/button.component'
 
 import { HeroContainer } from './hero.styles'
-import usePointerCoarseAndSafari from '../../../hooks/useChromeBasedDetection'
+import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 
 export default function Hero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -15,7 +15,7 @@ export default function Hero() {
 		<HeroContainer
 			$deviceType={deviceType}
 			$imageUrl={image.backgroundImage}
-			$isChromeBasedBrowser={isPointerCoarseAndSafari}
+			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
 		>
 			<div id="text-container">
 				<h1 id="display">{text.display}</h1>
