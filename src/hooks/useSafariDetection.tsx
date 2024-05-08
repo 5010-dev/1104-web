@@ -40,9 +40,11 @@ const useSafariDetection = (): {
 		const isSafari = /safari/.test(userAgent) && !/chrome/.test(userAgent)
 		const isIOS = /ipad|iphone|ipod/.test(userAgent)
 		const isIPad = /ipad/.test(userAgent)
+		const isTouchSupported =
+			'ontouchstart' in window || navigator.maxTouchPoints > 0
 
 		setIsSafariMobile(isSafari && isIOS && !isIPad)
-		setIsSafariTablet(isSafari && isIOS && isIPad)
+		setIsSafariTablet(isSafari && isIOS && isIPad && isTouchSupported)
 	}, [])
 
 	return { isSafariMobile, isSafariTablet }
