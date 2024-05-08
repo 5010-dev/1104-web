@@ -14,7 +14,7 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 
 	width: ${({ theme }) => theme.layout.component.width};
 	min-height: ${({ $deviceType }) =>
-		$deviceType === 'mobile' ? '20rem' : '22.5rem'};
+		$deviceType === 'mobile' ? '24rem' : '22.5rem'};
 
 	justify-content: space-between;
 	align-items: center;
@@ -27,10 +27,10 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 		width: 100%;
 		height: 100%;
 		background-image: url(${(props) => props.$imgUrl});
-		background-position: right 0 top 80%;
+		background-position: right 50% bottom 30%;
 		background-repeat: no-repeat;
 		background-size: ${({ $deviceType }) =>
-			$deviceType === 'mobile' ? 'auto 70%' : '40% auto'};
+			$deviceType === 'mobile' ? 'auto 50%' : '40% auto'};
 		z-index: 0;
 
 		${({ $isActivated }) =>

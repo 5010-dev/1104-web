@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
  */
 const usePointerCoarseAndSafari = (): boolean => {
 	const mediaQuery = '(pointer: coarse)'
-	const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+	const isSafari = /^((?!chrome).)*safari/i.test(navigator.userAgent)
 	const [isPointerCoarseAndSafari, setIsPointerCoarseAndSafari] = useState(
 		window.matchMedia(mediaQuery).matches && isSafari,
 	)
@@ -19,13 +19,12 @@ const usePointerCoarseAndSafari = (): boolean => {
 		const mediaQueryList = window.matchMedia(mediaQuery)
 		mediaQueryList.addEventListener('change', handleMediaQueryChange)
 
-		// 초기 값 설정
 		setIsPointerCoarseAndSafari(mediaQueryList.matches && isSafari)
 
 		return () => {
 			mediaQueryList.removeEventListener('change', handleMediaQueryChange)
 		}
-	}, [isSafari]) // 컴포넌트 마운트 시에만 실행
+	}, [isSafari])
 
 	return isPointerCoarseAndSafari
 }
