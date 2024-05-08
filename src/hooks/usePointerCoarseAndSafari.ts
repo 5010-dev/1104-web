@@ -25,7 +25,7 @@ const usePointerCoarseAndSafari = (): boolean => {
 		return () => {
 			mediaQueryList.removeEventListener('change', handleMediaQueryChange)
 		}
-	}, []) // 컴포넌트 마운트 시에만 실행
+	}, [isSafari]) // 컴포넌트 마운트 시에만 실행
 
 	return isPointerCoarseAndSafari
 }
