@@ -22,23 +22,18 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	/* background-attachment: ${({ $deviceType }) =>
-		$deviceType === 'mobile' ? 'none' : 'fixed'}; */
 
-	background-attachment: fixed;
+	/* background-attachment: fixed;
 
 	@supports (-webkit-appearance: none) {
 		@media (pointer: coarse) {
 			background-attachment: ${({ $isChromeBasedBrowser }) =>
-				$isChromeBasedBrowser ? 'fixed' : 'scroll'};
-		}
-	}
-
-	/* @media not all and (min-resolution: 0.001dpcm) {
-		@supports (-webkit-appearance: none) {
-			background-attachment: scroll;
+		$isChromeBasedBrowser ? 'fixed' : 'scroll'};
 		}
 	} */
+
+	background-attachment: ${({ $isChromeBasedBrowser }) =>
+		$isChromeBasedBrowser ? 'scroll' : 'fixed'};
 
 	&::before {
 		content: '';
