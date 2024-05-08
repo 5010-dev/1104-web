@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { SectionContainer } from '../../global/section/section.styles'
 import { getTypography } from '../../../utils/typo.utils'
-import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getColour } from '../../../utils/colour.utils'
 
 export const AchievementItemContainer = styled(SectionContainer)`
@@ -16,8 +15,7 @@ export const AchievementItemContainer = styled(SectionContainer)`
 	gap: ${({ theme, $deviceType }) =>
 		$deviceType === 'desktop' ? '0' : `${theme.layout.component.gutter}`};
 
-	padding: ${({ theme, $deviceType }) =>
-		`${getDeviceTypePadding(theme, $deviceType, 'section')} 0`};
+	padding: ${({ theme }) => `${theme.layout.section.padding.sm} 0`};
 
 	border-bottom: ${({ theme }) =>
 		`0.0625rem solid ${getColour(theme, 'neutral', 'tertiary', 'inactive')}`};

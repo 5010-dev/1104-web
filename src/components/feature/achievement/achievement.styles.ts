@@ -9,7 +9,8 @@ export const AchievementContainer = styled(SectionContainer)`
 
 	gap: ${({ theme }) => theme.layout.page.gutter};
 
-	margin-top: ${({ theme }) => theme.layout.section.gutter};
+	margin-top: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'section')};
 
 	padding: 0;
 	background-color: #ffffff;
@@ -20,7 +21,8 @@ export const AchievementContainer = styled(SectionContainer)`
 		width: ${({ theme }) => theme.layout.section.width};
 		max-width: ${({ theme }) => theme.layout.section.maxWidth};
 
-		margin-top: ${({ theme }) => theme.layout.container.gutter};
+		margin-top: ${({ theme, $deviceType }) =>
+			getDeviceTypePadding(theme, $deviceType, 'container')};
 
 		display: flex;
 		flex-direction: column;
@@ -33,7 +35,12 @@ export const AchievementContainer = styled(SectionContainer)`
 			getDeviceTypePadding(theme, $deviceType, 'section')};
 
 		div#section-heading-container {
-			margin-top: ${({ theme }) => theme.layout.section.gutter};
+			width: ${({ theme }) => theme.layout.container.width};
+			margin-top: ${({ theme, $deviceType }) =>
+				getDeviceTypePadding(theme, $deviceType, 'section')};
+
+			text-align: ${({ $deviceType }) =>
+				$deviceType === 'mobile' ? 'center' : 'left'};
 
 			span#section-category-text {
 				${({ theme }) => getTypography(theme, 'body')}

@@ -180,7 +180,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				name: 'Jaden',
 				imgUrl: resultImage1,
 				period: '2023. 04. 25. ~ 07. 12. 기준 (3달)',
-				result: '수익률 600%',
+				result: '600%',
 				note: '이후 5010팀 스카웃',
 				comment:
 					'차트를 본적도 없던 수강생조차 단지 노력만으로 값진 성과를 만들어 냈습니다.',
@@ -192,7 +192,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				name: '아쿠마',
 				imgUrl: resultImage2,
 				period: '2023. 06. 12. ~ 07. 14. 기준 (1달)',
-				result: '수익률 200%',
+				result: '200%',
 				note: '승률 90% 이상 유지',
 				comment:
 					'45세의 나이, 그리고 처음 접하는 재테크. 꾸준한 연습만으로 결국 해내셨습니다.',
@@ -204,7 +204,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				name: '최태민',
 				imgUrl: resultImage3,
 				period: '2023. 06. 14. ~ 06. 22. 기준 (1주)',
-				result: '수익률 200%',
+				result: '200%',
 				note: '1주간 $15,000 수익',
 				comment:
 					'기본기가 탄탄한 수강생이 1104 R&I를 만나면 그 시너지는 더욱 극대화될 수 있습니다.',
@@ -216,7 +216,7 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				name: '얼마나좋아',
 				imgUrl: resultImage4,
 				period: '2023. 04. 06. ~ 07. 22. 기준 (3달)',
-				result: '수익률 1,000%',
+				result: '1,000%',
 				note: '3달간 $100,000 수익',
 				comment:
 					'경력자일수록 단순 명확한 5010 매매 전략의 진가를 알아보고 계십니다.',

@@ -1,6 +1,7 @@
 import { useState, MouseEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+import { faCirclePlus, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { motion, Variants } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { ResultItemProps } from './result-item.types'
@@ -18,6 +19,11 @@ export default function ResultItem(props: ResultItemProps) {
 		setIsActivated(!isActivated)
 	}
 
+	const iconVariants: Variants = {
+		rotated: { rotate: 45 },
+		default: { rotate: 0 },
+	}
+
 	return (
 		<ResultItemContainer
 			$deviceType={deviceType}
@@ -30,13 +36,19 @@ export default function ResultItem(props: ResultItemProps) {
 		>
 			{isActivated ? (
 				<div className="contents-container" id="active-contents-container">
-					<div id="text-container">
-						<span id="period">{period}</span>
+					<div>
 						<h3 id="result">
 							{result}
-							<span id="result-surfix">달성했었습니다.</span>
+							<span id="result-surfix">수익률 달성했었습니다.</span>
 						</h3>
-						<span id="note">{note}</span>
+						<div id="caption-container">
+							<span className="caption">
+								<FontAwesomeIcon icon={faCheck} /> {period}
+							</span>
+							<span className="caption">
+								<FontAwesomeIcon icon={faCheck} /> {note}
+							</span>
+						</div>
 					</div>
 					<p id="comment">{comment}</p>
 				</div>
@@ -55,7 +67,15 @@ export default function ResultItem(props: ResultItemProps) {
 				stroke="filled"
 				shape="rounding"
 				handleClick={handleClick}
-				icon={<FontAwesomeIcon icon={faCirclePlus} />}
+				icon={
+					<motion.div
+						variants={iconVariants}
+						animate={isActivated ? 'rotated' : 'default'}
+						transition={{ duration: 0.3 }}
+					>
+						<FontAwesomeIcon icon={faCirclePlus} />
+					</motion.div>
+				}
 				size="sm"
 			/>
 		</ResultItemContainer>

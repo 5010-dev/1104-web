@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { SectionContainer } from '../../global/section/section.styles'
 
 import { getTypography } from '../../../utils/typo.utils'
+import { getDeviceTypePadding } from '../../../utils/device.utils'
 
 export const ServiceContainer = styled(SectionContainer)`
 	width: ${({ theme }) => theme.layout.section.width};
@@ -12,7 +13,8 @@ export const ServiceContainer = styled(SectionContainer)`
 	div.item-container {
 		width: ${({ theme }) => theme.layout.container.width};
 		min-width: 50%;
-		margin-top: ${({ theme }) => theme.layout.section.gutter};
+		margin-top: ${({ theme, $deviceType }) =>
+			getDeviceTypePadding(theme, $deviceType, 'section')};
 
 		display: flex;
 		flex-direction: row-reverse;
@@ -28,6 +30,9 @@ export const ServiceContainer = styled(SectionContainer)`
 
 			img.service-image {
 				width: ${({ theme }) => theme.layout.component.width};
+				max-width: ${({ $deviceType }) =>
+					$deviceType !== 'desktop' ? '24rem' : ''};
+
 				border-radius: ${({ theme }) =>
 					theme.shape.filled.rounded1.borderRadii};
 			}

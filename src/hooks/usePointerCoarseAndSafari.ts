@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 const usePointerCoarseAndSafari = (): boolean => {
 	const mediaQuery = '(pointer: coarse)'
 	const isSafari = /^((?!chrome).)*safari/i.test(navigator.userAgent)
+
 	const [isPointerCoarseAndSafari, setIsPointerCoarseAndSafari] = useState(
 		window.matchMedia(mediaQuery).matches && isSafari,
 	)

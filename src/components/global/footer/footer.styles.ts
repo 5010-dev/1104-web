@@ -27,8 +27,7 @@ export const FooterContainer = styled(SectionContainer)<FooterContainerProps>`
 		justify-content: flex-start;
 		align-items: center;
 
-		margin-top: ${({ theme }) => theme.layout.section.gutter};
-		/* margin-bottom: ${({ theme }) => theme.layout.section.gutter}; */
+		margin: ${({ theme }) => `${theme.layout.section.gutter} 0`};
 
 		padding: ${({ theme, $deviceType }) =>
 			getDeviceTypePadding(theme, $deviceType, 'section')};

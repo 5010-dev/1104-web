@@ -9,7 +9,8 @@ export const ResultContainer = styled(SectionContainer)`
 
 	gap: ${({ theme }) => theme.layout.page.gutter};
 
-	margin-top: ${({ theme }) => theme.layout.section.gutter};
+	margin-top: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'section')};
 
 	padding: 0;
 	background-color: #ffffff;
@@ -20,7 +21,8 @@ export const ResultContainer = styled(SectionContainer)`
 		width: ${({ theme }) => theme.layout.section.width};
 		max-width: ${({ theme }) => theme.layout.section.maxWidth};
 
-		margin-top: ${({ theme }) => theme.layout.container.gutter};
+		margin-top: ${({ theme, $deviceType }) =>
+			getDeviceTypePadding(theme, $deviceType, 'container')};
 
 		display: flex;
 		flex-direction: column;
@@ -33,7 +35,12 @@ export const ResultContainer = styled(SectionContainer)`
 			getDeviceTypePadding(theme, $deviceType, 'section')};
 
 		div#section-heading-container {
-			margin-top: ${({ theme }) => theme.layout.section.gutter};
+			width: ${({ theme }) => theme.layout.container.width};
+			margin-top: ${({ theme, $deviceType }) =>
+				getDeviceTypePadding(theme, $deviceType, 'section')};
+
+			text-align: ${({ $deviceType }) =>
+				$deviceType === 'mobile' ? 'center' : 'left'};
 
 			span#section-category-text {
 				${({ theme }) => getTypography(theme, 'body')}
@@ -50,48 +57,25 @@ export const ResultContainer = styled(SectionContainer)`
 		div#items-container {
 			width: ${({ theme }) => theme.layout.container.width};
 
-			${({ $deviceType }) => {
-				switch ($deviceType) {
-					case 'desktop':
-						return css`
-							display: grid;
-							grid-template-columns: repeat(2, 1fr);
-							grid-template-rows: repeat(2, 1fr);
-						`
-					case 'tablet':
-						return css`
-							display: grid;
-							grid-template-columns: repeat(2, 1fr);
-							grid-template-rows: repeat(2, 1fr);
-							/* display: grid;
-							grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-							grid-template-rows: repeat(2, 1fr); */
-						`
-					case 'mobile':
-						return css`
-							display: flex;
-							flex-direction: column;
-							justify-content: flex-start;
-							align-items: flex-start;
-						`
-				}
-			}}
+			display: grid;
 
-			/* ${({ $deviceType }) =>
-				$deviceType === 'mobile'
+			${({ $deviceType }) =>
+				$deviceType !== 'mobile'
 					? css`
-							display: flex;
-							flex-direction: column;
-							justify-content: flex-start;
-							align-items: flex-start;
+							grid-template-columns: repeat(2, 1fr);
+							grid-template-rows: repeat(2, 1fr);
 					  `
 					: css`
-							display: grid;
-							grid-template-columns: repeat(2, 1fr);
-							grid-template-rows: repeat(2, 1fr);
-					  `} */
+							grid-template-columns: repeat(1, 1fr);
+							grid-template-rows: repeat(4, 1fr);
+							& > * {
+								justify-self: center;
+								max-width: 24rem;
+							}
+					  `}
 
-			gap: ${({ theme }) => theme.layout.section.gutter};
+			gap: ${({ theme, $deviceType }) =>
+				getDeviceTypePadding(theme, $deviceType, 'section')};
 		}
 	}
 `

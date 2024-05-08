@@ -13,11 +13,11 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 	position: relative;
 
 	width: ${({ theme }) => theme.layout.component.width};
-	min-height: ${({ $deviceType }) =>
-		$deviceType === 'mobile' ? '24rem' : '22.5rem'};
+	min-height: 22.5rem;
 
 	justify-content: space-between;
 	align-items: center;
+	gap: ${({ theme }) => theme.layout.container.gutter};
 
 	&::before {
 		content: '';
@@ -29,8 +29,7 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 		background-image: url(${(props) => props.$imgUrl});
 		background-position: right 50% bottom 30%;
 		background-repeat: no-repeat;
-		background-size: ${({ $deviceType }) =>
-			$deviceType === 'mobile' ? 'auto 50%' : '40% auto'};
+		background-size: auto 50%;
 		z-index: 0;
 
 		${({ $isActivated }) =>
@@ -44,7 +43,6 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 
 	div.contents-container {
 		width: ${({ theme }) => theme.layout.component.width};
-		/* height: 100%; */
 
 		display: flex;
 		flex-direction: column;
@@ -72,28 +70,30 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 	}
 
 	div#active-contents-container {
-		/* gap: ${({ theme }) => theme.layout.section.gutter}; */
-		justify-content: space-between;
+		gap: ${({ theme }) => theme.layout.section.gutter};
 
-		div#text-container {
-			span#period {
+		h3#result {
+			display: flex;
+			flex-direction: column;
+
+			${({ theme }) => getTypography(theme, 'heading1')}
+			line-height: 130%;
+			color: ${({ theme }) => theme.colour.neutral.primary.active};
+
+			span#result-surfix {
+				${({ theme }) => getTypography(theme, 'heading3')}
+				line-height: 130%;
+				margin-bottom: ${({ theme }) => theme.layout.component.gutter};
+			}
+		}
+
+		div#caption-container {
+			display: flex;
+			flex-direction: column;
+
+			span.caption {
 				${({ theme }) => getTypography(theme, 'caption')}
 				color: ${({ theme }) => theme.colour.neutral.primary.active};
-			}
-
-			h3#result {
-				display: flex;
-				flex-direction: column;
-
-				${({ theme }) => getTypography(theme, 'heading1')}
-				line-height: 130%;
-				color: ${({ theme }) => theme.colour.neutral.primary.active};
-
-				/* margin-bottom: ${({ theme }) => theme.layout.component.gutter}; */
-
-				span#result-surfix {
-					${({ theme }) => getTypography(theme, 'heading3')}
-				}
 			}
 		}
 
