@@ -53,7 +53,7 @@ export default function ResultItem(props: ResultItemProps) {
 				</div>
 			)}
 			<Button
-				id="see-result-button"
+				className="see-result-button"
 				accessibleName="contents-container"
 				text="수강 후 결과"
 				appearance="neutral"

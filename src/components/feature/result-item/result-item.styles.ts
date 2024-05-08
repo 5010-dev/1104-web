@@ -72,7 +72,7 @@ export const ResultItemContainer = styled(CardContainer)`
 		}
 	}
 
-	#see-result-button {
+	.see-result-button {
 		padding-right: ${({ theme, $deviceType }) =>
 			getDeviceTypePadding(theme, $deviceType, 'container')};
 		margin-bottom: ${({ theme }) => theme.layout.component.gutter};
