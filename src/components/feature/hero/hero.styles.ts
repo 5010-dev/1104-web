@@ -25,16 +25,20 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	/* background-attachment: ${({ $deviceType }) =>
 		$deviceType === 'mobile' ? 'none' : 'fixed'}; */
 
-	background-attachment: ${({ $isSafariMobile, $isSafariTablet }) =>
-		$isSafariMobile || $isSafariTablet ? 'scroll' : 'fixed'};
+	background-attachment: fixed;
 
-	/* background-attachment: fixed;
-
-	@supports (-webkit-appearance: none) {
+	/* @supports (-webkit-appearance: none) {
 		@media (pointer: coarse) {
 			background-attachment: scroll;
 		}
-	} */
+	}
+	*/
+
+	_::-webkit-full-page-media,
+	_:future,
+	:root .safari_only {
+		background-attachment: scroll;
+	}
 
 	&::before {
 		content: '';

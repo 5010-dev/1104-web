@@ -1,6 +1,5 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useContentsStore } from '../../../store/contentsStore'
-import useSafariDetection from '../../../hooks/useSafariDetection'
 
 import Button from '../../global/button/button.component'
 
@@ -10,15 +9,8 @@ export default function Hero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useContentsStore((state) => state.home)
 
-	const { isSafariMobile, isSafariTablet } = useSafariDetection()
-
 	return (
-		<HeroContainer
-			$deviceType={deviceType}
-			$imageUrl={image.backgroundImage}
-			$isSafariMobile={isSafariMobile}
-			$isSafariTablet={isSafariTablet}
-		>
+		<HeroContainer $deviceType={deviceType} $imageUrl={image.backgroundImage}>
 			<div id="text-container">
 				<h1 id="display">{text.display}</h1>
 				<h2 id="subheading">{text.subheading}</h2>
