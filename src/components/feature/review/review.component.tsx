@@ -7,6 +7,8 @@ import { useContentsStore } from '../../../store/contentsStore'
 import { ReviewItemProps } from './review.types'
 import { ReviewContainer, ReviewItemContainer } from './review.styles'
 
+import Chip from '../../global/chip/chip.component'
+
 const ReviewItem = (props: ReviewItemProps) => {
 	const { name, body, platform } = props
 	const numberOfStars = 5
@@ -15,13 +17,16 @@ const ReviewItem = (props: ReviewItemProps) => {
 
 	return (
 		<ReviewItemContainer $deviceType={deviceType}>
-			<div className="rating-container">
-				{Array.from({ length: numberOfStars }, (_, index) => (
-					<FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
-				))}
-			</div>
-			<div className="name-container">
-				<span className="name">{name}</span> {platform}
+			<div className="first-row">
+				<div className="rating-container">
+					{Array.from({ length: numberOfStars }, (_, index) => (
+						<FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
+					))}
+				</div>
+				<div className="name-container">
+					<span className="name">{name}</span>
+					<Chip text={platform} />
+				</div>
 			</div>
 			<p className="body">{body}</p>
 		</ReviewItemContainer>

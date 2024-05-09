@@ -43,7 +43,7 @@ export const ReviewItemContainer = styled.div<ReviewItemContainerProps>`
 
 	div.rating-container {
 		color: ${({ theme }) => getColour(theme, 'accent', 'primary', 'active')};
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 
 		${({ theme }) => css`
 			-webkit-filter: drop-shadow(
@@ -55,6 +55,8 @@ export const ReviewItemContainer = styled.div<ReviewItemContainerProps>`
 					${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.75)}
 			);
 		`}
+
+		margin-bottom: 0.75rem;
 	}
 
 	div.name-container {
