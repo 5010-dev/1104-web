@@ -1,13 +1,18 @@
 import { useState, MouseEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus, faCheck } from '@fortawesome/free-solid-svg-icons'
-import { motion, Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
+import AnimatedWrapper from '../animated-wrapper/animated-wraper'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { ResultItemProps } from './result-item.types'
 
 import Button from '../../global/button/button.component'
 import { ResultItemContainer } from './result-item.styles'
+import {
+	fadeAnimation,
+	rotateAnimationVariants,
+} from '../../../utils/animation.utils'
 
 export default function ResultItem(props: ResultItemProps) {
 	const { voice, name, period, result, note, comment, imgUrl } = props
@@ -17,11 +22,6 @@ export default function ResultItem(props: ResultItemProps) {
 
 	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
 		setIsActivated(!isActivated)
-	}
-
-	const iconVariants: Variants = {
-		rotated: { rotate: 45 },
-		default: { rotate: 0 },
 	}
 
 	return (
@@ -35,28 +35,43 @@ export default function ResultItem(props: ResultItemProps) {
 			$isActivated={isActivated}
 		>
 			{isActivated ? (
-				<div className="contents-container" id="active-contents-container">
-					<div>
-						<h3 id="result">
-							{result}
-							<span id="result-surfix">수익률 달성했었습니다.</span>
-						</h3>
-						<div id="caption-container">
-							<span className="caption">
-								<FontAwesomeIcon icon={faCheck} /> {period}
-							</span>
-							<span className="caption">
-								<FontAwesomeIcon icon={faCheck} /> {note}
-							</span>
+				<AnimatedWrapper
+					key="activated"
+					animationProps={fadeAnimation}
+					children={
+						<div className="contents-container" id="active-contents-container">
+							<div>
+								<h3 id="result">
+									{result}
+									<span id="result-surfix">수익률 달성했었습니다.</span>
+								</h3>
+								<div id="caption-container">
+									<span className="caption">
+										<FontAwesomeIcon icon={faCheck} /> {period}
+									</span>
+									<span className="caption">
+										<FontAwesomeIcon icon={faCheck} /> {note}
+									</span>
+								</div>
+							</div>
+							<p id="comment">{comment}</p>
 						</div>
-					</div>
-					<p id="comment">{comment}</p>
-				</div>
+					}
+				/>
 			) : (
-				<div className="contents-container" id="inactive-contents-container">
-					<h3 id="voice">{voice}</h3>
-					<p id="name">{name}</p>
-				</div>
+				<AnimatedWrapper
+					key="deactivated"
+					animationProps={fadeAnimation}
+					children={
+						<div
+							className="contents-container"
+							id="inactive-contents-container"
+						>
+							<h3 id="voice">{voice}</h3>
+							<p id="name">{name}</p>
+						</div>
+					}
+				/>
 			)}
 			<Button
 				className="see-result-button"
@@ -69,7 +84,7 @@ export default function ResultItem(props: ResultItemProps) {
 				handleClick={handleClick}
 				icon={
 					<motion.div
-						variants={iconVariants}
+						variants={rotateAnimationVariants}
 						animate={isActivated ? 'rotated' : 'default'}
 						transition={{ duration: 0.3 }}
 					>
