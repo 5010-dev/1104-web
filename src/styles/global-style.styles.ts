@@ -5,7 +5,7 @@ const styled = { createGlobalStyle }
 
 const GlobalStyle = styled.createGlobalStyle`
 	body {
-		overflow: hidden;
+		overflow-x: hidden;
 
 		margin: 0;
 		width: 100%;
