@@ -28,6 +28,12 @@ export type ResultItem = {
 	linkUrl: string
 }
 
+export type ReviewItem = {
+	name: string
+	body: string
+	platform: 'KMONG' | 'WADIZ'
+}
+
 export interface ContentsState {
 	home: {
 		image: {
@@ -65,6 +71,9 @@ export interface ContentsState {
 	result: {
 		heading: string
 		items: ResultItem[]
+	}
+	review: {
+		items: ReviewItem[]
 	}
 	footer: {
 		simpleDisclaimer: string[]
@@ -221,6 +230,65 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				comment:
 					'경력자일수록 단순 명확한 5010 매매 전략의 진가를 알아보고 계십니다.',
 				linkUrl: '',
+			},
+		],
+	},
+	review: {
+		items: [
+			{
+				name: 'JHQ',
+				body: '...이 책은 읽자마자 느낌이 오더군요. 아, 되는 방법이다... 욕심만 버리면 월 1억 달성도 꿈이 아니라는 생각이 들었습니다. 게다가 쉽습니다. 단언컨데 이렇게 쉬우면서 실현 가능성 높은 매매법은 없었다고 생각합니다.',
+				platform: 'KMONG',
+			},
+			{
+				name: '아*****',
+				body: '기초 전자책을 먼저 구매 후에 코칭 서비스의 오픈을 기다렸습니다. 1등으로 구매하고 싶어 회사 회의 중에도 몰래 급히 결제할 만큼 이 서비스를 간절히 기다렸습니다.',
+				platform: 'KMONG',
+			},
+			{
+				name: 'rab*****',
+				body: '전자책만 구입하였고 다독 및 백테스팅 결과 확신이 생겨 추가 코칭까지 신청하게 되었습니다. 혹시 고민하고 계신다면 바로 코칭으로 오셔도 될 것 같습니다!',
+				platform: 'KMONG',
+			},
+			{
+				name: '윤*****',
+				body: '우연히 5010 매매 기법 전자책을 먼저 구매하게 되었고, 책 내용이 예상했던 것보다 훨씬 좋아서 코칭편까지 구매하게 되었습니다.',
+				platform: 'KMONG',
+			},
+			{
+				name: 'K79*****',
+				body: '전자책 구매 후 이거다! 싶은 마음에 서비스 업그레이드를 받아 코칭을 받았습니다.',
+				platform: 'KMONG',
+			},
+			{
+				name: '백*****',
+				body: '5010 전자책은 처음 열어보는 순간부터, 생각과 기대 이상의 내용으로 스스로에 대한 기준을 잡는데 큰 도움이 됩니다.',
+				platform: 'KMONG',
+			},
+			{
+				name: '컬*****',
+				body: '일단 전자책만으로도 많은 인사이트를 얻었다고 생각했는데, 오프라인 강의가 찐이었네요.',
+				platform: 'KMONG',
+			},
+			{
+				name: '익명의 서포터',
+				body: '투자자들에게 과한 욕심을 부추기는 것이 아니라, 고정시드매매와 주기점진매매를 통한 확실한 전략으로 차분히 우리의 계좌를 우상향 하도록 5010 매매법이 설계되어 있어 감사했습니다.',
+				platform: 'WADIZ',
+			},
+			{
+				name: '익명의 서포터',
+				body: "이번 펀딩은 저에게 투자의 기본적인 생각을 다시 한 번 생각하게 만들어 준 책이었습니다. 이 책을 정독하고 마지막에 든 생각은 딱 하나였습니다. '이 방법이면 나도 해볼 수 있겠는데? 이렇게만 진짜 내가 내 자신을 관리한다면 잘 할 수 있겠는데?' 였습니다.",
+				platform: 'WADIZ',
+			},
+			{
+				name: '익명의 서포터',
+				body: '그동안 차트 분석하는 많은 책을 읽어봤지만, 이렇게 자산관리에 대한 좋은 내용이 담긴 책은 처음입니다. 약간 퀀트투자 같으면서 비트코인만 가지고 매매를 하고 과학적인 접근 또한 가능하게 설명해 주십니다.',
+				platform: 'WADIZ',
+			},
+			{
+				name: '김동희',
+				body: "저는 약 5년 간 국내 대기업 증권사 PB 및 투자관련 회사에서 근무한 경험이 있습니다. (...) 책을 읽어 내려갈 때마다, 와디즈 펀디에서 봤었던 '이건 되는 방법이다' 라는 후기에 백번 공감이 되었습니다. (...) 'Simple is the Best' 지금까지 더 좋은 보조지표를 찾기 위해, 그리고 더 높은 확률을 찾기 위해 노력했던 것들이 비워지면서 오히려 제 정신을 더 맑게 만들었습니다.",
+				platform: 'WADIZ',
 			},
 		],
 	},

@@ -5,6 +5,7 @@ import About from '../../../components/feature/about/about.component'
 import Service from '../../../components/feature/service/service.component'
 import Achievement from '../../../components/feature/achievement/achievement.component'
 import Result from '../../../components/feature/Result/result.component'
+import Review from '../../../components/feature/review/review.component'
 
 import { HomeContainer } from './home.styles'
 
@@ -19,6 +20,7 @@ export default function Home() {
 			<div id="achievement-result-container">
 				<Achievement />
 				<Result />
+				<Review />
 			</div>
 		</HomeContainer>
 	)
