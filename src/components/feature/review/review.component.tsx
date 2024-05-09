@@ -14,9 +14,6 @@ export default function Review() {
 	const { ref, scrollX, handleMouseEnter, handleMouseLeave } =
 		useScrollAnimation(true)
 
-	// 무한 스크롤 애니메이션을 위해 배열을 두 배로 늘린 새로운 배열 생성
-	const duplicatedItems = [...items, ...items]
-
 	return (
 		<ReviewContainer $deviceType={deviceType} as={motion.div} ref={ref}>
 			<motion.div
@@ -25,7 +22,17 @@ export default function Review() {
 				onMouseEnter={deviceType === 'mobile' ? undefined : handleMouseEnter}
 				onMouseLeave={deviceType === 'mobile' ? undefined : handleMouseLeave}
 			>
-				{duplicatedItems.map((item, index) => (
+				{items.map((item, index) => (
+					<ReviewItem
+						key={index}
+						name={item.name}
+						body={item.body}
+						platform={item.platform}
+						className="review-item"
+					/>
+				))}
+				{items.map((item, index) => (
+					// 무한 스크롤링 애니메이션을 위해 배열 복제
 					<ReviewItem
 						key={index}
 						name={item.name}
