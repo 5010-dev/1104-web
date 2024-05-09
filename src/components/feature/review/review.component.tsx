@@ -1,61 +1,73 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { useRef, useEffect, useCallback } from 'react'
+import {
+	motion,
+	useMotionValue,
+	useTransform,
+	useMotionTemplate,
+} from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useContentsStore } from '../../../store/contentsStore'
 
-import { ReviewItemProps } from './review.types'
-import { ReviewContainer, ReviewItemContainer } from './review.styles'
+import { ReviewContainer } from './review.styles'
 
-import Chip from '../../global/chip/chip.component'
-
-const ReviewItem = (props: ReviewItemProps) => {
-	const { name, body, platform } = props
-	const numberOfStars = 5
-
-	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-
-	return (
-		<ReviewItemContainer $deviceType={deviceType}>
-			<div className="first-row">
-				<div className="rating-container">
-					{Array.from({ length: numberOfStars }, (_, index) => (
-						<FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
-					))}
-				</div>
-				<div className="name-container">
-					<span className="name">{name}</span>
-					<Chip
-						appearance="accent"
-						hierarchy="primary"
-						stroke="filled"
-						shape="rounded3"
-						size="sm"
-						text={platform}
-					/>
-				</div>
-			</div>
-			<p className="body">{body}</p>
-		</ReviewItemContainer>
-	)
-}
+import ReviewItem from './review-item/review-item.component'
 
 export default function Review() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { items } = useContentsStore((state) => state.review)
 
+	const ref = useRef<HTMLDivElement>(null)
+	const x = useMotionValue(0)
+	const scrollX = useTransform(x, (value) => `${-value}px`)
+
+	const handleScroll = useCallback(() => {
+		if (ref.current) {
+			const maxX = ref.current.scrollWidth / 2
+			const newX = (x.get() + 1) % maxX
+			x.set(newX)
+
+			if (newX === 0) {
+				x.set(maxX)
+			}
+		}
+	}, [x])
+
+	useEffect(() => {
+		const timer = setInterval(() => {
+			handleScroll()
+		}, 16) // 60 FPS (1000 / 60 ≈ 16)
+
+		return () => {
+			clearInterval(timer)
+		}
+	}, [handleScroll])
+
 	return (
-		<ReviewContainer $deviceType={deviceType}>
-			<div id="reviews-container">
+		<ReviewContainer $deviceType={deviceType} as={motion.div} ref={ref}>
+			<motion.div
+				id="reviews-container"
+				style={{ x: useMotionTemplate`${scrollX}` }}
+			>
 				{items.map((item, index) => (
 					<ReviewItem
 						key={index}
 						name={item.name}
 						body={item.body}
 						platform={item.platform}
+						className="review-item"
 					/>
 				))}
-			</div>
+				{items.map((item, index) => (
+					<ReviewItem
+						key={index}
+						name={item.name}
+						body={item.body}
+						platform={item.platform}
+						className="review-item"
+					/>
+				))}
+			</motion.div>
 		</ReviewContainer>
 	)
 }
