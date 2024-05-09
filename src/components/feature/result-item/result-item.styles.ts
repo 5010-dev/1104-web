@@ -6,6 +6,7 @@ import { CardContainer } from '../../global/card/card.styles'
 import { getTypography } from '../../../utils/typo.utils'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { hexToRgba } from '../../../utils/colour.utils'
+import { getBlurAnimation } from '../../../utils/animation.utils'
 
 type Props = ResultItemContainerProps
 
@@ -35,10 +36,11 @@ export const ResultItemContainer = styled(CardContainer)<Props>`
 		${({ $isActivated }) =>
 			$isActivated
 				? css`
-						filter: blur(2rem);
-						-webkit-backdrop-filter: blur(2rem);
+						animation: ${getBlurAnimation('default')} 0.25s linear forwards;
 				  `
-				: ''}
+				: css`
+						animation: ${getBlurAnimation('reverse')} 0.25s linear forwards;
+				  `}
 	}
 
 	div.contents-container {
