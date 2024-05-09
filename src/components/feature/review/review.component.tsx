@@ -34,12 +34,17 @@ export default function Review() {
 	}, [x])
 
 	useEffect(() => {
-		const timer = setInterval(() => {
+		let animationFrameId: number
+
+		const animate = () => {
 			handleScroll()
-		}, 16) // 60 FPS (1000 / 60 ≈ 16)
+			animationFrameId = requestAnimationFrame(animate)
+		}
+
+		animationFrameId = requestAnimationFrame(animate)
 
 		return () => {
-			clearInterval(timer)
+			cancelAnimationFrame(animationFrameId)
 		}
 	}, [handleScroll])
 

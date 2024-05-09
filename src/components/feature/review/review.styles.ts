@@ -7,6 +7,9 @@ export const ReviewContainer = styled(SectionContainer)`
 	overflow-x: hidden;
 	align-items: flex-start;
 
+	padding-left: 0;
+	padding-right: 0;
+
 	&::-webkit-scrollbar {
 		display: none;
 	}
@@ -20,6 +23,6 @@ export const ReviewContainer = styled(SectionContainer)`
 		justify-content: flex-start;
 		align-items: flex-start;
 		gap: ${({ theme, $deviceType }) =>
-			getDeviceTypePadding(theme, $deviceType, 'container')};
+			getDeviceTypePadding(theme, $deviceType, 'section')};
 	}
 `
