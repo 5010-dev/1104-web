@@ -1,10 +1,5 @@
-import { useRef, useEffect, useCallback } from 'react'
-import {
-	motion,
-	useMotionValue,
-	useTransform,
-	useMotionTemplate,
-} from 'framer-motion'
+import { motion, useMotionTemplate } from 'framer-motion'
+import { useScrollAnimation } from '../../../hooks/useScrollAnimation'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useContentsStore } from '../../../store/contentsStore'
@@ -16,43 +11,16 @@ import ReviewItem from './review-item/review-item.component'
 export default function Review() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { items } = useContentsStore((state) => state.review)
-
-	const ref = useRef<HTMLDivElement>(null)
-	const x = useMotionValue(0)
-	const scrollX = useTransform(x, (value) => `${-value}px`)
-
-	const handleScroll = useCallback(() => {
-		if (ref.current) {
-			const maxX = ref.current.scrollWidth / 2
-			const newX = (x.get() + 1) % maxX
-			x.set(newX)
-
-			if (newX === 0) {
-				x.set(maxX)
-			}
-		}
-	}, [x])
-
-	useEffect(() => {
-		let animationFrameId: number
-
-		const animate = () => {
-			handleScroll()
-			animationFrameId = requestAnimationFrame(animate)
-		}
-
-		animationFrameId = requestAnimationFrame(animate)
-
-		return () => {
-			cancelAnimationFrame(animationFrameId)
-		}
-	}, [handleScroll])
+	const { ref, scrollX, handleMouseEnter, handleMouseLeave } =
+		useScrollAnimation(true)
 
 	return (
 		<ReviewContainer $deviceType={deviceType} as={motion.div} ref={ref}>
 			<motion.div
 				id="reviews-container"
 				style={{ x: useMotionTemplate`${scrollX}` }}
+				onMouseEnter={deviceType === 'mobile' ? undefined : handleMouseEnter}
+				onMouseLeave={deviceType === 'mobile' ? undefined : handleMouseLeave}
 			>
 				{items.map((item, index) => (
 					<ReviewItem
