@@ -47,11 +47,11 @@ export const ReviewItemContainer = styled.div<ReviewItemContainerProps>`
 
 		${({ theme }) => css`
 			-webkit-filter: drop-shadow(
-				0 0 0.5rem
+				0 0 0.25rem
 					${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.75)}
 			);
 			filter: drop-shadow(
-				0 0 0.5rem
+				0 0 0.25rem
 					${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.75)}
 			);
 		`}
@@ -61,6 +61,8 @@ export const ReviewItemContainer = styled.div<ReviewItemContainerProps>`
 
 	div.name-container {
 		display: flex;
+		align-items: center;
+
 		gap: 0.5rem;
 
 		span.name {

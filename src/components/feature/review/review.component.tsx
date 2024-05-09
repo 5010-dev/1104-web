@@ -25,7 +25,14 @@ const ReviewItem = (props: ReviewItemProps) => {
 				</div>
 				<div className="name-container">
 					<span className="name">{name}</span>
-					<Chip text={platform} />
+					<Chip
+						appearance="accent"
+						hierarchy="primary"
+						stroke="filled"
+						shape="rounded3"
+						size="sm"
+						text={platform}
+					/>
 				</div>
 			</div>
 			<p className="body">{body}</p>
