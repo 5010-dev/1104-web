@@ -21,11 +21,13 @@ export default function Navigation() {
 	const { scrollYProgress } = useScroll()
 	const ref = useRef<HTMLDivElement>(null)
 
-	const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>): void =>
+	const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>): void => {
+		setIsMenuOpen(false)
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth',
 		})
+	}
 
 	const handleMenuClick = (e: MouseEvent<HTMLButtonElement>): void =>
 		setIsMenuOpen((prevState) => !prevState)
