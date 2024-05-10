@@ -18,7 +18,6 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 		position: relative;
 
 		width: ${({ theme }) => theme.layout.container.width};
-
 		min-height: ${({ theme, $deviceType }) => {
 			switch ($deviceType) {
 				case 'desktop':
@@ -34,9 +33,10 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
+		gap: ${({ theme }) => theme.layout.section.gutter};
 
 		padding: ${({ theme, $deviceType }) =>
-			theme.layout.section.padding.default};
+			`${theme.layout.section.padding.default} ${theme.layout.section.padding.sm} `};
 
 		margin-bottom: ${({ theme, $deviceType }) => theme.layout.section.gutter};
 
