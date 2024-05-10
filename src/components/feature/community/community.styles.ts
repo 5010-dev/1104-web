@@ -61,6 +61,17 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 			z-index: 1;
 		}
 
+		${({ theme }) => css`
+			-webkit-filter: drop-shadow(
+				0 0 2rem
+					${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.25)}
+			);
+			filter: drop-shadow(
+				0 0 2rem
+					${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.25)}
+			);
+		`}
+
 		div#text-container {
 			display: flex;
 			flex-direction: column;
