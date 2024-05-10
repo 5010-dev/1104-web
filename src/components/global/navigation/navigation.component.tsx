@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react'
 
 import { Link } from 'react-router-dom'
-import { useScroll } from 'framer-motion'
+import { AnimatePresence, useScroll } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -19,6 +19,7 @@ export default function Navigation() {
 	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 	const [isScrolled, setIsScrolled] = useState<boolean>(false)
 	const { scrollYProgress } = useScroll()
+
 	const ref = useRef<HTMLDivElement>(null)
 
 	const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>): void => {
@@ -76,7 +77,9 @@ export default function Navigation() {
 					)}
 				</div>
 			</div>
-			{isMenuOpen ? <NavigationMenu /> : null}
+			<AnimatePresence>
+				{isMenuOpen ? <NavigationMenu /> : null}
+			</AnimatePresence>
 		</NavigationContainer>
 	)
 }

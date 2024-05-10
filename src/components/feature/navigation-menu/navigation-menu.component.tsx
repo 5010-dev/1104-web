@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
@@ -8,7 +9,15 @@ export default function NavigationMenu() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
 	return (
-		<NavigationMenuContainer $deviceType={deviceType}>
+		<NavigationMenuContainer
+			$deviceType={deviceType}
+			as={motion.div}
+			layout
+			initial={{ opacity: 0, y: -50 }}
+			animate={{ opacity: 1, y: 0 }}
+			exit={{ opacity: 0, y: -50 }}
+			transition={{ duration: 0.5 }}
+		>
 			<Link className="menu-link" to="/">
 				<span>ABOUT</span>
 			</Link>
