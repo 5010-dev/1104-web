@@ -4,4 +4,5 @@ export type NavigationContainerProps = {
 	$deviceType: DeviceType
 	$isOverlaped?: boolean
 	$isScrolled?: boolean
+	$isMenuOpen: boolean
 }
