@@ -25,4 +25,11 @@ export const ReviewContainer = styled(SectionContainer)`
 		gap: ${({ theme, $deviceType }) =>
 			getDeviceTypePadding(theme, $deviceType, 'section')};
 	}
+
+	div#button-container {
+		width: ${({ theme }) => theme.layout.container.width};
+
+		display: flex;
+		justify-content: center;
+	}
 `

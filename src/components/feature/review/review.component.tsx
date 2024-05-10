@@ -7,6 +7,7 @@ import { useContentsStore } from '../../../store/contentsStore'
 import { ReviewContainer } from './review.styles'
 
 import ReviewItem from './review-item/review-item.component'
+import Button from '../../global/button/button.component'
 
 export default function Review() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -42,6 +43,15 @@ export default function Review() {
 					/>
 				))}
 			</motion.div>
+			<div id="button-container">
+				<Button
+					text="성과 및 결과 더 보기 →"
+					appearance="neutral"
+					hierarchy="primary"
+					stroke="filled"
+					shape="rounding"
+				/>
+			</div>
 		</ReviewContainer>
 	)
 }
