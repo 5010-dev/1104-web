@@ -9,6 +9,10 @@ export const ReviewContainer = styled(SectionContainer)`
 
 	padding-left: 0;
 	padding-right: 0;
+	margin-top: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'container')};
+	margin-bottom: ${({ theme, $deviceType }) =>
+		getDeviceTypePadding(theme, $deviceType, 'section')};
 
 	&::-webkit-scrollbar {
 		display: none;

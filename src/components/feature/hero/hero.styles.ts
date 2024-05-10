@@ -1,9 +1,10 @@
-import styled from 'styled-components'
-import { getTypography } from '../../../utils/typo.utils'
-import { getColour } from '../../../utils/colour.utils'
+import styled, { css } from 'styled-components'
 import { SectionContainer } from '../../global/section/section.styles'
 
 import { HeroContainerProps } from './hero.types'
+
+import { getTypography } from '../../../utils/typo.utils'
+import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
 export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	position: relative;
@@ -49,6 +50,25 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 
 		z-index: 2;
 
+		& > * {
+			${({ theme }) => css`
+				-webkit-filter: drop-shadow(
+					0 0 0.25rem
+						${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.5,
+						)}
+				);
+				filter: drop-shadow(
+					0 0 0.25rem
+						${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.5,
+						)}
+				);
+			`}
+		}
+
 		h1#display {
 			${({ theme }) => getTypography(theme, 'display')}
 			color: ${({ theme }) =>
@@ -59,6 +79,25 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 			${({ theme }) => getTypography(theme, 'subheading')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
+		}
+
+		#get-sample-button {
+			${({ theme }) => css`
+				-webkit-filter: drop-shadow(
+					0 0 1rem
+						${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.8,
+						)}
+				);
+				filter: drop-shadow(
+					0 0 1rem
+						${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.8,
+						)}
+				);
+			`}
 		}
 	}
 

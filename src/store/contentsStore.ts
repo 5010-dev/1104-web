@@ -9,6 +9,7 @@ import resultImage1 from '../assets/img/result-persona-image-1.webp'
 import resultImage2 from '../assets/img/result-persona-image-2.webp'
 import resultImage3 from '../assets/img/result-persona-image-3.webp'
 import resultImage4 from '../assets/img/result-persona-image-4.webp'
+import communityImage from '../assets/img/community-image.webp'
 
 export type AchievementItem = {
 	caption: string
@@ -74,6 +75,15 @@ export interface ContentsState {
 	}
 	review: {
 		items: ReviewItem[]
+	}
+	community: {
+		image: string
+		text: {
+			caption: string
+			heading: string
+			body: string
+		}
+		linkUrl: string
 	}
 	footer: {
 		simpleDisclaimer: string[]
@@ -291,5 +301,14 @@ export const useContentsStore = create<ContentsState>((set) => ({
 				platform: 'WADIZ',
 			},
 		],
+	},
+	community: {
+		image: communityImage,
+		text: {
+			caption: 'JOIN 1104 R&I TODAY',
+			heading: '커뮤니티에 참여하고 최신 정보를 받아보세요.',
+			body: '아래 버튼을 클릭하시면 1104 R&I 공식 디스코드 커뮤니티로 이동합니다.',
+		},
+		linkUrl: '',
 	},
 }))

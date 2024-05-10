@@ -21,6 +21,7 @@ export default function Hero() {
 				<h1 id="display">{text.display}</h1>
 				<h2 id="subheading">{text.subheading}</h2>
 				<Button
+					id="get-sample-button"
 					type="button"
 					appearance="neutral"
 					hierarchy="secondary"
