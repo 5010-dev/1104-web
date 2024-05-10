@@ -94,7 +94,7 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 					getColour(theme, 'accent', 'primary', 'active')};
 			}
 
-			h1#heading {
+			h1#commnity-heading {
 				${({ theme }) => getTypography(theme, 'heading1')}
 				color: ${({ theme }) =>
 					getColour(theme, 'neutral', 'secondary', 'active')};
