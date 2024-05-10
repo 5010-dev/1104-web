@@ -48,7 +48,7 @@ export default function Review() {
 					text="성과 및 결과 더 보기 →"
 					appearance="neutral"
 					hierarchy="primary"
-					stroke="filled"
+					stroke="outlined"
 					shape="rounding"
 				/>
 			</div>
