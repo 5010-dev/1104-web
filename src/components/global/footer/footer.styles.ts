@@ -80,6 +80,15 @@ export const FooterContainer = styled(SectionContainer)<FooterContainerProps>`
 			}
 		}
 
+		div#legal-menu {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			gap: 0.5rem;
+			opacity: 0.8;
+		}
+
 		div#disclaimer-container {
 			width: ${({ theme }) => theme.layout.container.width};
 

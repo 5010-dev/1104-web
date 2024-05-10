@@ -5,6 +5,8 @@ import { useContentsStore } from '../../../store/contentsStore'
 
 import { FooterContainer } from './footer.styles'
 
+import TextLink from '../text-link/text-link.component'
+
 export default function Footer() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { logoUrl, simpleDisclaimer } = useContentsStore(
@@ -24,7 +26,6 @@ export default function Footer() {
 	const handleNumCheckClick = (e: MouseEvent<HTMLSpanElement>) => {
 		const numStr = regNum.replace(/-/g, '')
 		const num = parseInt(numStr)
-
 		window.open(`http://www.ftc.go.kr/bizCommPop.do?wrkr_no=${num}`, '_blank')
 	}
 
@@ -45,6 +46,22 @@ export default function Footer() {
 						<p className="company-info-text">{`개인정보관리책임자: ${privacyOfficer} | 이메일: ${csMail}`}</p>
 						<p className="company-info-text">{`호스팅 제공자: ${hosting}`}</p>
 					</div>
+				</div>
+				<div id="legal-menu">
+					<TextLink
+						appearance="neutral"
+						hierarchy="secondary"
+						size="sm"
+						text="서비스 이용약관"
+						handleClick={() => {}}
+					/>
+					<TextLink
+						appearance="neutral"
+						hierarchy="secondary"
+						size="sm"
+						text="개인정보 처리방침"
+						handleClick={() => {}}
+					/>
 				</div>
 				<div id="disclaimer-container">
 					{simpleDisclaimer.map((item, index) => (
