@@ -15,8 +15,6 @@ export const FooterContainer = styled(SectionContainer)<FooterContainerProps>`
 	align-items: center;
 
 	padding: 0;
-	margin-top: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'section')};
 
 	${({ theme }) => getTypography(theme, 'caption')}
 	color: ${({ theme }) => theme.colour.neutral.secondary.inactive};
