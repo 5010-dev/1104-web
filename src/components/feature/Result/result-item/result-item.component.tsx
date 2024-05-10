@@ -2,7 +2,7 @@ import { useState, MouseEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
-import AnimatedWrapper from '../../animated-wrapper/animated-wraper'
+import AnimatedWrapper from '../../../global/animated-wrapper/animated-wraper'
 
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { ResultItemProps } from './result-item.types'
