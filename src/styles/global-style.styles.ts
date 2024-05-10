@@ -1,17 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 import designTokens from './degisn-tokens/design-tokens.tokens'
-import pretendardVariableFont from '../assets/fonts/PretendardVariable.woff2'
 
 const styled = { createGlobalStyle }
 
 const GlobalStyle = styled.createGlobalStyle`
-	@font-face {
-		font-family: 'Pretendard Variable';
-		src: url(${pretendardVariableFont}) format('woff2-variations');
-		font-weight: 100 900;
-		font-style: normal;
-	}
-
 	body {
 		overflow-x: hidden;
 
