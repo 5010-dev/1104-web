@@ -102,5 +102,7 @@ export const NavigationContainer = styled(motion.header)<Props>`
 		div#nav-bar-right-container {
 			width: auto;
 		}
+
+		pointer-events: none;
 	}
 `

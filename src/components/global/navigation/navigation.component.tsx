@@ -1,11 +1,12 @@
-import { useState, useEffect, MouseEvent } from 'react'
+import { useState, useEffect, useRef, MouseEvent } from 'react'
 
 import { Link } from 'react-router-dom'
 import { useScroll } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import useOnClickOutside from '../../../hooks/useOnClickOutside'
 
 import { NavigationContainer } from './navigation.styles'
 
@@ -18,6 +19,7 @@ export default function Navigation() {
 	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 	const [isScrolled, setIsScrolled] = useState<boolean>(false)
 	const { scrollYProgress } = useScroll()
+	const ref = useRef<HTMLDivElement>(null)
 
 	const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>): void =>
 		window.scrollTo({
@@ -42,12 +44,15 @@ export default function Navigation() {
 		deviceType === 'desktop' && setIsMenuOpen(false)
 	}, [deviceType])
 
+	useOnClickOutside(ref, () => setIsMenuOpen(false))
+
 	return (
 		<NavigationContainer
 			$deviceType={deviceType}
 			$isOverlaped={true}
 			$isScrolled={isScrolled}
 			$isMenuOpen={isMenuOpen}
+			ref={ref}
 		>
 			<div id="nav-bar">
 				<div className="nav-bar-container" id="nav-bar-left-container">
@@ -62,7 +67,7 @@ export default function Navigation() {
 							aria-label="nav-bar-right-container"
 							onClick={handleMenuClick}
 						>
-							<FontAwesomeIcon icon={faBars} />
+							<FontAwesomeIcon icon={isMenuOpen ? faXmark : faBars} />
 						</button>
 					) : (
 						<NavigationMenu />
