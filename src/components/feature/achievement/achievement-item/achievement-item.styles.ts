@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import { SectionContainer } from '../../global/section/section.styles'
-import { getTypography } from '../../../utils/typo.utils'
-import { getColour } from '../../../utils/colour.utils'
+import { SectionContainer } from '../../../global/section/section.styles'
+import { getTypography } from '../../../../utils/typo.utils'
+import { getColour } from '../../../../utils/colour.utils'
 
 export const AchievementItemContainer = styled(SectionContainer)`
 	width: ${({ theme }) => theme.layout.component.width};

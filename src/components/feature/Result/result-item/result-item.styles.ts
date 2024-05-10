@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components'
 
 import { ResultItemContainerProps } from './result-item.types'
-import { CardContainer } from '../../global/card/card.styles'
+import { CardContainer } from '../../../global/card/card.styles'
 
-import { getTypography } from '../../../utils/typo.utils'
-import { getDeviceTypePadding } from '../../../utils/device.utils'
-import { hexToRgba } from '../../../utils/colour.utils'
-import { getBlurAnimation } from '../../../utils/animation.utils'
+import { getTypography } from '../../../../utils/typo.utils'
+import { getDeviceTypePadding } from '../../../../utils/device.utils'
+import { hexToRgba } from '../../../../utils/colour.utils'
+import { getBlurAnimation } from '../../../../utils/animation.utils'
 
 type Props = ResultItemContainerProps
 

@@ -2,17 +2,17 @@ import { useState, MouseEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
-import AnimatedWrapper from '../animated-wrapper/animated-wraper'
+import AnimatedWrapper from '../../animated-wrapper/animated-wraper'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { ResultItemProps } from './result-item.types'
 
-import Button from '../../global/button/button.component'
+import Button from '../../../global/button/button.component'
 import { ResultItemContainer } from './result-item.styles'
 import {
 	fadeAnimation,
 	rotateAnimationVariants,
-} from '../../../utils/animation.utils'
+} from '../../../../utils/animation.utils'
 
 export default function ResultItem(props: ResultItemProps) {
 	const { voice, name, period, result, note, comment, imgUrl } = props

@@ -1,4 +1,4 @@
-import { ResultItem } from '../../../store/contentsStore'
+import { ResultItem } from '../../../../store/contentsStore'
 
 export type ResultItemProps = ResultItem
 

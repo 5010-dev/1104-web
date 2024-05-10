@@ -1,7 +1,7 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useContentsStore } from '../../../store/contentsStore'
 
-import ResultItem from '../result-item/result-item.component'
+import ResultItem from './result-item/result-item.component'
 
 import { ResultContainer } from './result.styles'
 

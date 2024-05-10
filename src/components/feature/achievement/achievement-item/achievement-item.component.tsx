@@ -3,11 +3,11 @@ import { MouseEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 
 import { AchievementItemProps } from './achievement-item.types'
 import { AchievementItemContainer } from './achievement-item.styles'
-import Button from '../../global/button/button.component'
+import Button from '../../../global/button/button.component'
 
 export default function AchievementItem(props: AchievementItemProps) {
 	const { caption, heading, body, linkUrl } = props
