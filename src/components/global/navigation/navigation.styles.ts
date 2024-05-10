@@ -1,19 +1,14 @@
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { DeviceType } from '../../../store/deviceTypeStore'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { hexToRgba } from '../../../utils/colour.utils'
 
-type NavigationContainerProps = {
-	$deviceType: DeviceType
-	$isOverlaped?: boolean
-	$isScrolled?: boolean
-}
+import { NavigationContainerProps } from './navigation.types'
 
-export const NavigationContainer = styled(
-	motion.header,
-)<NavigationContainerProps>`
+type Props = NavigationContainerProps
+
+export const NavigationContainer = styled(motion.header)<Props>`
 	position: ${(props) => (props.$isOverlaped ? 'fixed' : 'sticky')};
 	top: 0;
 
@@ -26,14 +21,12 @@ export const NavigationContainer = styled(
 	justify-content: space-between;
 	align-items: center;
 
-	padding-top: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'container')};
-	padding-bottom: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'container')};
-	padding-left: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'section')};
-	padding-right: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'section')};
+	padding: ${({ theme, $deviceType }) =>
+		`${getDeviceTypePadding(
+			theme,
+			$deviceType,
+			'container',
+		)} ${getDeviceTypePadding(theme, $deviceType, 'section')}`};
 
 	${({ theme, $isScrolled }) =>
 		$isScrolled
@@ -59,9 +52,14 @@ export const NavigationContainer = styled(
 		justify-content: flex-start;
 		align-items: center;
 
-		#logo {
-			width: 4rem;
-			height: auto;
+		#home-link {
+			text-decoration: none;
+			line-height: 0;
+
+			#logo {
+				width: 4rem;
+				height: auto;
+			}
 		}
 
 		button#menu-icon {

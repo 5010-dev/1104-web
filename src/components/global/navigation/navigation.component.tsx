@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
 
+import { Link } from 'react-router-dom'
 import { useScroll } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -15,8 +16,14 @@ export default function Navigation() {
 	const [isScrolled, setIsScrolled] = useState(false)
 	const { scrollYProgress } = useScroll()
 
-	const handleClick = (): void => {
-		console.log('menu cliecked')
+	const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>): void =>
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		})
+
+	const handleMenuClick = (e: MouseEvent<HTMLButtonElement>): void => {
+		console.log('menu clicked')
 	}
 
 	useEffect(() => {
@@ -36,12 +43,18 @@ export default function Navigation() {
 			$isScrolled={isScrolled}
 		>
 			<div className="nav-bar-container" id="nav-bar-left-container">
-				<Logo id="logo" />
+				<Link id="home-link" to="/" onClick={handleLogoClick}>
+					<Logo id="logo" />
+				</Link>
 			</div>
 			<div className="nav-bar-container" id="nav-bar-right-container">
 				{deviceType !== 'desktop' ? (
-					<button id="menu-icon" aria-label="menu-button">
-						<FontAwesomeIcon icon={faBars} onClick={handleClick} />
+					<button
+						id="menu-icon"
+						aria-label="nav-bar-right-container"
+						onClick={handleMenuClick}
+					>
+						<FontAwesomeIcon icon={faBars} />
 					</button>
 				) : null}
 			</div>
