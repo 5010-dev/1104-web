@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 
+import { useScroll } from 'framer-motion'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
-import { useScroll } from 'framer-motion'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { ReactComponent as Logo } from '../../../assets/logo/1104-logo-white.svg'
 import { NavigationContainer } from './navigation.styles'
 

@@ -14,7 +14,7 @@ export type TextLinkProps = {
 	hierarchy: ComponentHierarchy
 	size: Size
 	underlined?: boolean
-	handleClick: (e: MouseEvent<HTMLSpanElement>) => void
+	handleClick: (e: MouseEvent<HTMLDivElement>) => void
 }
 
 export type TextLinkContainerProps = {
@@ -22,4 +22,5 @@ export type TextLinkContainerProps = {
 	$hierarchy: ComponentHierarchy
 	$size: Size
 	$underlined: boolean
+	$icon?: boolean
 }

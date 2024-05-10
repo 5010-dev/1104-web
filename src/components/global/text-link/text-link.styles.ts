@@ -18,6 +18,15 @@ export const TextLinkContainer = styled.div<Props>`
 	color: ${({ theme, $appearance, $hierarchy }) =>
 		getColour(theme, $appearance, $hierarchy, 'active')};
 
+	${({ $icon }) =>
+		$icon &&
+		css`
+			& > :first-child {
+				height: 1rem;
+				width: auto;
+			}
+		`}
+
 	${({ $size }) =>
 		$size === 'sm' &&
 		css`

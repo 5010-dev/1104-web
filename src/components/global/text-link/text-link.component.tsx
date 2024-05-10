@@ -18,6 +18,7 @@ export default function TextLink(props: TextLinkProps) {
 			$hierarchy={hierarchy}
 			$size={size}
 			$underlined={underlined}
+			$icon={icon ? true : false}
 		>
 			{icon}
 			<span id="link-text" onClick={handleClick}>
