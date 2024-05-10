@@ -123,17 +123,6 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 		#community-button {
 			z-index: 2;
 
-			/* ${({ theme }) => css`
-				-webkit-filter: drop-shadow(
-					0 0 1rem
-						${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.5)}
-				);
-				filter: drop-shadow(
-					0 0 1rem
-						${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.5)}
-				);
-			`} */
-
 			& > * {
 				${({ theme }) => css`
 					-webkit-filter: drop-shadow(
