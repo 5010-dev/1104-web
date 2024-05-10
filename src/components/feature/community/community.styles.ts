@@ -33,16 +33,16 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		gap: ${({ theme }) => theme.layout.section.gutter};
+		gap: 3rem;
 
-		padding: ${({ theme, $deviceType }) =>
+		padding: ${({ theme }) =>
 			`${theme.layout.section.padding.default} ${theme.layout.section.padding.sm} `};
 
 		margin-bottom: ${({ theme, $deviceType }) => theme.layout.section.gutter};
 
 		background-image: url(${({ $imageUrl }) => $imageUrl});
 		background-size: cover;
-		background-position: right 0 top 50%;
+		background-position: center;
 		background-repeat: no-repeat;
 
 		border-radius: ${({ theme }) => theme.shape.filled.rounded1.borderRadii};
@@ -54,7 +54,8 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background-color: rgba(0, 0, 0, 0.25);
+			background-color: ${({ theme }) =>
+				hexToRgba(getColour(theme, 'neutral', 'primary', 'active'), 0.25)};
 			border-radius: ${({ theme }) => theme.shape.filled.rounded1.borderRadii};
 
 			z-index: 1;
@@ -68,19 +69,19 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 
 			z-index: 2;
 
-			& > * {
+			.community-text {
 				${({ theme }) => css`
 					-webkit-filter: drop-shadow(
-						0 0 0.25rem
+						0 0 0.5rem
 							${hexToRgba(
-								getColour(theme, 'accent', 'primary', 'active'),
+								getColour(theme, 'neutral', 'primary', 'active'),
 								0.75,
 							)}
 					);
 					filter: drop-shadow(
-						0 0 0.25rem
+						0 0 0.5rem
 							${hexToRgba(
-								getColour(theme, 'accent', 'primary', 'active'),
+								getColour(theme, 'neutral', 'primary', 'active'),
 								0.75,
 							)}
 					);
@@ -111,7 +112,7 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 		#community-button {
 			z-index: 2;
 
-			${({ theme }) => css`
+			/* ${({ theme }) => css`
 				-webkit-filter: drop-shadow(
 					0 0 1rem
 						${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.5)}
@@ -120,7 +121,7 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 					0 0 1rem
 						${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.5)}
 				);
-			`}
+			`} */
 
 			& > * {
 				${({ theme }) => css`

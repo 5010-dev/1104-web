@@ -17,8 +17,12 @@ export default function Community() {
 			<div id="contents-container">
 				<div id="text-container">
 					<span id="caption">{caption}</span>
-					<h1 id="commnity-heading">{heading}</h1>
-					<p id="body">{body}</p>
+					<h1 id="commnity-heading" className="community-text">
+						{heading}
+					</h1>
+					<p id="body" className="community-text">
+						{body}
+					</p>
 				</div>
 				<Button
 					id="community-button"
