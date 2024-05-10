@@ -27,8 +27,6 @@ export const FooterContainer = styled(SectionContainer)<FooterContainerProps>`
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
-		/* gap: ${({ theme, $deviceType }) =>
-			getDeviceTypePadding(theme, $deviceType, 'section')}; */
 		gap: ${({ theme }) => theme.layout.section.gutter};
 
 		margin: ${({ theme }) => `${theme.layout.section.gutter} 0`};
