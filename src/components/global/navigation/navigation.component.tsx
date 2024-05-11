@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react'
 
 import { Link } from 'react-router-dom'
-import { AnimatePresence, useScroll } from 'framer-motion'
+import { motion, AnimatePresence, useScroll } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -57,6 +57,11 @@ export default function Navigation() {
 			$isMenuOpen={isMenuOpen}
 			ref={ref}
 		>
+			<motion.div
+				id="background-panel"
+				layout
+				transition={{ duration: 0.15 }}
+			/>
 			<div id="nav-bar">
 				<div className="nav-bar-container" id="nav-bar-left-container">
 					<Link id="home-link" to="/" onClick={handleLogoClick}>
@@ -65,20 +70,32 @@ export default function Navigation() {
 				</div>
 				<div className="nav-bar-container" id="nav-bar-right-container">
 					{deviceType !== 'desktop' ? (
-						<button
+						<motion.button
 							id="menu-icon"
 							aria-label="nav-bar-right-container"
 							onClick={handleMenuClick}
+							layout
 						>
 							<FontAwesomeIcon icon={isMenuOpen ? faXmark : faBars} />
-						</button>
+						</motion.button>
 					) : (
 						<NavigationMenu />
 					)}
 				</div>
 			</div>
-			<AnimatePresence>
-				{isMenuOpen ? <NavigationMenu /> : null}
+
+			<AnimatePresence key={isMenuOpen ? 'menu-open' : 'menu-closed'}>
+				{isMenuOpen && (
+					<motion.div
+						id="mobile-navigation-menu-container"
+						layout
+						initial={{ opacity: 0, y: -50 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -50 }}
+					>
+						<NavigationMenu />
+					</motion.div>
+				)}
 			</AnimatePresence>
 		</NavigationContainer>
 	)
