@@ -21,10 +21,23 @@ export const NavigationMenuContainer = styled.div<Props>`
 		$deviceType === 'desktop' ? '0' : `${theme.layout.container.gutter} 0`};
 
 	.menu-link {
+		position: relative;
+		width: ${({ $deviceType }) => $deviceType === 'mobile' && '100%'};
+
 		text-decoration: none;
+		text-align: left;
 
 		${({ theme }) => getTypography(theme, 'subheading')}
 		line-height: 100%;
 		color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: -1rem;
+			left: -0.25rem;
+			bottom: -1rem;
+			right: -0.25rem;
+		}
 	}
 `

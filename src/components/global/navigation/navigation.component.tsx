@@ -13,6 +13,11 @@ import { NavigationContainer } from './navigation.styles'
 import { ReactComponent as Logo } from '../../../assets/logo/1104-logo-white.svg'
 import NavigationMenu from '../../feature/navigation-menu/navigation-menu.component'
 
+const menuIconVariants = {
+	closed: { rotate: 0 },
+	open: { rotate: 180 },
+}
+
 export default function Navigation() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -74,7 +79,10 @@ export default function Navigation() {
 							id="menu-icon"
 							aria-label="nav-bar-right-container"
 							onClick={handleMenuClick}
-							layout
+							variants={menuIconVariants}
+							animate={isMenuOpen ? 'open' : 'closed'}
+							transition={{ duration: 0.25 }}
+							style={{ originX: 0.5, originY: 0.5 }}
 						>
 							<FontAwesomeIcon icon={isMenuOpen ? faXmark : faBars} />
 						</motion.button>

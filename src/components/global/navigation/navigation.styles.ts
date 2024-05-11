@@ -90,8 +90,19 @@ export const NavigationContainer = styled(motion.header)<Props>`
 			align-items: center;
 
 			#home-link {
+				position: relative;
+
 				text-decoration: none;
 				line-height: 0;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: -1rem;
+					right: -1rem;
+					bottom: -1rem;
+					left: -1rem;
+				}
 
 				#logo {
 					width: 4rem;
@@ -103,6 +114,8 @@ export const NavigationContainer = styled(motion.header)<Props>`
 				all: unset;
 				cursor: pointer;
 
+				position: relative;
+
 				display: flex;
 				justify-content: flex-end;
 				align-items: center;
@@ -112,8 +125,16 @@ export const NavigationContainer = styled(motion.header)<Props>`
 				-ms-user-select: none;
 				user-select: none;
 
-				width: 2.5rem;
 				font-size: 1.5rem;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: -1rem;
+					right: -1rem;
+					bottom: -1rem;
+					left: -1rem;
+				}
 			}
 		}
 		div#nav-bar-left-container {
