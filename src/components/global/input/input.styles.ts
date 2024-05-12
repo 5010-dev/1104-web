@@ -2,9 +2,12 @@ import styled, { css } from 'styled-components'
 
 import { InputContainerProps } from './input.types'
 
-import { getContainerStyle } from '../../../utils/style.utils'
+import { getColour } from '../../../utils/colour.utils'
+import { getTypography } from '../../../utils/typo.utils'
 
 export const InputContainer = styled.input<InputContainerProps>`
+	all: unset;
+
 	&::-ms-clear,
 	&::-ms-reveal {
 		display: none;
@@ -22,54 +25,48 @@ export const InputContainer = styled.input<InputContainerProps>`
 	-ms-user-select: text;
 	user-select: text;
 
-	all: unset;
-
 	cursor: text;
 	box-sizing: border-box;
 
-	background-color: #fff;
+	border: none;
+	border-radius: ${({ theme }) => theme.shape.outlined.rounded3.borderRadii};
+	padding: ${({ theme }) => theme.layout.component.padding.default};
+
+	background-color: transparent;
+	text-align: left;
+	${({ theme }) => getTypography(theme, 'subheading')}
 
 	${({ theme, $isFocused, $isValid, $hierarchy }) => {
-		if ($isFocused) {
-			return $isValid
+		if ($isValid) {
+			return $isFocused
 				? css`
-						${getContainerStyle(
-							theme,
-							'neutral',
-							$hierarchy,
-							'outlined',
-							'rounded3',
-						)}
+						box-shadow: ${theme.shape.outlined.rounded3.boxShadow}
+							${getColour(theme, 'neutral', $hierarchy, 'active')};
+						color: ${getColour(theme, 'neutral', $hierarchy, 'active')};
 				  `
 				: css`
-						${getContainerStyle(
-							theme,
-							'neutral',
-							$hierarchy,
-							'outlined',
-							'rounded3',
-						)}
+						box-shadow: ${theme.shape.outlined.rounded3.boxShadow}
+							${getColour(theme, 'neutral', $hierarchy, 'inactive')};
+						color: ${getColour(theme, 'neutral', $hierarchy, 'inactive')};
 				  `
 		} else {
-			return $isValid
+			return $isFocused
 				? css`
-						${getContainerStyle(
-							theme,
-							'neutral',
-							$hierarchy,
-							'outlined',
-							'rounded3',
-						)}
+						box-shadow: ${theme.shape.outlined.rounded3.boxShadow}
+							${getColour(theme, 'system', $hierarchy, 'active')};
+						color: ${getColour(theme, 'system', $hierarchy, 'active')};
 				  `
 				: css`
-						${getContainerStyle(
-							theme,
-							'neutral',
-							$hierarchy,
-							'outlined',
-							'rounded3',
-						)}
+						box-shadow: ${theme.shape.outlined.rounded3.boxShadow}
+							${getColour(theme, 'system', $hierarchy, 'inactive')};
+						color: ${getColour(theme, 'system', $hierarchy, 'inactive')};
 				  `
 		}
 	}}
+  
+  &::placeholder {
+		${({ theme }) => getTypography(theme, 'body')}
+		color: ${({ theme, $hierarchy }) =>
+			getColour(theme, 'neutral', $hierarchy, 'inactive')};
+	}
 `

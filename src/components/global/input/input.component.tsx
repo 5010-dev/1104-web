@@ -9,11 +9,12 @@ export default function Input(props: InputProps) {
 		type,
 		value,
 		placeholder,
-		isValid = true,
-		hierarchy = 'primary',
+		isValid,
+		hierarchy,
 		handleChange,
 		handleFocus,
 	} = props
+
 	const [isFocused, setIsFocused] = useState<boolean>(false)
 
 	const handleInputFocus = (e: FocusEvent<HTMLInputElement>) => {

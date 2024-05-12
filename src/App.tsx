@@ -9,7 +9,7 @@ import GlobalStyle from './styles/global-style.styles'
 import MainLayout from './pages/main-layout'
 import Home from './pages/feature/home/home.page'
 import Login from './pages/feature/login/login.page'
-import Products from './pages/feature/products/products.page'
+import About from './components/feature/about/about.component'
 
 import './App.css'
 
@@ -29,7 +29,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<MainLayout />}>
 							<Route index element={<Home />} />
-							<Route path="/products" element={<Products />} />
+							<Route path="/about" element={<About />} />
 						</Route>
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<Login />} />
