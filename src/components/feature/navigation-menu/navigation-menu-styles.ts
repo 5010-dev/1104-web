@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 
-import designTokens from '../../../styles/degisn-tokens/design-tokens.tokens'
 import { getTypography } from '../../../utils/typo.utils'
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
@@ -53,13 +52,19 @@ export const NavigationMenuContainer = styled.div<Props>`
 		gap: ${({ theme }) => theme.layout.component.gutter};
 
 		.user-button {
-			white-space: nowrap;
 			width: auto;
+			min-width: ${({ $deviceType }) => $deviceType !== 'desktop' && '5rem'};
+			max-width: ${({ $deviceType }) => $deviceType !== 'desktop' && '10rem'};
 
+			white-space: nowrap;
 			flex: 1 0 auto;
 
-			padding: ${({ theme }) =>
-				`${designTokens.layout.spacing.xsm} ${theme.layout.container.gutter}`};
+			padding-left: ${({ theme }) => theme.layout.container.gutter};
+			padding-right: ${({ theme }) => theme.layout.container.gutter};
+
+			& > span {
+				line-height: 100%;
+			}
 		}
 
 		#sign-up-button {

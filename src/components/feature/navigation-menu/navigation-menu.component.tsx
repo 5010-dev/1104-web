@@ -33,7 +33,7 @@ export default function NavigationMenu() {
 					hierarchy="secondary"
 					stroke="outlined"
 					shape="rounding"
-					size="sm"
+					size={deviceType === 'desktop' ? 'sm' : 'md'}
 				/>
 				<Button
 					className="user-button"
@@ -44,7 +44,7 @@ export default function NavigationMenu() {
 					hierarchy="primary"
 					stroke="filled"
 					shape="rounding"
-					size="sm"
+					size={deviceType === 'desktop' ? 'sm' : 'md'}
 				/>
 			</div>
 		</NavigationMenuContainer>
