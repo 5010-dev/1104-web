@@ -1,7 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
+import designTokens from '../../../styles/degisn-tokens/design-tokens.tokens'
 import { getTypography } from '../../../utils/typo.utils'
-import { getColour } from '../../../utils/colour.utils'
+import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
 import { NavigationMenuContainerProps } from './navigation-menu.types'
 
@@ -14,7 +15,7 @@ export const NavigationMenuContainer = styled.div<Props>`
 	flex-direction: ${({ $deviceType }) =>
 		$deviceType === 'desktop' ? 'row' : 'column'};
 	justify-content: flex-start;
-	align-items: flex-start;
+	align-items: center;
 	gap: ${({ theme }) => theme.layout.section.gutter};
 
 	margin: ${({ theme, $deviceType }) =>
@@ -22,7 +23,8 @@ export const NavigationMenuContainer = styled.div<Props>`
 
 	.menu-link {
 		position: relative;
-		width: ${({ $deviceType }) => $deviceType === 'mobile' && '100%'};
+		width: ${({ $deviceType }) =>
+			$deviceType === 'desktop' ? 'auto' : '100%'};
 
 		text-decoration: none;
 		text-align: left;
@@ -38,6 +40,39 @@ export const NavigationMenuContainer = styled.div<Props>`
 			left: -0.25rem;
 			bottom: -1rem;
 			right: -0.25rem;
+		}
+	}
+
+	div#user-buttons-container {
+		width: ${({ $deviceType }) => ($deviceType === 'desktop' ? '100%' : '50%')};
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: ${({ theme }) => theme.layout.component.gutter};
+
+		.user-button {
+			white-space: nowrap;
+			width: auto;
+
+			flex: 1 0 auto;
+
+			padding: ${({ theme }) =>
+				`${designTokens.layout.spacing.xsm} ${theme.layout.container.gutter}`};
+		}
+
+		#sign-up-button {
+			${({ theme }) => css`
+				-webkit-filter: drop-shadow(
+					0 0 1rem
+						${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.75)}
+				);
+				filter: drop-shadow(
+					0 0 1rem
+						${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.75)}
+				);
+			`}
 		}
 	}
 `

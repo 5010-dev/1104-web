@@ -4,6 +4,8 @@ import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
 import { NavigationMenuContainer } from './navigation-menu-styles'
 
+import Button from '../../global/button/button.component'
+
 export default function NavigationMenu() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -21,6 +23,30 @@ export default function NavigationMenu() {
 			<Link className="menu-link" to="/">
 				<span>PARTNERSHIP</span>
 			</Link>
+			<div id="user-buttons-container">
+				<Button
+					className="user-button"
+					id="sign-in-button"
+					accessibleName="user-buttons-container"
+					text="로그인"
+					appearance="neutral"
+					hierarchy="secondary"
+					stroke="outlined"
+					shape="rounding"
+					size="sm"
+				/>
+				<Button
+					className="user-button"
+					id="sign-up-button"
+					accessibleName="user-buttons-container"
+					text="회원가입"
+					appearance="accent"
+					hierarchy="primary"
+					stroke="filled"
+					shape="rounding"
+					size="sm"
+				/>
+			</div>
 		</NavigationMenuContainer>
 	)
 }

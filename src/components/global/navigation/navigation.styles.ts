@@ -23,11 +23,11 @@ export const NavigationContainer = styled(motion.header)<Props>`
 	gap: ${({ theme }) => theme.layout.section.gutter};
 
 	padding: ${({ theme, $deviceType }) =>
-		`${getDeviceTypePadding(
+		`${theme.layout.container.gutter} ${getDeviceTypePadding(
 			theme,
 			$deviceType,
-			'container',
-		)} ${getDeviceTypePadding(theme, $deviceType, 'section')}`};
+			'section',
+		)}`};
 
 	& > * {
 		z-index: 10;
