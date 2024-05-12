@@ -70,7 +70,7 @@ export type ShapeHierarchy = {
 }
 
 export type ShapeVariant = {
-	border: string
+	boxShadow: string
 	borderRadii: string
 }
 

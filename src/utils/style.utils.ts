@@ -27,7 +27,7 @@ export const getComponentVariants = (
 	shape: ComponentShape,
 ) => {
 	// 테마에서 컴포넌트 모양에 따른 경계선과 경계선 반경 가져오기
-	const { border, borderRadii } = theme.shape[stroke][shape]
+	const { boxShadow, borderRadii } = theme.shape[stroke][shape]
 
 	/**
 	 * 컴포넌트의 상태에 따른 스타일을 생성하는 내부 함수
@@ -38,7 +38,8 @@ export const getComponentVariants = (
 		switch (stroke) {
 			case 'outlined':
 				return {
-					border: `${border} solid ${getColour(
+					border: 'none',
+					boxShadow: `${boxShadow} ${getColour(
 						theme,
 						appearance,
 						hierarchy,
@@ -51,6 +52,7 @@ export const getComponentVariants = (
 			case 'filled':
 				return {
 					border: 'none',
+					boxShadow: 'none',
 					borderRadius: borderRadii,
 					backgroundColor: getColour(theme, appearance, hierarchy, state),
 					color: getInvertedColour(theme, appearance, hierarchy, state),
@@ -105,14 +107,20 @@ export const getContainerStyle = (
 	shape: ComponentShape,
 ) => {
 	// 선택된 stroke와 shape에 해당하는 border와 borderRadii 값을 가져옴
-	const { border, borderRadii } = theme.shape[stroke][shape]
+	const { boxShadow, borderRadii } = theme.shape[stroke][shape]
 
 	// stroke 타입에 따라 다른 스타일을 적용
 	switch (stroke) {
 		case 'outlined':
 			return css`
-				border: ${border} solid
-					${hexToRgba(getColour(theme, appearance, hierarchy, 'active'), 0.08)};
+				border: none;
+				box-shadow: (
+					${boxShadow}
+						${hexToRgba(
+							getColour(theme, appearance, hierarchy, 'active'),
+							0.08,
+						)}
+				);
 				border-radius: ${borderRadii};
 				background-color: none;
 				color: ${getColour(theme, appearance, hierarchy, 'active')};
@@ -120,6 +128,7 @@ export const getContainerStyle = (
 		case 'filled':
 			return css`
 				border: none;
+				box-shadow: none;
 				border-radius: ${borderRadii};
 				background-color: ${hexToRgba(
 					getColour(theme, appearance, hierarchy, 'active'),

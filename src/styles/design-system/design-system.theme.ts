@@ -171,44 +171,44 @@ export const DesignSystem: DefaultTheme = {
 	shape: {
 		outlined: {
 			rounding: {
-				border: designTokens.layout.weight.default,
+				boxShadow: `0 0 0 ${designTokens.layout.weight.default} inset`,
 				borderRadii: designTokens.layout.radii.max,
 			} as ShapeVariant,
 			rounded1: {
-				border: designTokens.layout.weight.default,
+				boxShadow: `0 0 0 ${designTokens.layout.weight.default} inset`,
 				borderRadii: designTokens.layout.radii.xlg,
 			} as ShapeVariant,
 			rounded2: {
-				border: designTokens.layout.weight.default,
+				boxShadow: `0 0 0 ${designTokens.layout.weight.default} inset`,
 				borderRadii: designTokens.layout.radii.lg,
 			} as ShapeVariant,
 			rounded3: {
-				border: designTokens.layout.weight.default,
+				boxShadow: `0 0 0 ${designTokens.layout.weight.default} inset`,
 				borderRadii: designTokens.layout.radii.sm,
 			} as ShapeVariant,
 			flat: {
-				border: designTokens.layout.weight.default,
+				boxShadow: `0 0 0 ${designTokens.layout.weight.default} inset`,
 				borderRadii: 'none',
 			} as ShapeVariant,
 		} as ShapeHierarchy,
 		filled: {
 			rounding: {
-				border: 'none',
+				boxShadow: 'none',
 				borderRadii: designTokens.layout.radii.max,
 			} as ShapeVariant,
 			rounded1: {
-				border: 'none',
+				boxShadow: 'none',
 				borderRadii: designTokens.layout.radii.xlg,
 			} as ShapeVariant,
 			rounded2: {
-				border: 'none',
+				boxShadow: 'none',
 				borderRadii: designTokens.layout.radii.lg,
 			} as ShapeVariant,
 			rounded3: {
-				border: 'none',
+				boxShadow: 'none',
 				borderRadii: designTokens.layout.radii.sm,
 			} as ShapeVariant,
-			flat: { border: 'none', borderRadii: 'none' } as ShapeVariant,
+			flat: { boxShadow: 'none', borderRadii: 'none' } as ShapeVariant,
 		} as ShapeHierarchy,
 	} as ShapeSystem,
 
