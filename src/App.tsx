@@ -6,10 +6,10 @@ import useDeviceType from './hooks/useDeviceType'
 
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
-import Navigation from './components/global/navigation/navigation.component'
+import MainLayout from './pages/main-layout'
 import Home from './pages/feature/home/home.page'
+import Login from './pages/feature/login/login.page'
 import Products from './pages/feature/products/products.page'
-import Footer from './components/global/footer/footer.component'
 
 import './App.css'
 
@@ -26,12 +26,14 @@ function App() {
 			<ThemeProvider theme={DesignSystem}>
 				<GlobalStyle />
 				<div className="App">
-					<Navigation />
 					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/products" element={<Products />} />
+						<Route path="/" element={<MainLayout />}>
+							<Route index element={<Home />} />
+							<Route path="/products" element={<Products />} />
+						</Route>
+						<Route path="/login" element={<Login />} />
+						<Route path="/signup" element={<Login />} />
 					</Routes>
-					<Footer />
 				</div>
 			</ThemeProvider>
 		</Router>

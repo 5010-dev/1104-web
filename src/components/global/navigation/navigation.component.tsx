@@ -73,6 +73,7 @@ export default function Navigation() {
 						<Logo id="logo" />
 					</Link>
 				</div>
+
 				<div className="nav-bar-container" id="nav-bar-right-container">
 					{deviceType !== 'desktop' ? (
 						<motion.button

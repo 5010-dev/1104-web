@@ -4,7 +4,7 @@ import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
 import { NavigationMenuContainer } from './navigation-menu-styles'
 
-import Button from '../../global/button/button.component'
+import LoginButton from '../login-button/login-button.component'
 
 export default function NavigationMenu() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -24,27 +24,17 @@ export default function NavigationMenu() {
 				<span>PARTNERSHIP</span>
 			</Link>
 			<div id="user-buttons-container">
-				<Button
+				<LoginButton
 					className="user-button"
 					id="sign-in-button"
 					accessibleName="user-buttons-container"
-					text="로그인"
-					appearance="neutral"
-					hierarchy="secondary"
-					stroke="outlined"
-					shape="rounding"
-					size={deviceType === 'desktop' ? 'sm' : 'md'}
+					signUp={false}
 				/>
-				<Button
+				<LoginButton
 					className="user-button"
 					id="sign-up-button"
 					accessibleName="user-buttons-container"
-					text="회원가입"
-					appearance="accent"
-					hierarchy="primary"
-					stroke="filled"
-					shape="rounding"
-					size={deviceType === 'desktop' ? 'sm' : 'md'}
+					signUp={true}
 				/>
 			</div>
 		</NavigationMenuContainer>
