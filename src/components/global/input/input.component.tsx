@@ -5,6 +5,8 @@ import { InputContainer } from './input.styles'
 
 export default function Input(props: InputProps) {
 	const {
+		id,
+		className,
 		name,
 		type,
 		value,
@@ -25,6 +27,8 @@ export default function Input(props: InputProps) {
 
 	return (
 		<InputContainer
+			id={id}
+			className={className}
 			type={type}
 			name={name}
 			value={value}

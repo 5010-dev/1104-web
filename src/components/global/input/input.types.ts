@@ -3,6 +3,8 @@ import { ChangeEvent, FocusEvent } from 'react'
 import { ComponentHierarchy } from '../../../styles/design-system/design-system.types'
 
 export type InputProps = {
+	id?: string
+	className?: string
 	name?: string
 	type?: string
 	value?: string | number
