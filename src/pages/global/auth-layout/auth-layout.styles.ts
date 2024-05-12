@@ -5,7 +5,7 @@ import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
 import { getColour } from '../../../utils/colour.utils'
 
-export const LoginContainer = styled(PageLayoutContainer)`
+export const AuthLayoutContainer = styled(PageLayoutContainer)`
 	position: relative;
 
 	display: flex;
