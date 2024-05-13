@@ -48,6 +48,8 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 		width: ${({ theme }) => theme.layout.container.width};
 		max-width: 26rem;
 
+		gap: ${({ theme }) => theme.layout.page.gutter};
+
 		padding: ${({ theme }) => theme.layout.section.padding.default};
 
 		background: ${({ theme }) =>
@@ -70,6 +72,49 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 			);
 		`}
 
+		div#top-row {
+			width: 100%;
+
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+
+			img#company-logo {
+				width: 3.5rem;
+				opacity: 0.25;
+			}
+
+			button#close-icon {
+				all: unset;
+				cursor: pointer;
+
+				position: relative;
+
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+
+				font-size: 1.5rem;
+				color: ${({ theme }) =>
+					hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.5)};
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: -1rem;
+					right: -1rem;
+					bottom: -1rem;
+					left: -1rem;
+				}
+			}
+		}
+
 		div#login-container {
 			width: 100%;
 
@@ -78,32 +123,32 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 			justify-content: center;
 			align-items: center;
 			gap: ${({ theme }) => theme.layout.section.gutter};
-		}
 
-		h1#heading {
-			${({ theme }) => getTypography(theme, 'heading1')}
-			color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'active')};
-		}
-
-		form#login-form {
-			width: 100%;
-			max-width: 18rem;
-
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			gap: ${({ theme }) => theme.layout.container.gutter};
-
-			.login-input {
-				width: 100%;
+			h1#heading {
+				${({ theme }) => getTypography(theme, 'heading1')}
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'active')};
 			}
 
-			#submit-button {
+			form#login-form {
 				width: 100%;
-				box-sizing: border-box;
-				margin-top: ${({ theme }) => theme.layout.container.gutter};
+				max-width: 18rem;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: ${({ theme }) => theme.layout.container.gutter};
+
+				.login-input {
+					width: 100%;
+				}
+
+				#submit-button {
+					width: 100%;
+					box-sizing: border-box;
+					margin-top: ${({ theme }) => theme.layout.container.gutter};
+				}
 			}
 		}
 	}
