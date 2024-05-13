@@ -15,7 +15,7 @@ import Input from '../../../components/global/input/input.component'
 import Button from '../../../components/global/button/button.component'
 
 export default function AuthLayout(props: AuthLayoutProps) {
-	const { heading, submitText, handleAuthSubmit } = props
+	const { heading, submitText, handleAuthSubmit, children } = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { email, password, updateAuthData, resetAuthData } = useAuthDataStore(
@@ -110,9 +110,11 @@ export default function AuthLayout(props: AuthLayoutProps) {
 							stroke="filled"
 							shape="rounding"
 							size="md"
+							disabled={!isAuthValid.email || !isAuthValid.password}
 						/>
 					</form>
 				</div>
+				{children ? <div id="bottom-row">{children}</div> : null}
 			</Card>
 			<div id="login-panel"></div>
 		</AuthLayoutContainer>

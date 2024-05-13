@@ -48,8 +48,6 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 		width: ${({ theme }) => theme.layout.container.width};
 		max-width: 26rem;
 
-		gap: ${({ theme }) => theme.layout.page.gutter};
-
 		padding: ${({ theme }) => theme.layout.section.padding.default};
 
 		background: ${({ theme }) =>
@@ -79,6 +77,10 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
+
+			margin-bottom: ${({ theme }) => theme.layout.page.gutter};
+
+			/* margin-bottom: ${({ theme }) => theme.layout.section.gutter}; */
 
 			img#company-logo {
 				width: 3.5rem;
@@ -150,6 +152,11 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 					margin-top: ${({ theme }) => theme.layout.container.gutter};
 				}
 			}
+		}
+
+		div#bottom-row {
+			width: 100%;
+			margin-top: ${({ theme }) => theme.layout.container.gutter};
 		}
 	}
 `

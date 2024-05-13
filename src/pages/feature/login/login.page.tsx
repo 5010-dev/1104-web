@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAuthDataStore } from '../../../store/authDataStore'
 
+import { SignupLinkContainer } from './login.styles'
+
 import AuthLayout from '../../global/auth-layout/auth-layout.page'
+import TextLink from '../../../components/global/text-link/text-link.component'
 
 export default function Login() {
 	const { email, password } = useAuthDataStore((state) => state)
 	const username = email
 	const navigate = useNavigate()
+
+	const handleSignupLink = () => navigate('/signup')
 
 	const handleSubmit = async ({ username, password }: SignInInput) => {
 		try {
@@ -32,6 +37,18 @@ export default function Login() {
 			heading="로그인"
 			submitText="이메일로 로그인하기"
 			handleAuthSubmit={() => handleSubmit({ username, password })}
-		/>
+		>
+			<SignupLinkContainer id="signup-link-container">
+				<span id="signup-text">아직 회원이 아니시라면, </span>
+				<TextLink
+					appearance="neutral"
+					hierarchy="secondary"
+					size="sm"
+					underlined
+					text="지금 가입하기"
+					handleClick={handleSignupLink}
+				/>
+			</SignupLinkContainer>
+		</AuthLayout>
 	)
 }
