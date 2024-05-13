@@ -17,7 +17,7 @@ export default function Login() {
 			console.log(nextStep)
 
 			if (nextStep.signInStep === 'CONFIRM_SIGN_UP') {
-				navigate(`/verification/${encodeURIComponent(email)}`)
+				navigate(`/verification?email=${encodeURIComponent(email)}`)
 			}
 		} catch (error) {
 			console.log('error signing in', error)
