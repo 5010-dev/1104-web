@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -13,12 +13,18 @@ export default function AuthLayout(props: AuthLayoutProps) {
 	const { heading, submitText, handleAuthSubmit } = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { email, password, updateAuthData } = useAuthDataStore((state) => state)
+	const { email, password, updateAuthData, resetAuthData } = useAuthDataStore(
+		(state) => state,
+	)
 
 	const [isAuthValid, setIsAuthValid] = useState<AuthValidity>({
 		email: false,
 		password: false,
 	})
+
+	useEffect(() => {
+		resetAuthData()
+	}, [resetAuthData])
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value

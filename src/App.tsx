@@ -9,7 +9,9 @@ import GlobalStyle from './styles/global-style.styles'
 import MainLayout from './pages/main-layout'
 import Home from './pages/feature/home/home.page'
 import Login from './pages/feature/login/login.page'
-import About from './components/feature/about/about.component'
+import Signup from './pages/feature/signup/signup.page'
+import EmailVerification from './pages/feature/email-verification/email-verification.page'
+import About from './pages/feature/about/about.page'
 
 import './App.css'
 
@@ -32,7 +34,8 @@ function App() {
 							<Route path="/about" element={<About />} />
 						</Route>
 						<Route path="/login" element={<Login />} />
-						<Route path="/signup" element={<Login />} />
+						<Route path="/signup" element={<Signup />} />
+						<Route path="/verification" element={<EmailVerification />} />
 					</Routes>
 				</div>
 			</ThemeProvider>

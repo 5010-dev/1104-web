@@ -7,6 +7,7 @@ export interface AuthDataState {
 
 export interface AuthDataAction {
 	updateAuthData: (key: string, value: string) => void
+	resetAuthData: () => void
 }
 
 export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
@@ -15,5 +16,6 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 		password: '',
 		updateAuthData: (key, value) =>
 			set((state) => ({ ...state, [key]: value })),
+		resetAuthData: () => set({ email: '', password: '' }),
 	}),
 )
