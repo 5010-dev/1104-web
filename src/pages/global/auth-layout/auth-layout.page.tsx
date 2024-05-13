@@ -1,4 +1,5 @@
 import { useState, useEffect, MouseEvent, ChangeEvent, FormEvent } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -63,6 +64,9 @@ export default function AuthLayout(props: AuthLayoutProps) {
 
 	return (
 		<AuthLayoutContainer $deviceType={deviceType}>
+			<Helmet>
+				<meta name="theme-color" content="#000000" />
+			</Helmet>
 			<AuthGlobalStyle />
 			<Card
 				id="login-card"

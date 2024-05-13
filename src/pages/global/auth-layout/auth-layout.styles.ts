@@ -88,8 +88,6 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 
 			margin-bottom: ${({ theme }) => theme.layout.page.gutter};
 
-			/* margin-bottom: ${({ theme }) => theme.layout.section.gutter}; */
-
 			img#company-logo {
 				width: 3.5rem;
 				opacity: 0.25;
