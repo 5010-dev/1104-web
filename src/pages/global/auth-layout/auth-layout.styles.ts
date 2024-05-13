@@ -1,10 +1,18 @@
-import styled, { css } from 'styled-components'
+import styled, { css, createGlobalStyle } from 'styled-components'
 
 import loginImage from '../../../assets/img/login-image.webp'
 import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
+
+const globalStyled = { createGlobalStyle }
+
+export const AuthGlobalStyle = globalStyled.createGlobalStyle`
+	body {
+		background-color: #000;
+	}
+`
 
 export const AuthLayoutContainer = styled(PageLayoutContainer)`
 	position: relative;

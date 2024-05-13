@@ -7,7 +7,7 @@ import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
 
 import { AuthLayoutProps, AuthValidity } from './auth-layout.types'
-import { AuthLayoutContainer } from './auth-layout.styles'
+import { AuthGlobalStyle, AuthLayoutContainer } from './auth-layout.styles'
 import logoUrl from '../../../assets/logo/1104-logo-white.svg'
 
 import Card from '../../../components/global/card/card.component'
@@ -63,6 +63,7 @@ export default function AuthLayout(props: AuthLayoutProps) {
 
 	return (
 		<AuthLayoutContainer $deviceType={deviceType}>
+			<AuthGlobalStyle />
 			<Card
 				id="login-card"
 				appearance="neutral"
