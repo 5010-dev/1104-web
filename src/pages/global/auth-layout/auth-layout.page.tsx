@@ -6,6 +6,7 @@ import { useAuthDataStore } from '../../../store/authDataStore'
 import { AuthLayoutProps, AuthValidity } from './auth-layout.types'
 import { AuthLayoutContainer } from './auth-layout.styles'
 
+import Card from '../../../components/global/card/card.component'
 import Input from '../../../components/global/input/input.component'
 import Button from '../../../components/global/button/button.component'
 
@@ -51,40 +52,54 @@ export default function AuthLayout(props: AuthLayoutProps) {
 
 	return (
 		<AuthLayoutContainer $deviceType={deviceType}>
-			<h1 id="heading">{heading}</h1>
-			<form id="login-form" onSubmit={handleSubmit}>
-				<Input
-					name="email"
-					type="email"
-					value={email}
-					className="login-input"
-					hierarchy="secondary"
-					handleChange={handleInputChange}
-					isValid={email.length === 0 || isAuthValid.email}
-					placeholder="이메일 주소를 입력해 주세요."
-				/>
-				<Input
-					name="password"
-					type="password"
-					value={password}
-					className="login-input"
-					handleChange={handleInputChange}
-					hierarchy="secondary"
-					isValid={password.length === 0 || isAuthValid.password}
-					placeholder="비밀번호를 입력해 주세요."
-				/>
-				<Button
-					id="submit-button"
-					type="submit"
-					text={submitText}
-					accessibleName="login-form"
-					appearance="accent"
-					hierarchy="primary"
-					stroke="filled"
-					shape="rounding"
-					size="md"
-				/>
-			</form>
+			<Card
+				id="login-card"
+				appearance="neutral"
+				hierarchy="primary"
+				stroke="filled"
+				shape="rounded2"
+				opacity={1}
+			>
+				<div id="top-row"></div>
+				<div id="login-container">
+					<h1 id="heading">{heading}</h1>
+					<form id="login-form" onSubmit={handleSubmit}>
+						<Input
+							name="email"
+							type="email"
+							value={email}
+							className="login-input"
+							hierarchy="secondary"
+							handleChange={handleInputChange}
+							isValid={email.length === 0 || isAuthValid.email}
+							placeholder="이메일 주소를 입력해 주세요."
+						/>
+						<Input
+							name="password"
+							type="password"
+							value={password}
+							className="login-input"
+							handleChange={handleInputChange}
+							hierarchy="secondary"
+							isValid={password.length === 0 || isAuthValid.password}
+							placeholder="비밀번호를 입력해 주세요."
+						/>
+						<Button
+							id="submit-button"
+							type="submit"
+							text={submitText}
+							accessibleName="login-form"
+							appearance="accent"
+							hierarchy="primary"
+							stroke="filled"
+							shape="rounding"
+							size="md"
+						/>
+					</form>
+				</div>
+				<div id="bottom-row"></div>
+			</Card>
+			<div id="login-panel"></div>
 		</AuthLayoutContainer>
 	)
 }

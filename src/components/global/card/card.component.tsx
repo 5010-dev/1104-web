@@ -12,6 +12,7 @@ export default function Card(props: CardProps) {
 		hierarchy = 'primary',
 		stroke = 'filled',
 		shape = 'rounded2',
+		opacity,
 	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -25,6 +26,7 @@ export default function Card(props: CardProps) {
 			$hierarchy={hierarchy}
 			$stroke={stroke}
 			$shape={shape}
+			$opacity={opacity}
 		>
 			{children}
 		</CardContainer>

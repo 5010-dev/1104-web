@@ -16,6 +16,7 @@ export type CardProps = {
 	hierarchy?: ComponentHierarchy
 	stroke?: ComponentStroke
 	shape?: ComponentShape
+	opacity?: number
 }
 
 export type CardContainerProps = {
@@ -24,4 +25,5 @@ export type CardContainerProps = {
 	$hierarchy: ComponentHierarchy
 	$stroke: ComponentStroke
 	$shape: ComponentShape
+	$opacity?: number
 }

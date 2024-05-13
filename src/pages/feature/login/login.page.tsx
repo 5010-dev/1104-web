@@ -18,6 +18,9 @@ export default function Login() {
 
 			if (nextStep.signInStep === 'CONFIRM_SIGN_UP') {
 				navigate(`/verification?email=${encodeURIComponent(email)}`)
+				// 인증 링크가 메일로 전송 가능하게 되면, 인증번호 입력 화면 대신 인증 대기중 화면으로 변경
+				// 라우팅은 지금과 동일하게, 인증 처리 및 인증 대기중 화면 구성은 /verification 에서 직접 진행
+				// 인증 대기중 화면에는 '인증번호 재요청' 버튼 필요함
 			}
 		} catch (error) {
 			console.log('error signing in', error)

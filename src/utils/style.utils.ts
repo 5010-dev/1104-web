@@ -97,6 +97,7 @@ export const getPadding = (theme: DefaultTheme, size: ComponentSize) => {
  * @param hierarchy 컴포넌트의 계층 타입 ('primary', 'secondary' 중 하나)
  * @param stroke 컴포넌트의 외곽선 속성 ('outlined', 'filled' 중 하나)
  * @param shape 컴포넌트의 모양 속성 ('rounding', 'rounded1', 'rounded2', 'rounded3', 'flat' 중 하나)
+ * @param opacity 컴포넌트의 배경 및 보더 색상 투명도 속성 ('0'부터 '1'까지)
  * @returns 컨테이너 스타일을 나타내는 CSS 문자열
  */
 export const getContainerStyle = (
@@ -105,11 +106,14 @@ export const getContainerStyle = (
 	hierarchy: ComponentHierarchy,
 	stroke: ComponentStroke,
 	shape: ComponentShape,
+	opacity?: number,
 ) => {
 	// 선택된 stroke와 shape에 해당하는 border와 borderRadii 값을 가져옴
 	const { boxShadow, borderRadii } = theme.shape[stroke][shape]
+
+	const colourOpacity = opacity && opacity >= 0 && opacity <= 1 ? opacity : 0.08
 	const boxShadowStyle = `${boxShadow}
-					${hexToRgba(getColour(theme, appearance, hierarchy, 'active'), 0.08)};`
+					${hexToRgba(getColour(theme, appearance, hierarchy, 'active'), colourOpacity)};`
 
 	// stroke 타입에 따라 다른 스타일을 적용
 	switch (stroke) {
@@ -128,7 +132,7 @@ export const getContainerStyle = (
 				border-radius: ${borderRadii};
 				background-color: ${hexToRgba(
 					getColour(theme, appearance, hierarchy, 'active'),
-					0.08,
+					colourOpacity,
 				)};
 				color: ${getColour(theme, appearance, hierarchy, 'active')};
 			`

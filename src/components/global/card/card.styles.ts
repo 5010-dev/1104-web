@@ -15,6 +15,13 @@ export const CardContainer = styled.div<CardContainerProps>`
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'container')};
 
-	${({ theme, $appearance, $hierarchy, $stroke, $shape }) =>
-		getContainerStyle(theme, $appearance, $hierarchy, $stroke, $shape)}
+	${({ theme, $appearance, $hierarchy, $stroke, $shape, $opacity }) =>
+		getContainerStyle(
+			theme,
+			$appearance,
+			$hierarchy,
+			$stroke,
+			$shape,
+			$opacity,
+		)}
 `
