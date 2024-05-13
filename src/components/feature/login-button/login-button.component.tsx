@@ -45,7 +45,7 @@ export default function LoginButton(props: LoginButtonProps) {
 			className={className}
 			id={id}
 			accessibleName={accessibleName}
-			size={deviceType === 'desktop' ? 'sm' : 'md'}
+			size={deviceType === 'desktop' ? 'md' : 'md'}
 			handleClick={handleButtonClick}
 			text={getButtonVariants().text}
 			appearance={getButtonVariants().appearance}
