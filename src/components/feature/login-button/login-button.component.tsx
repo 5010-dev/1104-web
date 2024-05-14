@@ -18,8 +18,8 @@ export default function LoginButton(props: LoginButtonProps) {
 
 	const handleButtonClick = () => {
 		if (signUp) {
-			navigate('/signup')
-		} else navigate('/login')
+			navigate('/login', { state: { mode: 'signup' } })
+		} else navigate('/login', { state: { mode: 'login' } })
 	}
 
 	const getButtonVariants = () => {
