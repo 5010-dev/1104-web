@@ -3,6 +3,8 @@ import { TextLinkContainer } from './text-link.styles'
 
 export default function TextLink(props: TextLinkProps) {
 	const {
+		id,
+		className,
 		icon,
 		text,
 		appearance,
@@ -14,6 +16,8 @@ export default function TextLink(props: TextLinkProps) {
 
 	return (
 		<TextLinkContainer
+			id={id}
+			className={className}
 			$appearance={appearance}
 			$hierarchy={hierarchy}
 			$size={size}

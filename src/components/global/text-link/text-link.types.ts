@@ -8,6 +8,8 @@ import {
 type Size = 'sm' | 'md'
 
 export type TextLinkProps = {
+	id?: string
+	className?: string
 	icon?: ReactNode | null
 	text: string
 	appearance: ComponentAppearance
