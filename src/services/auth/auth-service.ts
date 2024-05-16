@@ -1,4 +1,5 @@
 import { signIn, signUp, type SignInInput, SignUpInput } from 'aws-amplify/auth'
+import { ErrorCode, errorMessages } from './auth-error'
 
 /**
  * AWS Amplify 사용자 인증을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
@@ -13,11 +14,15 @@ export const logInWithCallback = async (
 		console.log(isSignedIn)
 		console.log(nextStep)
 
-		if (nextStep.signInStep === 'CONFIRM_SIGN_UP') {
-			onSuccess(username)
-		}
+		// if (nextStep.signInStep === 'CONFIRM_SIGN_UP') {
+		// }
+		onSuccess(username)
 	} catch (error) {
-		onError(error)
+		if (error instanceof Error && error.name in ErrorCode) {
+			onError(errorMessages[error.name as keyof typeof ErrorCode])
+		} else {
+			onError(error)
+		}
 	}
 }
 
@@ -39,6 +44,10 @@ export const signUpWithCallback = async (
 
 		onSuccess(username)
 	} catch (error) {
-		onError(error)
+		if (error instanceof Error && error.name in ErrorCode) {
+			onError(errorMessages[error.name as keyof typeof ErrorCode])
+		} else {
+			onError(error)
+		}
 	}
 }

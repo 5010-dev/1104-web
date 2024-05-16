@@ -38,7 +38,10 @@ function App() {
 								<Route path="/about" element={<About />} />
 							</Route>
 							<Route path="/login" element={<Login />} />
-							<Route path="/verification" element={<EmailVerification />} />
+							<Route
+								path="/verification/:email"
+								element={<EmailVerification />}
+							/>
 						</Routes>
 					</div>
 				</ThemeProvider>

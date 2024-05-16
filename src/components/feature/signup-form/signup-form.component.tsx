@@ -1,7 +1,7 @@
 import { FormEvent, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { signUpWithCallback } from '../../../services/auth/authService'
+import { signUpWithCallback } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
@@ -20,10 +20,10 @@ export default function SignupForm() {
 		signUpWithCallback(
 			{ username: email, password },
 			(username) => {
-				navigate('/login', { replace: true, state: { mode: 'verification' } })
+				navigate(`/verification/${username}`, { replace: true })
 			},
 			(error) => {
-				console.log('error logging in', error)
+				console.log(error)
 			},
 		)
 	}

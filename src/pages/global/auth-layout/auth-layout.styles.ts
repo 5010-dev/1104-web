@@ -1,25 +1,3 @@
-// import styled from 'styled-components'
-// import { getTypography } from '../../../utils/typo.utils'
-// import { getColour } from '../../../utils/colour.utils'
-
-// export const SignupLinkContainer = styled.div`
-// 	width: 100%;
-
-// 	display: flex;
-// 	flex-direction: row;
-// 	justify-content: center;
-// 	align-items: center;
-// 	gap: 0.25rem;
-
-// 	span#signup-text {
-// 		${({ theme }) => getTypography(theme, 'body')}
-// 		font-size: 0.875rem;
-
-// 		color: ${({ theme }) =>
-// 			getColour(theme, 'neutral', 'secondary', 'inactive')};
-// 	}
-// `
-
 import styled, { css, createGlobalStyle } from 'styled-components'
 
 import loginImage from '../../../assets/img/login-image.webp'
@@ -29,7 +7,7 @@ import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
 const globalStyled = { createGlobalStyle }
 
-export const LoginContainer = styled(PageLayoutContainer)`
+export const AuthLayoutContainer = styled(PageLayoutContainer)`
 	position: relative;
 
 	display: flex;
