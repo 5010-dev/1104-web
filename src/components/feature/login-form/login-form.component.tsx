@@ -6,7 +6,7 @@ import {
 	getLoginUserDataWithCallback,
 } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
-import { useToastMessageStore } from '../../../store/toastMessageStore'
+import { useToastMessageStore } from '../../../store/globalUiStore'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
 

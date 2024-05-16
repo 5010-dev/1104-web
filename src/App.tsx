@@ -7,7 +7,7 @@ import { useAuthDataStore } from './store/authDataStore'
 import { useDeviceTypeStore } from './store/deviceTypeStore'
 import useDeviceType from './hooks/useDeviceType'
 import { getLoginUserDataWithCallback } from './services/auth/auth-service'
-import { useToastMessageStore } from './store/toastMessageStore'
+import { useToastMessageStore } from './store/globalUiStore'
 
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
@@ -15,7 +15,8 @@ import MainLayout from './pages/main-layout'
 import Home from './pages/feature/home/home.page'
 import Login from './pages/feature/login/login.page'
 import EmailVerification from './pages/feature/email-verification/email-verification.page'
-import About from './pages/feature/about/about.page'
+import AboutUs from './pages/feature/about-us/about-us.page'
+import Account from './pages/feature/account/account.page'
 import Toast from './components/global/toast/toast.component'
 
 import './App.css'
@@ -54,7 +55,8 @@ function App() {
 						<Routes>
 							<Route path="/" element={<MainLayout />}>
 								<Route index element={<Home />} />
-								<Route path="/about" element={<About />} />
+								<Route path="/about" element={<AboutUs />} />
+								<Route path="/account" element={<Account />} />
 							</Route>
 							<Route path="/login" element={<Login />} />
 							<Route path="/verification" element={<EmailVerification />} />

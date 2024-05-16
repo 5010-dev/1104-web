@@ -1,4 +1,7 @@
+import { useEffect } from 'react'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useNavigationStore } from '../../../store/globalUiStore'
 
 import Hero from '../../../components/feature/hero/hero.component'
 import About from '../../../components/feature/about/about.component'
@@ -12,6 +15,11 @@ import { HomeContainer } from './home.styles'
 
 export default function Home() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { updateIsMenuOpen } = useNavigationStore()
+
+	useEffect(() => {
+		updateIsMenuOpen(false)
+	}, [updateIsMenuOpen])
 
 	return (
 		<HomeContainer $deviceType={deviceType}>
