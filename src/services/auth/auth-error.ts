@@ -16,6 +16,7 @@ enum ErrorCode {
 	UsernameExistsException = 'UsernameExistsException',
 	UserNotFoundException = 'UserNotFoundException',
 	LimitExceededException = 'LimitExceededException',
+	UserAlreadyAuthenticatedException = 'UserAlreadyAuthenticatedException',
 }
 
 const errorMessages = {
@@ -32,7 +33,7 @@ const errorMessages = {
 		'SMS 구성에 제공된 역할에 Amazon SNS 발행 권한이 없습니다.',
 	[ErrorCode.InvalidSmsRoleTrustRelationshipException]:
 		'SMS 구성에 제공된 역할의 신뢰 관계가 잘못되었습니다.',
-	[ErrorCode.NotAuthorizedException]: '권한이 없습니다.',
+	[ErrorCode.NotAuthorizedException]: '아이디, 또는 비밀번호가 잘못되었습니다.',
 	[ErrorCode.ResourceNotFoundException]: '요청한 리소스를 찾을 수 없습니다.',
 	[ErrorCode.TooManyRequestsException]: '요청 횟수가 너무 많습니다.',
 	[ErrorCode.UnexpectedLambdaException]:
@@ -43,6 +44,7 @@ const errorMessages = {
 	[ErrorCode.UserNotFoundException]: '등록되지 않은 이메일 입니다.',
 	[ErrorCode.LimitExceededException]:
 		'요청 횟수를 초과했습니다. 잠시 후 다시 시도해 주세요.',
+	[ErrorCode.UserAlreadyAuthenticatedException]: '이미 로그인 되어 있습니다.',
 }
 
 export { ErrorCode, errorMessages }

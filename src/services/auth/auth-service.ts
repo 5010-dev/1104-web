@@ -1,14 +1,17 @@
 import {
 	signIn,
 	signUp,
+	signOut,
 	resendSignUpCode,
+	getCurrentUser,
+	fetchAuthSession,
 	type SignInInput,
 	SignUpInput,
 } from 'aws-amplify/auth'
 import { ErrorCode, errorMessages } from './auth-error'
 
 /**
- * AWS Amplify 사용자 인증을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
+ * AWS Amplify 사용자 로그인을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
  */
 export const logInWithCallback = async (
 	{ username, password }: SignInInput,
@@ -22,7 +25,7 @@ export const logInWithCallback = async (
 		if (error instanceof Error && error.name in ErrorCode) {
 			onError(errorMessages[error.name as keyof typeof ErrorCode])
 		} else {
-			onError(error)
+			onError(error && error.toString())
 		}
 	}
 }
@@ -48,7 +51,7 @@ export const signUpWithCallback = async (
 		if (error instanceof Error && error.name in ErrorCode) {
 			onError(errorMessages[error.name as keyof typeof ErrorCode])
 		} else {
-			onError(error)
+			onError(error && error.toString())
 		}
 	}
 }
@@ -68,7 +71,54 @@ export const resendVerificationWithCallback = async (
 		if (error instanceof Error && error.name in ErrorCode) {
 			onError(errorMessages[error.name as keyof typeof ErrorCode])
 		} else {
-			onError(error)
+			onError(error && error.toString())
+		}
+	}
+}
+
+/**
+ * AWS Amplify 사용자 로그인 데이터를 가져오고, 결과에 따라 콜백 함수를 호출하는 함수
+ */
+export const getLoginUserDataWithCallback = async (
+	onSuccess: (loginId: string) => void,
+	onError: (error: any) => void,
+) => {
+	try {
+		const { signInDetails } = await getCurrentUser()
+		if (signInDetails?.loginId) {
+			onSuccess(signInDetails?.loginId)
+		} else {
+			console.error('User data is undefined')
+		}
+	} catch (error) {
+		if (error instanceof Error && error.name in ErrorCode) {
+			onError(errorMessages[error.name as keyof typeof ErrorCode])
+		} else {
+			onError(error && error.toString())
+		}
+	}
+}
+
+/**
+ * AWS Amplify 사용자 로그인 세션을 불러와 반환하는 함수
+ */
+export const session = async () => await fetchAuthSession()
+
+/**
+ * AWS Amplify 사용자 로그 아웃을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
+ */
+export const signOutWithCallback = async (
+	onSuccess: () => void,
+	onError: (error: any) => void,
+) => {
+	try {
+		await signOut()
+		onSuccess()
+	} catch (error) {
+		if (error instanceof Error && error.name in ErrorCode) {
+			onError(errorMessages[error.name as keyof typeof ErrorCode])
+		} else {
+			onError(error && error.toString())
 		}
 	}
 }

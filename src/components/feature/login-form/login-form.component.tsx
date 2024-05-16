@@ -1,15 +1,18 @@
-import { useState, FormEvent, MouseEvent } from 'react'
+import { FormEvent, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { logInWithCallback } from '../../../services/auth/auth-service'
+import {
+	logInWithCallback,
+	getLoginUserDataWithCallback,
+} from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
+import { useToastMessageStore } from '../../../store/toastMessageStore'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
-import Toast from '../../global/toast/toast.component'
 
 export default function LoginForm() {
-	const [errorMessage, setErrorMessage] = useState<string>('')
-	const { email, password } = useAuthDataStore()
+	const { email, password, updateLoginUser } = useAuthDataStore()
+	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigate()
 
 	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) => {
@@ -21,39 +24,46 @@ export default function LoginForm() {
 
 		logInWithCallback(
 			{ username: email, password },
-			(username, isSignedIn, nextStep) => {
+			async (username, isSignedIn, nextStep) => {
 				if (isSignedIn) {
-					// 로그인 완료
+					await getLoginUserDataWithCallback(
+						(loginId) => {
+							updateLoginUser(loginId)
+							updateToastMessage('성공적으로 로그인 했습니다.')
+							navigate('/')
+						},
+						(error) => updateToastMessage(error),
+					)
 				} else if (!isSignedIn) {
-					nextStep === 'CONFIRM_SIGN_UP' &&
-						navigate(`/verification?email=${username}`, { replace: true })
+					switch (nextStep) {
+						case 'CONFIRM_SIGN_UP':
+							navigate(`/verification?email=${username}`, { replace: true })
+							break
+						case 'CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED':
+							console.log(nextStep)
+							break
+						default:
+							console.log(nextStep)
+							break
+					}
 				}
 			},
 			(error) => {
-				setErrorMessage(error)
+				updateToastMessage(error)
 			},
 		)
 	}
 
 	return (
-		<>
-			<AuthForm
-				heading="로그인"
-				submitText="이메일로 로그인하기"
-				handleAuthSubmit={handleSubmit}
-				textLink={{
-					descriptionMessage: '아직 회원이 아니시라면',
-					linkMessage: '지금 가입하기',
-					handleTextLink: handleSignupLink,
-				}}
-			></AuthForm>
-			{errorMessage ? (
-				<Toast
-					text={errorMessage}
-					duration={3000}
-					onClose={() => setErrorMessage('')}
-				/>
-			) : null}
-		</>
+		<AuthForm
+			heading="로그인"
+			submitText="이메일로 로그인하기"
+			handleAuthSubmit={handleSubmit}
+			textLink={{
+				descriptionMessage: '아직 회원이 아니시라면',
+				linkMessage: '지금 가입하기',
+				handleTextLink: handleSignupLink,
+			}}
+		></AuthForm>
 	)
 }
