@@ -24,7 +24,7 @@ import './App.css'
 function App() {
 	const deviceType = useDeviceType()
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
-	const { updateLoginUser } = useAuthDataStore()
+	const { updateLoginUser, resetLoginUser } = useAuthDataStore()
 	const { toastMessgae, resetToastMessage } = useToastMessageStore()
 
 	useEffect(() => {
@@ -37,11 +37,14 @@ function App() {
 				(loginId) => {
 					updateLoginUser(loginId)
 				},
-				(error) => console.log(error),
+				(error) => {
+					resetLoginUser()
+					console.log(error)
+				},
 			)
 		}
 		fetchData()
-	}, [updateLoginUser])
+	}, [updateLoginUser, resetLoginUser])
 
 	return (
 		<HelmetProvider>
