@@ -1,12 +1,11 @@
-import { useEffect, useRef, MouseEvent } from 'react'
+import { useState, useEffect, useRef, MouseEvent } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence, useScroll } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useNavigationStore } from '../../../store/globalUiStore'
 import useOnClickOutside from '../../../hooks/useOnClickOutside'
 
 import { NavigationContainer } from './navigation.styles'
@@ -22,14 +21,15 @@ const menuIconVariants = {
 export default function Navigation() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
-	const { isMenuOpen, isScrolled, updateIsMenuOpen, updateIsScrolled } =
-		useNavigationStore()
+	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+	const [isScrolled, setIsScrolled] = useState<boolean>(false)
 	const { scrollYProgress } = useScroll()
+	const location = useLocation()
 
 	const ref = useRef<HTMLDivElement>(null)
 
 	const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>): void => {
-		updateIsMenuOpen(false)
+		setIsMenuOpen(false)
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth',
@@ -37,23 +37,27 @@ export default function Navigation() {
 	}
 
 	const handleMenuClick = (e: MouseEvent<HTMLButtonElement>): void =>
-		updateIsMenuOpen(!isMenuOpen)
+		setIsMenuOpen((prevState) => !prevState)
 
 	useEffect(() => {
 		scrollYProgress.on('change', (latest) => {
 			if (latest > 0.01) {
-				updateIsScrolled(true)
+				setIsScrolled(true)
 			} else {
-				updateIsScrolled(false)
+				setIsScrolled(false)
 			}
 		})
-	}, [scrollYProgress, updateIsScrolled])
+	}, [scrollYProgress])
 
 	useEffect(() => {
-		deviceType === 'desktop' && updateIsMenuOpen(false)
-	}, [deviceType, updateIsMenuOpen])
+		deviceType === 'desktop' && setIsMenuOpen(false)
+	}, [deviceType])
 
-	useOnClickOutside(ref, () => isMenuOpen && updateIsMenuOpen(false))
+	useEffect(() => {
+		setIsMenuOpen(false)
+	}, [location])
+
+	useOnClickOutside(ref, () => setIsMenuOpen(false))
 
 	return (
 		<NavigationContainer
@@ -61,6 +65,7 @@ export default function Navigation() {
 			$isOverlaped={true}
 			$isScrolled={isScrolled}
 			$isMenuOpen={isMenuOpen}
+			ref={ref}
 		>
 			<motion.div
 				id="background-panel"
@@ -96,7 +101,6 @@ export default function Navigation() {
 			<AnimatePresence key={isMenuOpen ? 'menu-open' : 'menu-closed'}>
 				{isMenuOpen && (
 					<motion.div
-						ref={ref}
 						id="mobile-navigation-menu-container"
 						layout
 						initial={{ opacity: 0, y: -50 }}

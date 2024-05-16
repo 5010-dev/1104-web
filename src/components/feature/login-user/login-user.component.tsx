@@ -4,10 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useAuthDataStore } from '../../../store/authDataStore'
-import {
-	useToastMessageStore,
-	useNavigationStore,
-} from '../../../store/globalUiStore'
+import { useToastMessageStore } from '../../../store/globalUiStore'
 
 import { signOutWithCallback } from '../../../services/auth/auth-service'
 
@@ -18,7 +15,6 @@ import TextLink from '../../global/text-link/text-link.component'
 export default function LoginUser() {
 	const { resetLoginUser } = useAuthDataStore()
 	const { updateToastMessage } = useToastMessageStore()
-	const { updateIsMenuOpen } = useNavigationStore()
 	const navigate = useNavigate()
 
 	const handleViewAccount = (e: MouseEvent<HTMLSpanElement>) => {
@@ -27,7 +23,6 @@ export default function LoginUser() {
 			top: 0,
 			behavior: 'smooth',
 		})
-		updateIsMenuOpen(false)
 	}
 
 	const handleSignOut = (e: MouseEvent<HTMLSpanElement>) => {
