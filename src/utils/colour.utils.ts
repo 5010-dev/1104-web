@@ -75,6 +75,6 @@ export const getInvertedColour = (
 	hierarchy: ComponentHierarchy,
 	state: ComponentState,
 ) =>
-	hierarchy === 'primary'
+	hierarchy === 'primary' || hierarchy === 'tertiary'
 		? theme.colour[appearance].secondary[state]
 		: theme.colour[appearance].primary[state]

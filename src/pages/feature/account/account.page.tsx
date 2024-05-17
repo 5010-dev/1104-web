@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
@@ -8,11 +8,22 @@ import { AccountContainer } from './account.styles'
 
 import MyAccount from '../../../components/feature/my-account/my-account.component'
 import MySubscription from '../../../components/feature/my-subscription/my-subscription.component'
+import CustomerService from '../../../components/feature/customer-service/customer-service.component'
 
 export default function Account() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const navigate = useNavigate()
+
+	const handleCustomerServiceLink = (e: MouseEvent<HTMLSpanElement>) => {
+		const subject = '회원 및 구독 관련 문의사항'
+		const recipient = '5010.cs.kr@5010.tech'
+		const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
+			subject,
+		)}`
+
+		window.location.href = mailtoUrl
+	}
 
 	useEffect(() => {
 		if (userId.length === 0) {
@@ -26,6 +37,7 @@ export default function Account() {
 				<h1 id="heading">내 정보</h1>
 				<MyAccount userId={userId} />
 				<MySubscription />
+				<CustomerService handleTextLink={handleCustomerServiceLink} />
 			</div>
 		</AccountContainer>
 	)
