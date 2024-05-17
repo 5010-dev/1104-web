@@ -18,11 +18,10 @@ export default function LoginUser() {
 	const navigate = useNavigate()
 
 	const handleViewAccount = (e: MouseEvent<HTMLSpanElement>) => {
-		navigate('/account')
 		window.scrollTo({
 			top: 0,
-			behavior: 'smooth',
 		})
+		navigate('/account')
 	}
 
 	const handleSignOut = (e: MouseEvent<HTMLSpanElement>) => {

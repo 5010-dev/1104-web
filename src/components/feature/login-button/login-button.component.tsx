@@ -18,17 +18,15 @@ export default function LoginButton(props: LoginButtonProps) {
 
 	const handleButtonClick = () => {
 		if (signUp) {
+			window.scrollTo({
+				top: 0,
+			})
 			navigate('/login', { state: { mode: 'signup' } })
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth',
-			})
 		} else {
-			navigate('/login', { state: { mode: 'login' } })
 			window.scrollTo({
 				top: 0,
-				behavior: 'smooth',
 			})
+			navigate('/login', { state: { mode: 'login' } })
 		}
 	}
 

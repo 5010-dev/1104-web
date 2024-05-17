@@ -7,6 +7,7 @@ import { useAuthDataStore } from '../../../store/authDataStore'
 import { AccountContainer } from './account.styles'
 
 import MyAccount from '../../../components/feature/my-account/my-account.component'
+import MySubscription from '../../../components/feature/my-subscription/my-subscription.component'
 
 export default function Account() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -24,6 +25,7 @@ export default function Account() {
 			<div id="contents-container">
 				<h1 id="heading">내 정보</h1>
 				<MyAccount userId={userId} />
+				<MySubscription />
 			</div>
 		</AccountContainer>
 	)
