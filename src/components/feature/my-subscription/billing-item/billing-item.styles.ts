@@ -10,7 +10,7 @@ export const BillingItemContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 
-	padding: ${({ theme }) => `${theme.layout.container.padding.sm} 0`};
+	padding: ${({ theme }) => `${theme.layout.component.padding.sm} 0`};
 
 	div.text-container {
 		display: flex;
