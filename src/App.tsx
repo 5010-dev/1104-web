@@ -29,7 +29,6 @@ function App() {
 
 	useEffect(() => {
 		updateDeviceType(deviceType)
-		console.log('d')
 	}, [deviceType, updateDeviceType])
 
 	useEffect(() => {
