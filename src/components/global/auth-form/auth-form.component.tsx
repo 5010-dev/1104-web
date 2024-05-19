@@ -3,7 +3,7 @@ import { useState, FormEvent, ChangeEvent } from 'react'
 import { useAuthDataStore } from '../../../store/authDataStore'
 
 import { AuthFormProps, AuthValidity } from './ayth-form.types'
-import { AuthFormContainer, TextLinkContainer } from './auth-form.styles'
+import { AuthFormContainer } from './auth-form.styles'
 
 import Input from '../../global/input/input.component'
 import Button from '../../global/button/button.component'
@@ -84,17 +84,15 @@ export default function AuthForm(props: AuthFormProps) {
 					/>
 				</form>
 			</AuthFormContainer>
-			<TextLinkContainer id="signup-link-container">
-				<span id="signup-text">{textLink.descriptionMessage} </span>
-				<TextLink
-					appearance="neutral"
-					hierarchy="secondary"
-					size="sm"
-					underlined
-					text={textLink.linkMessage}
-					handleClick={textLink.handleTextLink}
-				/>
-			</TextLinkContainer>
+			<TextLink
+				description={textLink.descriptionMessage}
+				appearance="neutral"
+				hierarchy="secondary"
+				size="sm"
+				underlined
+				text={textLink.linkMessage}
+				handleClick={textLink.handleTextLink}
+			/>
 			{children ? <div id="bottom-row">{children}</div> : null}
 		</>
 	)

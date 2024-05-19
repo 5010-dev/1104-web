@@ -3,6 +3,7 @@ import { create } from 'zustand'
 export interface AuthDataState {
 	email: string
 	password: string
+	verificationCode: string
 	loginUser: {
 		userId: string
 	}
@@ -19,6 +20,7 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 	(set) => ({
 		email: '',
 		password: '',
+		verificationCode: '',
 		loginUser: {
 			userId: '',
 		},
@@ -30,7 +32,12 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 				loginUser: { userId: value },
 			})),
 		resetAuthData: () =>
-			set((state) => ({ ...state, email: '', password: '' })),
+			set((state) => ({
+				...state,
+				email: '',
+				password: '',
+				verificationCode: '',
+			})),
 		resetLoginUser: () =>
 			set((state) => ({ ...state, loginUser: { userId: '' } })),
 	}),

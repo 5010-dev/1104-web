@@ -34,27 +34,7 @@ export const AuthFormContainer = styled.div`
 		#submit-button {
 			width: 100%;
 			box-sizing: border-box;
-			margin-top: ${({ theme }) => theme.layout.container.gutter};
+			margin: ${({ theme }) => `${theme.layout.container.gutter} 0`};
 		}
-	}
-`
-
-export const TextLinkContainer = styled.div`
-	width: 100%;
-
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	gap: 0.25rem;
-
-	margin-top: 1rem;
-
-	span#signup-text {
-		${({ theme }) => getTypography(theme, 'body')}
-		font-size: 0.875rem;
-
-		color: ${({ theme }) =>
-			getColour(theme, 'neutral', 'secondary', 'inactive')};
 	}
 `

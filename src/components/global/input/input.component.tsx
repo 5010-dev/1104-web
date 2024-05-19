@@ -9,12 +9,18 @@ export default function Input(props: InputProps) {
 		className,
 		name,
 		type,
+		pattern,
+		autoComplete,
+		maxLength,
 		value,
 		placeholder,
 		isValid,
 		hierarchy,
+		handleClick,
+		handleKeyDown,
 		handleChange,
 		handleFocus,
+		handleBlur,
 	} = props
 
 	const [isFocused, setIsFocused] = useState<boolean>(false)
@@ -23,17 +29,25 @@ export default function Input(props: InputProps) {
 		setIsFocused(true)
 		handleFocus && handleFocus(e)
 	}
-	const handleBlur = (e: FocusEvent<HTMLInputElement>) => setIsFocused(false)
+	const handleInputBlur = (e: FocusEvent<HTMLInputElement>) => {
+		setIsFocused(false)
+		handleBlur && handleBlur(e)
+	}
 
 	return (
 		<InputContainer
 			id={id}
 			className={className}
 			type={type}
+			pattern={pattern}
+			autoComplete={autoComplete ? 'on' : 'off'}
+			maxLength={maxLength}
 			name={name}
 			value={value}
 			onFocus={handleInputFocus}
-			onBlur={handleBlur}
+			onBlur={handleInputBlur}
+			onClick={handleClick}
+			onKeyDown={handleKeyDown}
 			onChange={handleChange}
 			placeholder={placeholder}
 			$isFocused={isFocused}

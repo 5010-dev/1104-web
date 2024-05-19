@@ -1,13 +1,14 @@
 import styled, { css } from 'styled-components'
 
-import { TextLinkContainerProps } from './text-link.types'
+import { TextLinkContainerProps, LinkContainerProps } from './text-link.types'
 
 import { getTypography } from '../../../utils/typo.utils'
 import { getColour } from '../../../utils/colour.utils'
 
-type Props = TextLinkContainerProps
+type LinkProps = LinkContainerProps
+type ContainerProps = TextLinkContainerProps
 
-export const TextLinkContainer = styled.div<Props>`
+export const LinkContainer = styled.div<LinkProps>`
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -48,4 +49,30 @@ export const TextLinkContainer = styled.div<Props>`
 		color: ${({ theme, $appearance, $hierarchy }) =>
 			getColour(theme, $appearance, $hierarchy, 'hover')};
 	}
+`
+
+export const TextLinkContainer = styled.div<ContainerProps>`
+	${({ $description }) =>
+		$description
+			? css`
+					width: 100%;
+
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					align-items: center;
+					gap: 0.25rem;
+
+					span#description-text {
+						${({ theme }) => getTypography(theme, 'body')}
+						font-size: 0.875rem;
+
+						color: ${({ theme }) =>
+							getColour(theme, 'neutral', 'secondary', 'inactive')};
+					}
+			  `
+			: css`
+					width: auto;
+					padding: 0;
+			  `}
 `

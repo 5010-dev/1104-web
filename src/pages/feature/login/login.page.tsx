@@ -23,7 +23,9 @@ export default function Login() {
 
 	return (
 		<AuthLayout>
-			{state?.mode === 'login' || undefined ? <LoginForm /> : null}
+			{state?.mode === 'login' || state?.mode === undefined ? (
+				<LoginForm />
+			) : null}
 			{state?.mode === 'signup' ? <SignupForm /> : null}
 		</AuthLayout>
 	)

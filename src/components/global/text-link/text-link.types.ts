@@ -10,6 +10,7 @@ type Size = 'sm' | 'md'
 export type TextLinkProps = {
 	id?: string
 	className?: string
+	description?: string
 	icon?: ReactNode | null
 	text: string
 	appearance: ComponentAppearance
@@ -20,6 +21,10 @@ export type TextLinkProps = {
 }
 
 export type TextLinkContainerProps = {
+	$description: boolean
+}
+
+export type LinkContainerProps = {
 	$appearance: ComponentAppearance
 	$hierarchy: ComponentHierarchy
 	$size: Size

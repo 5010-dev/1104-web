@@ -15,8 +15,9 @@ export const AccountContainer = styled(PageLayoutContainer)`
 		width: ${({ theme }) => theme.layout.section.width};
 		max-width: ${({ theme }) => theme.layout.section.maxWidth};
 
-		margin: ${({ $deviceType }) =>
-			$deviceType === 'mobile' ? '6rem 0' : '10rem 0'};
+		margin-top: ${({ $deviceType }) =>
+			$deviceType === 'mobile' ? '6rem' : '10rem'};
+		margin-bottom: 2rem;
 
 		display: flex;
 		flex-direction: column;

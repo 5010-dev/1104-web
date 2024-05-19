@@ -1,27 +1,25 @@
 import styled from 'styled-components'
+
 import { getTypography } from '../../../utils/typo.utils'
 import { getColour } from '../../../utils/colour.utils'
 
-export const EmailVerificationContainer = styled.div`
-	width: ${({ theme }) => theme.layout.container.width};
+export const VerificationFormContainer = styled.div`
+	width: 100%;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: ${({ theme }) => theme.layout.container.gutter};
 
-	#lottie-verification-anim {
-		width: 50%;
-	}
-
-	div#text-container {
+	div#verification-text-container {
 		width: ${({ theme }) => theme.layout.container.width};
 
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
-		gap: ${({ theme }) => theme.layout.container.gutter};
+		gap: ${({ theme }) => theme.layout.component.gutter};
 
 		h1#heading {
 			${({ theme }) => getTypography(theme, 'heading1')}
@@ -34,19 +32,22 @@ export const EmailVerificationContainer = styled.div`
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
+	}
 
-		span#caption {
-			${({ theme }) => getTypography(theme, 'caption')}
-			color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'active')};
+	form#verification-form {
+		width: 100%;
+		max-width: 18rem;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: ${({ theme }) => theme.layout.container.gutter};
+
+		#submit-button {
+			width: 100%;
+			box-sizing: border-box;
+			margin: ${({ theme }) => `${theme.layout.container.gutter} 0`};
 		}
-	}
-
-	#resend-button {
-		margin-top: ${({ theme }) => theme.layout.container.padding.lg};
-	}
-
-	#text-link {
-		margin-top: ${({ theme }) => theme.layout.container.gutter};
 	}
 `

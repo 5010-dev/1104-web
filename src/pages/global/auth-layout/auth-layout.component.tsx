@@ -36,7 +36,12 @@ export default function AuthLayout(props: AuthLayoutProps) {
 				opacity={1}
 			>
 				<div id="top-row">
-					<img id="company-logo" src={logoUrl} alt="company-logo" />
+					<img
+						id="company-logo"
+						src={logoUrl}
+						alt="company-logo"
+						onClick={() => navigate('/')}
+					/>
 					<button id="close-icon" aria-label="top-row" onClick={handleClose}>
 						<FontAwesomeIcon icon={faXmark} />
 					</button>

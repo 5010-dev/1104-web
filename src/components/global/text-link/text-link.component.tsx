@@ -1,10 +1,11 @@
 import { TextLinkProps } from './text-link.types'
-import { TextLinkContainer } from './text-link.styles'
+import { TextLinkContainer, LinkContainer } from './text-link.styles'
 
 export default function TextLink(props: TextLinkProps) {
 	const {
 		id,
 		className,
+		description,
 		icon,
 		text,
 		appearance,
@@ -15,19 +16,22 @@ export default function TextLink(props: TextLinkProps) {
 	} = props
 
 	return (
-		<TextLinkContainer
-			id={id}
-			className={className}
-			$appearance={appearance}
-			$hierarchy={hierarchy}
-			$size={size}
-			$underlined={underlined}
-			$icon={icon ? true : false}
-		>
-			{icon}
-			<span id="link-text" onClick={handleClick}>
-				{text}
-			</span>
+		<TextLinkContainer $description={description ? true : false}>
+			<span id="description-text">{description}</span>
+			<LinkContainer
+				id={id}
+				className={className}
+				$appearance={appearance}
+				$hierarchy={hierarchy}
+				$size={size}
+				$underlined={underlined}
+				$icon={icon ? true : false}
+			>
+				{icon}
+				<span id="link-text" onClick={handleClick}>
+					{text}
+				</span>
+			</LinkContainer>
 		</TextLinkContainer>
 	)
 }

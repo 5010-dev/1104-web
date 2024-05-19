@@ -1,4 +1,4 @@
-import { FormEvent, MouseEvent } from 'react'
+import { useEffect, FormEvent, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import {
@@ -12,6 +12,7 @@ import AuthForm from '../../global/auth-form/auth-form.component'
 
 export default function LoginForm() {
 	const { email, password, updateLoginUser } = useAuthDataStore()
+	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigate()
 
@@ -53,6 +54,12 @@ export default function LoginForm() {
 			},
 		)
 	}
+
+	useEffect(() => {
+		if (userId) {
+			navigate('/')
+		}
+	}, [userId, navigate])
 
 	return (
 		<AuthForm

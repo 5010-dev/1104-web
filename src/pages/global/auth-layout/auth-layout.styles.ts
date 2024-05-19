@@ -84,6 +84,8 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 			img#company-logo {
 				width: 3.5rem;
 				opacity: 0.25;
+
+				cursor: pointer;
 			}
 
 			button#close-icon {

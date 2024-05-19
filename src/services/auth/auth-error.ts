@@ -17,6 +17,7 @@ enum ErrorCode {
 	UserNotFoundException = 'UserNotFoundException',
 	LimitExceededException = 'LimitExceededException',
 	UserAlreadyAuthenticatedException = 'UserAlreadyAuthenticatedException',
+	CodeMismatchException = 'CodeMismatchException',
 }
 
 const errorMessages = {
@@ -45,6 +46,8 @@ const errorMessages = {
 	[ErrorCode.LimitExceededException]:
 		'요청 횟수를 초과했습니다. 잠시 후 다시 시도해 주세요.',
 	[ErrorCode.UserAlreadyAuthenticatedException]: '이미 로그인 되어 있습니다.',
+	[ErrorCode.CodeMismatchException]:
+		'인증 코드가 일치하지 않습니다. 인증 코드를 다시 확인해 주세요.',
 }
 
 export { ErrorCode, errorMessages }

@@ -2,11 +2,13 @@ import {
 	signIn,
 	signUp,
 	signOut,
+	confirmSignUp,
 	resendSignUpCode,
 	getCurrentUser,
 	fetchAuthSession,
 	type SignInInput,
 	SignUpInput,
+	ConfirmSignUpInput,
 } from 'aws-amplify/auth'
 import { ErrorCode, errorMessages } from './auth-error'
 
@@ -35,7 +37,11 @@ export const logInWithCallback = async (
  */
 export const signUpWithCallback = async (
 	{ username, password }: SignUpInput,
-	onSuccess: (username: string) => void,
+	onSuccess: (
+		username: string,
+		isSignUpComplete: boolean,
+		nextStep: string,
+	) => void,
 	onError: (error: any) => void,
 ): Promise<void> => {
 	try {
@@ -43,9 +49,26 @@ export const signUpWithCallback = async (
 			username,
 			password,
 		})
-		console.log(isSignUpComplete)
-		console.log(nextStep)
+		onSuccess(username, isSignUpComplete, nextStep.signUpStep)
+	} catch (error) {
+		if (error instanceof Error && error.name in ErrorCode) {
+			onError(errorMessages[error.name as keyof typeof ErrorCode])
+		} else {
+			onError(error && error.toString())
+		}
+	}
+}
 
+/**
+ * AWS Amplify 유저네임과 인증코드를 받아 인증 작업 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
+ */
+export const confirmSignupWithCallback = async (
+	{ username, confirmationCode }: ConfirmSignUpInput,
+	onSuccess: (username: string) => void,
+	onError: (error: any) => void,
+) => {
+	try {
+		await confirmSignUp({ username, confirmationCode })
 		onSuccess(username)
 	} catch (error) {
 		if (error instanceof Error && error.name in ErrorCode) {
@@ -61,12 +84,14 @@ export const signUpWithCallback = async (
  */
 export const resendVerificationWithCallback = async (
 	username: string,
+	onSuccess: () => void,
 	onError: (error: any) => void,
 ): Promise<void> => {
 	try {
 		await resendSignUpCode({
 			username,
 		})
+		onSuccess()
 	} catch (error) {
 		if (error instanceof Error && error.name in ErrorCode) {
 			onError(errorMessages[error.name as keyof typeof ErrorCode])
