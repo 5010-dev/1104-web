@@ -124,6 +124,13 @@ export const DesignSystem: DefaultTheme = {
 			leading: designTokens.typo.leading.default,
 			kerning: designTokens.typo.kerning.default,
 		} as TypoVariant,
+		quote: {
+			typeface: designTokens.typo.typeface.serif,
+			size: designTokens.typo.size.md,
+			weight: designTokens.typo.weight.md,
+			leading: designTokens.typo.leading.default,
+			kerning: designTokens.typo.kerning.default,
+		} as TypoVariant,
 	} as TypoSystem,
 
 	layout: {

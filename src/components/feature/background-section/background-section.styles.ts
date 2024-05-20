@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
@@ -7,6 +7,7 @@ import { hexToRgba, getColour } from '../../../utils/colour.utils'
 import { SectionContainer } from '../../global/section/section.styles'
 
 import { BackgroundSectionContainerProps } from './background-section.types'
+import { getContainerStyle } from '../../../utils/style.utils'
 
 type Props = BackgroundSectionContainerProps
 
@@ -56,13 +57,21 @@ export const BackgroundSectionContainer = styled(SectionContainer)<Props>`
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
+		span.quote {
+			${({ theme }) => getTypography(theme, 'quote')}
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'inactive')};
+			font-size: ${({ $deviceType }) =>
+				$deviceType === 'mobile' ? '2rem' : '2.5rem'};
+		}
+
 		div.title-text {
 			display: flex;
 			flex-direction: column;
 			gap: ${({ theme }) => theme.layout.container.gutter};
 		}
 
-		div#title-text-container {
+		div.title-text-container {
 			width: ${({ theme }) => theme.layout.container.width};
 
 			display: flex;
@@ -91,11 +100,11 @@ export const BackgroundSectionContainer = styled(SectionContainer)<Props>`
 			padding: ${({ theme, $deviceType }) =>
 				`${getDeviceTypePadding(theme, $deviceType, 'section')} 0`};
 			margin: ${({ theme }) => `${theme.layout.page.gutter} 0`};
+			margin-bottom: ${({ theme }) => theme.layout.section.gutter};
 
 			div.paragraph-text {
 				position: relative;
 
-				/* flex: 1 1 auto; */
 				width: 100%;
 
 				display: flex;
@@ -108,18 +117,26 @@ export const BackgroundSectionContainer = styled(SectionContainer)<Props>`
 				& > h3 {
 					width: 80%;
 				}
+
+				${({ $deviceType }) =>
+					$deviceType === 'mobile' &&
+					css`
+						& > p {
+							width: 80%;
+						}
+					`}
 			}
 
 			div#first-paragraph-container {
 				margin-bottom: ${({ $deviceType }) =>
-					$deviceType === 'mobile' ? '10%' : '25%'};
+					$deviceType === 'mobile' ? '5%' : '25%'};
 				align-items: flex-end;
 				text-align: right !important;
 			}
 
 			div#second-paragraph-container {
 				margin-top: ${({ $deviceType }) =>
-					$deviceType === 'mobile' ? '10%' : '25%'};
+					$deviceType === 'mobile' ? '5%' : '25%'};
 				align-items: flex-start;
 				text-align: left !important;
 			}
@@ -139,12 +156,6 @@ export const BackgroundSectionContainer = styled(SectionContainer)<Props>`
 				background-attachment: ${({ $isPointerCoarseAndSafari }) =>
 					$isPointerCoarseAndSafari ? 'scroll' : 'fixed'};
 
-				/* opacity: 0.5; */
-
-				/* filter: blur(1rem);
-				backdrop-filter: blur(1rem);
-				-webkit-backdrop-filter: blur(1rem); */
-
 				border-radius: ${({ theme }) =>
 					theme.shape.filled.rounding.borderRadii};
 
@@ -157,6 +168,8 @@ export const BackgroundSectionContainer = styled(SectionContainer)<Props>`
 					bottom: 0;
 
 					border: none;
+					border-radius: ${({ theme }) =>
+						theme.shape.filled.rounding.borderRadii};
 					box-sizing: border-box;
 
 					background-color: ${({ theme }) =>
@@ -166,11 +179,63 @@ export const BackgroundSectionContainer = styled(SectionContainer)<Props>`
 					backdrop-filter: blur(1.5rem);
 					-webkit-backdrop-filter: blur(1.5rem);
 
-					border-radius: ${({ theme }) =>
-						theme.shape.filled.rounding.borderRadii};
-
 					z-index: 1;
 				}
+			}
+		}
+
+		div#third-paragraph-container {
+			width: ${({ theme }) => theme.layout.container.width};
+
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+			gap: ${({ theme }) => theme.layout.section.gutter};
+
+			div#vertical-line {
+				width: 0.125rem;
+				height: 6rem;
+				background-color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'inactive')};
+			}
+
+			div#quote-text-container {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+
+		div#fourth-paragraph-container {
+			width: ${({ theme }) => theme.layout.container.width};
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: ${({ theme }) => theme.layout.component.gutter};
+
+			padding: ${({ theme, $deviceType }) =>
+				getDeviceTypePadding(theme, $deviceType, 'section')};
+
+			${({ theme }) =>
+				getContainerStyle(
+					theme,
+					'neutral',
+					'tertiary',
+					'filled',
+					'rounded2',
+					1,
+				)}
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'active')};
+
+			div#last-subheading-container {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: ${({ theme }) => theme.layout.component.gutter};
 			}
 		}
 	}

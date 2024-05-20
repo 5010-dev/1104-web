@@ -53,7 +53,7 @@ export const designTokens: DesignTokens = {
 
 	// 타이포그래피 토큰
 	typo: {
-		typeface: { default: 'Pretendard Variable' },
+		typeface: { default: 'Pretendard Variable', serif: 'SF_HambakSnow' },
 		size: {
 			xxxlg: '4rem',
 			xxlg: '2rem',

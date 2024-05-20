@@ -4,6 +4,14 @@ import designTokens from './degisn-tokens/design-tokens.tokens'
 const styled = { createGlobalStyle }
 
 const GlobalStyle = styled.createGlobalStyle`
+	@font-face {
+		font-family: 'SF_HambakSnow';
+		src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+			format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
 	body {
 		overflow-x: hidden;
 
@@ -21,7 +29,7 @@ const GlobalStyle = styled.createGlobalStyle`
 
 		font-family: ${designTokens.typo.typeface.default}, -apple-system,
 			BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-			'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+			'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'SF_HambakSnow',
 			'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;

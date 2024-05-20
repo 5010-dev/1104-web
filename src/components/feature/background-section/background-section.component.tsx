@@ -10,8 +10,8 @@ export default function BackgroundSection() {
 		title,
 		firstParagraph,
 		secondParagraph,
-		// thirdParagraph,
-		// fourthParagraph,
+		thirdParagraph,
+		fourthParagraph,
 	} = useAboutUsContentsStore((state) => state.backgroundSection)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
 
@@ -22,7 +22,7 @@ export default function BackgroundSection() {
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
 		>
 			<div id="contents-container">
-				<div id="title-text-container">
+				<div className="title-text-container">
 					<div className="title-text">
 						<span className="caption">{title.caption}</span>
 						<h2 className="heading">{title.heading}</h2>
@@ -40,6 +40,37 @@ export default function BackgroundSection() {
 						<p className="body">{secondParagraph.body}</p>
 					</div>
 					<div id="paragraph-image" />
+				</div>
+
+				<div id="third-paragraph-container">
+					<div id="vertical-line" />
+					<div id="quote-text-container">
+						{thirdParagraph.quote.map((item, index) => (
+							<span key={index} className="quote">
+								"{item}"
+							</span>
+						))}
+					</div>
+					<p className="body">{thirdParagraph.body}</p>
+				</div>
+
+				<div id="fourth-paragraph-container">
+					{fourthParagraph.map((item, index) =>
+						index < fourthParagraph.length - 1 ? (
+							<p key={index} className="subheading">
+								{item}
+							</p>
+						) : (
+							<div key={index} id="last-subheading-container">
+								<span>
+									.<br />.<br />.<br />
+								</span>
+								<h3 className="subheading" id="fourth-paragraph-subheading">
+									{item}
+								</h3>
+							</div>
+						),
+					)}
 				</div>
 			</div>
 		</BackgroundSectionContainer>

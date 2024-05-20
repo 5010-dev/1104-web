@@ -26,6 +26,7 @@ export interface TypoSystem {
 	body: TypoVariant
 	caption: TypoVariant
 	overline: TypoVariant
+	quote: TypoVariant
 }
 
 export type TypoVariant = {
