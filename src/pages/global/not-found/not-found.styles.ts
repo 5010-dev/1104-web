@@ -85,31 +85,33 @@ export const NotFoundContainer = styled.div<NotFoundContainerProps>`
 
 		h3#heading3 {
 			position: absolute;
-			bottom: ${({ $deviceType }) => ($deviceType === 'mobile' ? '-0.5rem' : '1rem')};
+			bottom: ${({ $deviceType }) =>
+				$deviceType === 'mobile' ? '-0.5rem' : '1rem'};
 
 			width: 100%;
 
 			${({ theme }) => getTypography(theme, 'heading1')}
-			font-size: ${({ $deviceType }) => ($deviceType === 'mobile' ? '2rem' : '3rem')};
-			color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
-        
-        ${({ theme }) => css`
-					-webkit-filter: drop-shadow(
-						0 0 0.5rem
-							${hexToRgba(
-								getColour(theme, 'neutral', 'secondary', 'active'),
-								0.5,
-							)}
-					);
-					filter: drop-shadow(
-						0 0 0.5rem
-							${hexToRgba(
-								getColour(theme, 'neutral', 'secondary', 'active'),
-								0.5,
-							)}
-					);
-				`}
-	}
+			font-size: ${({ $deviceType }) =>
+				$deviceType === 'mobile' ? '2rem' : '3rem'};
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'active')};
+
+			${({ theme }) => css`
+				-webkit-filter: drop-shadow(
+					0 0 0.5rem
+						${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.5,
+						)}
+				);
+				filter: drop-shadow(
+					0 0 0.5rem
+						${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.5,
+						)}
+				);
+			`}
 		}
 	}
 
