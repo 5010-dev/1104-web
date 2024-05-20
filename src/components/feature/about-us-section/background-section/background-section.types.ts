@@ -1,7 +1,7 @@
-import { DeviceType } from '../../../store/deviceTypeStore'
+import { DeviceType } from '../../../../store/deviceTypeStore'
 
 export type BackgroundSectionContainerProps = {
 	$deviceType: DeviceType
-	$ParagraphImage: string
+	$paragraphImage: string
 	$isPointerCoarseAndSafari: boolean
 }

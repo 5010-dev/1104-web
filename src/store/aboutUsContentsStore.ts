@@ -2,6 +2,8 @@ import { create } from 'zustand'
 
 import heroImage from '../assets/img/about-us-hero-image.webp'
 import backgroundImage from '../assets/img/background-paragraph-image.webp'
+import displayImage from '../assets/img/about-us-display-image.webp'
+import ipoImage from '../assets/img/about-us-ipo-image.webp'
 
 export type Hero = {
 	image: string
@@ -9,14 +11,6 @@ export type Hero = {
 		heading: string
 		subheading: string
 	}
-}
-
-export type ContentsSetcion = {
-	caption: string
-	heading: string
-	firstParagraph: string[]
-	quote: string
-	secondParagraph: string[]
 }
 
 export type BackgroundSection = {
@@ -41,10 +35,28 @@ export type BackgroundSection = {
 	fourthParagraph: string[]
 }
 
+export type ObjectiveSection = {
+	title: {
+		caption: string
+		heading: string
+		body: string
+	}
+	display: {
+		image: string
+		text: string[]
+	}
+	firstParagraph: string[]
+	secondParagraph: {
+		image: string
+		body: string[]
+		caption: string
+	}
+}
+
 export interface AboutUsContentsState {
 	hero: Hero
 	backgroundSection: BackgroundSection
-	ObjectiveSection: ContentsSetcion
+	objectiveSection: ObjectiveSection
 }
 
 export const useAboutUsContentsStore = create<AboutUsContentsState>((set) => ({
@@ -81,11 +93,34 @@ export const useAboutUsContentsStore = create<AboutUsContentsState>((set) => ({
 			'그렇게 우리는 더 큰 꿈을 꾸게 되었습니다.',
 		],
 	},
-	ObjectiveSection: {
-		caption: '',
-		heading: '',
-		firstParagraph: [''],
-		quote: '',
-		secondParagraph: [''],
+	objectiveSection: {
+		title: {
+			caption: 'WHERE WE GO',
+			heading:
+				'1104 R&I 팀은 암호화폐 시장에서 나스닥 상장(IPO)를 이루어 보고자 합니다.',
+			body: '우리는 증명해 왔습니다. 국내 암호화폐 시장에서 EDU TECH와 AI를 접목시켜 국내 교육 시장에서 서비스를 전개, 지금 이 순간에도 새로운 역사를 여러분들과 함께 써 내려가고 있습니다. 이제는 글로벌 시장을 무대로 우리를 널리 알려보고자 합니다.',
+		},
+		display: {
+			image: displayImage,
+			text: [
+				'SaaS for Traders & Investors.',
+				'Enhance Your Trading Experience.',
+			],
+		},
+
+		firstParagraph: [
+			'위와 같은 슬로건으로 한국의 핀테크 위상을 드높이고 마침내 나스닥 시장에 상장(IPO)을 해보고자 합니다.',
+			'암호화폐 관련 서비스로 제도권 내에서 상장을 하기란 결코 쉬운 일이 아닐겁니다. 무모한 도전이 될 것입니다. 하지만 우리는 회색 지대에서 양지로 나아가기 위해 계속해서 문을 두들겨 보고자 합니다.',
+		],
+		secondParagraph: {
+			image: ipoImage,
+			body: [
+				'우리가 성장하면 여러분도 성장합니다. 우리는 계속해서 R&D에 집중하고 그 연구 결과물들을 여러분들께 지속적으로 팔로우업 해드릴 계획입니다.',
+				'어쩌면, 지금 여러분이 믿고 선택해주신 1104 R&I라는 기업이 훗날 나스닥에 상장한다면 기분이 어떨까요?',
+				'"역시 내가 믿고 투자했던 기업이네."라며, 주변 사람들에게 말할 날이 분명 올 것입니다.',
+				'그 길을 여러분들과 함께 걸어가겠습니다.',
+			],
+			caption: '1104 R&I. SINCE 2023.',
+		},
 	},
 }))

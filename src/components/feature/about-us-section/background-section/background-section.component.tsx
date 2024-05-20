@@ -1,6 +1,6 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAboutUsContentsStore } from '../../../store/aboutUsContentsStore'
-import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
+import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useAboutUsContentsStore } from '../../../../store/aboutUsContentsStore'
+import usePointerCoarseAndSafari from '../../../../hooks/usePointerCoarseAndSafari'
 
 import { BackgroundSectionContainer } from './background-section.styles'
 
@@ -18,10 +18,10 @@ export default function BackgroundSection() {
 	return (
 		<BackgroundSectionContainer
 			$deviceType={deviceType}
-			$ParagraphImage={firstParagraph.image}
+			$paragraphImage={firstParagraph.image}
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
 		>
-			<div id="contents-container">
+			<div className="contents-container">
 				<div className="title-text-container">
 					<div className="title-text">
 						<span className="caption">{title.caption}</span>
@@ -61,13 +61,13 @@ export default function BackgroundSection() {
 								{item}
 							</p>
 						) : (
-							<div key={index} id="last-subheading-container">
+							<div key={index} id="last-heading-container">
 								<span>
 									.<br />.<br />.<br />
 								</span>
-								<h3 className="subheading" id="fourth-paragraph-subheading">
+								<h2 className="heading" id="fourth-paragraph-subheading">
 									{item}
-								</h3>
+								</h2>
 							</div>
 						),
 					)}
