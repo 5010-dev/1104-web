@@ -19,6 +19,7 @@ export const VerificationInputContainer = styled.div<Props>`
 		font-size: 2rem;
 		text-align: center;
 		color: rgba(0, 0, 0, 0);
+		caret-color: transparent;
 	}
 
 	div#verification-code-container {
