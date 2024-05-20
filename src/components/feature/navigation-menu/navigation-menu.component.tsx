@@ -21,13 +21,13 @@ export default function NavigationMenu() {
 			<Link className="menu-link" to="/about" onClick={handleClick}>
 				<span>ABOUT</span>
 			</Link>
-			<Link className="menu-link" to="/" onClick={handleClick}>
+			<Link className="menu-link" to="/service" onClick={handleClick}>
 				<span>SERVICE</span>
 			</Link>
 			<Link className="menu-link" to="/">
 				<span>PRICING</span>
 			</Link>
-			<Link className="menu-link" to="/" onClick={handleClick}>
+			<Link className="menu-link" to="/partnership" onClick={handleClick}>
 				<span>PARTNERSHIP</span>
 			</Link>
 			{userId.length === 0 ? (

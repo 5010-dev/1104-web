@@ -12,6 +12,7 @@ import { useToastMessageStore } from './store/globalUiStore'
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
 import MainLayout from './pages/main-layout'
+import NotFound from './pages/global/not-found/not-found.page'
 import Home from './pages/feature/home/home.page'
 import Login from './pages/feature/login/login.page'
 import EmailVerification from './pages/feature/email-verification/email-verification.page'
@@ -63,6 +64,7 @@ function App() {
 							</Route>
 							<Route path="/login" element={<Login />} />
 							<Route path="/verification" element={<EmailVerification />} />
+							<Route path="*" element={<NotFound />} />
 						</Routes>
 						{toastMessgae.length !== 0 ? (
 							<Toast
