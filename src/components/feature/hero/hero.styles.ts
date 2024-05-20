@@ -23,7 +23,6 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-
 	background-attachment: ${({ $isPointerCoarseAndSafari }) =>
 		$isPointerCoarseAndSafari ? 'scroll' : 'fixed'};
 

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 import heroImage from '../assets/img/about-us-hero-image.webp'
+import backgroundImage from '../assets/img/background-paragraph-image.webp'
 
 export type Hero = {
 	image: string
@@ -25,6 +26,7 @@ export type BackgroundSection = {
 		body: string
 	}
 	firstParagraph: {
+		image: string
 		heading: string
 		body: string
 	}
@@ -61,6 +63,7 @@ export const useAboutUsContentsStore = create<AboutUsContentsState>((set) => ({
 			body: '300명에 달하는 수강생을 교육해오며 맹목적인 투자 권유와 사기 피해 등으로 막대한 손실을 보신 분들을 숱하게 만나왔죠. 아직도 우리 주변 도처에서는 이러한 피해 사례가 여전히 발생하고 있고 어쩌면 그게 바로 여러분의 이야기거나, 가족이나 친구에게 일어난 일일지도 모릅니다.',
 		},
 		firstParagraph: {
+			image: backgroundImage,
 			heading: '암호화폐 시장을 향한 부정적인 시선과 색안경',
 			body: '이러한 투자자들의 선입견을 깨부수고 좋은 트레이딩 경험을 만들기 위해서는 기존의 통념을 깨부순 새로운 접근 방식과 방법론, 그리고 혁신적인 기술이 필요했습니다.',
 		},

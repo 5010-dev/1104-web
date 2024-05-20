@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -12,18 +13,21 @@ export default function NavigationMenu() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 
+	const handleClick = (e: MouseEvent<HTMLAnchorElement>) =>
+		window.scrollTo({ top: 0 })
+
 	return (
 		<NavigationMenuContainer $deviceType={deviceType}>
-			<Link className="menu-link" to="/about">
+			<Link className="menu-link" to="/about" onClick={handleClick}>
 				<span>ABOUT</span>
 			</Link>
-			<Link className="menu-link" to="/">
+			<Link className="menu-link" to="/" onClick={handleClick}>
 				<span>SERVICE</span>
 			</Link>
 			<Link className="menu-link" to="/">
 				<span>PRICING</span>
 			</Link>
-			<Link className="menu-link" to="/">
+			<Link className="menu-link" to="/" onClick={handleClick}>
 				<span>PARTNERSHIP</span>
 			</Link>
 			{userId.length === 0 ? (
