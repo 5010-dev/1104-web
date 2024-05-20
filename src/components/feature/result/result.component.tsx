@@ -1,5 +1,5 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useContentsStore } from '../../../store/contentsStore'
+import { useHomeContentsStore } from '../../../store/homeContentsStore'
 
 import ResultItem from './result-item/result-item.component'
 
@@ -7,7 +7,7 @@ import { ResultContainer } from './result.styles'
 
 export default function Result() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { heading, items } = useContentsStore((state) => state.result)
+	const { heading, items } = useHomeContentsStore((state) => state.result)
 
 	return (
 		<ResultContainer $deviceType={deviceType}>

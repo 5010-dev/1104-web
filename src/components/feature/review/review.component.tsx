@@ -2,7 +2,7 @@ import { motion, useMotionTemplate } from 'framer-motion'
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useContentsStore } from '../../../store/contentsStore'
+import { useHomeContentsStore } from '../../../store/homeContentsStore'
 
 import { ReviewContainer } from './review.styles'
 
@@ -11,7 +11,7 @@ import Button from '../../global/button/button.component'
 
 export default function Review() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { items } = useContentsStore((state) => state.review)
+	const { items } = useHomeContentsStore((state) => state.review)
 	const { ref, scrollX, handleMouseEnter, handleMouseLeave } =
 		useScrollAnimation(true)
 

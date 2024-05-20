@@ -1,5 +1,5 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useContentsStore } from '../../../store/contentsStore'
+import { useHomeContentsStore } from '../../../store/homeContentsStore'
 
 import { CommunityContainer } from './community.styles'
 
@@ -7,8 +7,8 @@ import Button from '../../global/button/button.component'
 
 export default function Community() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const image = useContentsStore((state) => state.community.image)
-	const { caption, heading, body } = useContentsStore(
+	const image = useHomeContentsStore((state) => state.community.image)
+	const { caption, heading, body } = useHomeContentsStore(
 		(state) => state.community.text,
 	)
 

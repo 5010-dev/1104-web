@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useContentsStore } from '../../../store/contentsStore'
+import { useHomeContentsStore } from '../../../store/homeContentsStore'
 
 import { FooterContainer } from './footer.styles'
 
@@ -9,7 +9,7 @@ import TextLink from '../text-link/text-link.component'
 
 export default function Footer() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { logoUrl, simpleDisclaimer } = useContentsStore(
+	const { logoUrl, simpleDisclaimer } = useHomeContentsStore(
 		(state) => state.footer,
 	)
 	const {
@@ -21,7 +21,7 @@ export default function Footer() {
 		privacyOfficer,
 		csMail,
 		hosting,
-	} = useContentsStore((state) => state.footer.companyInfo)
+	} = useHomeContentsStore((state) => state.footer.companyInfo)
 
 	const handleNumCheckClick = (e: MouseEvent<HTMLSpanElement>) => {
 		const numStr = regNum.replace(/-/g, '')

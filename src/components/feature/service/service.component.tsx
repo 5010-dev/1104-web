@@ -1,5 +1,5 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useContentsStore } from '../../../store/contentsStore'
+import { useHomeContentsStore } from '../../../store/homeContentsStore'
 
 import Button from '../../global/button/button.component'
 
@@ -7,7 +7,7 @@ import { ServiceContainer } from './service.styles'
 
 export default function Service() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { items } = useContentsStore((state) => state.service)
+	const { items } = useHomeContentsStore((state) => state.service)
 
 	return (
 		<ServiceContainer $deviceType={deviceType}>

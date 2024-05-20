@@ -1,5 +1,5 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useContentsStore } from '../../../store/contentsStore'
+import { useHomeContentsStore } from '../../../store/homeContentsStore'
 
 import Button from '../../global/button/button.component'
 
@@ -7,10 +7,10 @@ import { AboutContainer } from './about.styles'
 
 export default function About() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { heading, body, caption } = useContentsStore(
+	const { heading, body, caption } = useHomeContentsStore(
 		(state) => state.about.text,
 	)
-	const { items } = useContentsStore((state) => state.about)
+	const { items } = useHomeContentsStore((state) => state.about)
 
 	return (
 		<AboutContainer $deviceType={deviceType}>

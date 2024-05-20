@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useContentsStore } from '../../../store/contentsStore'
+import { useHomeContentsStore } from '../../../store/homeContentsStore'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 
 import { HeroContainer } from './hero.styles'
@@ -12,7 +12,7 @@ import TextLink from '../../global/text-link/text-link.component'
 
 export default function Hero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { image, text } = useContentsStore((state) => state.home)
+	const { image, text } = useHomeContentsStore((state) => state.home)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
 
 	const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {}

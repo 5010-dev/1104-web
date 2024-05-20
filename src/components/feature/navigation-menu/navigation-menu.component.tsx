@@ -14,7 +14,7 @@ export default function NavigationMenu() {
 
 	return (
 		<NavigationMenuContainer $deviceType={deviceType}>
-			<Link className="menu-link" to="/">
+			<Link className="menu-link" to="/about">
 				<span>ABOUT</span>
 			</Link>
 			<Link className="menu-link" to="/">

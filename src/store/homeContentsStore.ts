@@ -36,7 +36,7 @@ export type ReviewItem = {
 	platform: 'KMONG' | 'WADIZ'
 }
 
-export interface ContentsState {
+export interface HomeContentsState {
 	home: {
 		image: {
 			backgroundImage: string
@@ -103,7 +103,7 @@ export interface ContentsState {
 	}
 }
 
-export const useContentsStore = create<ContentsState>((set) => ({
+export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 	home: {
 		image: {
 			backgroundImage: backgroundImage,

@@ -1,12 +1,12 @@
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useContentsStore } from '../../../store/contentsStore'
+import { useHomeContentsStore } from '../../../store/homeContentsStore'
 
 import { AchievementContainer } from './achievement.styles'
 import AchievementItem from './achievement-item/achievement-item.component'
 
 export default function Achievement() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { heading, items } = useContentsStore((state) => state.achievement)
+	const { heading, items } = useHomeContentsStore((state) => state.achievement)
 
 	return (
 		<AchievementContainer $deviceType={deviceType}>
