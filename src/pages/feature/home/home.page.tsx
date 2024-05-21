@@ -22,11 +22,13 @@ export default function Home() {
 
 	useLayoutEffect(() => {
 		if (isScrollToSubscription) {
-			ref.current?.scrollIntoView({
-				behavior: isSamePage ? 'smooth' : 'auto',
-				block: 'center',
-			})
-			resetScrollState()
+			setTimeout(() => {
+				ref.current?.scrollIntoView({
+					behavior: isSamePage ? 'smooth' : 'auto',
+					block: 'center',
+				})
+				resetScrollState()
+			}, 100)
 		}
 	}, [isSamePage, isScrollToSubscription, resetScrollState])
 
