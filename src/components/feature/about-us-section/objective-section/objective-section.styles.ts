@@ -48,7 +48,7 @@ export const ObjectiveSectionContainer = styled(Container)<Props>`
 		& > h2.display {
 			${({ theme }) => getTypography(theme, 'display')}
 			font-size: ${({ $deviceType }) =>
-				$deviceType === 'mobile' ? '3rem' : '6rem'};
+				$deviceType === 'mobile' ? '3.5rem' : '6rem'};
 		}
 	}
 
