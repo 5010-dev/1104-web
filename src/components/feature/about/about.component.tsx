@@ -1,3 +1,6 @@
+import { MouseEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/homeContentsStore'
 
@@ -11,6 +14,12 @@ export default function About() {
 		(state) => state.about.text,
 	)
 	const { items } = useHomeContentsStore((state) => state.about)
+	const navigate = useNavigate()
+
+	const hadleAboutUs = (e: MouseEvent<HTMLButtonElement>) => {
+		navigate('/about')
+		window.scrollTo({ top: 0 })
+	}
 
 	return (
 		<AboutContainer $deviceType={deviceType}>
@@ -33,11 +42,13 @@ export default function About() {
 			</div>
 			<Button
 				text="더 알아보기"
+				accessibleName="text-container"
 				appearance="neutral"
 				hierarchy="secondary"
 				stroke="outlined"
 				shape="rounding"
 				size="md"
+				handleClick={hadleAboutUs}
 			/>
 		</AboutContainer>
 	)
