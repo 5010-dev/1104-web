@@ -1,4 +1,7 @@
+import { useLayoutEffect, useRef } from 'react'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useScrollStore } from '../../../store/globalUiStore'
 
 import Hero from '../../../components/feature/hero/hero.component'
 import About from '../../../components/feature/about/about.component'
@@ -12,14 +15,27 @@ import Community from '../../../components/feature/community/community.component
 import { HomeContainer } from './home.styles'
 
 export default function Home() {
+	const ref = useRef<HTMLDivElement>(null)
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { isSamePage, isScrollToSubscription, resetScrollState } =
+		useScrollStore()
+
+	useLayoutEffect(() => {
+		if (isScrollToSubscription) {
+			ref.current?.scrollIntoView({
+				behavior: isSamePage ? 'smooth' : 'auto',
+				block: 'center',
+			})
+			resetScrollState()
+		}
+	}, [isSamePage, isScrollToSubscription, resetScrollState])
 
 	return (
 		<HomeContainer $deviceType={deviceType}>
 			<Hero />
 			<About />
 			<Service />
-			<Subscription />
+			<Subscription ref={ref} />
 			<div id="achievement-result-container">
 				<Achievement />
 				<Result />
