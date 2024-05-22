@@ -102,6 +102,7 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 			span#caption {
 				${({ theme }) => getTypography(theme, 'caption')}
 				font-weight: bold;
+				font-size: 1rem;
 				color: ${({ theme }) =>
 					getColour(theme, 'accent', 'primary', 'active')};
 			}
