@@ -39,6 +39,12 @@ const Subscription = forwardRef<HTMLDivElement, SubscriptionProps>(
 				$isScrolling={isScrolling}
 				ref={ref}
 			>
+				<div id="section-heading-container">
+					<span id="section-category-text">SUBSCIPTION</span>
+					<h1 id="section-heading">
+						지금 바로 1104 R&I의 서비스들을 만나보세요.
+					</h1>
+				</div>
 				<div ref={scrollableDivRef} id="scrolling-container">
 					<div id="items-container">
 						{service.map((item, index) => (

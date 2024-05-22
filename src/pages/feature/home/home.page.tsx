@@ -37,12 +37,12 @@ export default function Home() {
 			<Hero />
 			<About />
 			<Service />
-			<Subscription ref={ref} />
 			<div id="achievement-result-container">
 				<Achievement />
 				<Result />
 				<Review />
 			</div>
+			<Subscription ref={ref} />
 			<Community />
 		</HomeContainer>
 	)

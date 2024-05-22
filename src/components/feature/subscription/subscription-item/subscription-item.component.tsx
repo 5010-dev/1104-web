@@ -11,7 +11,7 @@ import Button from '../../../global/button/button.component'
 
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
-	const { plan, summary, features, price } = item
+	const { plan, summary, features, price, priceCaption } = item
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -35,14 +35,16 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 					<h1 id="heading">
 						{price !== 0 ? (
 							<>
-								<span id="price-caption">월 ₩</span>
+								<span id="price-caption">최초 ₩</span>
 								{price.toLocaleString()}
 							</>
 						) : (
 							'무료'
 						)}
 					</h1>
+					<span id="price-text-caption">{priceCaption}</span>
 				</div>
+				<hr id="vertical-line" />
 				<div id="description-text-container">
 					<p id="body">{summary}</p>
 					<div id="features-text-container">

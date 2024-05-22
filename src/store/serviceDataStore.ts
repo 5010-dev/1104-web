@@ -7,6 +7,7 @@ export type Service = {
 	summary: string
 	features: string[]
 	price: number
+	priceCaption: string
 }
 
 export interface ServiceDataState {
@@ -20,13 +21,14 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			plan: 'FREE',
 			isFlagship: false,
 			summary:
-				'1:1 상담받고 부담없이 5010 매매 전략 전자책 체험판과 5010 인디케이터를 무료로 체험해 보세요.',
+				'1:1 무료 상담부터 받고, 부담없이 5010 매매 전략 전자책 체험판과 5010 인디케이터를 무료로 체험해 보세요.',
 			features: [
 				'5010 매매 전략 전자책 체험판',
 				'5010 인디케이터 무료 체험 3일',
 				'체험판 이용 중 구매시 10% 할인 혜택',
 			],
 			price: 0,
+			priceCaption: '체험판 이용중 구매시 할인 혜택',
 		},
 		{
 			name: '5010 매매 전략',
@@ -42,6 +44,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 				'24시간 어드바이저 서포트',
 			],
 			price: 258000,
+			priceCaption: '이후 월 W228,000',
 		},
 		{
 			name: '5010 매매 전략',
@@ -55,6 +58,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 				'기술적 분석 강의 VOD + 강의자료',
 			],
 			price: 928000,
+			priceCaption: '이후 월 W228,000',
 		},
 	],
 }))

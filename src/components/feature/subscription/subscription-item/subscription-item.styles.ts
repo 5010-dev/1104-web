@@ -12,8 +12,10 @@ type Props = SubscriptionItemContainerProps
 export const SubscriptionItemContainer = styled.div<Props>`
 	position: relative;
 
-	width: ${({ theme, $deviceType }) =>
-		$deviceType === 'mobile' ? '18rem' : '20rem'};
+	/* width: ${({ theme, $deviceType }) =>
+		$deviceType === 'mobile' ? '20rem' : '20rem'}; */
+
+	width: 20rem;
 
 	display: flex;
 	flex-direction: column;
@@ -127,7 +129,15 @@ export const SubscriptionItemContainer = styled.div<Props>`
 		div#price-text-container {
 			width: ${({ theme }) => theme.layout.container.width};
 
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+			gap: 0.5rem;
+
 			padding: ${({ theme }) => `${theme.layout.container.padding.sm} 0`};
+
+			/* border-bottom: 0.125rem solid #151515; */
 
 			h1#heading {
 				${({ theme }) => getTypography(theme, 'display')}
@@ -141,6 +151,27 @@ export const SubscriptionItemContainer = styled.div<Props>`
 					line-height: 100%;
 				}
 			}
+
+			span#price-text-caption {
+				${({ theme }) => getTypography(theme, 'body')}
+				/* font-size: 0.875rem; */
+				font-weight: bold;
+				color: ${({ theme, $hierarchy }) =>
+					hexToRgba(getColour(theme, 'neutral', $hierarchy, 'active'), 0.3)};
+
+				/* margin-bottom: ${({ theme }) => theme.layout.component.gutter}; */
+			}
+		}
+
+		hr#vertical-line {
+			width: ${({ theme }) => theme.layout.component.width};
+			height: 0.0625rem;
+
+			border: none;
+			background-color: ${({ theme, $hierarchy }) =>
+				hexToRgba(getColour(theme, 'neutral', $hierarchy, 'active'), 0.15)};
+
+			margin-bottom: ${({ theme }) => theme.layout.component.gutter};
 		}
 
 		div#description-text-container {
@@ -153,7 +184,9 @@ export const SubscriptionItemContainer = styled.div<Props>`
 			gap: ${({ theme }) => theme.layout.section.gutter};
 
 			p#body {
+				width: 90%;
 				${({ theme }) => getTypography(theme, 'body')}
+				font-size: 0.875rem;
 				color: ${({ theme, $hierarchy }) =>
 					getColour(theme, 'neutral', $hierarchy, 'active')};
 			}
