@@ -44,7 +44,6 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 					</h1>
 					<span id="price-text-caption">{priceCaption}</span>
 				</div>
-				<hr id="vertical-line" />
 				<div id="description-text-container">
 					<p id="body">{summary}</p>
 					<div id="features-text-container">
@@ -64,7 +63,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 			<div id="button-container">
 				<Button
 					accessibleName="button-container"
-					text={price !== 0 ? '구독하기' : '체험하기'}
+					text={price !== 0 ? '구독하기 →' : '체험하기 →'}
 					appearance={hierarchy === 'primary' ? 'accent' : 'neutral'}
 					hierarchy={hierarchy}
 					stroke={hierarchy === 'primary' ? 'filled' : 'outlined'}

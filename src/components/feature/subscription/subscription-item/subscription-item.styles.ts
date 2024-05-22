@@ -12,10 +12,8 @@ type Props = SubscriptionItemContainerProps
 export const SubscriptionItemContainer = styled.div<Props>`
 	position: relative;
 
-	/* width: ${({ theme, $deviceType }) =>
-		$deviceType === 'mobile' ? '20rem' : '20rem'}; */
-
-	width: 20rem;
+	width: ${({ theme, $deviceType }) =>
+		$deviceType === 'mobile' ? '18.5rem' : '20rem'};
 
 	display: flex;
 	flex-direction: column;
@@ -34,7 +32,7 @@ export const SubscriptionItemContainer = styled.div<Props>`
 					'neutral',
 					'secondary',
 					'filled',
-					'rounded2',
+					'rounded1',
 					1,
 			  )
 			: getContainerStyle(
@@ -42,7 +40,7 @@ export const SubscriptionItemContainer = styled.div<Props>`
 					'neutral',
 					'tertiary',
 					'filled',
-					'rounded2',
+					'rounded1',
 					1,
 			  )}
 
@@ -76,7 +74,10 @@ export const SubscriptionItemContainer = styled.div<Props>`
 			align-items: center;
 			gap: 0.5rem;
 
-			padding: ${({ theme }) => theme.layout.component.padding.default};
+			padding: ${({ theme, $deviceType }) =>
+				$deviceType === 'mobile'
+					? theme.layout.component.padding.sm
+					: theme.layout.component.padding.default};
 
 			${({ theme, $hierarchy }) =>
 				$hierarchy === 'primary'
@@ -85,7 +86,7 @@ export const SubscriptionItemContainer = styled.div<Props>`
 							'accent',
 							'primary',
 							'filled',
-							'rounded3',
+							'rounded2',
 							0.75,
 					  )
 					: getContainerStyle(
@@ -93,7 +94,7 @@ export const SubscriptionItemContainer = styled.div<Props>`
 							'neutral',
 							'secondary',
 							'filled',
-							'rounded3',
+							'rounded2',
 							0.1,
 					  )}
 
@@ -137,8 +138,6 @@ export const SubscriptionItemContainer = styled.div<Props>`
 
 			padding: ${({ theme }) => `${theme.layout.container.padding.sm} 0`};
 
-			/* border-bottom: 0.125rem solid #151515; */
-
 			h1#heading {
 				${({ theme }) => getTypography(theme, 'display')}
 				font-size: 2.5rem;
@@ -154,24 +153,10 @@ export const SubscriptionItemContainer = styled.div<Props>`
 
 			span#price-text-caption {
 				${({ theme }) => getTypography(theme, 'body')}
-				/* font-size: 0.875rem; */
 				font-weight: bold;
 				color: ${({ theme, $hierarchy }) =>
 					hexToRgba(getColour(theme, 'neutral', $hierarchy, 'active'), 0.3)};
-
-				/* margin-bottom: ${({ theme }) => theme.layout.component.gutter}; */
 			}
-		}
-
-		hr#vertical-line {
-			width: ${({ theme }) => theme.layout.component.width};
-			height: 0.0625rem;
-
-			border: none;
-			background-color: ${({ theme, $hierarchy }) =>
-				hexToRgba(getColour(theme, 'neutral', $hierarchy, 'active'), 0.15)};
-
-			margin-bottom: ${({ theme }) => theme.layout.component.gutter};
 		}
 
 		div#description-text-container {
@@ -181,7 +166,10 @@ export const SubscriptionItemContainer = styled.div<Props>`
 			flex-direction: column;
 			justify-content: flex-start;
 			align-items: center;
-			gap: ${({ theme }) => theme.layout.section.gutter};
+			gap: ${({ theme, $deviceType }) =>
+				$deviceType === 'mobile'
+					? theme.layout.container.gutter
+					: theme.layout.section.gutter};
 
 			p#body {
 				width: 90%;
@@ -209,7 +197,7 @@ export const SubscriptionItemContainer = styled.div<Props>`
 						'neutral',
 						$hierarchy,
 						'filled',
-						'rounded3',
+						'rounded2',
 						0.1,
 					)}
 

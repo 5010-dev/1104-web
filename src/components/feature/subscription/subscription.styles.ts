@@ -12,15 +12,11 @@ type Props = SubscriptionContainerProps
 export const SubscriptionContainer = styled(SectionContainer)<Props>`
 	overflow-x: visible;
 
-	margin: ${({ theme, $deviceType }) =>
+	padding: ${({ theme, $deviceType }) =>
 		`${getDeviceTypePadding(theme, $deviceType, 'section')} 0`};
-
-	padding: 0;
 
 	div#section-heading-container {
 		width: ${({ theme }) => theme.layout.container.width};
-		margin-top: ${({ theme, $deviceType }) =>
-			getDeviceTypePadding(theme, $deviceType, 'section')};
 
 		text-align: center;
 
