@@ -24,13 +24,17 @@ export default function Accordion(props: AccordionProps) {
 		setIsOpen((state) => !state)
 
 	return (
-		<AccordionContainer $deviceType={deviceType} as={motion.div}>
+		<AccordionContainer
+			$deviceType={deviceType}
+			as={motion.div}
+			onClick={handleOnOff}
+		>
 			<motion.div
 				id="background-container"
 				layout
 				transition={{ duration: 0.15 }}
 			/>
-			<div id="heading-container" onClick={handleOnOff}>
+			<div id="heading-container">
 				<h3 id="heading">{heading}</h3>
 				<motion.span
 					id="handle-icon"

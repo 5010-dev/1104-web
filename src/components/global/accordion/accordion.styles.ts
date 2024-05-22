@@ -20,8 +20,9 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'container')};
-
 	border-radius: ${({ theme }) => theme.shape.filled.rounded2.borderRadii};
+
+	cursor: pointer;
 
 	div#background-container {
 		position: absolute;
@@ -86,7 +87,7 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 			align-items: flex-start;
 			gap: ${({ theme }) => theme.layout.component.gutter};
 
-			padding-left: 1.5rem;
+			padding-left: 1.25rem;
 			margin-top: ${({ theme }) => theme.layout.section.gutter};
 
 			li.detail-text {
