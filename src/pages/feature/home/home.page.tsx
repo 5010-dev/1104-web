@@ -6,10 +6,11 @@ import { useScrollStore } from '../../../store/globalUiStore'
 import Hero from '../../../components/feature/hero/hero.component'
 import About from '../../../components/feature/about/about.component'
 import Service from '../../../components/feature/service/service.component'
-import Subscription from '../../../components/feature/subscription/subscription.component'
 import Achievement from '../../../components/feature/achievement/achievement.component'
 import Result from '../../../components/feature/result/result.component'
 import Review from '../../../components/feature/review/review.component'
+import Subscription from '../../../components/feature/subscription/subscription.component'
+import FrequentQuestions from '../../../components/feature/frequent-questions/frequent-questions.component'
 import Community from '../../../components/feature/community/community.component'
 
 import { HomeContainer } from './home.styles'
@@ -43,6 +44,7 @@ export default function Home() {
 				<Review />
 			</div>
 			<Subscription ref={ref} />
+			<FrequentQuestions />
 			<Community />
 		</HomeContainer>
 	)
