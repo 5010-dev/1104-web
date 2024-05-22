@@ -49,11 +49,11 @@ export const SubscriptionItemContainer = styled.div<Props>`
 		css`
 			-webkit-filter: drop-shadow(
 				0 0 0.5rem
-					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)}
+					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.5)}
 			);
 			filter: drop-shadow(
 				0 0 0.5rem
-					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)}
+					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.5)}
 			);
 		`}
 
