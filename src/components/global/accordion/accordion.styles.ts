@@ -49,7 +49,10 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 		gap: ${({ theme }) => theme.layout.container.gutter};
 
 		h3#heading {
-			${({ theme }) => getTypography(theme, 'heading3')}
+			${({ theme, $deviceType }) =>
+				$deviceType === 'mobile'
+					? getTypography(theme, 'subheading')
+					: getTypography(theme, 'heading3')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
 			text-align: left;
@@ -72,6 +75,28 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'inactive')};
 			text-align: left;
+		}
+
+		ul#details-container {
+			width: ${({ theme }) => theme.layout.container.width};
+
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			gap: ${({ theme }) => theme.layout.component.gutter};
+
+			padding-left: 1.5rem;
+			margin-top: ${({ theme }) => theme.layout.section.gutter};
+
+			li.detail-text {
+				${({ theme }) => getTypography(theme, 'body')}
+				font-size: 0.875rem;
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'inactive')};
+
+				text-align: left;
+			}
 		}
 	}
 `

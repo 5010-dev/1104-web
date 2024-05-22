@@ -28,11 +28,18 @@ export default function FrequentQuestions() {
 				<span id="section-category-text">FAQ</span>
 				<h1 id="section-heading">자주 묻는 질문들을 모아봤어요.</h1>
 			</div>
+
 			<div id="questions-container">
 				{faq.map((item, index) => (
-					<Accordion key={index} heading={item.heading} body={item.body} />
+					<Accordion
+						key={index}
+						heading={item.heading}
+						body={item.body}
+						details={item.details ? item.details : undefined}
+					/>
 				))}
 			</div>
+
 			<TextLink
 				description="그 외에 다른 궁금한 점들이 있으시다면"
 				text="언제든지 문의주세요!"

@@ -15,7 +15,7 @@ const handleIconVariants = {
 }
 
 export default function Accordion(props: AccordionProps) {
-	const { heading, body } = props
+	const { heading, body, details } = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -52,6 +52,15 @@ export default function Accordion(props: AccordionProps) {
 						exit={{ opacity: 0, y: -50 }}
 					>
 						<p id="body">{body}</p>
+						{details ? (
+							<ul id="details-container">
+								{details.map((item, index) => (
+									<li key={index} className="detail-text">
+										{item}
+									</li>
+								))}
+							</ul>
+						) : null}
 					</motion.div>
 				) : null}
 			</AnimatePresence>
