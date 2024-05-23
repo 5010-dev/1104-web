@@ -20,15 +20,25 @@ export const CheckBoxContainer = styled.label<CheckBoxContainerProps>`
 		${({ theme }) => getTypography(theme, 'body')}
 		font-size: 1.25rem;
 		line-height: 130%;
-		color: ${({ theme, $isChecked }) =>
+		color: ${({ theme, $isChecked, $hierarchy }) =>
 			$isChecked
 				? `${getColour(theme, 'accent', 'primary', 'active')}`
-				: `${getColour(theme, 'neutral', 'secondary', 'active')}`};
+				: `${getColour(theme, 'neutral', $hierarchy, 'active')}`};
 	}
 
 	span#check-box-text {
+		position: relative;
+
 		${({ theme }) => getTypography(theme, 'body')}
-		color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
+		color: ${({ theme, $hierarchy }) =>
+			getColour(theme, 'neutral', $hierarchy, 'active')};
 		text-align: left;
+
+		#required-tag {
+			position: absolute;
+			bottom: 0.2rem;
+			display: inline-block;
+			margin-left: 0.25rem;
+		}
 	}
 `

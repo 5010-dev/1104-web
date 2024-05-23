@@ -79,7 +79,7 @@ export const AuthLayoutContainer = styled(PageLayoutContainer)`
 			justify-content: space-between;
 			align-items: center;
 
-			margin-bottom: ${({ theme }) => theme.layout.page.gutter};
+			margin-bottom: ${({ theme }) => theme.layout.section.gutter};
 
 			img#company-logo {
 				width: 3.5rem;
