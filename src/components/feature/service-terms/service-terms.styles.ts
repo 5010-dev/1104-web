@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { getTypography } from '../../../utils/typo.utils'
-import { getColour } from '../../../utils/colour.utils'
+import { hexToRgba, getColour } from '../../../utils/colour.utils'
 import { getContainerStyle } from '../../../utils/style.utils'
 
 import { ServiceTermsContainerProps } from './service-terms.types'
@@ -16,7 +16,11 @@ export const ServiceTermsContainer = styled.div<Props>`
 
 	${({ theme }) => getTypography(theme, 'body')}
 	font-size: 0.875rem;
-	color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
+	color: ${({ theme }) =>
+		hexToRgba(
+			getColour(theme, 'neutral', 'secondary', 'active'),
+			0.5,
+		)} !important;
 	text-align: left;
 
 	${({ theme }) =>
