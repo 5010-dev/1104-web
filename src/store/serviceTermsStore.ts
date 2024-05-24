@@ -1,59 +1,97 @@
 import { create } from 'zustand'
 import { fetchMarkdownFile } from '../utils/markdown.utils'
-
 import privacyAgreement from '../data/privacy-agreement.md'
 import policyTerms from '../data/policy-terms.md'
 import privacyTerms from '../data/privacy-terms.md'
+import ageVerification from '../data/age-verification.md'
 
 type Terms = {
 	data: string
 	agreement: boolean
 }
 
-export interface ServiceTermsState {
+export interface ServiceTermsList {
 	privacyAgreement: Terms
 	privacyTerms: Terms
 	policyTerms: Terms
-	// ageVerification: Terms
+	ageVerification: Terms
+}
+
+export interface ServiceTermsState {
+	serviceTermsList: ServiceTermsList
 }
 
 export interface ServiceTermsAction {
-	fetchTermsData: (key: keyof ServiceTermsState) => Promise<void>
-	updateTermsAgreement: (key: keyof ServiceTermsState) => void
+	fetchTermsData: (key: keyof ServiceTermsList) => Promise<void>
+	updateTermsAgreement: (key: keyof ServiceTermsList, value: boolean) => void
+	toggleAllTermsAgreement: (value: boolean) => void
+	resetServiceTermsStore: () => void
+}
+
+const initialState: ServiceTermsList = {
+	privacyAgreement: { data: '', agreement: false },
+	privacyTerms: { data: '', agreement: false },
+	policyTerms: { data: '', agreement: false },
+	ageVerification: { data: '', agreement: false },
 }
 
 export const useServiceTermsStore = create<
 	ServiceTermsState & ServiceTermsAction
 >((set) => ({
-	privacyAgreement: { data: '', agreement: false },
-	privacyTerms: { data: '', agreement: false },
-	policyTerms: { data: '', agreement: false },
-	// ageVerification: { data: '', agreement: false},
-	fetchTermsData: async (key: keyof ServiceTermsState) => {
-		let filePath = ''
-		switch (key) {
-			case 'privacyAgreement':
-				filePath = privacyAgreement
-				break
-			case 'privacyTerms':
-				filePath = privacyTerms
-				break
-			case 'policyTerms':
-				filePath = policyTerms
-				break
-			// case 'ageVerification':
-			//   filePath = ageVerification
-			//   break;
-			default:
-				throw new Error(`Invalid key: ${key}`)
+	serviceTermsList: initialState,
+
+	fetchTermsData: async (key: keyof ServiceTermsList) => {
+		const filePath = {
+			privacyAgreement,
+			privacyTerms,
+			policyTerms,
+			ageVerification,
+		}[key]
+
+		if (!filePath) {
+			throw new Error(`Invalid key: ${key}`)
 		}
 
 		const content = await fetchMarkdownFile(filePath)
-		set({ [key]: { data: content } })
-	},
-	updateTermsAgreement: (key: keyof ServiceTermsState) =>
 		set((state) => ({
-			...state,
-			[key]: { ...state, agreement: !state[key].agreement },
+			serviceTermsList: {
+				...state.serviceTermsList,
+				[key]: {
+					...state.serviceTermsList[key],
+					data: content,
+				},
+			},
+		}))
+	},
+
+	updateTermsAgreement: (key: keyof ServiceTermsList, value: boolean) =>
+		set((state) => ({
+			serviceTermsList: {
+				...state.serviceTermsList,
+				[key]: {
+					...state.serviceTermsList[key],
+					agreement: value,
+				},
+			},
 		})),
+
+	toggleAllTermsAgreement: (value: boolean) =>
+		set((state) => {
+			const updatedTermsList = Object.entries(state.serviceTermsList).reduce(
+				(acc, [key, terms]) => ({
+					...acc,
+					[key]: {
+						...terms,
+						agreement: value,
+					},
+				}),
+				{} as ServiceTermsList,
+			)
+
+			return {
+				serviceTermsList: updatedTermsList,
+			}
+		}),
+
+	resetServiceTermsStore: () => set({ serviceTermsList: initialState }),
 }))

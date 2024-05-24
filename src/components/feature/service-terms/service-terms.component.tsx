@@ -10,7 +10,9 @@ import { ServiceTermsContainer } from './service-terms.styles'
 export default function ServiceTerms(props: ServiceTermsProps) {
 	const { terms, height } = props
 	const { fetchTermsData } = useServiceTermsStore()
-	const termsData = useServiceTermsStore((state) => state[terms].data)
+	const termsData = useServiceTermsStore(
+		(state) => state.serviceTermsList[terms].data,
+	)
 
 	useEffect(() => {
 		fetchTermsData(terms)

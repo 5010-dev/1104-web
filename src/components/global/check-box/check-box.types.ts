@@ -6,6 +6,8 @@ export type CheckBoxProps = {
 	className?: string
 	text?: string
 	name: string
+	// checked?: boolean
+	checked: boolean
 	isRequired?: boolean
 	hierarchy: ComponentHierarchy
 	handleCheck?: (e: ChangeEvent<HTMLInputElement>) => void

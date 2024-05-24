@@ -9,4 +9,9 @@ export const UserAgreementContainer = styled.div`
 	justify-content: flex-start;
 	align-items: flex-start;
 	gap: ${({ theme }) => theme.layout.container.gutter};
+
+	#registration-button {
+		align-self: center;
+		margin-top: ${({ theme }) => theme.layout.container.gutter};
+	}
 `

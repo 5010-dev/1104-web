@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react'
+import { ChangeEvent } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
@@ -10,13 +10,18 @@ import { CheckBoxContainer } from './check-box.styles'
 import Chip from '../chip/chip.component'
 
 export default function CheckBox(props: CheckBoxProps) {
-	const { id, className, text, name, isRequired, hierarchy, handleCheck } =
-		props
-
-	const [isChecked, setIsChecked] = useState<boolean>(false)
+	const {
+		id,
+		className,
+		text,
+		name,
+		checked,
+		isRequired,
+		hierarchy,
+		handleCheck,
+	} = props
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		setIsChecked((state) => !state)
 		handleCheck && handleCheck(e)
 	}
 
@@ -25,17 +30,17 @@ export default function CheckBox(props: CheckBoxProps) {
 			id={id}
 			className={className}
 			$hierarchy={hierarchy}
-			$isChecked={isChecked}
+			$isChecked={checked}
 		>
 			<input
 				type="checkbox"
 				name={name}
-				checked={isChecked}
+				checked={checked}
 				onChange={handleChange}
 				required={isRequired}
 			/>
 			<span id="check-box-icon">
-				<FontAwesomeIcon icon={isChecked ? faSquareCheck : faSquare} />
+				<FontAwesomeIcon icon={checked ? faSquareCheck : faSquare} />
 			</span>
 			{text ? (
 				<>

@@ -1,7 +1,7 @@
-import { ServiceTermsState } from '../../../store/serviceTermsStore'
+import { ServiceTermsList } from '../../../store/serviceTermsStore'
 
 export type ServiceTermsProps = {
-	terms: keyof ServiceTermsState
+	terms: keyof ServiceTermsList
 	height?: string
 }
 
