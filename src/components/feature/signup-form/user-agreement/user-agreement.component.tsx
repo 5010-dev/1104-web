@@ -51,7 +51,6 @@ export default function UserAgreement(props: UserAgreementProps) {
 
 	return (
 		<UserAgreementContainer>
-			<ServiceTerms terms="policyTerms" height="10rem" />
 			<CheckBox
 				hierarchy="secondary"
 				name="policyTerms"
@@ -60,7 +59,11 @@ export default function UserAgreement(props: UserAgreementProps) {
 				isRequired
 				handleCheck={handleCheck}
 			/>
-			<ServiceTerms terms="privacyAgreement" height="10rem" />
+			<ServiceTerms
+				className="service-terms"
+				terms="policyTerms"
+				height="8rem"
+			/>
 			<CheckBox
 				hierarchy="secondary"
 				name="privacyAgreement"
@@ -68,6 +71,11 @@ export default function UserAgreement(props: UserAgreementProps) {
 				text="개인정보 수집 및 이용 동의"
 				isRequired
 				handleCheck={handleCheck}
+			/>
+			<ServiceTerms
+				className="service-terms"
+				terms="privacyAgreement"
+				height="8rem"
 			/>
 			<CheckBox
 				hierarchy="secondary"
@@ -77,6 +85,7 @@ export default function UserAgreement(props: UserAgreementProps) {
 				isRequired
 				handleCheck={handleCheck}
 			/>
+
 			<CheckBox
 				hierarchy="secondary"
 				name="allCheck"

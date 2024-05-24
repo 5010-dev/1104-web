@@ -8,7 +8,7 @@ import { ServiceTermsProps } from './service-terms.types'
 import { ServiceTermsContainer } from './service-terms.styles'
 
 export default function ServiceTerms(props: ServiceTermsProps) {
-	const { terms, height } = props
+	const { id, className, terms, height } = props
 	const { fetchTermsData } = useServiceTermsStore()
 	const termsData = useServiceTermsStore(
 		(state) => state.serviceTermsList[terms].data,
@@ -19,7 +19,7 @@ export default function ServiceTerms(props: ServiceTermsProps) {
 	}, [fetchTermsData, terms])
 
 	return (
-		<ServiceTermsContainer $height={height}>
+		<ServiceTermsContainer $height={height} id={id} className={className}>
 			<div id="contents-container">
 				<Markdown>{termsData}</Markdown>
 			</div>
