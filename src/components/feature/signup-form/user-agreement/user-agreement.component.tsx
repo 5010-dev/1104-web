@@ -5,13 +5,16 @@ import {
 	useServiceTermsStore,
 } from '../../../../store/serviceTermsStore'
 
+import { UserAgreementProps } from './user-agreement.types'
 import { UserAgreementContainer } from './user-agreement.styles'
 
 import ServiceTerms from '../../service-terms/service-terms.component'
 import CheckBox from '../../../global/check-box/check-box.component'
 import Button from '../../../global/button/button.component'
 
-export default function UserAgreement() {
+export default function UserAgreement(props: UserAgreementProps) {
+	const { handleButtonClick } = props
+
 	const [isAllChecked, setIsAllChecked] = useState<boolean>(false)
 	const {
 		serviceTermsList,
@@ -27,6 +30,10 @@ export default function UserAgreement() {
 	}
 
 	const checkAllTrue = () => toggleAllTermsAgreement(!isAllChecked)
+
+	useEffect(() => {
+		resetServiceTermsStore()
+	}, [resetServiceTermsStore])
 
 	useEffect(() => {
 		if (
@@ -85,6 +92,7 @@ export default function UserAgreement() {
 				shape="rounding"
 				text="동의하고 회원 가입하기"
 				disabled={!isAllChecked}
+				handleClick={handleButtonClick}
 			/>
 		</UserAgreementContainer>
 	)

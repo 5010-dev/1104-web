@@ -19,6 +19,9 @@ export default function SignupForm() {
 		navigate('/login', { replace: true, state: { mode: 'login' } })
 	}
 
+	const handleAgreeButton = (e: MouseEvent<HTMLButtonElement>) =>
+		setIsAgreed(true)
+
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
@@ -47,7 +50,7 @@ export default function SignupForm() {
 					}}
 				/>
 			) : (
-				<UserAgreement />
+				<UserAgreement handleButtonClick={handleAgreeButton} />
 			)}
 		</>
 	)
