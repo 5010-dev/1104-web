@@ -8,6 +8,7 @@ import {
 	confirmSignupWithCallback,
 	logInWithCallback,
 } from '../../../services/auth/auth-service'
+import { useLoadingStore } from '../../../store/loadingStore'
 
 import { VerificationFormProps } from './verification-form.types'
 import { VerificationFormContainer } from './verification-form.styles'
@@ -23,6 +24,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 	const { updateToastMessage } = useToastMessageStore()
 	const { password, verificationCode, updateAuthData, resetAuthData } =
 		useAuthDataStore()
+	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const [isValid, setIsValid] = useState<boolean>(false)
 	const navigate = useNavigate()
 	const maxLength = 6
@@ -37,12 +39,14 @@ export default function VerificationForm(props: VerificationFormProps) {
 				if (password) {
 					logInWithCallback(
 						{ username: email, password },
+						() => updateIsLoading(true), // onLoading
 						() => {
 							window.location.replace('/')
 							resetAuthData()
 							// 또는 '/'으로 랜딩하면서 팝업 (할인 및 체험판) 제공?
 						},
 						(error) => updateToastMessage(error),
+						() => updateIsLoading(false), // onLoadingDone
 					)
 				} else {
 					navigate('/login', { state: { mode: 'login' } })

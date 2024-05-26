@@ -6,6 +6,7 @@ import {
 	getLoginUserDataWithCallback,
 } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
+import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
@@ -15,6 +16,7 @@ export default function LoginForm() {
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigate()
+	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 
 	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) => {
 		navigate('/login', { replace: true, state: { mode: 'signup' } })
@@ -25,6 +27,7 @@ export default function LoginForm() {
 
 		logInWithCallback(
 			{ username: email, password },
+			() => updateIsLoading(true), // onLoading
 			async (username, isSignedIn, nextStep) => {
 				if (isSignedIn) {
 					await getLoginUserDataWithCallback(
@@ -52,6 +55,7 @@ export default function LoginForm() {
 			(error) => {
 				updateToastMessage(error)
 			},
+			() => updateIsLoading(false), // onLoadingDone
 		)
 	}
 

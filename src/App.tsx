@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import { useAuthDataStore } from './store/authDataStore'
 import { useDeviceTypeStore } from './store/deviceTypeStore'
 import useDeviceType from './hooks/useDeviceType'
+import { useLoadingStore } from './store/loadingStore'
 import { getLoginUserDataWithCallback } from './services/auth/auth-service'
 import { useToastMessageStore } from './store/globalUiStore'
 
@@ -18,6 +19,7 @@ import Login from './pages/feature/login/login.page'
 import EmailVerification from './pages/feature/email-verification/email-verification.page'
 import AboutUs from './pages/feature/about-us/about-us.page'
 import Account from './pages/feature/account/account.page'
+import Loading from './components/global/loading/loading.component'
 import Toast from './components/global/toast/toast.component'
 
 import './App.css'
@@ -27,6 +29,7 @@ function App() {
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
 	const { updateLoginUser, resetLoginUser } = useAuthDataStore()
 	const { toastMessgae, resetToastMessage } = useToastMessageStore()
+	const isLoading = useLoadingStore((state) => state.isLoading)
 
 	useEffect(() => {
 		updateDeviceType(deviceType)
@@ -73,6 +76,7 @@ function App() {
 								onClose={resetToastMessage}
 							/>
 						) : null}
+						{isLoading ? <Loading /> : null}
 					</div>
 				</ThemeProvider>
 			</Router>

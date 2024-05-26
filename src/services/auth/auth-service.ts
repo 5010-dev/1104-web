@@ -17,10 +17,13 @@ import { ErrorCode, errorMessages } from './auth-error'
  */
 export const logInWithCallback = async (
 	{ username, password }: SignInInput,
+	onLoading: () => void,
 	onSuccess: (username: string, isSignedIn: boolean, nextStep: string) => void,
 	onError: (error: any) => void,
+	onLoadingDone: () => void,
 ): Promise<void> => {
 	try {
+		onLoading()
 		const { isSignedIn, nextStep } = await signIn({ username, password })
 		onSuccess(username, isSignedIn, nextStep.signInStep)
 	} catch (error) {
@@ -29,6 +32,8 @@ export const logInWithCallback = async (
 		} else {
 			onError(error && error.toString())
 		}
+	} finally {
+		onLoadingDone()
 	}
 }
 
