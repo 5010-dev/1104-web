@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
 export const LoadingContainer = styled.div`
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
