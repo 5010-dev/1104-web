@@ -29,7 +29,7 @@ function App() {
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
 	const { updateLoginUser, resetLoginUser } = useAuthDataStore()
 	const { toastMessgae, resetToastMessage } = useToastMessageStore()
-	const isLoading = useLoadingStore((state) => state.isLoading)
+	const { isLoading, updateIsLoading } = useLoadingStore()
 
 	useEffect(() => {
 		updateDeviceType(deviceType)
@@ -38,6 +38,7 @@ function App() {
 	useEffect(() => {
 		const fetchData = async () => {
 			await getLoginUserDataWithCallback(
+				() => updateIsLoading(true),
 				(loginId) => {
 					updateLoginUser(loginId)
 				},
@@ -45,10 +46,11 @@ function App() {
 					resetLoginUser()
 					console.log(error)
 				},
+				() => updateIsLoading(false),
 			)
 		}
 		fetchData()
-	}, [updateLoginUser, resetLoginUser])
+	}, [updateLoginUser, resetLoginUser, updateIsLoading])
 
 	return (
 		<HelmetProvider>

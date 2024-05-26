@@ -31,12 +31,14 @@ export default function LoginForm() {
 			async (username, isSignedIn, nextStep) => {
 				if (isSignedIn) {
 					await getLoginUserDataWithCallback(
+						() => updateIsLoading(true), // onLoading
 						(loginId) => {
 							updateLoginUser(loginId)
 							updateToastMessage('성공적으로 로그인 했습니다.')
 							navigate('/')
 						},
 						(error) => updateToastMessage(error),
+						() => updateIsLoading(false), // onLoadingDone
 					)
 				} else if (!isSignedIn) {
 					switch (nextStep) {

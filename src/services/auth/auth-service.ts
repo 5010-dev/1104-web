@@ -42,14 +42,17 @@ export const logInWithCallback = async (
  */
 export const signUpWithCallback = async (
 	{ username, password }: SignUpInput,
+	onLoading: () => void,
 	onSuccess: (
 		username: string,
 		isSignUpComplete: boolean,
 		nextStep: string,
 	) => void,
 	onError: (error: any) => void,
+	onLoadingDone: () => void,
 ): Promise<void> => {
 	try {
+		onLoading()
 		const { isSignUpComplete, nextStep } = await signUp({
 			username,
 			password,
@@ -61,6 +64,8 @@ export const signUpWithCallback = async (
 		} else {
 			onError(error && error.toString())
 		}
+	} finally {
+		onLoadingDone()
 	}
 }
 
@@ -69,10 +74,13 @@ export const signUpWithCallback = async (
  */
 export const confirmSignupWithCallback = async (
 	{ username, confirmationCode }: ConfirmSignUpInput,
+	onLoading: () => void,
 	onSuccess: (username: string) => void,
 	onError: (error: any) => void,
+	onLoadingDone: () => void,
 ) => {
 	try {
+		onLoading()
 		await confirmSignUp({ username, confirmationCode })
 		onSuccess(username)
 	} catch (error) {
@@ -81,6 +89,8 @@ export const confirmSignupWithCallback = async (
 		} else {
 			onError(error && error.toString())
 		}
+	} finally {
+		onLoadingDone()
 	}
 }
 
@@ -89,10 +99,13 @@ export const confirmSignupWithCallback = async (
  */
 export const resendVerificationWithCallback = async (
 	username: string,
+	onLoading: () => void,
 	onSuccess: () => void,
 	onError: (error: any) => void,
+	onLoadingDone: () => void,
 ): Promise<void> => {
 	try {
+		onLoading()
 		await resendSignUpCode({
 			username,
 		})
@@ -103,6 +116,8 @@ export const resendVerificationWithCallback = async (
 		} else {
 			onError(error && error.toString())
 		}
+	} finally {
+		onLoadingDone()
 	}
 }
 
@@ -110,10 +125,13 @@ export const resendVerificationWithCallback = async (
  * AWS Amplify 사용자 로그인 데이터를 가져오고, 결과에 따라 콜백 함수를 호출하는 함수
  */
 export const getLoginUserDataWithCallback = async (
+	onLoading: () => void,
 	onSuccess: (loginId: string) => void,
 	onError: (error: any) => void,
+	onLoadingDone: () => void,
 ) => {
 	try {
+		onLoading()
 		const { signInDetails } = await getCurrentUser()
 		if (signInDetails?.loginId) {
 			onSuccess(signInDetails?.loginId)
@@ -126,6 +144,8 @@ export const getLoginUserDataWithCallback = async (
 		} else {
 			onError(error && error.toString())
 		}
+	} finally {
+		onLoadingDone()
 	}
 }
 
@@ -138,10 +158,13 @@ export const session = async () => await fetchAuthSession()
  * AWS Amplify 사용자 로그 아웃을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
  */
 export const signOutWithCallback = async (
+	onLoading: () => void,
 	onSuccess: () => void,
 	onError: (error: any) => void,
+	onLoadingDone: () => void,
 ) => {
 	try {
+		onLoading()
 		await signOut()
 		onSuccess()
 	} catch (error) {
@@ -150,5 +173,7 @@ export const signOutWithCallback = async (
 		} else {
 			onError(error && error.toString())
 		}
+	} finally {
+		onLoadingDone()
 	}
 }

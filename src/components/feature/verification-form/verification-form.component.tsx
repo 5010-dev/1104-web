@@ -34,6 +34,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 
 		confirmSignupWithCallback(
 			{ username: email, confirmationCode: verificationCode },
+			() => updateIsLoading(true), // onLoading
 			(email) => {
 				updateToastMessage('회원 가입이 완료되었습니다.')
 				if (password) {
@@ -56,6 +57,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 				}
 			},
 			(error) => updateToastMessage(error),
+			() => updateIsLoading(false), // onLoadingDone
 		)
 	}
 
@@ -63,11 +65,13 @@ export default function VerificationForm(props: VerificationFormProps) {
 		email &&
 			resendVerificationWithCallback(
 				email,
+				() => updateIsLoading(true), // onLoading
 				() =>
 					updateToastMessage(
 						'이메일 인증 코드를 재전송 했습니다. 메일함을 확인해 주세요.',
 					),
 				(error) => updateToastMessage(error),
+				() => updateIsLoading(false), // onLoadingDone
 			)
 	}
 

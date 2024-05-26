@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useAuthDataStore } from '../../../store/authDataStore'
+import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 
 import { signOutWithCallback } from '../../../services/auth/auth-service'
@@ -14,6 +15,7 @@ import TextLink from '../../global/text-link/text-link.component'
 
 export default function LoginUser() {
 	const { resetLoginUser } = useAuthDataStore()
+	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigate()
 
@@ -26,11 +28,13 @@ export default function LoginUser() {
 
 	const handleSignOut = (e: MouseEvent<HTMLSpanElement>) => {
 		signOutWithCallback(
+			() => updateIsLoading(true),
 			() => {
 				resetLoginUser()
 				updateToastMessage('성공적으로 로그아웃 되었습니다.')
 			},
 			(error) => updateToastMessage(error),
+			() => updateIsLoading(false),
 		)
 	}
 

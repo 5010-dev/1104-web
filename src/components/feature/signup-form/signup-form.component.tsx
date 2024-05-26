@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { signUpWithCallback } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
+import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
@@ -12,6 +13,7 @@ export default function SignupForm() {
 	const [isAgreed, setIsAgreed] = useState<boolean>(false)
 
 	const { email, password } = useAuthDataStore()
+	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigate()
 
@@ -27,12 +29,14 @@ export default function SignupForm() {
 
 		signUpWithCallback(
 			{ username: email, password },
+			() => updateIsLoading(true), // onLoading
 			(username) => {
 				navigate(`/verification?email=${username}`, { replace: true })
 			},
 			(error) => {
 				updateToastMessage(error)
 			},
+			() => updateIsLoading(false), // onLoadingDone
 		)
 	}
 
