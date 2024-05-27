@@ -3,16 +3,19 @@ import styled from 'styled-components'
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
 export const LoadingContainer = styled.div`
+	overflow: hidden;
+
 	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
+	pointer-events: none;
 	z-index: 100;
 
 	div#background-panel {
