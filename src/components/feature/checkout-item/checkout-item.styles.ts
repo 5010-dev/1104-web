@@ -12,7 +12,8 @@ export const CheckoutItemContainer = styled(StyledSectionContainer)`
 		gap: ${({ theme }) => theme.layout.container.gutter};
 
 		img#thumbnail-img {
-			width: 6rem;
+			width: ${({ $deviceType }) =>
+				$deviceType === 'mobile' ? '4rem' : '6rem'};
 			border-radius: 0.5rem;
 		}
 

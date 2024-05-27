@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, MouseEvent } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -12,6 +14,8 @@ import {
 import { CheckoutContainer } from './checkout.styles'
 
 import CheckoutItem from '../../../components/feature/checkout-item/checkout-item.component'
+import CheckoutOption from '../../../components/feature/checkout-option/checkout-option.component'
+import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
 
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -26,6 +30,8 @@ export default function Checkout() {
 		if (plan) return service.find((item) => item.plan === plan) ?? service[0]
 		else return service[0]
 	}
+
+	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
 
 	useEffect(() => {
 		window.scrollTo({
@@ -43,8 +49,25 @@ export default function Checkout() {
 	return (
 		<CheckoutContainer $deviceType={deviceType}>
 			<div id="contents-container">
-				<h1 id="heading">주문 결제</h1>
-				<CheckoutItem item={getServiceByPlan(plan)} />
+				<div id="top-row">
+					<h1 id="heading">주문 결제</h1>
+					<button
+						id="close-button"
+						onClick={handleClose}
+						aria-labelledby="top-row"
+					>
+						<FontAwesomeIcon icon={faXmark} />
+					</button>
+				</div>
+				<div id="item-columns-container">
+					<div className="item-column" id="left-column">
+						<CheckoutItem item={getServiceByPlan(plan)} />
+						<CheckoutOption />
+					</div>
+					<div className="item-column" id="right-column">
+						<CheckoutBilling item={getServiceByPlan(plan)} />
+					</div>
+				</div>
 			</div>
 		</CheckoutContainer>
 	)
