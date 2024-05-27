@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import { AccountSectionContainer } from '../../global/account-section/account-section.styles'
+import { StyledSectionContainer } from '../../global/styled-section/styled-section.component'
 import { getColour, hexToRgba } from '../../../utils/colour.utils'
 
-export const CustomerServiceContainer = styled(AccountSectionContainer)`
+export const CustomerServiceContainer = styled(StyledSectionContainer)`
 	flex-direction: row;
 	align-items: center;
 

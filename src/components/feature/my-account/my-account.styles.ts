@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
-import { AccountSectionContainer } from '../../global/account-section/account-section.styles'
+import { StyledSectionContainer } from '../../global/styled-section/styled-section.component'
 
-export const MyAccountContainer = styled(AccountSectionContainer)``
+export const MyAccountContainer = styled(StyledSectionContainer)``

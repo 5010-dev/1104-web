@@ -1,5 +1,5 @@
 import { DeviceType } from '../../../store/deviceTypeStore'
 
-export type AccountSectionContainerProps = {
+export type StyledSectionContainerProps = {
 	$deviceType: DeviceType
 }

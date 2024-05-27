@@ -1,3 +1,6 @@
+import { MouseEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,8 +15,14 @@ import Button from '../../../global/button/button.component'
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
 	const { plan, summary, features, price, priceCaption } = item
+	const navigate = useNavigate()
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+
+	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
+		navigate(`/checkout/?plan=${item.plan}`)
+	}
+	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) => {}
 
 	return (
 		<SubscriptionItemContainer $deviceType={deviceType} $hierarchy={hierarchy}>
@@ -68,6 +77,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 					hierarchy={hierarchy}
 					stroke={hierarchy === 'primary' ? 'filled' : 'outlined'}
 					shape="rounding"
+					handleClick={price !== 0 ? handleSubscribe : handleTryFree}
 				/>
 				<span id="caption">
 					{price !== 0

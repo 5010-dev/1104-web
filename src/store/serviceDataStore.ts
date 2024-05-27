@@ -1,9 +1,16 @@
 import { create } from 'zustand'
 
+import ultimateThumbnailImg from '../assets/img/plan-thumbnail-ultimate-img.webp'
+import premiumThumbnailImg from '../assets/img/plan-thumbnail-premium-img.webp'
+import freeThumbnailImg from '../assets/img/plan-thumbnail-free-img.webp'
+
+export type ServicePlan = 'FREE' | 'PREMIUM' | 'ULTIMATE'
+
 export type Service = {
 	name: string
-	plan: 'FREE' | 'PREMIUM' | 'ULTIMATE'
+	plan: ServicePlan
 	isFlagship: boolean
+	thumbnailImg: string
 	summary: string
 	features: string[]
 	price: number
@@ -30,6 +37,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			name: '5010 매매 전략',
 			plan: 'FREE',
 			isFlagship: false,
+			thumbnailImg: freeThumbnailImg,
 			summary:
 				'1:1 무료 상담부터 받고, 부담없이 5010 매매 전략 전자책 체험판과 5010 인디케이터를 무료로 체험해 보세요.',
 			features: [
@@ -44,6 +52,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			name: '5010 매매 전략',
 			plan: 'PREMIUM',
 			isFlagship: true,
+			thumbnailImg: premiumThumbnailImg,
 			summary:
 				'전자책부터 자산 설계와 인디케이터, 그리고 어드바이저 서포트까지, 5010 매매 전략의 핵심을 경험해 보세요.',
 			features: [
@@ -54,12 +63,13 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 				'24시간 어드바이저 서포트',
 			],
 			price: 258000,
-			priceCaption: '이후 월 W228,000',
+			priceCaption: '이후 월 ₩228,000',
 		},
 		{
 			name: '5010 매매 전략',
 			plan: 'ULTIMATE',
 			isFlagship: false,
+			thumbnailImg: ultimateThumbnailImg,
 			summary:
 				'프리미엄 플랜의 모든 구성품 포함하여 진입시점 및 기술적 분석 강의 VOD까지, 5010 매매 전략의 모든 것을 누려보세요.',
 			features: [
@@ -68,7 +78,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 				'기술적 분석 강의 VOD + 강의자료',
 			],
 			price: 928000,
-			priceCaption: '이후 월 W228,000',
+			priceCaption: '이후 월 ₩228,000',
 		},
 	],
 }))

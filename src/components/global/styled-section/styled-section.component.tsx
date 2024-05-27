@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
-import { AccountSectionContainerProps } from './account-section.types'
+import { StyledSectionContainerProps } from './styled-section.types'
 
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
 import { getColour, hexToRgba } from '../../../utils/colour.utils'
 import { getContainerStyle } from '../../../utils/style.utils'
 
-type Props = AccountSectionContainerProps
+type Props = StyledSectionContainerProps
 
-export const AccountSectionContainer = styled.div<Props>`
+export const StyledSectionContainer = styled.div<Props>`
 	width: ${({ theme }) => theme.layout.container.width};
 
 	${({ theme }) =>

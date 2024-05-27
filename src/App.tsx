@@ -17,6 +17,7 @@ import NotFound from './pages/global/not-found/not-found.page'
 import Home from './pages/feature/home/home.page'
 import Login from './pages/feature/login/login.page'
 import EmailVerification from './pages/feature/email-verification/email-verification.page'
+import Checkout from './pages/feature/checkout/checkout.page'
 import AboutUs from './pages/feature/about-us/about-us.page'
 import Account from './pages/feature/account/account.page'
 import Loading from './components/global/loading/loading.component'
@@ -69,6 +70,7 @@ function App() {
 							</Route>
 							<Route path="/login" element={<Login />} />
 							<Route path="/verification" element={<EmailVerification />} />
+							<Route path="/checkout" element={<Checkout />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 						{toastMessgae.length !== 0 ? (
