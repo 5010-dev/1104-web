@@ -80,6 +80,13 @@ export const CheckoutContainer = styled(PageLayoutContainer)`
 			align-items: flex-start;
 			gap: ${({ theme }) => theme.layout.section.gutter};
 
+			h2.column-heading {
+				${({ theme }) => getTypography(theme, 'heading2')}
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'active')};
+				line-height: 120%;
+			}
+
 			div.item-column {
 				width: ${({ theme }) => theme.layout.container.width};
 
@@ -96,6 +103,8 @@ export const CheckoutContainer = styled(PageLayoutContainer)`
 
 			div#right-column {
 				flex: 2 2 auto;
+				margin-top: ${({ $deviceType }) =>
+					$deviceType === 'mobile' ? '1rem' : '0'};
 			}
 		}
 	}

@@ -15,6 +15,7 @@ import { CheckoutContainer } from './checkout.styles'
 
 import CheckoutItem from '../../../components/feature/checkout-item/checkout-item.component'
 import CheckoutOption from '../../../components/feature/checkout-option/checkout-option.component'
+import CheckoutCodeInput from '../../../components/feature/checkout-code-input/checkout-code-input.component'
 import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
 
 export default function Checkout() {
@@ -61,10 +62,13 @@ export default function Checkout() {
 				</div>
 				<div id="item-columns-container">
 					<div className="item-column" id="left-column">
+						<h2 className="column-heading">주문 정보</h2>
 						<CheckoutItem item={getServiceByPlan(plan)} />
 						<CheckoutOption />
+						<CheckoutCodeInput />
 					</div>
 					<div className="item-column" id="right-column">
+						<h2 className="column-heading">결제 정보</h2>
 						<CheckoutBilling item={getServiceByPlan(plan)} />
 					</div>
 				</div>

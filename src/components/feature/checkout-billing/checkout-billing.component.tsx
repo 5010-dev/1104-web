@@ -24,7 +24,7 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 				</div>
 			</div>
 			<hr />
-			<div className="container-row">
+			<div className="container-row" id="billing-price-container">
 				<div className="item-row">
 					<span className="price-label" id="billing-price-label">
 						총 결제 금액
@@ -33,6 +33,7 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 						₩{(price - discount).toLocaleString()}
 					</h3>
 				</div>
+				<span id="caption">VAT 10% 포함</span>
 			</div>
 		</CheckoutBillingContainer>
 	)
