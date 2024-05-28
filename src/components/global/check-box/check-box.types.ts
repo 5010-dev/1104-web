@@ -6,14 +6,15 @@ export type CheckBoxProps = {
 	className?: string
 	text?: string
 	name: string
-	// checked?: boolean
 	checked: boolean
 	isRequired?: boolean
 	hierarchy: ComponentHierarchy
+	size?: 'md' | 'sm'
 	handleCheck?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export type CheckBoxContainerProps = {
 	$isChecked: boolean
 	$hierarchy: ComponentHierarchy
+	$size: 'md' | 'sm'
 }

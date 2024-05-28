@@ -15,7 +15,7 @@ const handleIconVariants = {
 }
 
 export default function Accordion(props: AccordionProps) {
-	const { heading, body, details } = props
+	const { heading, body, container, size } = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -26,6 +26,8 @@ export default function Accordion(props: AccordionProps) {
 	return (
 		<AccordionContainer
 			$deviceType={deviceType}
+			$container={container}
+			$size={size}
 			as={motion.div}
 			onClick={handleOnOff}
 		>
@@ -35,7 +37,7 @@ export default function Accordion(props: AccordionProps) {
 				transition={{ duration: 0.15 }}
 			/>
 			<div id="heading-container">
-				<h3 id="heading">{heading}</h3>
+				{heading}
 				<motion.span
 					id="handle-icon"
 					variants={handleIconVariants}
@@ -55,16 +57,7 @@ export default function Accordion(props: AccordionProps) {
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -50 }}
 					>
-						<p id="body">{body}</p>
-						{details ? (
-							<ul id="details-container">
-								{details.map((item, index) => (
-									<li key={index} className="detail-text">
-										{item}
-									</li>
-								))}
-							</ul>
-						) : null}
+						{body}
 					</motion.div>
 				) : null}
 			</AnimatePresence>

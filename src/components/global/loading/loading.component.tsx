@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import Lottie from 'lottie-react'
-import spinnerAnim from '../../../assets/lottie/spinnerAnim.json'
+import spinnerAnim from '../../../assets/lottie/spinner-anim.json'
 
 import { LoadingContainer } from './loading.styles'
 

@@ -18,7 +18,7 @@ export const CheckBoxContainer = styled.label<CheckBoxContainerProps>`
 
 	span#check-box-icon {
 		${({ theme }) => getTypography(theme, 'body')}
-		font-size: 1.25rem;
+		font-size: ${({ $size }) => ($size === 'md' ? '1.25rem' : '1.15rem')};
 		line-height: 130%;
 		color: ${({ theme, $isChecked, $hierarchy }) =>
 			$isChecked
@@ -32,11 +32,12 @@ export const CheckBoxContainer = styled.label<CheckBoxContainerProps>`
 		${({ theme }) => getTypography(theme, 'body')}
 		color: ${({ theme, $hierarchy }) =>
 			getColour(theme, 'neutral', $hierarchy, 'active')};
+		font-size: ${({ $size }) => $size === 'sm' && '0.875rem'};
 		text-align: left;
 
 		#required-tag {
 			position: absolute;
-			bottom: 0.2rem;
+			bottom: ${({ $size }) => ($size === 'md' ? '0.2rem' : '0.05rem')};
 			display: inline-block;
 			margin-left: 0.25rem;
 		}

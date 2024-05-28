@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { getTypography } from '../../../utils/typo.utils'
 
@@ -16,11 +16,14 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-	gap: ${({ theme }) => theme.layout.container.gutter};
+	gap: ${({ theme, $size }) => $size === 'md' && theme.layout.container.gutter};
 
-	padding: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'container')};
-	border-radius: ${({ theme }) => theme.shape.filled.rounded2.borderRadii};
+	${({ theme, $deviceType, $container }) =>
+		$container &&
+		css`
+			padding: ${getDeviceTypePadding(theme, $deviceType, 'container')};
+			border-radius: ${theme.shape.filled.rounded2.borderRadii};
+		`}
 
 	cursor: pointer;
 
@@ -34,7 +37,8 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 		width: ${({ theme }) => theme.layout.component.width};
 		height: 100%;
 
-		${({ theme }) =>
+		${({ theme, $container }) =>
+			$container &&
 			getContainerStyle(theme, 'neutral', 'tertiary', 'filled', 'rounded2', 1)}
 
 		z-index: -1;
@@ -54,6 +58,7 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 				$deviceType === 'mobile'
 					? getTypography(theme, 'subheading')
 					: getTypography(theme, 'heading3')}
+			font-size: ${({ $size }) => $size === 'sm' && '0.875rem'};
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
 			text-align: left;
@@ -61,6 +66,7 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 
 		#handle-icon {
 			${({ theme }) => getTypography(theme, 'heading3')}
+			font-size: ${({ $size }) => $size === 'sm' && '0.75rem'};
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
@@ -69,7 +75,8 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 	div#body-container {
 		width: ${({ theme }) => theme.layout.container.width};
 
-		margin-top: ${({ theme }) => theme.layout.container.gutter};
+		margin-top: ${({ theme, $size }) =>
+			$size === 'md' ? theme.layout.container.gutter : '0.25rem'};
 
 		p#body {
 			${({ theme }) => getTypography(theme, 'body')}

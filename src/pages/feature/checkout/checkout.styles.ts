@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
-import { getColour } from '../../../utils/colour.utils'
+import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
 import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
 
@@ -89,6 +89,9 @@ export const CheckoutContainer = styled(PageLayoutContainer)`
 
 			div.item-column {
 				width: ${({ theme }) => theme.layout.container.width};
+				max-width: ${({ $deviceType }) => $deviceType !== 'desktop' && '40rem'};
+				align-self: ${({ $deviceType }) =>
+					$deviceType !== 'desktop' && 'center'};
 
 				display: flex;
 				flex-direction: column;
@@ -98,13 +101,37 @@ export const CheckoutContainer = styled(PageLayoutContainer)`
 			}
 
 			div#left-column {
-				flex: 1 1 auto;
+				flex: 2 2;
 			}
 
 			div#right-column {
-				flex: 2 2 auto;
+				width: ${({ $deviceType }) => $deviceType === 'desktop' && '20rem'};
+
 				margin-top: ${({ $deviceType }) =>
 					$deviceType === 'mobile' ? '1rem' : '0'};
+			}
+
+			#checkout-button {
+				width: 40%;
+
+				align-self: center;
+
+				${({ theme }) => css`
+					-webkit-filter: drop-shadow(
+						0 0 0.5rem
+							${hexToRgba(
+								getColour(theme, 'accent', 'primary', 'active'),
+								0.75,
+							)}
+					);
+					filter: drop-shadow(
+						0 0 0.5rem
+							${hexToRgba(
+								getColour(theme, 'accent', 'primary', 'active'),
+								0.75,
+							)}
+					);
+				`}
 			}
 		}
 	}

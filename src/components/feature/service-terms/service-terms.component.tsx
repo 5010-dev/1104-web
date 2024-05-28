@@ -20,7 +20,7 @@ export default function ServiceTerms(props: ServiceTermsProps) {
 
 	return (
 		<ServiceTermsContainer $height={height} id={id} className={className}>
-			<div id="contents-container">
+			<div id="terms-contents-container">
 				<Markdown>{termsData}</Markdown>
 			</div>
 		</ServiceTermsContainer>

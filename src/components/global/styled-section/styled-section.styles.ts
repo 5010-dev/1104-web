@@ -29,7 +29,7 @@ export const StyledSectionContainer = styled.div<Props>`
 	gap: ${({ theme }) => theme.layout.container.padding.lg};
 
 	padding: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'section')};
+		getDeviceTypePadding(theme, $deviceType, 'container')};
 
 	div.container-row {
 		width: ${({ theme }) => theme.layout.container.width};

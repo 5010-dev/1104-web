@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { StyledSectionContainer } from '../../global/styled-section/styled-section.component'
+import { StyledSectionContainer } from '../../global/styled-section/styled-section.styles'
 
 export const CheckoutCodeInputContainer = styled(StyledSectionContainer)`
 	#code-input {

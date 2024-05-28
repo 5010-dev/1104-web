@@ -18,6 +18,7 @@ export default function CheckBox(props: CheckBoxProps) {
 		checked,
 		isRequired,
 		hierarchy,
+		size = 'md',
 		handleCheck,
 	} = props
 
@@ -30,6 +31,7 @@ export default function CheckBox(props: CheckBoxProps) {
 			id={id}
 			className={className}
 			$hierarchy={hierarchy}
+			$size={size}
 			$isChecked={checked}
 		>
 			<input

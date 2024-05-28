@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { getTypography } from '../../../utils/typo.utils'
 import { getColour } from '../../../utils/colour.utils'
 
-import { StyledSectionContainer } from '../../global/styled-section/styled-section.component'
+import { StyledSectionContainer } from '../../global/styled-section/styled-section.styles'
 
 export const CheckoutBillingContainer = styled(StyledSectionContainer)`
 	div#billing-price-container {

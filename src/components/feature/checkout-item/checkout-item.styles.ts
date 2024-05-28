@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { StyledSectionContainer } from '../../global/styled-section/styled-section.component'
+import { StyledSectionContainer } from '../../global/styled-section/styled-section.styles'
 import { getTypography } from '../../../utils/typo.utils'
 import { getColour } from '../../../utils/colour.utils'
 

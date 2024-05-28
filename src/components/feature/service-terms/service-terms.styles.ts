@@ -28,7 +28,7 @@ export const ServiceTermsContainer = styled.div<Props>`
 
 	padding: ${({ theme }) => theme.layout.container.padding.sm};
 
-	div#contents-container {
+	div#terms-contents-container {
 		width: ${({ theme }) => theme.layout.container.width};
 
 		display: flex;

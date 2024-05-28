@@ -1,9 +1,15 @@
 import { create } from 'zustand'
 import { fetchMarkdownFile } from '../utils/markdown.utils'
+
 import privacyAgreement from '../data/privacy-agreement.md'
 import policyTerms from '../data/policy-terms.md'
 import privacyTerms from '../data/privacy-terms.md'
 import ageVerification from '../data/age-verification.md'
+
+import ecommerce from '../data/ecommerce.md'
+import privacyThirdParty from '../data/privacy-third-party.md'
+import purchaseAgreement from '../data/purchase-agreement.md'
+import subscription from '../data/subscription.md'
 
 type Terms = {
 	data: string
@@ -15,6 +21,10 @@ export interface ServiceTermsList {
 	privacyTerms: Terms
 	policyTerms: Terms
 	ageVerification: Terms
+	ecommerce: Terms
+	privacyThirdParty: Terms
+	purchaseAgreement: Terms
+	subscription: Terms
 }
 
 export interface ServiceTermsState {
@@ -33,6 +43,10 @@ const initialState: ServiceTermsList = {
 	privacyTerms: { data: '', agreement: false },
 	policyTerms: { data: '', agreement: false },
 	ageVerification: { data: '', agreement: false },
+	ecommerce: { data: '', agreement: false },
+	privacyThirdParty: { data: '', agreement: false },
+	purchaseAgreement: { data: '', agreement: false },
+	subscription: { data: '', agreement: false },
 }
 
 export const useServiceTermsStore = create<
@@ -46,6 +60,10 @@ export const useServiceTermsStore = create<
 			privacyTerms,
 			policyTerms,
 			ageVerification,
+			ecommerce,
+			privacyThirdParty,
+			purchaseAgreement,
+			subscription,
 		}[key]
 
 		if (!filePath) {

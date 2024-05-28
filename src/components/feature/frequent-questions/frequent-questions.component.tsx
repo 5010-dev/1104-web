@@ -5,7 +5,7 @@ import { useFaqDataStore } from '../../../store/serviceDataStore'
 
 import { FrequentQuestionsContainer } from './frequent-questions.styles'
 
-import Accordion from '../../global/accordion/accordion.component'
+import FrequentQuestionsItem from './frequent-questions-item/frequent-questions-item.component'
 import TextLink from '../../global/text-link/text-link.component'
 
 export default function FrequentQuestions() {
@@ -31,7 +31,7 @@ export default function FrequentQuestions() {
 
 			<div id="questions-container">
 				{faq.map((item, index) => (
-					<Accordion
+					<FrequentQuestionsItem
 						key={index}
 						heading={item.heading}
 						body={item.body}

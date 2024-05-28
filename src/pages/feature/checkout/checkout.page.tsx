@@ -17,6 +17,8 @@ import CheckoutItem from '../../../components/feature/checkout-item/checkout-ite
 import CheckoutOption from '../../../components/feature/checkout-option/checkout-option.component'
 import CheckoutCodeInput from '../../../components/feature/checkout-code-input/checkout-code-input.component'
 import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
+import CheckoutTerms from '../../../components/feature/checkout-terms/checkout-terms.component'
+import Button from '../../../components/global/button/button.component'
 
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -70,6 +72,7 @@ export default function Checkout() {
 					<div className="item-column" id="right-column">
 						<h2 className="column-heading">결제 정보</h2>
 						<CheckoutBilling item={getServiceByPlan(plan)} />
+						<CheckoutTerms handleCheckout={() => {}} />
 					</div>
 				</div>
 			</div>
