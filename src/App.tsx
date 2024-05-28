@@ -12,6 +12,7 @@ import { useToastMessageStore } from './store/globalUiStore'
 
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
+
 import MainLayout from './pages/main-layout'
 import NotFound from './pages/global/not-found/not-found.page'
 import Home from './pages/feature/home/home.page'
@@ -20,6 +21,7 @@ import EmailVerification from './pages/feature/email-verification/email-verifica
 import Checkout from './pages/feature/checkout/checkout.page'
 import AboutUs from './pages/feature/about-us/about-us.page'
 import Account from './pages/feature/account/account.page'
+
 import Loading from './components/global/loading/loading.component'
 import Toast from './components/global/toast/toast.component'
 

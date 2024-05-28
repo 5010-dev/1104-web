@@ -37,10 +37,7 @@ export default function Checkout() {
 	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
 
 	useEffect(() => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		})
+		window.scrollTo({ top: 0 })
 	}, [])
 
 	useEffect(() => {
