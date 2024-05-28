@@ -20,7 +20,7 @@ export const PaymentCompleteSectionContainer = styled(SectionContainer)`
 		align-items: center;
 
 		#lottie-anim {
-			width: 80%;
+			width: 16rem;
 		}
 
 		h1#heading {

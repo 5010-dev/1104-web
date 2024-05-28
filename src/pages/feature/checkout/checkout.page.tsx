@@ -98,7 +98,7 @@ export default function Checkout() {
 						<AnimationPanel
 							animationData={cardAnim}
 							preventEvent
-							animationSize="50%"
+							animationSize="18rem"
 							text="결제가 진행중입니다."
 						/>
 					) : null}
