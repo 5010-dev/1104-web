@@ -18,7 +18,7 @@ import CheckoutOption from '../../../components/feature/checkout-option/checkout
 import CheckoutCodeInput from '../../../components/feature/checkout-code-input/checkout-code-input.component'
 import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
 import CheckoutTerms from '../../../components/feature/checkout-terms/checkout-terms.component'
-import Button from '../../../components/global/button/button.component'
+import Footer from '../../../components/global/footer/footer.component'
 
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -50,32 +50,35 @@ export default function Checkout() {
 	}, [userId, navigate, plan])
 
 	return (
-		<CheckoutContainer $deviceType={deviceType}>
-			<div id="contents-container">
-				<div id="top-row">
-					<h1 id="heading">주문 결제</h1>
-					<button
-						id="close-button"
-						onClick={handleClose}
-						aria-labelledby="top-row"
-					>
-						<FontAwesomeIcon icon={faXmark} />
-					</button>
-				</div>
-				<div id="item-columns-container">
-					<div className="item-column" id="left-column">
-						<h2 className="column-heading">주문 정보</h2>
-						<CheckoutItem item={getServiceByPlan(plan)} />
-						<CheckoutOption />
-						<CheckoutCodeInput />
+		<>
+			<CheckoutContainer $deviceType={deviceType}>
+				<div id="contents-container">
+					<div id="top-row">
+						<h1 id="heading">주문 결제</h1>
+						<button
+							id="close-button"
+							onClick={handleClose}
+							aria-labelledby="top-row"
+						>
+							<FontAwesomeIcon icon={faXmark} />
+						</button>
 					</div>
-					<div className="item-column" id="right-column">
-						<h2 className="column-heading">결제 정보</h2>
-						<CheckoutBilling item={getServiceByPlan(plan)} />
-						<CheckoutTerms handleCheckout={() => {}} />
+					<div id="item-columns-container">
+						<div className="item-column" id="left-column">
+							<h2 className="column-heading">주문 정보</h2>
+							<CheckoutItem item={getServiceByPlan(plan)} />
+							<CheckoutOption />
+							<CheckoutCodeInput />
+						</div>
+						<div className="item-column" id="right-column">
+							<h2 className="column-heading">결제 정보</h2>
+							<CheckoutBilling item={getServiceByPlan(plan)} />
+							<CheckoutTerms handleCheckout={() => {}} />
+						</div>
 					</div>
 				</div>
-			</div>
-		</CheckoutContainer>
+			</CheckoutContainer>
+			<Footer />
+		</>
 	)
 }
