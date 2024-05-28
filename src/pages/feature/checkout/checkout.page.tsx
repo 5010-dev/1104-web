@@ -23,6 +23,7 @@ import CheckoutTerms from '../../../components/feature/checkout-terms/checkout-t
 import Footer from '../../../components/global/footer/footer.component'
 import AnimationPanel from '../../../components/global/animation-panel/animation-panel.component'
 import cardAnim from '../../../assets/lottie/card-anim.json'
+import PaymentComplete from '../../../components/feature/payment-complete/payment-complete.component'
 
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -49,7 +50,6 @@ export default function Checkout() {
 		// HACK: 결제 프로세스 진행을 위해 임시 처리
 		setTimeout(() => {
 			updateStatus('success')
-			navigate('/')
 		}, 3000)
 	}
 
@@ -65,44 +65,48 @@ export default function Checkout() {
 		}
 	}, [userId, navigate, plan, updateToastMessage])
 
-	return (
-		<>
-			<CheckoutContainer $deviceType={deviceType}>
-				<div id="contents-container">
-					<div id="top-row">
-						<h1 id="heading">주문 결제</h1>
-						<button
-							id="close-button"
-							onClick={handleClose}
-							aria-labelledby="top-row"
-						>
-							<FontAwesomeIcon icon={faXmark} />
-						</button>
-					</div>
-					<div id="item-columns-container">
-						<div className="item-column" id="left-column">
-							<h2 className="column-heading">주문 정보</h2>
-							<CheckoutItem item={getServiceByPlan(plan)} />
-							<CheckoutOption />
-							<CheckoutCodeInput />
+	if (status !== 'success') {
+		return (
+			<>
+				<CheckoutContainer $deviceType={deviceType}>
+					<div id="contents-container">
+						<div id="top-row">
+							<h1 id="heading">주문 결제</h1>
+							<button
+								id="close-button"
+								onClick={handleClose}
+								aria-labelledby="top-row"
+							>
+								<FontAwesomeIcon icon={faXmark} />
+							</button>
 						</div>
-						<div className="item-column" id="right-column">
-							<h2 className="column-heading">결제 정보</h2>
-							<CheckoutBilling item={getServiceByPlan(plan)} />
-							<CheckoutTerms handleCheckout={handleCheckout} />
+						<div id="item-columns-container">
+							<div className="item-column" id="left-column">
+								<h2 className="column-heading">주문 정보</h2>
+								<CheckoutItem item={getServiceByPlan(plan)} />
+								<CheckoutOption />
+								<CheckoutCodeInput />
+							</div>
+							<div className="item-column" id="right-column">
+								<h2 className="column-heading">결제 정보</h2>
+								<CheckoutBilling item={getServiceByPlan(plan)} />
+								<CheckoutTerms handleCheckout={handleCheckout} />
+							</div>
 						</div>
 					</div>
-				</div>
-				{status === 'processing' ? (
-					<AnimationPanel
-						animationData={cardAnim}
-						preventEvent
-						animationSize="50%"
-						text="결제가 진행중입니다."
-					/>
-				) : null}
-			</CheckoutContainer>
-			<Footer />
-		</>
-	)
+					{status === 'processing' ? (
+						<AnimationPanel
+							animationData={cardAnim}
+							preventEvent
+							animationSize="50%"
+							text="결제가 진행중입니다."
+						/>
+					) : null}
+				</CheckoutContainer>
+				<Footer />
+			</>
+		)
+	} else {
+		return <PaymentComplete />
+	}
 }
