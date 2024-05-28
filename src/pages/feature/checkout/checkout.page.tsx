@@ -5,6 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
+import { useToastMessageStore } from '../../../store/globalUiStore'
 import {
 	useServiceDataStore,
 	ServicePlan,
@@ -23,6 +24,7 @@ import Footer from '../../../components/global/footer/footer.component'
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
+	const { updateToastMessage } = useToastMessageStore()
 	const service = useServiceDataStore((state) => state.service)
 	const navigate = useNavigate()
 
@@ -43,8 +45,9 @@ export default function Checkout() {
 	useEffect(() => {
 		if (userId.length === 0 || !plan) {
 			navigate('/')
+			updateToastMessage('잘못된 요청입니다.')
 		}
-	}, [userId, navigate, plan])
+	}, [userId, navigate, plan, updateToastMessage])
 
 	return (
 		<>

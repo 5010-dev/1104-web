@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useAuthDataStore } from '../../../../store/authDataStore'
+import { useToastMessageStore } from '../../../../store/globalUiStore'
 
 import { SubscriptionItemProps } from './subscription-item.typs'
 import { SubscriptionItemContainer } from './subscription-item.styles'
@@ -15,12 +17,18 @@ import Button from '../../../global/button/button.component'
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
 	const { plan, summary, features, price, priceCaption } = item
-	const navigate = useNavigate()
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { userId } = useAuthDataStore((state) => state.loginUser)
+	const { updateToastMessage } = useToastMessageStore()
+	const navigate = useNavigate()
 
 	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
-		navigate(`/checkout/?plan=${item.plan}`)
+		if (userId) navigate(`/checkout/?plan=${item.plan}`)
+		else {
+			navigate('/login', { state: { mode: 'signup' } })
+			updateToastMessage('회원가입 및 로그인이 필요합니다.')
+		}
 	}
 	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) => {}
 
