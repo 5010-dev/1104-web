@@ -2,7 +2,12 @@ import styled from 'styled-components'
 
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
-export const LoadingContainer = styled.div`
+import { AnimationPanelContainerProps } from './animation-panel.types'
+import { getTypography } from '../../../utils/typo.utils'
+
+type Props = AnimationPanelContainerProps
+
+export const AnimationPanelContainer = styled.div<Props>`
 	overflow: hidden;
 
 	position: fixed;
@@ -12,6 +17,7 @@ export const LoadingContainer = styled.div`
 	height: 200%;
 
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
@@ -33,7 +39,17 @@ export const LoadingContainer = styled.div`
 		-webkit-backdrop-filter: blur(1.5rem);
 	}
 
-	#loading-anim {
+	#lottie-anim {
+		width: ${({ $animationSize }) => $animationSize && $animationSize};
 		position: relative;
+	}
+
+	span#animation-text {
+		position: absolute;
+		bottom: 50%;
+		transform: translateY(350%);
+		${({ theme }) => getTypography(theme, 'heading3')}
+		color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
+		z-index: 100;
 	}
 `

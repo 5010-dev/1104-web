@@ -11,6 +11,7 @@ import {
 	ServicePlan,
 	Service,
 } from '../../../store/serviceDataStore'
+import { usePaymentStore } from '../../../store/paymentStore'
 
 import { CheckoutContainer } from './checkout.styles'
 
@@ -20,12 +21,15 @@ import CheckoutCodeInput from '../../../components/feature/checkout-code-input/c
 import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
 import CheckoutTerms from '../../../components/feature/checkout-terms/checkout-terms.component'
 import Footer from '../../../components/global/footer/footer.component'
+import AnimationPanel from '../../../components/global/animation-panel/animation-panel.component'
+import cardAnim from '../../../assets/lottie/card-anim.json'
 
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
 	const service = useServiceDataStore((state) => state.service)
+	const { status, updateStatus } = usePaymentStore()
 	const navigate = useNavigate()
 
 	const [searchParams] = useSearchParams()
@@ -38,9 +42,21 @@ export default function Checkout() {
 
 	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
 
+	const handleCheckout = (e: MouseEvent<HTMLButtonElement>) => {
+		// TODO: 결제 요청 및 확인 API 호출 구현
+		updateStatus('processing')
+
+		// HACK: 결제 프로세스 진행을 위해 임시 처리
+		setTimeout(() => {
+			updateStatus('success')
+			navigate('/')
+		}, 3000)
+	}
+
 	useEffect(() => {
 		window.scrollTo({ top: 0 })
-	}, [])
+		updateStatus('idle')
+	}, [updateStatus])
 
 	useEffect(() => {
 		if (userId.length === 0 || !plan) {
@@ -73,10 +89,18 @@ export default function Checkout() {
 						<div className="item-column" id="right-column">
 							<h2 className="column-heading">결제 정보</h2>
 							<CheckoutBilling item={getServiceByPlan(plan)} />
-							<CheckoutTerms handleCheckout={() => {}} />
+							<CheckoutTerms handleCheckout={handleCheckout} />
 						</div>
 					</div>
 				</div>
+				{status === 'processing' ? (
+					<AnimationPanel
+						animationData={cardAnim}
+						preventEvent
+						animationSize="50%"
+						text="결제가 진행중입니다."
+					/>
+				) : null}
 			</CheckoutContainer>
 			<Footer />
 		</>
