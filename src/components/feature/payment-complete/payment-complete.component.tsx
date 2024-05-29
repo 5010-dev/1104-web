@@ -1,17 +1,15 @@
 import { MouseEvent } from 'react'
 
 import { useNavigate } from 'react-router-dom'
-import Lottie from 'lottie-react'
-
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-
-import completeAnim from '../../../assets/lottie/complete-anim.json'
-import Button from '../../global/button/button.component'
 
 import {
 	PaymentCompleteContainer,
 	PaymentCompleteSectionContainer,
 } from './payment-complete.styles'
+
+import Button from '../../global/button/button.component'
+import Complete from '../../global/complete/complete.component'
 import TextLink from '../../global/text-link/text-link.component'
 
 export default function PaymentComplete() {
@@ -26,10 +24,7 @@ export default function PaymentComplete() {
 				$deviceType={deviceType}
 				id="contents-container"
 			>
-				<div id="anim-container">
-					<Lottie animationData={completeAnim} id="lottie-anim" loop={false} />
-					<h1 id="heading">결제가 완료되었습니다.</h1>
-				</div>
+				<Complete text="결제가 완료되었습니다." />
 				<div id="button-container">
 					<Button
 						appearance="accent"
