@@ -21,6 +21,7 @@ import EmailVerification from './pages/feature/email-verification/email-verifica
 import Checkout from './pages/feature/checkout/checkout.page'
 import AboutUs from './pages/feature/about-us/about-us.page'
 import Account from './pages/feature/account/account.page'
+import IndicatorRegistration from './pages/feature/indicator-registration/indicator-registration.page'
 
 import Loading from './components/global/loading/loading.component'
 import Toast from './components/global/toast/toast.component'
@@ -73,6 +74,7 @@ function App() {
 							<Route path="/login" element={<Login />} />
 							<Route path="/verification" element={<EmailVerification />} />
 							<Route path="/checkout" element={<Checkout />} />
+							<Route path="/registration" element={<IndicatorRegistration />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 						{toastMessgae.length !== 0 ? (

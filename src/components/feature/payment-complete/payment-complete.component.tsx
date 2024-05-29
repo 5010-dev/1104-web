@@ -18,6 +18,9 @@ export default function PaymentComplete() {
 
 	const handleHome = (e: MouseEvent<HTMLSpanElement>) => navigate('/')
 
+	const handleRegistration = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate('/registration')
+
 	return (
 		<PaymentCompleteContainer $deviceType={deviceType}>
 			<PaymentCompleteSectionContainer
@@ -32,6 +35,7 @@ export default function PaymentComplete() {
 						stroke="filled"
 						shape="rounding"
 						text="인디케이터 셋팅 시작하기 →"
+						handleClick={handleRegistration}
 					/>
 					<TextLink
 						appearance="neutral"
