@@ -1,5 +1,4 @@
 import { MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +6,7 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../../store/authDataStore'
 import { useToastMessageStore } from '../../../../store/globalUiStore'
+import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
 import { SubscriptionItemProps } from './subscription-item.typs'
 import { SubscriptionItemContainer } from './subscription-item.styles'
@@ -21,12 +21,12 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
 		if (userId) navigate(`/checkout/?plan=${item.plan}`)
 		else {
-			navigate('/login', { state: { mode: 'signup' } })
+			navigate('/login', { routeState: 'signup' })
 			updateToastMessage('회원가입 및 로그인이 필요합니다.')
 		}
 	}

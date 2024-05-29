@@ -1,5 +1,5 @@
 import { useEffect, MouseEvent } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,6 +12,7 @@ import {
 	Service,
 } from '../../../store/serviceDataStore'
 import { usePaymentStore } from '../../../store/paymentStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { CheckoutContainer } from './checkout.styles'
 
@@ -31,7 +32,7 @@ export default function Checkout() {
 	const { updateToastMessage } = useToastMessageStore()
 	const service = useServiceDataStore((state) => state.service)
 	const { status, updateStatus } = usePaymentStore()
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	const [searchParams] = useSearchParams()
 	const plan = searchParams.get('plan') as ServicePlan

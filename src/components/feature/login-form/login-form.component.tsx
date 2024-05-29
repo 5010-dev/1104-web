@@ -1,5 +1,4 @@
 import { useEffect, FormEvent, MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import {
 	logInWithCallback,
@@ -8,6 +7,7 @@ import {
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
 
@@ -15,12 +15,11 @@ export default function LoginForm() {
 	const { email, password, updateLoginUser } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 
-	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) => {
-		navigate('/login', { replace: true, state: { mode: 'signup' } })
-	}
+	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) =>
+		navigate('/login', { replace: true, routeState: 'signup' })
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()

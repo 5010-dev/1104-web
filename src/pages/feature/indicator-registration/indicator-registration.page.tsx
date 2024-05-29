@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { IndicatorRegistrationContainer } from './indicator-registration.styles'
 
@@ -11,7 +11,7 @@ export default function IndicatorRegistration() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	useEffect(() => {
 		if (userId.length === 0) {

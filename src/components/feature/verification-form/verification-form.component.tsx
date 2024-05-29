@@ -1,5 +1,4 @@
 import { useState, useEffect, FormEvent, MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -9,6 +8,7 @@ import {
 	logInWithCallback,
 } from '../../../services/auth/auth-service'
 import { useLoadingStore } from '../../../store/loadingStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { VerificationFormProps } from './verification-form.types'
 import { VerificationFormContainer } from './verification-form.styles'
@@ -26,7 +26,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 		useAuthDataStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const [isValid, setIsValid] = useState<boolean>(false)
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 	const maxLength = 6
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -50,7 +50,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 						() => updateIsLoading(false), // onLoadingDone
 					)
 				} else {
-					navigate('/login', { state: { mode: 'login' } })
+					navigate('/login', { routeState: 'login' })
 					updateToastMessage(
 						'회원 가입이 완료되었습니다. 등록된 이메일로 로그인해 주세요.',
 					)

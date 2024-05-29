@@ -1,8 +1,8 @@
 import { useEffect, MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { AccountContainer } from './account.styles'
 
@@ -13,7 +13,7 @@ import CustomerService from '../../../components/feature/customer-service/custom
 export default function Account() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	const handleCustomerServiceLink = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '회원 및 구독 관련 문의사항'

@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { NotFoundContainer } from './not-found.styles'
 
@@ -9,12 +9,9 @@ import Button from '../../../components/global/button/button.component'
 
 export default function NotFound() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
-	const handleGoHome = (e: MouseEvent<HTMLButtonElement>) => {
-		navigate('/')
-		window.scrollTo({ top: 0 })
-	}
+	const handleGoHome = (e: MouseEvent<HTMLButtonElement>) => navigate('/')
 
 	return (
 		<NotFoundContainer $deviceType={deviceType}>

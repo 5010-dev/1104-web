@@ -1,8 +1,8 @@
 import { MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/homeContentsStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import Button from '../../global/button/button.component'
 
@@ -14,12 +14,9 @@ export default function About() {
 		(state) => state.about.text,
 	)
 	const { items } = useHomeContentsStore((state) => state.about)
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
-	const hadleAboutUs = (e: MouseEvent<HTMLButtonElement>) => {
-		navigate('/about')
-		window.scrollTo({ top: 0 })
-	}
+	const hadleAboutUs = (e: MouseEvent<HTMLButtonElement>) => navigate('/about')
 
 	return (
 		<AboutContainer $deviceType={deviceType}>

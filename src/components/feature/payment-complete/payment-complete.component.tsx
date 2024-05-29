@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 
-import { useNavigate } from 'react-router-dom'
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import {
 	PaymentCompleteContainer,
@@ -14,7 +14,7 @@ import TextLink from '../../global/text-link/text-link.component'
 
 export default function PaymentComplete() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	const handleHome = (e: MouseEvent<HTMLSpanElement>) => navigate('/')
 

@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom'
-
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+
 import {
 	ComponentAppearance,
 	ComponentHierarchy,
@@ -14,19 +14,19 @@ export default function LoginButton(props: LoginButtonProps) {
 	const { className, id, accessibleName, signUp } = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	const handleButtonClick = () => {
 		if (signUp) {
 			window.scrollTo({
 				top: 0,
 			})
-			navigate('/login', { state: { mode: 'signup' } })
+			navigate('/login', { routeState: 'signup' })
 		} else {
 			window.scrollTo({
 				top: 0,
 			})
-			navigate('/login', { state: { mode: 'login' } })
+			navigate('/login', { routeState: 'login' })
 		}
 	}
 

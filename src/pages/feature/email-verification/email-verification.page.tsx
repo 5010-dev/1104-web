@@ -1,8 +1,10 @@
 import { useEffect, MouseEvent } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 import Lottie from 'lottie-react'
 import verificationAnim from '../../../assets/lottie/verification-anim.json'
+
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import AuthLayout from '../../global/auth-layout/auth-layout.component'
 import { EmailVerificationContainer } from './email-verification.styles'
@@ -13,7 +15,7 @@ import TextLink from '../../../components/global/text-link/text-link.component'
 export default function EmailVerification() {
 	const [searchParams] = useSearchParams()
 	const email = searchParams.get('email')
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	const handleHelpLink = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '회원가입 인증 관련 문의'
@@ -27,7 +29,7 @@ export default function EmailVerification() {
 
 	useEffect(() => {
 		if (!email) {
-			navigate('/login', { state: { mode: 'login' } })
+			navigate('/login', { routeState: 'login' })
 		}
 	}, [email, navigate])
 

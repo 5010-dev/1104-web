@@ -1,11 +1,11 @@
 import { MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet-async'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { AuthLayoutProps } from './auth-layout.types'
 import { AuthLayoutContainer, AuthGlobalStyle } from './auth-layout.styles'
@@ -17,7 +17,7 @@ export default function AuthLayout(props: AuthLayoutProps) {
 	const { children } = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
 

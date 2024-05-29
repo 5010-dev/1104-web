@@ -1,10 +1,10 @@
 import { useState, FormEvent, MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { signUpWithCallback } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
 import UserAgreement from './user-agreement/user-agreement.component'
@@ -15,10 +15,10 @@ export default function SignupForm() {
 	const { email, password } = useAuthDataStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const { updateToastMessage } = useToastMessageStore()
-	const navigate = useNavigate()
+	const navigate = useNavigateWithScroll()
 
 	const handleLoginLink = (e: MouseEvent<HTMLSpanElement>) => {
-		navigate('/login', { replace: true, state: { mode: 'login' } })
+		navigate('/login', { replace: true, routeState: 'login' })
 	}
 
 	const handleAgreeButton = (e: MouseEvent<HTMLButtonElement>) =>
