@@ -62,9 +62,14 @@ export default function Checkout() {
 	useEffect(() => {
 		if (userId.length === 0 || !plan) {
 			navigate('/')
+		}
+	}, [userId, navigate, plan])
+
+	useEffect(() => {
+		if (userId.length === 0 || !plan) {
 			updateToastMessage('잘못된 요청입니다.')
 		}
-	}, [userId, navigate, plan, updateToastMessage])
+	}, [userId, updateToastMessage, plan])
 
 	if (status !== 'success') {
 		return (
