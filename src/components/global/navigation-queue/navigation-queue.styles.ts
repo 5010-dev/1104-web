@@ -25,7 +25,7 @@ export const NavigationQueueContainer = styled.div<Props>`
 			  `}
 
 	background-color: ${({ theme }) =>
-		hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.5)};
+		hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 1)};
 
 	${(props) =>
 		props.$state === 'notStarted' &&
