@@ -32,7 +32,7 @@ export default function LoginForm() {
 					await getLoginUserDataWithCallback(
 						() => updateIsLoading(true), // onLoading
 						(loginId) => {
-							updateLoginUser(loginId)
+							updateLoginUser('userId', loginId)
 							updateToastMessage('성공적으로 로그인 했습니다.')
 							navigate('/')
 						},

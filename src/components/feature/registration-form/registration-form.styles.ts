@@ -4,7 +4,7 @@ import { RegistrationFormContainerProps } from './registration-form.types'
 
 type Props = RegistrationFormContainerProps
 
-export const RegistrationFormContainer = styled.form<Props>`
+export const RegistrationFormContainer = styled.div<Props>`
 	width: ${({ theme }) => theme.layout.section.width};
 
 	display: flex;

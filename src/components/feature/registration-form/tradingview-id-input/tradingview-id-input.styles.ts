@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const TradingviewIdInputContainer = styled.div`
+import { hexToRgba, getColour } from '../../../../utils/colour.utils'
+
+export const TradingviewIdInputContainer = styled.form`
 	width: ${({ theme }) => theme.layout.container.width};
 
 	display: flex;
@@ -9,10 +11,31 @@ export const TradingviewIdInputContainer = styled.div`
 	align-items: center;
 	gap: ${({ theme }) => theme.layout.container.gutter};
 
-	#tradingview-id-input {
+	.input-items {
 		width: ${({ theme }) => theme.layout.component.width};
 		max-width: 18rem;
+	}
 
+	#beginner-button {
+		gap: 1.25rem;
+
+		margin-bottom: ${({ theme }) => theme.layout.container.gutter};
+
+		span {
+			font-size: 0.875rem;
+			text-align: left;
+			color: ${({ theme }) =>
+				hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.8)};
+		}
+
+		#beginner-icon {
+			color: ${({ theme }) =>
+				hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.25)};
+			font-size: 1.5rem;
+		}
+	}
+
+	#submit-button {
 		margin-top: ${({ theme }) => theme.layout.container.gutter};
 	}
 `

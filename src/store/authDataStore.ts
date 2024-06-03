@@ -6,30 +6,36 @@ export interface AuthDataState {
 	verificationCode: string
 	loginUser: {
 		userId: string
+		tradingviewId: string
 	}
 }
 
 export interface AuthDataAction {
 	updateAuthData: (key: string, value: string) => void
-	updateLoginUser: (value: string) => void
+	updateLoginUser: (key: string, value: string) => void
 	resetAuthData: () => void
 	resetLoginUser: () => void
 }
 
+const initialState: AuthDataState = {
+	email: '',
+	password: '',
+	verificationCode: '',
+	loginUser: {
+		userId: '',
+		tradingviewId: '',
+	},
+}
+
 export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 	(set) => ({
-		email: '',
-		password: '',
-		verificationCode: '',
-		loginUser: {
-			userId: '',
-		},
+		...initialState,
 		updateAuthData: (key, value) =>
 			set((state) => ({ ...state, [key]: value })),
-		updateLoginUser: (value) =>
+		updateLoginUser: (key, value) =>
 			set((state) => ({
 				...state,
-				loginUser: { userId: value },
+				loginUser: { ...state.loginUser, [key]: value },
 			})),
 		resetAuthData: () =>
 			set((state) => ({
@@ -38,7 +44,6 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 				password: '',
 				verificationCode: '',
 			})),
-		resetLoginUser: () =>
-			set((state) => ({ ...state, loginUser: { userId: '' } })),
+		resetLoginUser: () => set(initialState),
 	}),
 )

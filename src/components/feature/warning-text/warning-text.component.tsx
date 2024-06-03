@@ -5,10 +5,10 @@ import { WarningTextProps } from './warning-text.types'
 import { WarningTextContainer } from './warning-text.styles'
 
 export default function WarningText(props: WarningTextProps) {
-	const { message } = props
+	const { id, className, message } = props
 
 	return (
-		<WarningTextContainer>
+		<WarningTextContainer id={id} className={className}>
 			<FontAwesomeIcon icon={faCircleExclamation} id="icon" />
 			{message}
 		</WarningTextContainer>

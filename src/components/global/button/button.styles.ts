@@ -17,6 +17,8 @@ export const ButtonContainer = styled(motion.button)<ButtonContainerProps>`
 	gap: ${({ theme }) => theme.layout.component.gutter};
 	padding: ${({ theme, $size }) => getPadding(theme, $size)};
 
+	box-sizing: border-box;
+
 	span {
 		${({ theme }) => getTypography(theme, 'subheading')}
 	}

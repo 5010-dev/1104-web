@@ -44,7 +44,7 @@ function App() {
 			await getLoginUserDataWithCallback(
 				() => updateIsLoading(true),
 				(loginId) => {
-					updateLoginUser(loginId)
+					updateLoginUser('userId', loginId)
 				},
 				(error) => {
 					resetLoginUser()
