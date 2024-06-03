@@ -44,6 +44,9 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 		return idRegex.test(value)
 	}
 
+	const handleGuideOpen = (url: string): Window | null =>
+		window.open(url, '_blank', 'noopener,noreferrer')
+
 	useEffect(() => {
 		updateLoginUser('tradingviewId', '')
 	}, [updateLoginUser])
@@ -68,6 +71,11 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 				shape="rounding"
 				icon={<FontAwesomeIcon icon={faChild} id="beginner-icon" />}
 				text="트레이딩뷰 사용이 처음이세요? 저희가 도와드릴게요!"
+				handleClick={() => {
+					handleGuideOpen(
+						'https://receptive-sleep-5a8.notion.site/ID-8599c75fae1740f1a5161fbbfcacd831',
+					)
+				}}
 			/>
 			{!isValid && tradingviewId.length !== 0 ? (
 				<WarningText
@@ -95,7 +103,11 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 				hierarchy="secondary"
 				size="sm"
 				underlined
-				handleClick={() => {}}
+				handleClick={() =>
+					handleGuideOpen(
+						'https://receptive-sleep-5a8.notion.site/ID-cba97c976e714a01a618fd19f69da947',
+					)
+				}
 			/>
 			<Button
 				id="submit-button"
