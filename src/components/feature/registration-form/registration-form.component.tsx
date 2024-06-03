@@ -7,7 +7,7 @@ import { RegistrationFormContainer } from './registration-form.styles'
 
 import NavigationQueueBar from '../navigation-queue-bar/navigation-queue-bar.component'
 import TradingviewIdInput from './tradingview-id-input/tradingview-id-input.component'
-import ExchangeUidInput from './exchange-uid-input/exchange-uid-input.component'
+import ExchangeDataInput from './exchange-data-input/exchange-data-input.component'
 
 export default function RegistrationForm() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -36,7 +36,7 @@ export default function RegistrationForm() {
 			{currentProgress === 'tradingviewIdInput' ? (
 				<TradingviewIdInput onSubmitSuccess={handleProceed} />
 			) : null}
-			{currentProgress === 'exchangeUidInput' ? <ExchangeUidInput /> : null}
+			{currentProgress === 'exchangeDataInput' ? <ExchangeDataInput /> : null}
 		</RegistrationFormContainer>
 	)
 }

@@ -1,21 +1,10 @@
 import styled from 'styled-components'
 
+import { RegistrationForms } from '../registration-form.styles'
+
 import { hexToRgba, getColour } from '../../../../utils/colour.utils'
 
-export const TradingviewIdInputContainer = styled.form`
-	width: ${({ theme }) => theme.layout.container.width};
-
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	gap: ${({ theme }) => theme.layout.container.gutter};
-
-	.input-items {
-		width: ${({ theme }) => theme.layout.component.width};
-		max-width: 18rem;
-	}
-
+export const TradingviewIdInputContainer = styled(RegistrationForms)`
 	#beginner-button {
 		gap: 1.25rem;
 

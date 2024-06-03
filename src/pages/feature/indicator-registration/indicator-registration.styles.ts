@@ -7,7 +7,7 @@ import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
 export const IndicatorRegistrationContainer = styled(PageLayoutContainer)`
 	justify-content: center;
 	padding: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'section')};
+		`4rem ${getDeviceTypePadding(theme, $deviceType, 'section')}`};
 
 	div#contents-container {
 		width: ${({ theme }) => theme.layout.section.width};

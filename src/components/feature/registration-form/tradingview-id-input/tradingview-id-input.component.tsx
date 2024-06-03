@@ -117,7 +117,7 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 				hierarchy="primary"
 				stroke="filled"
 				shape="rounding"
-				text={'다음 단계로'}
+				text={'다음 단계로 →'}
 				disabled={!isValid}
 			/>
 		</TradingviewIdInputContainer>
