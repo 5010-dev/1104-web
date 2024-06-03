@@ -111,6 +111,7 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 			/>
 			<Button
 				id="submit-button"
+				className="input-items"
 				type="submit"
 				accessibleName="tradingview-input-form"
 				appearance="accent"

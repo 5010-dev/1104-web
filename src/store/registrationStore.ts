@@ -1,6 +1,9 @@
 import { create } from 'zustand'
 
-export type RegistrationProgress = 'tradingviewIdInput' | 'exchangeDataInput'
+export type RegistrationProgress =
+	| 'tradingviewIdInput'
+	| 'exchangeDataInput'
+	| 'registrationComplete'
 
 export interface RegistrationState {
 	currentProgress: RegistrationProgress
@@ -25,7 +28,7 @@ const getNextItem = (
 
 const initialState: RegistrationState = {
 	currentProgress: 'tradingviewIdInput',
-	progress: ['tradingviewIdInput', 'exchangeDataInput'],
+	progress: ['tradingviewIdInput', 'exchangeDataInput', 'registrationComplete'],
 }
 
 export const useRegistrationStore = create<

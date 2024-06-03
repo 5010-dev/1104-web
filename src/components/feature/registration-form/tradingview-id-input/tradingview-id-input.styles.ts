@@ -25,6 +25,7 @@ export const TradingviewIdInputContainer = styled(RegistrationForms)`
 	}
 
 	#submit-button {
+		width: ${({ theme }) => theme.layout.component.width};
 		margin-top: ${({ theme }) => theme.layout.container.gutter};
 	}
 `

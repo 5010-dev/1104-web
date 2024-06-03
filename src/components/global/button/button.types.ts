@@ -25,4 +25,5 @@ export interface ButtonProps {
 
 export type ButtonContainerProps = {
 	$size: ComponentSize
+	$extended?: boolean
 }

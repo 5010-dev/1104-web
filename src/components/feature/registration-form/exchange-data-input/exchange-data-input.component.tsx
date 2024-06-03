@@ -1,5 +1,25 @@
-import ExchangePromotion from './exchange-promotion/exchange-promotion.component'
+import { useState } from 'react'
 
-export default function ExchangeDataInput() {
-	return <ExchangePromotion />
+import { ExchangeDataInputProps } from './exchange-data-input.types'
+
+import ExchangePromotion from './exchange-promotion/exchange-promotion.component'
+import ExchangeUidInput from '../exchange-uid-input/exchange-uid-input.component'
+
+export default function ExchangeDataInput(props: ExchangeDataInputProps) {
+	const { handleComplete } = props
+
+	const [isAccepted, setIsAccepted] = useState<boolean>(false)
+	const [isExchangeSelected, setIsExchangeSelected] = useState<boolean>(false)
+
+	if (!isAccepted) {
+		return (
+			<ExchangePromotion
+				handleAccept={() => setIsAccepted(true)}
+				handleDecline={handleComplete}
+			/>
+		)
+	} else {
+		if (!isExchangeSelected) return <></>
+		else return <ExchangeUidInput />
+	}
 }

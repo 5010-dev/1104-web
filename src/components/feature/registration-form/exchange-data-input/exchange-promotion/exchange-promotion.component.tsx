@@ -1,12 +1,15 @@
 import Lottie from 'lottie-react'
 import shiningAnim from '../../../../../assets/lottie/shining-anim.json'
 
+import { ExchangePromotionProps } from './exchange-promotion.types'
 import { ExchangePromotionContainer } from './exchange-promotion.styles'
 
 import Card from '../../../../global/card/card.component'
 import Button from '../../../../global/button/button.component'
 
-export default function ExchangePromotion() {
+export default function ExchangePromotion(props: ExchangePromotionProps) {
+	const { handleAccept, handleDecline } = props
+
 	return (
 		<ExchangePromotionContainer>
 			<Lottie
@@ -51,7 +54,7 @@ export default function ExchangePromotion() {
 					stroke="filled"
 					shape="rounding"
 					text="좋아요, 혜택 받아볼래요"
-					// handleClick={() => updatedExchaneSelectStep('benefitSelection')}
+					handleClick={handleAccept}
 				/>
 				<Button
 					appearance="neutral"
@@ -59,7 +62,7 @@ export default function ExchangePromotion() {
 					stroke="filled"
 					shape="rounding"
 					text="괜찮아요, 혜택없이 진행할게요"
-					// handleClick={forwardProgress}
+					handleClick={handleDecline}
 				/>
 			</div>
 		</ExchangePromotionContainer>

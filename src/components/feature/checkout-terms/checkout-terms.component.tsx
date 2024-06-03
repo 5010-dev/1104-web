@@ -1,5 +1,8 @@
 import { useState, useEffect, ChangeEvent } from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import {
 	ServiceTermsList,
@@ -140,6 +143,7 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 				hierarchy="primary"
 				stroke="filled"
 				shape="rounding"
+				icon={<FontAwesomeIcon icon={faCreditCard} />}
 				text="결제하기"
 				disabled={!isAllChecked}
 				handleClick={handleCheckout}

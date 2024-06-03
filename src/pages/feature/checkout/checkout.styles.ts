@@ -112,7 +112,7 @@ export const CheckoutContainer = styled(PageLayoutContainer)`
 			}
 
 			#checkout-button {
-				width: 40%;
+				width: 80%;
 
 				align-self: center;
 

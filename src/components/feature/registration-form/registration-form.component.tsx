@@ -29,14 +29,21 @@ export default function RegistrationForm() {
 			className="registration-form-container"
 			$deviceType={deviceType}
 		>
-			<NavigationQueueBar
-				queueLength={progress.length}
-				currentQueue={progress.indexOf(currentProgress)}
-			/>
+			{currentProgress !== 'registrationComplete' ? (
+				<NavigationQueueBar
+					queueLength={progress.length - 1}
+					currentQueue={progress.indexOf(currentProgress)}
+				/>
+			) : null}
 			{currentProgress === 'tradingviewIdInput' ? (
 				<TradingviewIdInput onSubmitSuccess={handleProceed} />
 			) : null}
-			{currentProgress === 'exchangeDataInput' ? <ExchangeDataInput /> : null}
+			{currentProgress === 'exchangeDataInput' ? (
+				<ExchangeDataInput handleComplete={handleProceed} />
+			) : null}
+			{currentProgress === 'registrationComplete' ? (
+				<div>Registration Complete</div>
+			) : null}
 		</RegistrationFormContainer>
 	)
 }
