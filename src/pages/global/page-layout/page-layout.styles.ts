@@ -21,6 +21,8 @@ export const PageLayoutContainer = styled.div<PageLayoutContainerProps>`
 
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'page')};
+
+	overflow-x: hidden;
 `
 
 export default PageLayoutContainer
