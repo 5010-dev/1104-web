@@ -32,7 +32,6 @@ export default function IndicatorRegistration() {
 		<IndicatorRegistrationContainer $deviceType={deviceType}>
 			<div id="contents-container">
 				<RegistrationForm />
-				{/* TODO: RegistrationComplete ← 셋팅 완료 화면 추가 (축하합니다 + 커뮤니티 참여하기) */}
 			</div>
 		</IndicatorRegistrationContainer>
 	)

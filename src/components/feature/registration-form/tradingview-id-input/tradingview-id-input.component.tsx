@@ -51,6 +51,10 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 		updateLoginUser('tradingviewId', '')
 	}, [updateLoginUser])
 
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'auto' })
+	}, [])
+
 	return (
 		<TradingviewIdInputContainer
 			id="tradingview-input-form"

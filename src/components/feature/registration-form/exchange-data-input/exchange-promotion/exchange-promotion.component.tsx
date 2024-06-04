@@ -1,5 +1,9 @@
+import { useEffect } from 'react'
+
 import Lottie from 'lottie-react'
 import shiningAnim from '../../../../../assets/lottie/shining-anim.json'
+
+import { useExchangePromotionDataStore } from '../../../../../store/exchangePromotionDataStore'
 
 import { ExchangePromotionProps } from './exchange-promotion.types'
 import { ExchangePromotionContainer } from './exchange-promotion.styles'
@@ -9,6 +13,12 @@ import Button from '../../../../global/button/button.component'
 
 export default function ExchangePromotion(props: ExchangePromotionProps) {
 	const { handleAccept, handleDecline } = props
+
+	const { mainPromotion, subPromotion } = useExchangePromotionDataStore()
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'auto' })
+	}, [])
 
 	return (
 		<ExchangePromotionContainer>
@@ -30,21 +40,19 @@ export default function ExchangePromotion(props: ExchangePromotionProps) {
 						혜택을 드리고 있어요.
 					</p>
 					<Card appearance="accent" className="card">
-						<p className="subheading">최대 수수료 할인률 20% 제공</p>
-						<span className="caption">거래소 정책 기준</span>
+						<p className="subheading">{mainPromotion.benefit}</p>
+						<span className="caption">{mainPromotion.description}</span>
 					</Card>
 				</div>
 
 				<div className="body-rows">
 					<p className="body">그 외에 다른 다양한 혜택들도 제공하고 있어요.</p>
-					<Card appearance="accent" className="card">
-						<p className="subheading">1104 R&I 커뮤니티 대회</p>
-						<span className="caption">대회 수상자 상금 지급</span>
-					</Card>
-					<Card appearance="accent" className="card">
-						<p className="subheading">사용료 월 228,000원 → 110,000원</p>
-						<span className="caption">인디케이터 가격 할인</span>
-					</Card>
+					{subPromotion.map((item, index) => (
+						<Card appearance="accent" className="card" key={index}>
+							<p className="subheading">{item.benefit}</p>
+							<span className="caption">{item.description}</span>
+						</Card>
+					))}
 				</div>
 			</div>
 			<div id="buttons-container">

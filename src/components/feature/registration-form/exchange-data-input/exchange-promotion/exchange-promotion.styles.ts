@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { getTypography } from '../../../../../utils/typo.utils'
-import { getColour } from '../../../../../utils/colour.utils'
+import { hexToRgba, getColour } from '../../../../../utils/colour.utils'
 
 export const ExchangePromotionContainer = styled.div`
 	width: ${({ theme }) => theme.layout.section.width};
@@ -46,7 +46,8 @@ export const ExchangePromotionContainer = styled.div`
 
 	span.caption {
 		${({ theme }) => getTypography(theme, 'caption')}
-		color: ${({ theme }) => getColour(theme, 'accent', 'primary', 'active')};
+		color: ${({ theme }) =>
+			hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
 	}
 
 	div#rows-container {

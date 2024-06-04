@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { ExchangeName } from './exchangeDataStore'
 
 export interface AuthDataState {
 	email: string
@@ -7,6 +8,7 @@ export interface AuthDataState {
 	loginUser: {
 		userId: string
 		tradingviewId: string
+		exchange: ExchangeName | ''
 	}
 }
 
@@ -24,6 +26,7 @@ const initialState: AuthDataState = {
 	loginUser: {
 		userId: '',
 		tradingviewId: '',
+		exchange: '',
 	},
 }
 

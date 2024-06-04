@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { ExchangeDataInputProps } from './exchange-data-input.types'
 
 import ExchangePromotion from './exchange-promotion/exchange-promotion.component'
+import ExchangeSelect from './exchange-select/exchange-select.component'
 import ExchangeUidInput from '../exchange-uid-input/exchange-uid-input.component'
 
 export default function ExchangeDataInput(props: ExchangeDataInputProps) {
@@ -19,7 +20,10 @@ export default function ExchangeDataInput(props: ExchangeDataInputProps) {
 			/>
 		)
 	} else {
-		if (!isExchangeSelected) return <></>
+		if (!isExchangeSelected)
+			return (
+				<ExchangeSelect onSubmitSuccess={() => setIsExchangeSelected(true)} />
+			)
 		else return <ExchangeUidInput />
 	}
 }

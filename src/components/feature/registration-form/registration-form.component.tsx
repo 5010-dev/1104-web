@@ -41,6 +41,13 @@ export default function RegistrationForm() {
 			{currentProgress === 'exchangeDataInput' ? (
 				<ExchangeDataInput handleComplete={handleProceed} />
 			) : null}
+
+			{/* TODO: AssetAmountSelect ← 자산 설계 선택 화면 추가 */}
+			{currentProgress === 'assetAmountSelect' ? (
+				<div>Asset Amount Select</div>
+			) : null}
+
+			{/* TODO: RegistrationComplete ← 셋팅 완료 화면 추가 (축하합니다 + 커뮤니티 참여하기) */}
 			{currentProgress === 'registrationComplete' ? (
 				<div>Registration Complete</div>
 			) : null}
