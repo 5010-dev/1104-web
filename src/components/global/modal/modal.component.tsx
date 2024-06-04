@@ -11,8 +11,13 @@ import { ModalContainer } from './modal.styles'
 import Button from '../button/button.component'
 
 export default function Modal(props: ModalProps) {
-	const { children, bottomButtonText, handleClose, handleBottomButtonClick } =
-		props
+	const {
+		children,
+		bottomButtonText,
+		backgroundPanel = true,
+		handleClose,
+		handleBottomButtonClick,
+	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -24,28 +29,24 @@ export default function Modal(props: ModalProps) {
 	const resetOverflow = () => (document.body.style.overflowY = 'unset')
 
 	return (
-		<ModalContainer $deviceType={deviceType}>
-			{/* <div id="background-panel" /> */}
-			<div id="contents-container">
-				<div id="top-bar">
-					<Button
-						accessibleName="top-bar"
+		<ModalContainer $deviceType={deviceType} $backgroundPanel={backgroundPanel}>
+			<div id="modal-contents-container">
+				<div id="modal-top-bar">
+					<button
+						id="modal-close-button"
+						aria-labelledby="top-bar"
 						type="button"
-						appearance="neutral"
-						hierarchy="secondary"
-						stroke="filled"
-						shape="rounded3"
-						handleClick={(e) => {
+						onClick={(e) => {
 							handleClose(e)
 							resetOverflow()
 						}}
-						icon={<FontAwesomeIcon icon={faXmark} />}
-						id="close-button"
-					/>
+					>
+						<FontAwesomeIcon icon={faXmark} />
+					</button>
 				</div>
 				<div id="modal-body">{children}</div>
 				{bottomButtonText && bottomButtonText.length !== 0 ? (
-					<div id="bottom-bar">
+					<div id="modal-bottom-bar">
 						<Button
 							accessibleName="bottom-bar"
 							type="button"
@@ -54,7 +55,7 @@ export default function Modal(props: ModalProps) {
 							stroke="filled"
 							shape="rounding"
 							text={bottomButtonText}
-							id="button"
+							id="modal-bottom-button"
 							handleClick={(e) => {
 								handleBottomButtonClick && handleBottomButtonClick(e)
 								resetOverflow()
