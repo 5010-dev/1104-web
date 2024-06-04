@@ -12,10 +12,12 @@ import { ExchangeSelectContainer } from './exchange-select.styles'
 import StyledHeading from '../../../../global/styled-heading/styled-heading.component'
 import Button from '../../../../global/button/button.component'
 import RadioButton from '../../../../global/radio-button/radio-button.component'
+import NotionPage from '../../../../global/notion-page/notion-page.component'
 
 export default function ExchangeSelect(props: ExchangeSelectProps) {
-	const { onSubmitSuccess } = props
+	const { onSubmitSuccess, handleBeginnerRegistration } = props
 	const [isValid, setIsValid] = useState<boolean>(false)
+	const [isBeginnerClicked, setIsBeginnerClick] = useState<boolean>(false)
 
 	const exchangeList = useExchangeDataStore((state) => state.exchangeList)
 	const updateLoginUser = useAuthDataStore((state) => state.updateLoginUser)
@@ -28,9 +30,6 @@ export default function ExchangeSelect(props: ExchangeSelectProps) {
 
 		onSubmitSuccess()
 	}
-
-	const handleGuideOpen = (url: string): Window | null =>
-		window.open(url, '_blank', 'noopener,noreferrer')
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
@@ -55,6 +54,21 @@ export default function ExchangeSelect(props: ExchangeSelectProps) {
 	return (
 		<ExchangeSelectContainer onSubmit={handleSubmit} id="exchange-select-form">
 			<StyledHeading heading="주거래소 선택" subheading="인디케이터 셋팅" />
+
+			{isBeginnerClicked ? (
+				<NotionPage
+					pageId="a4c12b8eca0b40ab9aebde2a398d31c2"
+					description="선물 거래를 시작하려면 먼저 해외 거래소부터 가입해야 합니다. 아래의
+						가이드를 따라 해외 거래소 가입을 진행해 주세요."
+					bottomButtonText="가이드에 따라 가입을 마쳤어요."
+					handleBottomButtonClick={(e) => {
+						setIsBeginnerClick(false)
+						handleBeginnerRegistration(e)
+					}}
+					handleCloseButtonClick={() => setIsBeginnerClick(false)}
+				/>
+			) : null}
+
 			<p className="body">현재 사용중이신 주거래소를 선택해 주세요.</p>
 			<Button
 				type="button"
@@ -67,11 +81,7 @@ export default function ExchangeSelect(props: ExchangeSelectProps) {
 				shape="rounding"
 				icon={<FontAwesomeIcon icon={faChild} id="beginner-icon" />}
 				text="선물 거래가 처음이신가요? 저희가 도와드릴게요!"
-				handleClick={() => {
-					handleGuideOpen(
-						'https://receptive-sleep-5a8.notion.site/a4c12b8eca0b40ab9aebde2a398d31c2',
-					)
-				}}
+				handleClick={() => setIsBeginnerClick(true)}
 			/>
 			<div id="select-container" className="input-items">
 				{exchangeList.map((item, index) => (

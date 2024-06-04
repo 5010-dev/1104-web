@@ -221,9 +221,9 @@ export const DesignSystem: DefaultTheme = {
 
 	elevation: {
 		layer0: '0 0 0',
-		layer1: `${designTokens.layout.depth.sm} 0 0`,
-		layer2: `${designTokens.layout.depth.lg} 0 ${designTokens.layout.depth.sm}`,
-		layer3: `${designTokens.layout.depth.xxlg} 0 ${designTokens.layout.depth.lg}`,
+		layer1: `0 ${designTokens.layout.depth.sm} 0`,
+		layer2: `0 ${designTokens.layout.depth.lg} ${designTokens.layout.depth.sm}`,
+		layer3: `0 ${designTokens.layout.depth.xxlg} ${designTokens.layout.depth.lg}`,
 	} as ElevationSystem,
 }
 

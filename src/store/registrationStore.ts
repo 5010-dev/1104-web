@@ -13,6 +13,7 @@ export interface RegistrationState {
 
 export interface RegistrationAction {
 	proceedCurrentProgress: () => void
+	updateCurrentProgress: (value: RegistrationProgress) => void
 	resetCurrentProgress: () => void
 }
 
@@ -46,6 +47,8 @@ export const useRegistrationStore = create<
 		set((state) => ({
 			currentProgress: getNextItem(state.progress, state.currentProgress),
 		})),
+	updateCurrentProgress: (value: RegistrationProgress) =>
+		set((state) => ({ ...state, currentProgress: value })),
 	resetCurrentProgress: () =>
 		set((state) => ({ currentProgress: initialState.currentProgress })),
 }))

@@ -18,6 +18,7 @@ export default function ExchangeUidInput() {
 			id="exchange-uid-input-form"
 			onSubmit={handleSubmit}
 		>
+			{/* TODO: <ExchangeRegistration /> 거래소 회원가입 (패널 형태 on/off 토글) */}
 			<StyledHeading heading="거래소 UID 입력" subheading="인디케이터 셋팅" />
 		</ExchangeUidInputContainer>
 	)

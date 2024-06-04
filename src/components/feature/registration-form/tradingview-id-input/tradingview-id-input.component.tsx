@@ -13,10 +13,14 @@ import Input from '../../../global/input/input.component'
 import TextLink from '../../../global/text-link/text-link.component'
 import Button from '../../../global/button/button.component'
 import WarningText from '../../warning-text/warning-text.component'
+import NotionPage from '../../../global/notion-page/notion-page.component'
+import Modal from '../../../global/modal/modal.component'
 
 export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 	const { onSubmitSuccess } = props
 	const [isValid, setIsValid] = useState<boolean>(false)
+	const [isGuideClicked, setIsGuideClicked] = useState<boolean>(false)
+	const [isBeginnerClicked, setIsBeginnerClicked] = useState<boolean>(false)
 
 	const updateLoginUser = useAuthDataStore((state) => state.updateLoginUser)
 	const tradingviewId = useAuthDataStore(
@@ -44,9 +48,6 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 		return idRegex.test(value)
 	}
 
-	const handleGuideOpen = (url: string): Window | null =>
-		window.open(url, '_blank', 'noopener,noreferrer')
-
 	useEffect(() => {
 		updateLoginUser('tradingviewId', '')
 	}, [updateLoginUser])
@@ -64,6 +65,27 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 				heading="트레이딩뷰 ID 입력"
 				subheading="인디케이터 셋팅"
 			/>
+			{isBeginnerClicked ? (
+				<Modal
+					children={'modal'}
+					handleClose={() => setIsBeginnerClicked(false)}
+				/>
+			) : // <NotionPage
+			// 	pageId="8599c75fae1740f1a5161fbbfcacd831"
+			// 	description="아래의 가이드를 따라 트레이딩뷰 가입을 진행해 주세요. 모두 완료되면 아래의 버튼을 눌러 트레이딩뷰 ID 입력을 마무리 하세요."
+			// 	bottomButtonText="가이드에 따라 가입을 마쳤어요."
+			// 	handleBottomButtonClick={() => setIsBeginnerClicked(false)}
+			// 	handleCloseButtonClick={() => setIsBeginnerClicked(false)}
+			// />
+			null}
+			{isGuideClicked ? (
+				<NotionPage
+					pageId="cba97c976e714a01a618fd19f69da947"
+					bottomButtonText="가이드대로 확인했어요"
+					handleBottomButtonClick={() => setIsGuideClicked(false)}
+					handleCloseButtonClick={() => setIsGuideClicked(false)}
+				/>
+			) : null}
 			<Button
 				type="button"
 				id="beginner-button"
@@ -75,11 +97,7 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 				shape="rounding"
 				icon={<FontAwesomeIcon icon={faChild} id="beginner-icon" />}
 				text="트레이딩뷰 사용이 처음이세요? 저희가 도와드릴게요!"
-				handleClick={() => {
-					handleGuideOpen(
-						'https://receptive-sleep-5a8.notion.site/ID-8599c75fae1740f1a5161fbbfcacd831',
-					)
-				}}
+				handleClick={() => setIsBeginnerClicked(true)}
 			/>
 			{!isValid && tradingviewId.length !== 0 ? (
 				<WarningText
@@ -107,11 +125,7 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 				hierarchy="secondary"
 				size="sm"
 				underlined
-				handleClick={() =>
-					handleGuideOpen(
-						'https://receptive-sleep-5a8.notion.site/ID-cba97c976e714a01a618fd19f69da947',
-					)
-				}
+				handleClick={() => setIsGuideClicked(true)}
 			/>
 			<Button
 				id="submit-button"
