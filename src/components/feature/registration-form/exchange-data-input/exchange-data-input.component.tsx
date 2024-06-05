@@ -33,6 +33,6 @@ export default function ExchangeDataInput(props: ExchangeDataInputProps) {
 				/>
 			)
 		case 'uidInput':
-			return <ExchangeUidInput />
+			return <ExchangeUidInput onSubmitSuccess={() => handleComplete} />
 	}
 }

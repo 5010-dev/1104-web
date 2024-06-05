@@ -53,11 +53,11 @@ export const ModalContainer = styled.div<ModalContainerProps>`
 		`}
 
 	div#modal-contents-container {
-		z-index: 999;
+		z-index: 1000;
 
 		width: ${({ theme }) => theme.layout.container.width};
 		max-width: 28rem;
-		max-height: 80vh;
+		max-height: 70vh;
 
 		display: flex;
 		flex-direction: column;

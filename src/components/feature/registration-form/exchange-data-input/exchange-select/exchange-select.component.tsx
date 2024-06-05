@@ -24,6 +24,7 @@ export default function ExchangeSelect(props: ExchangeSelectProps) {
 	const exchangeList = useExchangeDataStore((state) => state.exchangeList)
 	const updateLoginUser = useAuthDataStore((state) => state.updateLoginUser)
 	const exchange = useAuthDataStore((state) => state.loginUser.exchange)
+	const defaultExchange = useExchangeDataStore((state) => state.defaultExchange)
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -74,6 +75,7 @@ export default function ExchangeSelect(props: ExchangeSelectProps) {
 					handleBottomButtonClick={(e) => {
 						setIsBeginnerClick(false)
 						handleBeginnerRegistration(e)
+						updateLoginUser('exchange', defaultExchange)
 					}}
 				/>
 			) : null}
