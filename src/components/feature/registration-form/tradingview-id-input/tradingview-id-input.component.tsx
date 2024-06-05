@@ -76,11 +76,11 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 			) : null}
 			{isGuideClicked ? (
 				<Modal
-					title="트레이딩뷰 회원 가입 및 ID 확인"
+					title="트레이딩뷰 ID 확인 방법"
 					children={<NotionPage pageId="cba97c976e714a01a618fd19f69da947" />}
-					handleClose={() => setIsBeginnerClicked(false)}
-					bottomButtonText="가이드에 따라 가입을 마쳤어요."
-					handleBottomButtonClick={() => setIsBeginnerClicked(false)}
+					handleClose={() => setIsGuideClicked(false)}
+					bottomButtonText="가이드대로 확인했어요."
+					handleBottomButtonClick={() => setIsGuideClicked(false)}
 				/>
 			) : null}
 			<Button

@@ -25,6 +25,10 @@ export default function Modal(props: ModalProps) {
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'auto' })
 		document.body.style.overflowY = 'hidden'
+
+		return () => {
+			document.body.style.overflowY = 'unset'
+		}
 	}, [])
 
 	const resetOverflow = () => (document.body.style.overflowY = 'unset')
