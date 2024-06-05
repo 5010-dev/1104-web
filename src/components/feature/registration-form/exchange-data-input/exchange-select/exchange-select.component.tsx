@@ -13,6 +13,8 @@ import StyledHeading from '../../../../global/styled-heading/styled-heading.comp
 import Button from '../../../../global/button/button.component'
 import RadioButton from '../../../../global/radio-button/radio-button.component'
 import NotionPage from '../../../../global/notion-page/notion-page.component'
+import Modal from '../../../../global/modal/modal.component'
+import Card from '../../../../global/card/card.component'
 
 export default function ExchangeSelect(props: ExchangeSelectProps) {
 	const { onSubmitSuccess, handleBeginnerRegistration } = props
@@ -56,7 +58,24 @@ export default function ExchangeSelect(props: ExchangeSelectProps) {
 			<StyledHeading heading="주거래소 선택" subheading="인디케이터 셋팅" />
 
 			{isBeginnerClicked ? (
-				<NotionPage pageId="a4c12b8eca0b40ab9aebde2a398d31c2" />
+				<Modal
+					title="해외 거래소 가입 절차"
+					children={
+						<>
+							<Card>
+								선물 거래를 시작하려면 먼저 해외 거래소부터 가입해야 합니다.
+								아래의 가이드를 따라 해외 거래소 가입을 진행해 주세요.
+							</Card>
+							<NotionPage pageId="a1a546bdc9454ac08b0518cb689779ba" />
+						</>
+					}
+					handleClose={() => setIsBeginnerClick(false)}
+					bottomButtonText="가이드에 따라 가입을 마쳤어요."
+					handleBottomButtonClick={(e) => {
+						setIsBeginnerClick(false)
+						handleBeginnerRegistration(e)
+					}}
+				/>
 			) : null}
 
 			<p className="body">현재 사용중이신 주거래소를 선택해 주세요.</p>
