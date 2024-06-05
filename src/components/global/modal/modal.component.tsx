@@ -13,6 +13,7 @@ import Button from '../button/button.component'
 export default function Modal(props: ModalProps) {
 	const {
 		children,
+		title,
 		bottomButtonText,
 		backgroundPanel = true,
 		handleClose,
@@ -32,6 +33,7 @@ export default function Modal(props: ModalProps) {
 		<ModalContainer $deviceType={deviceType} $backgroundPanel={backgroundPanel}>
 			<div id="modal-contents-container">
 				<div id="modal-top-bar">
+					<h3 id="modal-subheading">{title}</h3>
 					<button
 						id="modal-close-button"
 						aria-labelledby="top-bar"

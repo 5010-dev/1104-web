@@ -56,17 +56,7 @@ export default function ExchangeSelect(props: ExchangeSelectProps) {
 			<StyledHeading heading="주거래소 선택" subheading="인디케이터 셋팅" />
 
 			{isBeginnerClicked ? (
-				<NotionPage
-					pageId="a4c12b8eca0b40ab9aebde2a398d31c2"
-					description="선물 거래를 시작하려면 먼저 해외 거래소부터 가입해야 합니다. 아래의
-						가이드를 따라 해외 거래소 가입을 진행해 주세요."
-					bottomButtonText="가이드에 따라 가입을 마쳤어요."
-					handleBottomButtonClick={(e) => {
-						setIsBeginnerClick(false)
-						handleBeginnerRegistration(e)
-					}}
-					handleCloseButtonClick={() => setIsBeginnerClick(false)}
-				/>
+				<NotionPage pageId="a4c12b8eca0b40ab9aebde2a398d31c2" />
 			) : null}
 
 			<p className="body">현재 사용중이신 주거래소를 선택해 주세요.</p>

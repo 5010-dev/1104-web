@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
 import { getContainerStyle } from '../../../utils/style.utils'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
+import { getTypography } from '../../../utils/typo.utils'
 
 import { ModalContainerProps } from './modal.types'
 
@@ -78,9 +79,17 @@ export const ModalContainer = styled.div<ModalContainerProps>`
 			width: ${({ theme }) => theme.layout.container.width};
 
 			display: flex;
-			justify-content: flex-end;
+			justify-content: space-between;
+			align-items: center;
 
 			padding-bottom: 0.5rem;
+
+			h3#modal-subheading {
+				${({ theme }) => getTypography(theme, 'subheading')}
+				font-size: 0.875rem;
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'primary', 'active')};
+			}
 
 			button#modal-close-button {
 				all: unset;
@@ -101,6 +110,7 @@ export const ModalContainer = styled.div<ModalContainerProps>`
 		}
 
 		div#modal-body {
+			width: ${({ theme }) => theme.layout.container.width};
 			height: 100%;
 			overflow-y: auto;
 			overflow-x: hidden;

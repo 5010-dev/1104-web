@@ -3,6 +3,7 @@ import { DeviceType } from '../../../store/deviceTypeStore'
 
 export type ModalProps = {
 	children: ReactNode | null
+	title?: string
 	bottomButtonText?: string
 	backgroundPanel?: boolean
 	handleClose: (e: MouseEvent<HTMLButtonElement>) => void
