@@ -15,6 +15,7 @@ import Button from '../../../global/button/button.component'
 import WarningText from '../../warning-text/warning-text.component'
 import NotionPage from '../../../global/notion-page/notion-page.component'
 import Modal from '../../../global/modal/modal.component'
+import Card from '../../../global/card/card.component'
 
 export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 	const { onSubmitSuccess } = props
@@ -68,7 +69,15 @@ export default function TradingviewIdInput(props: TradingviewIdInputProps) {
 			{isBeginnerClicked ? (
 				<Modal
 					title="트레이딩뷰 회원 가입 및 ID 확인"
-					children={<NotionPage pageId="8599c75fae1740f1a5161fbbfcacd831" />}
+					children={
+						<>
+							<Card>
+								아래의 가이드를 따라 트레이딩뷰 가입을 진행해 주세요. 모두
+								완료되면 아래의 버튼을 눌러 트레이딩뷰 ID 입력을 마무리 하세요.
+							</Card>
+							<NotionPage pageId="8599c75fae1740f1a5161fbbfcacd831" />
+						</>
+					}
 					handleClose={() => setIsBeginnerClicked(false)}
 					bottomButtonText="가이드에 따라 가입을 마쳤어요."
 					handleBottomButtonClick={() => setIsBeginnerClicked(false)}
