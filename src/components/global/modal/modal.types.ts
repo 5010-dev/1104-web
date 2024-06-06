@@ -6,7 +6,7 @@ export type ModalProps = {
 	title?: string
 	bottomButtonText?: string
 	backgroundPanel?: boolean
-	handleClose: (e: MouseEvent<HTMLButtonElement>) => void
+	handleClose: (e: MouseEvent<HTMLButtonElement> | KeyboardEvent) => void
 	handleBottomButtonClick?: (e: MouseEvent<HTMLButtonElement>) => void
 }
 

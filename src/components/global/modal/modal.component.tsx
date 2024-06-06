@@ -26,10 +26,18 @@ export default function Modal(props: ModalProps) {
 		window.scrollTo({ top: 0, behavior: 'auto' })
 		document.body.style.overflowY = 'hidden'
 
+		const handleEscapeKey = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') {
+				handleClose(e)
+			}
+		}
+		document.addEventListener('keydown', handleEscapeKey)
+
 		return () => {
 			document.body.style.overflowY = 'unset'
+			document.removeEventListener('keydown', handleEscapeKey)
 		}
-	}, [])
+	}, [handleClose])
 
 	const resetOverflow = () => (document.body.style.overflowY = 'unset')
 

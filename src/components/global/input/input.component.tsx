@@ -21,6 +21,7 @@ export default function Input(props: InputProps) {
 		handleChange,
 		handleFocus,
 		handleBlur,
+		isRequired,
 	} = props
 
 	const [isFocused, setIsFocused] = useState<boolean>(false)
@@ -53,6 +54,7 @@ export default function Input(props: InputProps) {
 			$isFocused={isFocused}
 			$isValid={isValid}
 			$hierarchy={hierarchy}
+			required={isRequired}
 		/>
 	)
 }

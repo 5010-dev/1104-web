@@ -36,6 +36,8 @@ export default function AssetCustomInput(props: AssetCustomInputProps) {
 				hierarchy="secondary"
 				name={name}
 				value={value}
+				type="tel"
+				autoComplete={false}
 				placeholder={placeholder}
 				isValid={isValid}
 				handleChange={handleChange}

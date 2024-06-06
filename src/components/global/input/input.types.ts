@@ -19,6 +19,7 @@ export type InputProps = {
 	handleChange?: (e: ChangeEvent<HTMLInputElement>) => void
 	handleFocus?: (e: FocusEvent<HTMLInputElement>) => void
 	handleBlur?: (e: FocusEvent<HTMLInputElement>) => void
+	isRequired?: boolean
 }
 
 export type InputContainerProps = {
