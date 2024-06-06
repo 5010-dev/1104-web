@@ -26,13 +26,13 @@ export default function ExchangeDataInput(props: ExchangeDataInputProps) {
 		case 'exchangeSelect':
 			return (
 				<ExchangeSelect
-					onSubmitSuccess={() => handleComplete}
+					onSubmitSuccess={handleComplete}
 					handleBeginnerRegistration={() =>
 						setExchangeDataInputState('uidInput')
 					}
 				/>
 			)
 		case 'uidInput':
-			return <ExchangeUidInput onSubmitSuccess={() => handleComplete} />
+			return <ExchangeUidInput onSubmitSuccess={handleComplete} />
 	}
 }

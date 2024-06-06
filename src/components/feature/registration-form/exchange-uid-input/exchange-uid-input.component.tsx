@@ -1,5 +1,8 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+
 import { useAuthDataStore } from '../../../../store/authDataStore'
 import { useExchangeDataStore } from '../../../../store/exchangeDataStore'
 
@@ -13,10 +16,13 @@ import Button from '../../../global/button/button.component'
 import TextLink from '../../../global/text-link/text-link.component'
 import NotionPage from '../../../global/notion-page/notion-page.component'
 import Modal from '../../../global/modal/modal.component'
+import Card from '../../../global/card/card.component'
 
 export default function ExchangeUidInput(props: ExchangeUidInputProps) {
 	const { onSubmitSuccess } = props
 	const [isValid, setIsValid] = useState<boolean>(false)
+	const [isRegistrationClicked, setIsRegistrationClicked] =
+		useState<boolean>(false)
 	const [isGuideClicked, setIsGuideClicked] = useState<boolean>(false)
 
 	const updateLoginUser = useAuthDataStore((state) => state.updateLoginUser)
@@ -57,18 +63,55 @@ export default function ExchangeUidInput(props: ExchangeUidInputProps) {
 			id="exchange-uid-input-form"
 			onSubmit={handleSubmit}
 		>
+			{isRegistrationClicked ? (
+				<Modal
+					title="해외 거래소 가입 절차"
+					children={
+						<>
+							<Card>
+								1104 R&I에서 제공하는 혜택을 받기 위해서는 바이비트 거래소에
+								가입해야 합니다. 아래의 가이드를 따라 바이비트 거래소 가입을
+								진행해 주세요.
+							</Card>
+							<NotionPage pageId="a1a546bdc9454ac08b0518cb689779ba" />
+						</>
+					}
+					handleClose={() => setIsRegistrationClicked(false)}
+					bottomButtonText="가이드에 따라 가입을 마쳤어요."
+					handleBottomButtonClick={() => setIsRegistrationClicked(false)}
+				/>
+			) : null}
 			{isGuideClicked ? (
 				<Modal
-					title="해외 거래소 UID 확인 방법"
+					title="UID 확인 방법"
 					children={<NotionPage pageId="70883ab1b5a746db91797956a84338a0" />}
 					handleClose={() => setIsGuideClicked(false)}
 					bottomButtonText="가이드대로 확인했어요."
 					handleBottomButtonClick={() => setIsGuideClicked(false)}
 				/>
 			) : null}
+
 			<StyledHeading
 				heading={`${defaultExchange.toUpperCase()} UID 입력`}
 				subheading="인디케이터 셋팅"
+			/>
+			<Button
+				type="button"
+				id="exchange-registration-button"
+				className="input-items"
+				accessibleName="exchange-uid-input-form"
+				appearance="neutral"
+				hierarchy="tertiary"
+				stroke="filled"
+				shape="rounding"
+				icon={
+					<FontAwesomeIcon
+						icon={faRightToBracket}
+						id="exchange-registration-icon"
+					/>
+				}
+				text={`${defaultExchange.toUpperCase()} 거래소 신규 가입하고 1104 R&I가 제공하는 혜택 받기`}
+				handleClick={() => setIsRegistrationClicked(true)}
 			/>
 			{!isValid && uid.length !== 0 ? (
 				<WarningText

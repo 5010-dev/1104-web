@@ -10,6 +10,7 @@ export interface AuthDataState {
 		tradingviewId: string
 		exchange: ExchangeName | ''
 		uid: string
+		asset: string
 	}
 }
 
@@ -29,6 +30,7 @@ const initialState: AuthDataState = {
 		tradingviewId: '',
 		exchange: '',
 		uid: '',
+		asset: '',
 	},
 }
 

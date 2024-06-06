@@ -8,6 +8,7 @@ import { RegistrationFormContainer } from './registration-form.styles'
 import NavigationQueueBar from '../navigation-queue-bar/navigation-queue-bar.component'
 import TradingviewIdInput from './tradingview-id-input/tradingview-id-input.component'
 import ExchangeDataInput from './exchange-data-input/exchange-data-input.component'
+import AssetAmountSelect from '../asset-amount-select/asset-amount-select.component'
 
 export default function RegistrationForm() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -41,10 +42,8 @@ export default function RegistrationForm() {
 			{currentProgress === 'exchangeDataInput' ? (
 				<ExchangeDataInput handleComplete={handleProceed} />
 			) : null}
-
-			{/* TODO: AssetAmountSelect ← 자산 설계 선택 화면 추가 */}
 			{currentProgress === 'assetAmountSelect' ? (
-				<div>Asset Amount Select</div>
+				<AssetAmountSelect onSubmitSuccess={handleProceed} />
 			) : null}
 
 			{/* TODO: RegistrationComplete ← 셋팅 완료 화면 추가 (축하합니다 + 커뮤니티 참여하기) */}
