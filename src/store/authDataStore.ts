@@ -1,17 +1,19 @@
 import { create } from 'zustand'
 import { ExchangeName } from './exchangeDataStore'
 
+export type User = {
+	userId: string
+	tradingviewId: string
+	exchange: ExchangeName | ''
+	uid: string
+	asset: string
+}
+
 export interface AuthDataState {
 	email: string
 	password: string
 	verificationCode: string
-	loginUser: {
-		userId: string
-		tradingviewId: string
-		exchange: ExchangeName | ''
-		uid: string
-		asset: string
-	}
+	loginUser: User
 }
 
 export interface AuthDataAction {

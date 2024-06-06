@@ -1,5 +1,3 @@
-import { MouseEvent } from 'react'
-
 export type ExchangeDataInputProps = {
 	handleComplete: () => void
 }

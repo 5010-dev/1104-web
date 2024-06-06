@@ -42,8 +42,8 @@ export default function ExchangeSelect(props: ExchangeSelectProps) {
 	}
 
 	useEffect(() => {
-		const validtaeExchange = (): boolean => exchange.length !== 0
-		setIsValid(validtaeExchange)
+		const validateExchange = (): boolean => exchange.length !== 0
+		setIsValid(validateExchange)
 	}, [exchange])
 
 	useEffect(() => {

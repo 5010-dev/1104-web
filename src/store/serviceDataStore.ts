@@ -31,6 +31,12 @@ export interface FaqDataState {
 	faq: Faq[]
 }
 
+type AssetOption = { title: string; value: string }
+
+export interface AssetOptionState {
+	assetOptions: AssetOption[]
+}
+
 export const useServiceDataStore = create<ServiceDataState>((set) => ({
 	service: [
 		{
@@ -116,5 +122,14 @@ export const useFaqDataStore = create<FaqDataState>((set) => ({
 			heading: '5010 매매 전략만 있으면 저도 부자가 될 수 있나요?',
 			body: '5010 매매 전략은 100% 성공을 보장하지 않습니다. 우리는 과학적이고 수학적인 근거로 돈 버는 방법을 알려드리고, 확률이 높은 시스템을 구축해 드릴 뿐입니다. 우리는 투자를 권유하지 않고, 시행착오를 겪지 않기를 바라는 마음으로 책을 썼습니다. 우리는 제대로 된 공부법을 알려줄 뿐, 노력하는 사람만이 성공할 수 있습니다. 우리는 마케팅 없이 바이럴로 성장했고, 검증된 레퍼런스를 보유하고 있습니다. 선택과 노력은 여러분의 몫입니다.',
 		},
+	],
+}))
+
+export const useAssetOptionStore = create<AssetOptionState>((set) => ({
+	assetOptions: [
+		{ title: '2,000만 원', value: '2000' },
+		{ title: '1,000만 원', value: '1000' },
+		{ title: '400만 원', value: '400' },
+		{ title: '100만 원', value: '100' },
 	],
 }))
