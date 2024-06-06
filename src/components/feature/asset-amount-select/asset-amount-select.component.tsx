@@ -10,7 +10,7 @@ import { AssetAmountSelectProps } from './asset-amount-select.types'
 import { AssetAmountSelectContainer } from './asset-amount-select.styles'
 
 import StyledHeading from '../../global/styled-heading/styled-heading.component'
-import Input from '../../global/input/input.component'
+import AssetCustomInput from './asset-custom-input/asset-custom-input.component'
 import RadioButton from '../../global/radio-button/radio-button.component'
 import Button from '../../global/button/button.component'
 import WarningText from '../warning-text/warning-text.component'
@@ -119,14 +119,14 @@ export default function AssetAmountSelect(props: AssetAmountSelectProps) {
 				{!isCutsomInputValid && !isValid && formattedValue.length !== 0 ? (
 					<WarningText message="직접 입력은 2,000만 원 보다 높게(예. 2,001 만 원 이상) 입력해 주세요." />
 				) : null}
-				<Input
-					hierarchy="secondary"
+				<AssetCustomInput
 					name="asset"
-					type="text"
 					value={formattedValue}
 					placeholder="2,000만 원 초과 직접 입력"
-					isValid={isCutsomInputValid || asset.length === 0}
+					isValid={isCutsomInputValid || formattedValue.length === 0}
 					handleChange={handleInputTextChange}
+					handleFocus={handleInputTextChange}
+					isCustomInputSelected={parseInt(asset) >= 2001}
 				/>
 				{assetOptions.map((item, index) => (
 					<RadioButton

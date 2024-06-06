@@ -12,7 +12,7 @@ export const RadioButtonContainer = styled.label<RadioButtonContainerProps>`
 	cursor: pointer;
 	box-sizing: border-box;
 
-	border-radius: ${({ theme }) => theme.shape.outlined.rounded3.borderRadii};
+	border-radius: ${({ theme }) => theme.shape.outlined.rounded2.borderRadii};
 
 	${({ $isChecked }) =>
 		$isChecked
@@ -31,8 +31,6 @@ export const RadioButtonContainer = styled.label<RadioButtonContainerProps>`
 						)}`};
 					background-color: transparent;
 			  `}
-
-	border-radius: 1rem;
 
 	padding: ${({ theme }) => theme.layout.container.padding.sm};
 	padding-left: ${({ theme }) => theme.layout.container.padding.default};
