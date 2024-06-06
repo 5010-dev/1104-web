@@ -18,7 +18,7 @@ export const RgistrationCompleteContainer = styled.div`
 	}
 
 	#go-home-button {
-		margin-top: ${({ theme }) => theme.layout.container.gutter};
+		margin-top: ${({ theme }) => theme.layout.section.gutter};
 	}
 
 	div#community-container {

@@ -20,7 +20,7 @@ export default function RegistrationComplete() {
 		<RgistrationCompleteContainer>
 			<Complete text="셋팅 신청이 완료되었습니다." />
 			<p id="body">
-				등록하신 정보로 셋팅 진행 후, 로그인 이메일({userId})을 통해
+				등록하신 정보로 셋팅 진행 후, 완료시 로그인 이메일({userId})을 통해
 				안내드리겠습니다.
 			</p>
 			<Button
