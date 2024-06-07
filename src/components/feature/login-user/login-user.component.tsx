@@ -15,7 +15,7 @@ import { LoginUserContainer } from './login-user.styles'
 import TextLink from '../../global/text-link/text-link.component'
 
 export default function LoginUser() {
-	const { resetLoginUser } = useAuthDataStore()
+	const resetLoginUser = useAuthDataStore((state) => state.resetLoginUser)
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigateWithScroll()

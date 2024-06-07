@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useScrollStore } from '../../../store/globalUiStore'
+import { useAuthDataStore } from '../../../store/authDataStore'
 
 import Hero from '../../../components/feature/hero/hero.component'
 import About from '../../../components/feature/about/about.component'
@@ -12,6 +13,7 @@ import Review from '../../../components/feature/review/review.component'
 import Subscription from '../../../components/feature/subscription/subscription.component'
 import FrequentQuestions from '../../../components/feature/frequent-questions/frequent-questions.component'
 import Community from '../../../components/feature/community/community.component'
+import RegistrationRequiredBanner from '../../../components/feature/registration-required-banner/registration-required-banner.component'
 
 import { HomeContainer } from './home.styles'
 
@@ -20,6 +22,7 @@ export default function Home() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { isSamePage, isScrollToSubscription, resetScrollState } =
 		useScrollStore()
+	const { userId, tradingviewId } = useAuthDataStore((state) => state.loginUser)
 
 	useLayoutEffect(() => {
 		if (isScrollToSubscription) {
@@ -46,6 +49,11 @@ export default function Home() {
 			<Subscription ref={ref} />
 			<FrequentQuestions />
 			<Community />
+
+			{/* HACK: 결제 정보 받아와서 결제 했는지 여부도 조건으로 */}
+			{userId && tradingviewId.length === 0 ? (
+				<RegistrationRequiredBanner />
+			) : null}
 		</HomeContainer>
 	)
 }
