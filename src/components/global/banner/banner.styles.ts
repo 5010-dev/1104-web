@@ -36,15 +36,11 @@ export const BannerContainer = styled.div<BannerContainerProps>`
 		min-width: ${({ theme }) => theme.layout.container.minWidth};
 
 		padding: ${({ theme }) =>
-			`${theme.layout.container.padding.sm} ${theme.layout.container.padding.default}`};
+			`${theme.layout.component.padding.default} ${theme.layout.container.padding.default}`};
 
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-	}
-
-	#banner-button {
-		flex: 0 0 auto;
 	}
 `
