@@ -3,7 +3,7 @@ export interface UserAuthData {
 	password: string
 }
 
-export interface UserAuthResponse {
+export interface SignUpResponse {
 	token: string
 	email: string
 }

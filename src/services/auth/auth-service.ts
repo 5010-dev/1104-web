@@ -14,7 +14,7 @@ import {
 } from 'aws-amplify/auth'
 import { ErrorCode, errorMessages } from './auth-error'
 
-import { UserAuthData, UserAuthResponse } from './auth-service.types'
+import { UserAuthData, SignUpResponse } from './auth-service.types'
 
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -75,6 +75,15 @@ export const logInWithCallback = async (
 // 	}
 // }
 
+/**
+ * 회원가입을 수행하는 비동기 함수
+ * @param {Object} userData - 사용자 인증 정보 (이메일, 비밀번호)
+ * @param {Function} onLoading - 로딩 상태 시작 시 호출되는 콜백 함수
+ * @param {Function} onSuccess - 회원가입 성공 시 호출되는 콜백 함수 (토큰, 이메일을 인자로 받음)
+ * @param {Function} onError - 에러 발생 시 호출되는 콜백 함수 (에러 메시지를 인자로 받음)
+ * @param {Function} onLoadingDone - 로딩 상태 종료 시 호출되는 콜백 함수
+ * @returns {Promise<void>} - Promise 객체
+ */
 export const signUpWithCallback = async (
 	{ email, password }: UserAuthData,
 	onLoading: () => void,
@@ -84,7 +93,7 @@ export const signUpWithCallback = async (
 ): Promise<void> => {
 	try {
 		onLoading()
-		const response = await axios.post<UserAuthResponse>(
+		const response = await axios.post<SignUpResponse>(
 			`${BASE_URL}/users/signup`,
 			{ email, password },
 		)
@@ -95,7 +104,25 @@ export const signUpWithCallback = async (
 			if (error.response) {
 				// 에러 응답이 왔을 경우
 				const errorData = error.response.data
-				onError(errorData.message) // "message" 필드의 오류 메시지 사용
+				if (errorData.errors) {
+					if (
+						errorData.errors.non_field_errors &&
+						errorData.errors.non_field_errors.length > 0
+					) {
+						// non_field_errors 배열에서 첫 번째 에러 메시지 사용
+						onError(errorData.errors.non_field_errors[0])
+					} else if (errorData.errors.field_errors) {
+						// field_errors 객체에서 첫 번째 필드의 에러 메시지 사용
+						const fieldName = Object.keys(errorData.errors.field_errors)[0]
+						onError(errorData.errors.field_errors[fieldName][0])
+					} else {
+						// 기본 에러 메시지
+						onError('회원가입 중 오류가 발생했습니다.')
+					}
+				} else {
+					// 기본 에러 메시지
+					onError('회원가입 중 오류가 발생했습니다.')
+				}
 			} else {
 				// 네트워크 에러 등
 				onError('회원가입 요청을 보내지 못했습니다.')
