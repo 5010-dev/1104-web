@@ -15,6 +15,8 @@ export const CardContainer = styled.div<CardContainerProps>`
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'container')};
 
+	cursor: ${({ $handleClick }) => $handleClick && 'pointer'};
+
 	${({ theme, $appearance, $hierarchy, $stroke, $shape, $opacity }) =>
 		getContainerStyle(
 			theme,

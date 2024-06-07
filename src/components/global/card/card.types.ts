@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, MouseEvent } from 'react'
 
 import { DeviceType } from '../../../store/deviceTypeStore'
 import {
@@ -17,6 +17,7 @@ export type CardProps = {
 	stroke?: ComponentStroke
 	shape?: ComponentShape
 	opacity?: number
+	handleClick?: (e: MouseEvent<HTMLDivElement>) => void
 }
 
 export type CardContainerProps = {
@@ -26,4 +27,5 @@ export type CardContainerProps = {
 	$stroke: ComponentStroke
 	$shape: ComponentShape
 	$opacity?: number
+	$handleClick?: (e: MouseEvent<HTMLDivElement>) => void
 }

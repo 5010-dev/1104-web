@@ -13,6 +13,7 @@ export default function Card(props: CardProps) {
 		stroke = 'filled',
 		shape = 'rounded2',
 		opacity,
+		handleClick,
 	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -27,6 +28,8 @@ export default function Card(props: CardProps) {
 			$stroke={stroke}
 			$shape={shape}
 			$opacity={opacity}
+			onClick={handleClick}
+			$handleClick={handleClick}
 		>
 			{children}
 		</CardContainer>
