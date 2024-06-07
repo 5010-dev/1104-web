@@ -30,8 +30,8 @@ export default function SignupForm() {
 		signUpWithCallback(
 			{ email, password },
 			() => updateIsLoading(true), // onLoading
-			(username) => {
-				navigate(`/verification?email=${username}`, { replace: true })
+			(token, signedUpEmail) => {
+				navigate(`/verification?email=${signedUpEmail}`, { replace: true })
 			},
 			(error) => {
 				updateToastMessage(error)

@@ -14,7 +14,11 @@ import {
 } from 'aws-amplify/auth'
 import { ErrorCode, errorMessages } from './auth-error'
 
-import { UserAuthData, SignUpResponse } from './auth-service.types'
+import {
+	UserAuthToken,
+	UserAuthData,
+	SignUpResponse,
+} from './auth-service.types'
 
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -87,7 +91,7 @@ export const logInWithCallback = async (
 export const signUpWithCallback = async (
 	{ email, password }: UserAuthData,
 	onLoading: () => void,
-	onSuccess: (token: string, email: string) => void,
+	onSuccess: (token: UserAuthToken, email: string) => void,
 	onError: (error: any) => void,
 	onLoadingDone: () => void,
 ): Promise<void> => {
@@ -97,30 +101,27 @@ export const signUpWithCallback = async (
 			`${BASE_URL}/users/signup`,
 			{ email, password },
 		)
-		const { token, email: signedUpEmail } = response.data
+		const { token, email: signedUpEmail } = response.data.data
+		console.log(response.data)
+
 		onSuccess(token, signedUpEmail)
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
 			if (error.response) {
-				// 에러 응답이 왔을 경우
 				const errorData = error.response.data
 				if (errorData.errors) {
 					if (
 						errorData.errors.non_field_errors &&
 						errorData.errors.non_field_errors.length > 0
 					) {
-						// non_field_errors 배열에서 첫 번째 에러 메시지 사용
 						onError(errorData.errors.non_field_errors[0])
 					} else if (errorData.errors.field_errors) {
-						// field_errors 객체에서 첫 번째 필드의 에러 메시지 사용
 						const fieldName = Object.keys(errorData.errors.field_errors)[0]
 						onError(errorData.errors.field_errors[fieldName][0])
 					} else {
-						// 기본 에러 메시지
 						onError('회원가입 중 오류가 발생했습니다.')
 					}
 				} else {
-					// 기본 에러 메시지
 					onError('회원가입 중 오류가 발생했습니다.')
 				}
 			} else {
