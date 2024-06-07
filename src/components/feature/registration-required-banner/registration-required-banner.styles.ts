@@ -12,7 +12,7 @@ export const RegistrationRequiredBannerContentsContainer = styled.div<Props>`
 
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	gap: ${({ theme }) => theme.layout.container.gutter};
 

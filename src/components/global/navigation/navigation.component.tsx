@@ -7,6 +7,7 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import useOnClickOutside from '../../../hooks/useOnClickOutside'
+import { useAuthDataStore } from '../../../store/authDataStore'
 import { useBannerStore } from '../../../store/globalUiStore'
 
 import { NavigationContainer } from './navigation.styles'
@@ -25,8 +26,10 @@ export default function Navigation() {
 
 	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 	const [isScrolled, setIsScrolled] = useState<boolean>(false)
+
 	const { scrollYProgress } = useScroll()
-	const { isBannerOn } = useBannerStore()
+	const { loginUser } = useAuthDataStore()
+	const { isBannerOn, updateBanerVisibility } = useBannerStore()
 	const location = useLocation()
 
 	const ref = useRef<HTMLDivElement>(null)
@@ -59,6 +62,18 @@ export default function Navigation() {
 	useEffect(() => {
 		setIsMenuOpen(false)
 	}, [location])
+
+	useEffect(() => {
+		if (
+			loginUser.userId &&
+			loginUser.tradingviewId.length === 0 &&
+			location.pathname === '/'
+		) {
+			updateBanerVisibility(true)
+		} else {
+			updateBanerVisibility(false)
+		}
+	}, [loginUser, updateBanerVisibility, location])
 
 	useOnClickOutside(ref, () => setIsMenuOpen(false))
 

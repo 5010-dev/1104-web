@@ -9,7 +9,6 @@ import useDeviceType from './hooks/useDeviceType'
 import { useLoadingStore } from './store/loadingStore'
 import { getLoginUserDataWithCallback } from './services/auth/auth-service'
 import { useToastMessageStore } from './store/globalUiStore'
-import { useBannerStore } from './store/globalUiStore'
 
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
@@ -32,10 +31,9 @@ import './App.css'
 function App() {
 	const deviceType = useDeviceType()
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
-	const { loginUser, updateLoginUser, resetLoginUser } = useAuthDataStore()
+	const { updateLoginUser, resetLoginUser } = useAuthDataStore()
 	const { toastMessgae, resetToastMessage } = useToastMessageStore()
 	const { isLoading, updateIsLoading } = useLoadingStore()
-	const { updateBanerVisibility } = useBannerStore()
 
 	useEffect(() => {
 		updateDeviceType(deviceType)
@@ -58,12 +56,6 @@ function App() {
 		fetchData()
 	}, [updateLoginUser, resetLoginUser, updateIsLoading])
 
-	useEffect(() => {
-		if (loginUser.userId && loginUser.tradingviewId.length === 0)
-			updateBanerVisibility(true)
-		else updateBanerVisibility(false)
-	}, [loginUser, updateBanerVisibility])
-
 	return (
 		<HelmetProvider>
 			<Helmet>
@@ -85,7 +77,6 @@ function App() {
 							<Route path="/registration" element={<IndicatorRegistration />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
-
 						{toastMessgae.length !== 0 ? (
 							<Toast
 								text={toastMessgae}

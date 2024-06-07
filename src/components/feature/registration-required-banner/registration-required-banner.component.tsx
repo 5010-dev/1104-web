@@ -26,7 +26,7 @@ export default function RegistrationRequiredBanner() {
 					<div id="banner-first-column">
 						<FontAwesomeIcon icon={faCircleExclamation} id="banner-icon" />
 						<p id="banner-subheading">
-							구독하신 서비스를 이용하시려면 초기 셋팅을 진행하셔야 합니다.
+							구독하신 서비스를 이용하려면 초기 셋팅이 필요해요.
 						</p>
 					</div>
 					<Button
