@@ -101,9 +101,8 @@ export const signUpWithCallback = async (
 			`${BASE_URL}/users/signup`,
 			{ email, password },
 		)
-		const { token, email: signedUpEmail } = response.data.data
-		console.log(response.data)
-
+		const { data } = response.data
+		const { token, email: signedUpEmail } = data
 		onSuccess(token, signedUpEmail)
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
