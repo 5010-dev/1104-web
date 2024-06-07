@@ -89,7 +89,6 @@ export const signUpWithCallback = async (
 			{ email, password },
 		)
 		const { token, email: signedUpEmail } = response.data
-		console.log(response)
 		onSuccess(token, signedUpEmail)
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
