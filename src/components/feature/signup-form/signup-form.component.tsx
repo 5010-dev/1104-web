@@ -28,7 +28,7 @@ export default function SignupForm() {
 		e.preventDefault()
 
 		signUpWithCallback(
-			{ username: email, password },
+			{ email, password },
 			() => updateIsLoading(true), // onLoading
 			(username) => {
 				navigate(`/verification?email=${username}`, { replace: true })
