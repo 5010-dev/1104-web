@@ -20,14 +20,7 @@ export const NavigationContainer = styled(motion.header)<Props>`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-	gap: ${({ theme }) => theme.layout.section.gutter};
-
-	padding: ${({ theme, $deviceType }) =>
-		`${theme.layout.container.gutter} ${getDeviceTypePadding(
-			theme,
-			$deviceType,
-			'section',
-		)}`};
+	/* gap: ${({ theme }) => theme.layout.section.gutter}; */
 
 	& > * {
 		z-index: 10;
@@ -82,6 +75,13 @@ export const NavigationContainer = styled(motion.header)<Props>`
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+
+		padding: ${({ theme, $deviceType }) =>
+			`${theme.layout.container.gutter} ${getDeviceTypePadding(
+				theme,
+				$deviceType,
+				'section',
+			)}`};
 
 		div.nav-bar-container {
 			display: flex;
@@ -147,5 +147,13 @@ export const NavigationContainer = styled(motion.header)<Props>`
 
 	div#mobile-navigation-menu-container {
 		width: ${({ theme }) => theme.layout.container.width};
+
+		padding: ${({ theme, $deviceType }) =>
+			`${theme.layout.container.gutter} ${getDeviceTypePadding(
+				theme,
+				$deviceType,
+				'section',
+			)}`};
+		margin-top: ${({ theme }) => theme.layout.container.gutter};
 	}
 `

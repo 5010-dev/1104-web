@@ -19,6 +19,14 @@ export interface ScrollAction {
 	resetScrollState: () => void
 }
 
+export interface BannerState {
+	isBannerOn: boolean
+}
+
+export interface BannerAction {
+	updateBanerVisibility: (value: boolean) => void
+}
+
 export const useToastMessageStore = create<
 	ToastMessageState & ToastMessageAction
 >((set) => ({
@@ -34,4 +42,9 @@ export const useScrollStore = create<ScrollState & ScrollAction>((set) => ({
 		set((state) => ({ ...state, [key]: value })),
 	resetScrollState: () =>
 		set({ isSamePage: false, isScrollToSubscription: false }),
+}))
+
+export const useBannerStore = create<BannerState & BannerAction>((set) => ({
+	isBannerOn: false,
+	updateBanerVisibility: (value) => set({ isBannerOn: value }),
 }))

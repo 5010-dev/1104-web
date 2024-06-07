@@ -7,4 +7,5 @@ export type Color = string
 export type HeroContainerProps = {
 	$imageUrl: string
 	$isPointerCoarseAndSafari: boolean
+	$isBannerOn: boolean
 }

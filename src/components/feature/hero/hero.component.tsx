@@ -3,6 +3,7 @@ import { MouseEvent } from 'react'
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/homeContentsStore'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
+import { useBannerStore } from '../../../store/globalUiStore'
 
 import { HeroContainer } from './hero.styles'
 
@@ -14,6 +15,7 @@ export default function Hero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useHomeContentsStore((state) => state.home)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
+	const isBannerOn = useBannerStore((state) => state.isBannerOn)
 
 	const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {}
 	const handleTextLinkClick = (e: MouseEvent<HTMLDivElement>) => {}
@@ -23,6 +25,7 @@ export default function Hero() {
 			$deviceType={deviceType}
 			$imageUrl={image.backgroundImage}
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
+			$isBannerOn={isBannerOn}
 		>
 			<div id="text-container">
 				<h1 id="display">{text.display}</h1>

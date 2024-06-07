@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { getColour } from '../../../utils/colour.utils'
 
@@ -15,19 +15,9 @@ export const BannerContainer = styled.div<BannerContainerProps>`
 
 	text-align: left;
 
-	position: fixed;
-	${({ $position }) =>
-		$position === 'top' &&
-		css`
-			top: 0;
-		`}
-	${({ $position }) =>
-		$position === 'bottom' &&
-		css`
-			bottom: 0;
-		`}
+	position: sticky;
 
-    background-color: ${({ theme, $appearance, $hierarchy }) =>
+	background-color: ${({ theme, $appearance, $hierarchy }) =>
 		getColour(theme, $appearance, $hierarchy, 'active')};
 
 	div#banner-contents-container {

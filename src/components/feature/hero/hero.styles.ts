@@ -17,7 +17,7 @@ export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
 	align-items: center;
 
 	padding-bottom: 0;
-	padding-top: 8rem;
+	padding-top: ${({ $isBannerOn }) => ($isBannerOn ? '12rem' : '8rem')};
 
 	background-image: url(${(props) => props.$imageUrl});
 	background-size: cover;

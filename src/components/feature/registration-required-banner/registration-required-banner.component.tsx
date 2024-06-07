@@ -1,14 +1,18 @@
 import { MouseEvent } from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+
+import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { RegistrationRequiredBannerContentsContainer } from './registration-required-banner.styles'
 
 import Banner from '../../global/banner/banner.component'
-import Chip from '../../global/chip/chip.component'
 import Button from '../../global/button/button.component'
 
 export default function RegistrationRequiredBanner() {
+	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const navigate = useNavigateWithScroll()
 
 	const handleSettingStart = (e: MouseEvent<HTMLButtonElement>) =>
@@ -16,19 +20,13 @@ export default function RegistrationRequiredBanner() {
 
 	return (
 		<Banner
+			hierarchy="primary"
 			children={
-				<RegistrationRequiredBannerContentsContainer>
+				<RegistrationRequiredBannerContentsContainer $deviceType={deviceType}>
 					<div id="banner-first-column">
-						{/* HACK: 구독한 서비스를 인자로 Chip의 텍스트로 전달 필요 */}
-						<Chip
-							appearance="accent"
-							hierarchy="primary"
-							stroke="filled"
-							shape="rounded3"
-							text="5010 Indicator"
-						/>
+						<FontAwesomeIcon icon={faCircleExclamation} id="banner-icon" />
 						<p id="banner-subheading">
-							구독하신 서비스 이용을 위해 초기 셋팅을 진행해야 합니다.
+							구독하신 서비스를 이용하시려면 초기 셋팅을 진행하셔야 합니다.
 						</p>
 					</div>
 					<Button
