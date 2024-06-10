@@ -7,7 +7,7 @@ import { useAuthDataStore } from './store/authDataStore'
 import { useDeviceTypeStore } from './store/deviceTypeStore'
 import useDeviceType from './hooks/useDeviceType'
 import { useLoadingStore } from './store/loadingStore'
-import { getLoginUserDataWithCallback } from './services/auth/auth-service'
+// import { getLoginUserDataWithCallback } from './services/auth/auth-service'
 import { useToastMessageStore } from './store/globalUiStore'
 
 import DesignSystem from './styles/design-system/design-system.theme'
@@ -41,22 +41,22 @@ function App() {
 		updateDeviceType(deviceType)
 	}, [deviceType, updateDeviceType])
 
-	useEffect(() => {
-		const fetchData = async () => {
-			await getLoginUserDataWithCallback(
-				() => updateIsLoading(true),
-				(loginId) => {
-					updateLoginUser('userId', loginId)
-				},
-				(error) => {
-					resetLoginUser()
-					console.log(error)
-				},
-				() => updateIsLoading(false),
-			)
-		}
-		fetchData()
-	}, [updateLoginUser, resetLoginUser, updateIsLoading])
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		await getLoginUserDataWithCallback(
+	// 			() => updateIsLoading(true),
+	// 			(loginId) => {
+	// 				updateLoginUser('userId', loginId)
+	// 			},
+	// 			(error) => {
+	// 				resetLoginUser()
+	// 				console.log(error)
+	// 			},
+	// 			() => updateIsLoading(false),
+	// 		)
+	// 	}
+	// 	fetchData()
+	// }, [updateLoginUser, resetLoginUser, updateIsLoading])
 
 	return (
 		<HelmetProvider>

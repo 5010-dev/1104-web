@@ -8,7 +8,7 @@ import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
-import { signOutWithCallback } from '../../../services/auth/auth-service'
+// import { signOutWithCallback } from '../../../services/auth/auth-service'
 
 import { LoginUserContainer } from './login-user.styles'
 
@@ -28,15 +28,15 @@ export default function LoginUser() {
 	}
 
 	const handleSignOut = (e: MouseEvent<HTMLSpanElement>) => {
-		signOutWithCallback(
-			() => updateIsLoading(true),
-			() => {
-				resetLoginUser()
-				updateToastMessage('성공적으로 로그아웃 되었습니다.')
-			},
-			(error) => updateToastMessage(error),
-			() => updateIsLoading(false),
-		)
+		// signOutWithCallback(
+		// 	() => updateIsLoading(true),
+		// 	() => {
+		// 		resetLoginUser()
+		// 		updateToastMessage('성공적으로 로그아웃 되었습니다.')
+		// 	},
+		// 	(error) => updateToastMessage(error),
+		// 	() => updateIsLoading(false),
+		// )
 	}
 
 	return (

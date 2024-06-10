@@ -2,7 +2,7 @@ import { useEffect, FormEvent, MouseEvent } from 'react'
 
 import {
 	loginWithCallback,
-	getLoginUserDataWithCallback,
+	// getLoginUserDataWithCallback,
 } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useLoadingStore } from '../../../store/loadingStore'

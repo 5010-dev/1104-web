@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-import {
-	signOut,
-	confirmSignUp,
-	resendSignUpCode,
-	getCurrentUser,
-	fetchAuthSession,
-	ConfirmSignUpInput,
-} from 'aws-amplify/auth'
+// import {
+// 	signOut,
+// 	confirmSignUp,
+// 	resendSignUpCode,
+// 	getCurrentUser,
+// 	fetchAuthSession,
+// 	ConfirmSignUpInput,
+// } from 'aws-amplify/auth'
 import { ErrorCode, errorMessages } from './auth-error'
 
 import {
@@ -136,108 +136,108 @@ export const signUpWithCallback = async (
 /**
  * AWS Amplify 유저네임과 인증코드를 받아 인증 작업 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
  */
-export const confirmSignupWithCallback = async (
-	{ username, confirmationCode }: ConfirmSignUpInput,
-	onLoading: () => void,
-	onSuccess: (username: string) => void,
-	onError: (error: any) => void,
-	onLoadingDone: () => void,
-) => {
-	try {
-		onLoading()
-		await confirmSignUp({ username, confirmationCode })
-		onSuccess(username)
-	} catch (error) {
-		if (error instanceof Error && error.name in ErrorCode) {
-			onError(errorMessages[error.name as keyof typeof ErrorCode])
-		} else {
-			onError(error && error.toString())
-		}
-	} finally {
-		onLoadingDone()
-	}
-}
+// export const confirmSignupWithCallback = async (
+// 	{ username, confirmationCode }: ConfirmSignUpInput,
+// 	onLoading: () => void,
+// 	onSuccess: (username: string) => void,
+// 	onError: (error: any) => void,
+// 	onLoadingDone: () => void,
+// ) => {
+// 	try {
+// 		onLoading()
+// 		await confirmSignUp({ username, confirmationCode })
+// 		onSuccess(username)
+// 	} catch (error) {
+// 		if (error instanceof Error && error.name in ErrorCode) {
+// 			onError(errorMessages[error.name as keyof typeof ErrorCode])
+// 		} else {
+// 			onError(error && error.toString())
+// 		}
+// 	} finally {
+// 		onLoadingDone()
+// 	}
+// }
 
 /**
  * AWS Amplify 인증 링크 재전송을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
  */
-export const resendVerificationWithCallback = async (
-	username: string,
-	onLoading: () => void,
-	onSuccess: () => void,
-	onError: (error: any) => void,
-	onLoadingDone: () => void,
-): Promise<void> => {
-	try {
-		onLoading()
-		await resendSignUpCode({
-			username,
-		})
-		onSuccess()
-	} catch (error) {
-		if (error instanceof Error && error.name in ErrorCode) {
-			onError(errorMessages[error.name as keyof typeof ErrorCode])
-		} else {
-			onError(error && error.toString())
-		}
-	} finally {
-		onLoadingDone()
-	}
-}
+// export const resendVerificationWithCallback = async (
+// 	username: string,
+// 	onLoading: () => void,
+// 	onSuccess: () => void,
+// 	onError: (error: any) => void,
+// 	onLoadingDone: () => void,
+// ): Promise<void> => {
+// 	try {
+// 		onLoading()
+// 		await resendSignUpCode({
+// 			username,
+// 		})
+// 		onSuccess()
+// 	} catch (error) {
+// 		if (error instanceof Error && error.name in ErrorCode) {
+// 			onError(errorMessages[error.name as keyof typeof ErrorCode])
+// 		} else {
+// 			onError(error && error.toString())
+// 		}
+// 	} finally {
+// 		onLoadingDone()
+// 	}
+// }
 
 /**
  * AWS Amplify 사용자 로그인 데이터를 가져오고, 결과에 따라 콜백 함수를 호출하는 함수
  */
-export const getLoginUserDataWithCallback = async (
-	onLoading: () => void,
-	onSuccess: (loginId: string) => void,
-	onError: (error: any) => void,
-	onLoadingDone: () => void,
-) => {
-	try {
-		onLoading()
-		const { signInDetails } = await getCurrentUser()
-		if (signInDetails?.loginId) {
-			onSuccess(signInDetails?.loginId)
-		} else {
-			console.error('User data is undefined')
-		}
-	} catch (error) {
-		if (error instanceof Error && error.name in ErrorCode) {
-			onError(errorMessages[error.name as keyof typeof ErrorCode])
-		} else {
-			onError(error && error.toString())
-		}
-	} finally {
-		onLoadingDone()
-	}
-}
+// export const getLoginUserDataWithCallback = async (
+// 	onLoading: () => void,
+// 	onSuccess: (loginId: string) => void,
+// 	onError: (error: any) => void,
+// 	onLoadingDone: () => void,
+// ) => {
+// 	try {
+// 		onLoading()
+// 		const { signInDetails } = await getCurrentUser()
+// 		if (signInDetails?.loginId) {
+// 			onSuccess(signInDetails?.loginId)
+// 		} else {
+// 			console.error('User data is undefined')
+// 		}
+// 	} catch (error) {
+// 		if (error instanceof Error && error.name in ErrorCode) {
+// 			onError(errorMessages[error.name as keyof typeof ErrorCode])
+// 		} else {
+// 			onError(error && error.toString())
+// 		}
+// 	} finally {
+// 		onLoadingDone()
+// 	}
+// }
 
 /**
  * AWS Amplify 사용자 로그인 세션을 불러와 반환하는 함수
  */
-export const session = async () => await fetchAuthSession()
+// export const session = async () => await fetchAuthSession()
 
-/**
- * AWS Amplify 사용자 로그 아웃을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
- */
-export const signOutWithCallback = async (
-	onLoading: () => void,
-	onSuccess: () => void,
-	onError: (error: any) => void,
-	onLoadingDone: () => void,
-) => {
-	try {
-		onLoading()
-		await signOut()
-		onSuccess()
-	} catch (error) {
-		if (error instanceof Error && error.name in ErrorCode) {
-			onError(errorMessages[error.name as keyof typeof ErrorCode])
-		} else {
-			onError(error && error.toString())
-		}
-	} finally {
-		onLoadingDone()
-	}
-}
+// /**
+//  * AWS Amplify 사용자 로그 아웃을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
+//  */
+// export const signOutWithCallback = async (
+// 	onLoading: () => void,
+// 	onSuccess: () => void,
+// 	onError: (error: any) => void,
+// 	onLoadingDone: () => void,
+// ) => {
+// 	try {
+// 		onLoading()
+// 		await signOut()
+// 		onSuccess()
+// 	} catch (error) {
+// 		if (error instanceof Error && error.name in ErrorCode) {
+// 			onError(errorMessages[error.name as keyof typeof ErrorCode])
+// 		} else {
+// 			onError(error && error.toString())
+// 		}
+// 	} finally {
+// 		onLoadingDone()
+// 	}
+// }

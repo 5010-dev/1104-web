@@ -3,8 +3,8 @@ import { useState, useEffect, FormEvent, MouseEvent } from 'react'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import {
-	resendVerificationWithCallback,
-	confirmSignupWithCallback,
+	// resendVerificationWithCallback,
+	// confirmSignupWithCallback,
 	loginWithCallback,
 } from '../../../services/auth/auth-service'
 import { useLoadingStore } from '../../../store/loadingStore'
@@ -32,47 +32,47 @@ export default function VerificationForm(props: VerificationFormProps) {
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		confirmSignupWithCallback(
-			{ username: email, confirmationCode: verificationCode },
-			() => updateIsLoading(true), // onLoading
-			(email) => {
-				updateToastMessage('회원 가입이 완료되었습니다.')
-				if (password) {
-					loginWithCallback(
-						{ email, password },
-						() => updateIsLoading(true), // onLoading
-						(token, loginEmail) => {
-							window.location.replace('/')
-							resetAuthData()
-							// 또는 '/'으로 랜딩하면서 팝업 (할인 및 체험판) 제공?
-						},
-						(error) => updateToastMessage(error),
-						() => updateIsLoading(false), // onLoadingDone
-					)
-				} else {
-					navigate('/login', { routeState: 'login' })
-					updateToastMessage(
-						'회원 가입이 완료되었습니다. 등록된 이메일로 로그인해 주세요.',
-					)
-				}
-			},
-			(error) => updateToastMessage(error),
-			() => updateIsLoading(false), // onLoadingDone
-		)
+		// confirmSignupWithCallback(
+		// 	{ username: email, confirmationCode: verificationCode },
+		// 	() => updateIsLoading(true), // onLoading
+		// 	(email) => {
+		// 		updateToastMessage('회원 가입이 완료되었습니다.')
+		// 		if (password) {
+		// 			loginWithCallback(
+		// 				{ email, password },
+		// 				() => updateIsLoading(true), // onLoading
+		// 				(token, loginEmail) => {
+		// 					window.location.replace('/')
+		// 					resetAuthData()
+		// 					// 또는 '/'으로 랜딩하면서 팝업 (할인 및 체험판) 제공?
+		// 				},
+		// 				(error) => updateToastMessage(error),
+		// 				() => updateIsLoading(false), // onLoadingDone
+		// 			)
+		// 		} else {
+		// 			navigate('/login', { routeState: 'login' })
+		// 			updateToastMessage(
+		// 				'회원 가입이 완료되었습니다. 등록된 이메일로 로그인해 주세요.',
+		// 			)
+		// 		}
+		// 	},
+		// 	(error) => updateToastMessage(error),
+		// 	() => updateIsLoading(false), // onLoadingDone
+		// )
 	}
 
 	const handleResendCode = (e: MouseEvent<HTMLSpanElement>) => {
-		email &&
-			resendVerificationWithCallback(
-				email,
-				() => updateIsLoading(true), // onLoading
-				() =>
-					updateToastMessage(
-						'이메일 인증 코드를 재전송 했습니다. 메일함을 확인해 주세요.',
-					),
-				(error) => updateToastMessage(error),
-				() => updateIsLoading(false), // onLoadingDone
-			)
+		// email &&
+		// 	resendVerificationWithCallback(
+		// 		email,
+		// 		() => updateIsLoading(true), // onLoading
+		// 		() =>
+		// 			updateToastMessage(
+		// 				'이메일 인증 코드를 재전송 했습니다. 메일함을 확인해 주세요.',
+		// 			),
+		// 		(error) => updateToastMessage(error),
+		// 		() => updateIsLoading(false), // onLoadingDone
+		// 	)
 	}
 
 	useEffect(() => {
