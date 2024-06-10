@@ -6,6 +6,8 @@ import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
+import { setAccessToken } from '../../../utils/token.utils'
+
 import AuthForm from '../../global/auth-form/auth-form.component'
 import UserAgreement from './user-agreement/user-agreement.component'
 
@@ -31,6 +33,7 @@ export default function SignupForm() {
 			{ email, password },
 			() => updateIsLoading(true), // onLoading
 			(token, signedUpEmail) => {
+				setAccessToken(token.access_token)
 				navigate(`/verification?email=${signedUpEmail}`, { replace: true })
 			},
 			(error) => {
