@@ -5,7 +5,7 @@ import { useAuthDataStore } from '../../../store/authDataStore'
 import {
 	resendVerificationWithCallback,
 	confirmSignupWithCallback,
-	logInWithCallback,
+	loginWithCallback,
 } from '../../../services/auth/auth-service'
 import { useLoadingStore } from '../../../store/loadingStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
@@ -38,10 +38,10 @@ export default function VerificationForm(props: VerificationFormProps) {
 			(email) => {
 				updateToastMessage('회원 가입이 완료되었습니다.')
 				if (password) {
-					logInWithCallback(
-						{ username: email, password },
+					loginWithCallback(
+						{ email, password },
 						() => updateIsLoading(true), // onLoading
-						() => {
+						(token, loginEmail) => {
 							window.location.replace('/')
 							resetAuthData()
 							// 또는 '/'으로 랜딩하면서 팝업 (할인 및 체험판) 제공?

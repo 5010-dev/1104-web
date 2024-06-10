@@ -3,6 +3,7 @@ import { ExchangeName } from './exchangeDataStore'
 
 export type User = {
 	userId: string
+	accessToken: string
 	tradingviewId: string
 	exchange: ExchangeName | ''
 	uid: string
@@ -29,6 +30,7 @@ const initialState: AuthDataState = {
 	verificationCode: '',
 	loginUser: {
 		userId: '',
+		accessToken: '',
 		tradingviewId: '',
 		exchange: '',
 		uid: '',

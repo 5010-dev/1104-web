@@ -13,6 +13,8 @@ import { useToastMessageStore } from './store/globalUiStore'
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
 
+import PrivateRoute from './components/global/private-route/private-route.component'
+
 import MainLayout from './pages/main-layout'
 import NotFound from './pages/global/not-found/not-found.page'
 import Home from './pages/feature/home/home.page'
@@ -69,12 +71,19 @@ function App() {
 							<Route path="/" element={<MainLayout />}>
 								<Route index element={<Home />} />
 								<Route path="/about" element={<AboutUs />} />
-								<Route path="/account" element={<Account />} />
+								<Route element={<PrivateRoute />}>
+									<Route path="/account" element={<Account />} />
+								</Route>
 							</Route>
 							<Route path="/login" element={<Login />} />
-							<Route path="/verification" element={<EmailVerification />} />
-							<Route path="/checkout" element={<Checkout />} />
-							<Route path="/registration" element={<IndicatorRegistration />} />
+							<Route element={<PrivateRoute />}>
+								<Route path="/verification" element={<EmailVerification />} />
+								<Route path="/checkout" element={<Checkout />} />
+								<Route
+									path="/registration"
+									element={<IndicatorRegistration />}
+								/>
+							</Route>
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 						{toastMessgae.length !== 0 ? (

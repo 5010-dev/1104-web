@@ -1,6 +1,6 @@
 export type UserAuthToken = {
-	accessToken: string
-	refreshToken: string
+	access_token: string
+	refresh_token: string
 }
 
 export interface UserAuthData {
@@ -9,6 +9,13 @@ export interface UserAuthData {
 }
 
 export interface SignUpResponse {
+	data: {
+		email: string
+		token: UserAuthToken
+	}
+}
+
+export interface LoginResponse {
 	data: {
 		email: string
 		token: UserAuthToken
