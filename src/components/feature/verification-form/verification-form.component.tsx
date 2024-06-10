@@ -1,14 +1,13 @@
 import { useState, useEffect, FormEvent, MouseEvent } from 'react'
 
-import { useToastMessageStore } from '../../../store/globalUiStore'
+// import { useToastMessageStore } from '../../../store/globalUiStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
-import {
-	// resendVerificationWithCallback,
-	// confirmSignupWithCallback,
-	loginWithCallback,
-} from '../../../services/auth/auth-service'
-import { useLoadingStore } from '../../../store/loadingStore'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import // resendVerificationWithCallback,
+// confirmSignupWithCallback,
+// loginWithCallback,
+'../../../services/auth/auth-service'
+// import { useLoadingStore } from '../../../store/loadingStore'
+// import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { VerificationFormProps } from './verification-form.types'
 import { VerificationFormContainer } from './verification-form.styles'
@@ -21,12 +20,16 @@ import VerificationInput from './verification-input/verification-input.component
 export default function VerificationForm(props: VerificationFormProps) {
 	const { email } = props
 
-	const { updateToastMessage } = useToastMessageStore()
-	const { password, verificationCode, updateAuthData, resetAuthData } =
-		useAuthDataStore()
-	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
+	// const { updateToastMessage } = useToastMessageStore()
+	const {
+		//password,
+		verificationCode,
+		updateAuthData,
+		//resetAuthData
+	} = useAuthDataStore()
+	// const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const [isValid, setIsValid] = useState<boolean>(false)
-	const navigate = useNavigateWithScroll()
+	// const navigate = useNavigateWithScroll()
 	const maxLength = 6
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

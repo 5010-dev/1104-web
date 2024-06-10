@@ -3,7 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
-import { useAuthDataStore } from './store/authDataStore'
+// import { useAuthDataStore } from './store/authDataStore'
 import { useDeviceTypeStore } from './store/deviceTypeStore'
 import useDeviceType from './hooks/useDeviceType'
 import { useLoadingStore } from './store/loadingStore'
@@ -33,9 +33,12 @@ import './App.css'
 function App() {
 	const deviceType = useDeviceType()
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
-	const { updateLoginUser, resetLoginUser } = useAuthDataStore()
+	// const { updateLoginUser, resetLoginUser } = useAuthDataStore()
 	const { toastMessgae, resetToastMessage } = useToastMessageStore()
-	const { isLoading, updateIsLoading } = useLoadingStore()
+	const {
+		isLoading,
+		// updateIsLoading
+	} = useLoadingStore()
 
 	useEffect(() => {
 		updateDeviceType(deviceType)

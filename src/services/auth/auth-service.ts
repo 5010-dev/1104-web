@@ -1,14 +1,6 @@
 import axios from 'axios'
 
-// import {
-// 	signOut,
-// 	confirmSignUp,
-// 	resendSignUpCode,
-// 	getCurrentUser,
-// 	fetchAuthSession,
-// 	ConfirmSignUpInput,
-// } from 'aws-amplify/auth'
-import { ErrorCode, errorMessages } from './auth-error'
+// import { ErrorCode, errorMessages } from './auth-error'
 
 import {
 	UserAuthToken,
