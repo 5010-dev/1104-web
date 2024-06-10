@@ -8,6 +8,11 @@ export interface UserAuthData {
 	password: string
 }
 
+export interface EmailVerification {
+	accessToken: string
+	code: string
+}
+
 export interface SignUpResponse {
 	data: {
 		email: string

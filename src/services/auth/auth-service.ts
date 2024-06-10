@@ -1,11 +1,12 @@
 import axios from 'axios'
 import axiosInstance from '../../api/api'
 
-// import { ErrorCode, errorMessages } from './auth-error'
+import { handleError } from './auth-error'
 
 import {
 	UserAuthToken,
 	UserAuthData,
+	EmailVerification,
 	SignUpResponse,
 	LoginResponse,
 } from './auth-service.types'
@@ -38,32 +39,7 @@ export const loginWithCallback = async (
 		const { token, email: loggedInEmail } = data
 		onSuccess(token, loggedInEmail)
 	} catch (error) {
-		if (axios.isAxiosError(error)) {
-			if (error.response) {
-				const errorData = error.response.data
-				if (errorData.errors) {
-					if (
-						errorData.errors.non_field_errors &&
-						errorData.errors.non_field_errors.length > 0
-					) {
-						onError(errorData.errors.non_field_errors[0])
-					} else if (errorData.errors.field_errors) {
-						const fieldName = Object.keys(errorData.errors.field_errors)[0]
-						onError(errorData.errors.field_errors[fieldName][0])
-					} else {
-						// TODO: 공용 에러 메시지 구조화 (auth-error.ts)
-						onError('로그인 중 오류가 발생했습니다.')
-					}
-				} else {
-					onError('로그인 중 오류가 발생했습니다.')
-				}
-			} else {
-				// 네트워크 에러 등
-				onError('로그인 요청을 보내지 못했습니다.')
-			}
-		} else {
-			onError('알 수 없는 오류가 발생했습니다.')
-		}
+		handleError(error, onError)
 	} finally {
 		onLoadingDone()
 	}
@@ -92,67 +68,18 @@ export const signUpWithCallback = async (
 			{ email, password },
 		)
 		const { data } = response.data
+		// TODO: is_email_verified 값 받기 추가
 		const { token, email: signedUpEmail } = data
 		onSuccess(token, signedUpEmail)
 	} catch (error) {
-		if (axios.isAxiosError(error)) {
-			if (error.response) {
-				const errorData = error.response.data
-				if (errorData.errors) {
-					if (
-						errorData.errors.non_field_errors &&
-						errorData.errors.non_field_errors.length > 0
-					) {
-						onError(errorData.errors.non_field_errors[0])
-					} else if (errorData.errors.field_errors) {
-						const fieldName = Object.keys(errorData.errors.field_errors)[0]
-						onError(errorData.errors.field_errors[fieldName][0])
-					} else {
-						// TODO: 공용 에러 메시지 구조화 (auth-error.ts)
-						onError('회원가입 중 오류가 발생했습니다.')
-					}
-				} else {
-					onError('회원가입 중 오류가 발생했습니다.')
-				}
-			} else {
-				// 네트워크 에러 등
-				onError('회원가입 요청을 보내지 못했습니다.')
-			}
-		} else {
-			onError('알 수 없는 오류가 발생했습니다.')
-		}
+		handleError(error, onError)
 	} finally {
 		onLoadingDone()
 	}
 }
 
 /**
- * AWS Amplify 유저네임과 인증코드를 받아 인증 작업 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
- */
-// export const confirmSignupWithCallback = async (
-// 	{ username, confirmationCode }: ConfirmSignUpInput,
-// 	onLoading: () => void,
-// 	onSuccess: (username: string) => void,
-// 	onError: (error: any) => void,
-// 	onLoadingDone: () => void,
-// ) => {
-// 	try {
-// 		onLoading()
-// 		await confirmSignUp({ username, confirmationCode })
-// 		onSuccess(username)
-// 	} catch (error) {
-// 		if (error instanceof Error && error.name in ErrorCode) {
-// 			onError(errorMessages[error.name as keyof typeof ErrorCode])
-// 		} else {
-// 			onError(error && error.toString())
-// 		}
-// 	} finally {
-// 		onLoadingDone()
-// 	}
-// }
-
-/**
- * 이메일 인증을 요청하는 비동기 함수
+ * 이메일 인증 코드 전송을 요청하는 비동기 함수
  * @param {Object} token - 사용자 인증 토큰
  * @param {Function} onLoading - 로딩 상태 시작 시 호출되는 콜백 함수
  * @param {Function} onSuccess - 이메일 인증 요청 성공 시 호출되는 콜백 함수
@@ -176,42 +103,51 @@ export const sendVerification = async (
 		})
 		onSuccess()
 	} catch (error) {
-		if (axios.isAxiosError(error)) {
-			onError(error)
-		} else {
-			onError(new Error('알 수 없는 오류가 발생했습니다.'))
-		}
+		handleError(error, onError)
 	} finally {
 		onLoadingDone()
 	}
 }
 
 /**
- * AWS Amplify 인증 링크 재전송을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
- */
-// export const resendVerificationWithCallback = async (
-// 	username: string,
-// 	onLoading: () => void,
-// 	onSuccess: () => void,
-// 	onError: (error: any) => void,
-// 	onLoadingDone: () => void,
-// ): Promise<void> => {
-// 	try {
-// 		onLoading()
-// 		await resendSignUpCode({
-// 			username,
-// 		})
-// 		onSuccess()
-// 	} catch (error) {
-// 		if (error instanceof Error && error.name in ErrorCode) {
-// 			onError(errorMessages[error.name as keyof typeof ErrorCode])
-// 		} else {
-// 			onError(error && error.toString())
-// 		}
-// 	} finally {
-// 		onLoadingDone()
-// 	}
-// }
+이메일 인증 코드를 확인하고 사용자 인증 토큰을 받아오는 비동기 함수
+@param {Object} emailVerification - 이메일 인증 정보 객체
+@param {string} emailVerification.accessToken - 사용자 인증 토큰
+@param {string} emailVerification.code - 이메일 인증 코드
+@param {Function} onLoading - 로딩 상태 시작 시 호출되는 콜백 함수
+@param {Function} onSuccess - 이메일 인증 확인 성공 시 호출되는 콜백 함수 (사용자 인증 토큰과 이메일을 인자로 받음)
+@param {Function} onError - 에러 발생 시 호출되는 콜백 함수 (에러 객체를 인자로 받음)
+@param {Function} onLoadingDone - 로딩 상태 종료 시 호출되는 콜백 함수
+@returns {Promise<void>} - Promise 객체
+*/
+export const confirmSignupWithCallback = async (
+	{ accessToken, code }: EmailVerification,
+	onLoading: () => void,
+	onSuccess: (token: UserAuthToken, email: string) => void,
+	onError: (error: any) => void,
+	onLoadingDone: () => void,
+): Promise<void> => {
+	try {
+		onLoading()
+		const response = await axiosInstance.post(
+			`/email-verifications/signup/verify`,
+			{ code },
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			},
+		)
+		const { data } = response.data
+		// TODO: is_email_verified 값 받기 추가
+		const { token, email: signedUpEmail } = data
+		onSuccess(token, signedUpEmail)
+	} catch (error) {
+		handleError(error, onError)
+	} finally {
+		onLoadingDone()
+	}
+}
 
 /**
  * AWS Amplify 사용자 로그인 데이터를 가져오고, 결과에 따라 콜백 함수를 호출하는 함수
@@ -230,35 +166,6 @@ export const sendVerification = async (
 // 		} else {
 // 			console.error('User data is undefined')
 // 		}
-// 	} catch (error) {
-// 		if (error instanceof Error && error.name in ErrorCode) {
-// 			onError(errorMessages[error.name as keyof typeof ErrorCode])
-// 		} else {
-// 			onError(error && error.toString())
-// 		}
-// 	} finally {
-// 		onLoadingDone()
-// 	}
-// }
-
-/**
- * AWS Amplify 사용자 로그인 세션을 불러와 반환하는 함수
- */
-// export const session = async () => await fetchAuthSession()
-
-// /**
-//  * AWS Amplify 사용자 로그 아웃을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
-//  */
-// export const signOutWithCallback = async (
-// 	onLoading: () => void,
-// 	onSuccess: () => void,
-// 	onError: (error: any) => void,
-// 	onLoadingDone: () => void,
-// ) => {
-// 	try {
-// 		onLoading()
-// 		await signOut()
-// 		onSuccess()
 // 	} catch (error) {
 // 		if (error instanceof Error && error.name in ErrorCode) {
 // 			onError(errorMessages[error.name as keyof typeof ErrorCode])

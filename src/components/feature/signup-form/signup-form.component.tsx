@@ -1,12 +1,15 @@
 import { useState, FormEvent, MouseEvent } from 'react'
 
-import { signUpWithCallback } from '../../../services/auth/auth-service'
+import {
+	signUpWithCallback,
+	sendVerification,
+} from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
-import { setAccessToken } from '../../../utils/token.utils'
+import { setAccessToken, getAccessToken } from '../../../utils/token.utils'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
 import UserAgreement from './user-agreement/user-agreement.component'
@@ -34,6 +37,16 @@ export default function SignupForm() {
 			() => updateIsLoading(true), // onLoading
 			(token, signedUpEmail) => {
 				setAccessToken(token.access_token)
+				sendVerification(
+					getAccessToken(),
+					() => updateIsLoading(true),
+					() =>
+						updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.'),
+					(error) => {
+						updateToastMessage(error)
+					},
+					() => updateIsLoading(false),
+				)
 				navigate(`/verification?email=${signedUpEmail}`, { replace: true })
 			},
 			(error) => {
