@@ -40,14 +40,15 @@ export default function SignupForm() {
 				sendVerification(
 					getAccessToken(),
 					() => updateIsLoading(true),
-					() =>
-						updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.'),
+					() => {
+						updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.')
+						navigate(`/verification?email=${signedUpEmail}`, { replace: true })
+					},
 					(error) => {
 						updateToastMessage(error)
 					},
 					() => updateIsLoading(false),
 				)
-				navigate(`/verification?email=${signedUpEmail}`, { replace: true })
 			},
 			(error) => {
 				updateToastMessage(error)
