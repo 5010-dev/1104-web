@@ -14,16 +14,14 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Set Environment Variables
-        if: ${{ github.ref == 'refs/heads/dev' }}
         run: |
-          echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_DEV }}" >> $GITHUB_ENV
-          echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_STAGING }}" >> $GITHUB_ENV
-
-      - name: Set Environment Variables for main
-        if: ${{ github.ref == 'refs/heads/main' }}
-        run: |
-          echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_MAIN }}" >> $GITHUB_ENV
-          echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_PROD }}" >> $GITHUB_ENV
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_MAIN }}" >> $GITHUB_ENV
+            echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_PROD }}" >> $GITHUB_ENV
+          elif [ "${{ github.ref }}" = "refs/heads/dev" ]; then
+            echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_DEV }}" >> $GITHUB_ENV
+            echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_STAGING }}" >> $GITHUB_ENV
+          fi
 
       - name: Use Node.js
         uses: actions/setup-node@v3
