@@ -1,4 +1,5 @@
 import axios from 'axios'
+import axiosInstance from '../../api/api'
 
 // import { ErrorCode, errorMessages } from './auth-error'
 
@@ -149,6 +150,41 @@ export const signUpWithCallback = async (
 // 		onLoadingDone()
 // 	}
 // }
+
+/**
+ * 이메일 인증을 요청하는 비동기 함수
+ * @param {Object} token - 사용자 인증 토큰
+ * @param {Function} onLoading - 로딩 상태 시작 시 호출되는 콜백 함수
+ * @param {Function} onSuccess - 이메일 인증 요청 성공 시 호출되는 콜백 함수
+ * @param {Function} onError - 에러 발생 시 호출되는 콜백 함수 (에러 객체를 인자로 받음)
+ * @param {Function} onLoadingDone - 로딩 상태 종료 시 호출되는 콜백 함수
+ * @returns {Promise<void>} - Promise 객체
+ */
+export const sendVerification = async (
+	accessToken: string,
+	onLoading: () => void,
+	onSuccess: () => void,
+	onError: (error: any) => void,
+	onLoadingDone: () => void,
+): Promise<void> => {
+	try {
+		onLoading()
+		await axiosInstance.post(`/email-verifications/signup`, null, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		})
+		onSuccess()
+	} catch (error) {
+		if (axios.isAxiosError(error)) {
+			onError(error)
+		} else {
+			onError(new Error('알 수 없는 오류가 발생했습니다.'))
+		}
+	} finally {
+		onLoadingDone()
+	}
+}
 
 /**
  * AWS Amplify 인증 링크 재전송을 수행하고, 결과에 따라 콜백 함수를 호출하는 함수
