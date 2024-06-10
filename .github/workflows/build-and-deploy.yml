@@ -85,6 +85,8 @@ jobs:
             \"secretAccessKey\":\"$AWS_SECRET_ACCESS_KEY\",\
             \"region\":\"$AWS_REGION\"\
           }"
+          amplify env checkout dev --yes
+          amplify status
           amplify pull --yes
 
       - name: Build the project
