@@ -1,6 +1,6 @@
 export type UserAuthToken = {
-	access_token: string
-	refresh_token: string
+	access: string
+	refresh: string
 }
 
 export interface UserAuthData {
@@ -9,7 +9,7 @@ export interface UserAuthData {
 }
 
 export interface EmailVerification {
-	accessToken: string
+	access: string
 	code: string
 }
 
@@ -17,6 +17,7 @@ export interface SignUpResponse {
 	data: {
 		email: string
 		token: UserAuthToken
+		is_email_verified: boolean
 	}
 }
 
@@ -24,5 +25,6 @@ export interface LoginResponse {
 	data: {
 		email: string
 		token: UserAuthToken
+		is_email_verified: boolean
 	}
 }

@@ -3,11 +3,11 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
-// import { useAuthDataStore } from './store/authDataStore'
 import { useDeviceTypeStore } from './store/deviceTypeStore'
 import useDeviceType from './hooks/useDeviceType'
+import { useAuthDataStore } from './store/authDataStore'
 import { useLoadingStore } from './store/loadingStore'
-// import { getLoginUserDataWithCallback } from './services/auth/auth-service'
+import { getLoginUserData, logout } from './services/auth/auth-service'
 import { useToastMessageStore } from './store/globalUiStore'
 
 import DesignSystem from './styles/design-system/design-system.theme'
@@ -29,37 +29,90 @@ import Loading from './components/global/loading/loading.component'
 import Toast from './components/global/toast/toast.component'
 
 import './App.css'
+import { getRefreshToken } from './utils/token.utils'
 
 function App() {
 	const deviceType = useDeviceType()
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
-	// const { updateLoginUser, resetLoginUser } = useAuthDataStore()
+	const { updateLoginUser, resetLoginUser } = useAuthDataStore()
 	const { toastMessgae, resetToastMessage } = useToastMessageStore()
-	const {
-		isLoading,
-		// updateIsLoading
-	} = useLoadingStore()
+	const { isLoading, updateIsLoading } = useLoadingStore()
 
 	useEffect(() => {
 		updateDeviceType(deviceType)
 	}, [deviceType, updateDeviceType])
 
+	useEffect(() => {
+		const fetchLoginUserData = async () => {
+			if (!getRefreshToken()) {
+				return
+			}
+
+			try {
+				updateIsLoading(true)
+
+				const { email: loginEmail, is_email_verified } =
+					await getLoginUserData()
+
+				if (is_email_verified) {
+					updateLoginUser('userId', loginEmail)
+					updateLoginUser('isEmailValified', is_email_verified)
+				} else {
+					logout()
+					resetLoginUser()
+				}
+			} catch (error: any) {
+				logout()
+				resetLoginUser()
+				console.log(error.message)
+			} finally {
+				updateIsLoading(false)
+			}
+
+			// await getLoginUserDataWithCallback(
+			// 	() => updateIsLoading(true),
+			// 	(loginEmail, isEmailVerified) => {
+			// 		if (isEmailVerified) {
+			// 			updateLoginUser('userId', loginEmail)
+			// 			updateLoginUser('isEmailVerified', isEmailVerified)
+			// 		} else {
+			// 			logoutWithCallback(resetLoginUser)
+			// 		}
+			// 	},
+			// 	(error) => {
+			// 		logoutWithCallback(resetLoginUser)
+			// 		console.log(error)
+			// 	},
+			// 	() => updateIsLoading(false),
+			// )
+		}
+
+		fetchLoginUserData()
+	}, [updateIsLoading, updateLoginUser, resetLoginUser])
+
 	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		await getLoginUserDataWithCallback(
-	// 			() => updateIsLoading(true),
-	// 			(loginId) => {
-	// 				updateLoginUser('userId', loginId)
-	// 			},
-	// 			(error) => {
-	// 				resetLoginUser()
-	// 				console.log(error)
-	// 			},
-	// 			() => updateIsLoading(false),
-	// 		)
+	// 	if (getRefreshToken()) {
+	// 		const fetchLoginUserData = async () => {
+	// 			await getLoginUserDataWithCallback(
+	// 				() => updateIsLoading(true),
+	// 				(loginEmail, is_email_verified) => {
+	// 					if (is_email_verified) {
+	// 						updateLoginUser('userId', loginEmail)
+	// 						updateLoginUser('isEmailVerified', is_email_verified)
+	// 					} else {
+	// 						logoutWithCallback(() => resetLoginUser())
+	// 					}
+	// 				},
+	// 				(error) => {
+	// 					logoutWithCallback(() => resetLoginUser())
+	// 					console.log(error)
+	// 				},
+	// 				() => updateIsLoading(false),
+	// 			)
+	// 		}
+	// 		fetchLoginUserData()
 	// 	}
-	// 	fetchData()
-	// }, [updateLoginUser, resetLoginUser, updateIsLoading])
+	// }, [updateIsLoading, updateLoginUser, resetLoginUser])
 
 	return (
 		<HelmetProvider>
@@ -79,8 +132,8 @@ function App() {
 								</Route>
 							</Route>
 							<Route path="/login" element={<Login />} />
+							<Route path="/verification" element={<EmailVerification />} />
 							<Route element={<PrivateRoute />}>
-								<Route path="/verification" element={<EmailVerification />} />
 								<Route path="/checkout" element={<Checkout />} />
 								<Route
 									path="/registration"

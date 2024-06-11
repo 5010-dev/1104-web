@@ -27,8 +27,6 @@ export default function EmailVerification() {
 		window.location.href = mailtoUrl
 	}
 
-	// TODO: 이메일 인증이 완료된 유저의 경우, 접근 불가능 하도록 조치해야함
-
 	useEffect(() => {
 		if (!email) {
 			navigate('/login', { routeState: 'login' })

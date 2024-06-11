@@ -3,7 +3,8 @@ import { ExchangeName } from './exchangeDataStore'
 
 export type User = {
 	userId: string
-	accessToken: string
+	isEmailVerified: boolean
+	access: string
 	tradingviewId: string
 	exchange: ExchangeName | ''
 	uid: string
@@ -19,7 +20,7 @@ export interface AuthDataState {
 
 export interface AuthDataAction {
 	updateAuthData: (key: string, value: string) => void
-	updateLoginUser: (key: string, value: string) => void
+	updateLoginUser: (key: string, value: string | boolean) => void
 	resetAuthData: () => void
 	resetLoginUser: () => void
 }
@@ -30,7 +31,8 @@ const initialState: AuthDataState = {
 	verificationCode: '',
 	loginUser: {
 		userId: '',
-		accessToken: '',
+		isEmailVerified: false,
+		access: '',
 		tradingviewId: '',
 		exchange: '',
 		uid: '',

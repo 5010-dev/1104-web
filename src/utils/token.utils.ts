@@ -5,15 +5,15 @@ const REFRESH_TOKEN_KEY = 'refresh'
 const SECRET_KEY = process.env.REACT_APP_SECRET_KEY
 
 export const setAccessToken = (token: string) => {
-	useAuthDataStore.getState().updateLoginUser('accessToken', token)
+	useAuthDataStore.getState().updateLoginUser('access', token)
 }
 
 export const getAccessToken = () => {
-	return useAuthDataStore.getState().loginUser.accessToken
+	return useAuthDataStore.getState().loginUser.access
 }
 
 export const removeAccessToken = () => {
-	useAuthDataStore.getState().updateLoginUser('accessToken', '')
+	useAuthDataStore.getState().updateLoginUser('access', '')
 }
 
 export const setRefreshToken = (token: string) => {

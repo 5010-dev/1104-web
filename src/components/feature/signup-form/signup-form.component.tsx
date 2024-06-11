@@ -1,15 +1,16 @@
 import { useState, FormEvent, MouseEvent } from 'react'
 
-import {
-	signUpWithCallback,
-	sendVerification,
-} from '../../../services/auth/auth-service'
+import { signUp, sendVerification } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
-import { setAccessToken, getAccessToken } from '../../../utils/token.utils'
+import {
+	setAccessToken,
+	getAccessToken,
+	setRefreshToken,
+} from '../../../utils/token.utils'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
 import UserAgreement from './user-agreement/user-agreement.component'
@@ -29,32 +30,52 @@ export default function SignupForm() {
 	const handleAgreeButton = (e: MouseEvent<HTMLButtonElement>) =>
 		setIsAgreed(true)
 
-	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		signUpWithCallback(
-			{ email, password },
-			() => updateIsLoading(true), // onLoading
-			(token, signedUpEmail) => {
-				setAccessToken(token.access_token)
-				sendVerification(
-					getAccessToken(),
-					() => updateIsLoading(true),
-					() => {
-						updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.')
-						navigate(`/verification?email=${signedUpEmail}`, { replace: true })
-					},
-					(error) => {
-						updateToastMessage(error)
-					},
-					() => updateIsLoading(false),
-				)
-			},
-			(error) => {
-				updateToastMessage(error)
-			},
-			() => updateIsLoading(false), // onLoadingDone
-		)
+		try {
+			updateIsLoading(true)
+
+			const { token, email: signedUpEmail } = await signUp({ email, password })
+			setAccessToken(token.access)
+			setRefreshToken(token.refresh)
+
+			await sendVerification(getAccessToken())
+			updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.')
+			navigate(`/verification?email=${signedUpEmail}`, { replace: true })
+		} catch (error: any) {
+			updateToastMessage(error.message)
+		} finally {
+			updateIsLoading(false)
+		}
+
+		// signUpWithCallback(
+		// 	{ email, password },
+		// 	() => updateIsLoading(true), // onLoading
+		// 	async (token, signedUpEmail) => {
+		// 		setAccessToken(token.access)
+		// 		setRefreshToken(token.refresh)
+
+		// 		await sendVerification(
+		// 			getAccessToken(),
+		// 			() => updateIsLoading(true),
+		// 			() => {
+		// 				updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.')
+		// 				navigate(`/verification?email=${signedUpEmail}`, { replace: true })
+		// 			},
+		// 			(error) => {
+		// 				updateToastMessage(error)
+		// 			},
+		// 			() => updateIsLoading(false),
+		// 		)
+		// 	},
+		// 	(error) => {
+		// 		updateToastMessage(error)
+		// 	},
+		// 	() => {
+		// 		// updateIsLoading(false)
+		// 	}, // onLoadingDone
+		// )
 	}
 
 	return (

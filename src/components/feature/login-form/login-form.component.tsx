@@ -1,26 +1,20 @@
 import { useEffect, FormEvent, MouseEvent } from 'react'
 
-import {
-	loginWithCallback,
-	// getLoginUserDataWithCallback,
-} from '../../../services/auth/auth-service'
+import { login } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
-import {
-	// getAccessToken,
-	// getRefreshToken,
-	setAccessToken,
-	// setRefreshToken,
-} from '../../../utils/token.utils'
+import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
 
 export default function LoginForm() {
 	const { email, password, updateLoginUser } = useAuthDataStore()
-	const { userId } = useAuthDataStore((state) => state.loginUser)
+	const { userId, isEmailVerified } = useAuthDataStore(
+		(state) => state.loginUser,
+	)
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigateWithScroll()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
@@ -31,35 +25,47 @@ export default function LoginForm() {
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		// TODO: 로그인 시도 시, 이메일 인증 여부에 따라 navigate(`/verification?email=${username}`, { replace: true })
+		try {
+			updateIsLoading(true)
 
-		// logInWithCallback(
-		// 	{ username: email, password },
+			const {
+				token,
+				email: loginEmail,
+				is_email_verified,
+			} = await login({ email, password })
+			setAccessToken(token.access)
+			setRefreshToken(token.refresh)
+
+			if (is_email_verified) {
+				updateLoginUser('userId', loginEmail)
+				updateLoginUser('isEmailVerified', is_email_verified)
+				updateToastMessage('성공적으로 로그인 했습니다.')
+				navigate('/')
+			} else {
+				updateToastMessage('이메일 인증이 필요합니다.')
+				navigate(`/verification?email=${loginEmail}`, { replace: true })
+			}
+		} catch (error: any) {
+			updateToastMessage(error.message)
+		} finally {
+			updateIsLoading(false)
+		}
+
+		// loginWithCallback(
+		// 	{ email, password },
 		// 	() => updateIsLoading(true), // onLoading
-		// 	async (username, isSignedIn, nextStep) => {
-		// 		if (isSignedIn) {
-		// 			await getLoginUserDataWithCallback(
-		// 				() => updateIsLoading(true), // onLoading
-		// 				(loginId) => {
-		// 					updateLoginUser('userId', loginId)
-		// 					updateToastMessage('성공적으로 로그인 했습니다.')
-		// 					navigate('/')
-		// 				},
-		// 				(error) => updateToastMessage(error),
-		// 				() => updateIsLoading(false), // onLoadingDone
-		// 			)
-		// 		} else if (!isSignedIn) {
-		// 			switch (nextStep) {
-		// 				case 'CONFIRM_SIGN_UP':
-		// 					navigate(`/verification?email=${username}`, { replace: true })
-		// 					break
-		// 				case 'CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED':
-		// 					console.log(nextStep)
-		// 					break
-		// 				default:
-		// 					console.log(nextStep)
-		// 					break
-		// 			}
+		// 	(token, loginEmail, is_email_verified) => {
+		// 		setAccessToken(token.access)
+		// 		setRefreshToken(token.refresh)
+
+		// 		if (is_email_verified) {
+		// 			updateLoginUser('userId', loginEmail)
+		// 			updateLoginUser('isEmailVerified', is_email_verified)
+		// 			updateToastMessage('성공적으로 로그인 했습니다.')
+		// 			navigate('/')
+		// 		} else {
+		// 			updateToastMessage('이메일 인증이 필요합니다.')
+		// 			navigate(`/verification?email=${loginEmail}`, { replace: true })
 		// 		}
 		// 	},
 		// 	(error) => {
@@ -67,33 +73,14 @@ export default function LoginForm() {
 		// 	},
 		// 	() => updateIsLoading(false), // onLoadingDone
 		// )
-
-		loginWithCallback(
-			{ email, password },
-			() => updateIsLoading(true), // onLoading
-			(token, loginEmail) => {
-				// setRefreshToken(token.refresh_token)
-				setAccessToken(token.access_token)
-
-				updateLoginUser('userId', loginEmail)
-				updateToastMessage('성공적으로 로그인 했습니다.')
-				navigate('/')
-
-				// TODO: 이메일 미인증 사용자일 시, Verification 과정 진행하도록
-				// navigate(`/verification?email=${username}`, { replace: true })
-			},
-			(error) => {
-				updateToastMessage(error)
-			},
-			() => updateIsLoading(false), // onLoadingDone
-		)
 	}
 
+	// TODO: 이 부분은 한 번 더 점검 필요. 이메일 인증 전/후 계정에 따라 어떻게 반응하는지 체크 필요.
 	useEffect(() => {
-		if (userId) {
+		if (userId && isEmailVerified) {
 			navigate('/')
 		}
-	}, [userId, navigate])
+	}, [userId, isEmailVerified, navigate])
 
 	return (
 		<AuthForm
