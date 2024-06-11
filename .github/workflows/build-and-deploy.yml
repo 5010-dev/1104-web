@@ -15,11 +15,13 @@ jobs:
 
       - name: Set Environment Variables
         run: |
-          echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_DEV }}" >> $GITHUB_ENV
-          echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_STAGING }}" >> $GITHUB_ENV
-
-      - name: Check Environment Variable
-        run: echo "REACT_APP_BASE_URL is $REACT_APP_BASE_URL"
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_MAIN }}" >> $GITHUB_ENV
+            echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_PROD }}" >> $GITHUB_ENV
+          elif [ "${{ github.ref }}" = "refs/heads/dev" ]; then
+            echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_DEV }}" >> $GITHUB_ENV
+            echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_STAGING }}" >> $GITHUB_ENV
+          fi
 
       - name: Use Node.js
         uses: actions/setup-node@v3
@@ -41,52 +43,3 @@ jobs:
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id $AWS_DISTRIBUTION_ID --paths "/*"
-
-# name: Build and Deploy
-
-# on:
-#   push:
-#     branches:
-#       - main
-#       - dev
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: actions/checkout@v3
-
-#       - name: Set Environment Variables
-#         run: |
-#           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-#             echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_MAIN }}" >> $GITHUB_ENV
-#             echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_PROD }}" >> $GITHUB_ENV
-#           elif [ "${{ github.ref }}" = "refs/heads/dev" ]; then
-#             echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL_DEV }}" >> $GITHUB_ENV
-#             echo "AWS_DISTRIBUTION_ID=${{ secrets.AWS_DISTRIBUTION_ID_STAGING }}" >> $GITHUB_ENV
-#           fi
-
-#       - name: Check Environment Variable
-#         run: echo "REACT_APP_BASE_URL is $REACT_APP_BASE_URL"
-
-#       - name: Use Node.js
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: '22.x'
-
-#       - name: Install dependencies
-#         run: yarn install
-
-#       - name: Build the app
-#         run: yarn build
-
-#       - name: Configure AWS credentials
-#         run: |
-#           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws configure set region ${{ secrets.AWS_REGION }}
-
-#       - name: Invalidate CloudFront Cache
-#         run: |
-#           aws cloudfront create-invalidation --distribution-id $AWS_DISTRIBUTION_ID --paths "/*"
