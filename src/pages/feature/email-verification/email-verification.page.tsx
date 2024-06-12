@@ -13,9 +13,6 @@ import VerificationForm from '../../../components/feature/verification-form/veri
 import TextLink from '../../../components/global/text-link/text-link.component'
 
 export default function EmailVerification() {
-	// TODO: 이 부분 싹 다 고쳐야 함. 로그인 한 상태에서도 접속이 가능함.
-	// 로그인 한 상태라면(userId 있으면), 또는 refresh 없으면 홈으로 리디렉션 하도록
-
 	const [searchParams] = useSearchParams()
 	const email = searchParams.get('email')
 	const navigate = useNavigateWithScroll()
@@ -30,10 +27,9 @@ export default function EmailVerification() {
 		window.location.href = mailtoUrl
 	}
 
-	// TODO: 이 부분을 홈으로 리디렉션하도록 변경
 	useEffect(() => {
 		if (!email) {
-			navigate('/login', { routeState: 'login' })
+			navigate('/login', { routeState: 'login', replace: true })
 		}
 	}, [email, navigate])
 
