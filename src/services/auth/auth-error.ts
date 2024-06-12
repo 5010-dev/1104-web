@@ -41,32 +41,3 @@ export const handleError = (error: any): string => {
 		return errorMessages[ErrorCode.UnknownErrorException]
 	}
 }
-
-// export const handleError = (error: any, onError: (error: any) => void) => {
-// 	if (axios.isAxiosError(error)) {
-// 		if (error.response) {
-// 			const errorData = error.response.data
-// 			if (errorData.errors) {
-// 				if (
-// 					errorData.errors.non_field_errors &&
-// 					errorData.errors.non_field_errors.length > 0
-// 				) {
-// 					onError(errorData.errors.non_field_errors[0])
-// 				} else if (errorData.errors.field_errors) {
-// 					const fieldName = Object.keys(errorData.errors.field_errors)[0]
-// 					onError(errorData.errors.field_errors[fieldName][0])
-// 				} else {
-// 					onError(errorMessages[ErrorCode.GeneralErrorException])
-// 				}
-// 			} else {
-// 				onError(errorMessages[ErrorCode.GeneralErrorException])
-// 			}
-// 		} else {
-// 			onError(errorMessages[ErrorCode.NetworkErrorException])
-// 		}
-// 	} else {
-// 		onError(errorMessages[ErrorCode.UnknownErrorException])
-// 	}
-// }
-
-// export { ErrorCode, errorMessages }

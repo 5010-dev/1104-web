@@ -1,4 +1,3 @@
-// axiosInterceptor.ts
 import axios, {
 	AxiosError,
 	AxiosInstance,

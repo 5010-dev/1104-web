@@ -48,34 +48,6 @@ export default function SignupForm() {
 		} finally {
 			updateIsLoading(false)
 		}
-
-		// signUpWithCallback(
-		// 	{ email, password },
-		// 	() => updateIsLoading(true), // onLoading
-		// 	async (token, signedUpEmail) => {
-		// 		setAccessToken(token.access)
-		// 		setRefreshToken(token.refresh)
-
-		// 		await sendVerification(
-		// 			getAccessToken(),
-		// 			() => updateIsLoading(true),
-		// 			() => {
-		// 				updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.')
-		// 				navigate(`/verification?email=${signedUpEmail}`, { replace: true })
-		// 			},
-		// 			(error) => {
-		// 				updateToastMessage(error)
-		// 			},
-		// 			() => updateIsLoading(false),
-		// 		)
-		// 	},
-		// 	(error) => {
-		// 		updateToastMessage(error)
-		// 	},
-		// 	() => {
-		// 		// updateIsLoading(false)
-		// 	}, // onLoadingDone
-		// )
 	}
 
 	return (

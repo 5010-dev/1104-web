@@ -13,6 +13,7 @@ import { useToastMessageStore } from './store/globalUiStore'
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
 
+import GuestOnlyRoute from './components/global/\bguest-only-route/guest-only-route.component'
 import PrivateRoute from './components/global/private-route/private-route.component'
 
 import MainLayout from './pages/main-layout'
@@ -68,51 +69,10 @@ function App() {
 			} finally {
 				updateIsLoading(false)
 			}
-
-			// await getLoginUserDataWithCallback(
-			// 	() => updateIsLoading(true),
-			// 	(loginEmail, isEmailVerified) => {
-			// 		if (isEmailVerified) {
-			// 			updateLoginUser('userId', loginEmail)
-			// 			updateLoginUser('isEmailVerified', isEmailVerified)
-			// 		} else {
-			// 			logoutWithCallback(resetLoginUser)
-			// 		}
-			// 	},
-			// 	(error) => {
-			// 		logoutWithCallback(resetLoginUser)
-			// 		console.log(error)
-			// 	},
-			// 	() => updateIsLoading(false),
-			// )
 		}
 
 		fetchLoginUserData()
 	}, [updateIsLoading, updateLoginUser, resetLoginUser])
-
-	// useEffect(() => {
-	// 	if (getRefreshToken()) {
-	// 		const fetchLoginUserData = async () => {
-	// 			await getLoginUserDataWithCallback(
-	// 				() => updateIsLoading(true),
-	// 				(loginEmail, is_email_verified) => {
-	// 					if (is_email_verified) {
-	// 						updateLoginUser('userId', loginEmail)
-	// 						updateLoginUser('isEmailVerified', is_email_verified)
-	// 					} else {
-	// 						logoutWithCallback(() => resetLoginUser())
-	// 					}
-	// 				},
-	// 				(error) => {
-	// 					logoutWithCallback(() => resetLoginUser())
-	// 					console.log(error)
-	// 				},
-	// 				() => updateIsLoading(false),
-	// 			)
-	// 		}
-	// 		fetchLoginUserData()
-	// 	}
-	// }, [updateIsLoading, updateLoginUser, resetLoginUser])
 
 	return (
 		<HelmetProvider>
@@ -127,12 +87,17 @@ function App() {
 							<Route path="/" element={<MainLayout />}>
 								<Route index element={<Home />} />
 								<Route path="/about" element={<AboutUs />} />
+
 								<Route element={<PrivateRoute />}>
 									<Route path="/account" element={<Account />} />
 								</Route>
 							</Route>
-							<Route path="/login" element={<Login />} />
-							<Route path="/verification" element={<EmailVerification />} />
+
+							<Route element={<GuestOnlyRoute />}>
+								<Route path="/login" element={<Login />} />
+								<Route path="/verification" element={<EmailVerification />} />
+							</Route>
+
 							<Route element={<PrivateRoute />}>
 								<Route path="/checkout" element={<Checkout />} />
 								<Route
@@ -140,6 +105,7 @@ function App() {
 									element={<IndicatorRegistration />}
 								/>
 							</Route>
+
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 						{toastMessgae.length !== 0 ? (

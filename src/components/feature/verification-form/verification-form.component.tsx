@@ -60,26 +60,6 @@ export default function VerificationForm(props: VerificationFormProps) {
 		} finally {
 			updateIsLoading(false)
 		}
-
-		// confirmSignupWithCallback(
-		// 	{ access: getAccessToken(), code: verificationCode },
-		// 	() => updateIsLoading(true),
-		// 	(token, loginEmail, is_email_verified) => {
-		// 		setAccessToken(token.access)
-
-		// 		updateLoginUser('userId', loginEmail)
-		// 		updateLoginUser('isEmailVerified', is_email_verified)
-		// 		updateToastMessage('회원 가입이 완료되었습니다.')
-
-		// 		resetAuthData()
-		// 		navigate('/')
-		// 		// NOTE: '/'으로 랜딩하면서 팝업 (할인 및 체험판) 제공?
-		// 	},
-		// 	(error) => {
-		// 		updateToastMessage(error)
-		// 	},
-		// 	() => updateIsLoading(false),
-		// )
 	}
 
 	const handleResendCode = async (e: MouseEvent<HTMLSpanElement>) => {
@@ -93,15 +73,6 @@ export default function VerificationForm(props: VerificationFormProps) {
 		} finally {
 			updateIsLoading(false)
 		}
-		// sendVerification(
-		// 	getAccessToken(),
-		// 	() => updateIsLoading(true),
-		// 	() => updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.'),
-		// 	(error) => {
-		// 		updateToastMessage(error)
-		// 	},
-		// 	() => updateIsLoading(false),
-		// )
 	}
 
 	useEffect(() => {

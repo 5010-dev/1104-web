@@ -35,17 +35,6 @@ export default function LoginUser() {
 		} catch (error: any) {
 			console.log(error.message)
 		}
-
-		// logoutWithCallback(
-		// 	() => {
-		// 		resetLoginUser()
-		// 		updateToastMessage('성공적으로 로그아웃 되었습니다.')
-		// 		navigate('/')
-		// 	},
-		// 	(error) => {
-		// 		console.log(error)
-		// 	},
-		// )
 	}
 
 	return (
