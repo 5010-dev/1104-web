@@ -23,6 +23,7 @@ import Login from './pages/feature/login/login.page'
 import EmailVerification from './pages/feature/email-verification/email-verification.page'
 import Checkout from './pages/feature/checkout/checkout.page'
 import AboutUs from './pages/feature/about-us/about-us.page'
+import OurService from './pages/feature/our-service/our-service.page'
 import Account from './pages/feature/account/account.page'
 import IndicatorRegistration from './pages/feature/indicator-registration/indicator-registration.page'
 
@@ -87,6 +88,7 @@ function App() {
 							<Route path="/" element={<MainLayout />}>
 								<Route index element={<Home />} />
 								<Route path="/about" element={<AboutUs />} />
+								<Route path="/service" element={<OurService />} />
 
 								<Route element={<PrivateRoute />}>
 									<Route path="/account" element={<Account />} />

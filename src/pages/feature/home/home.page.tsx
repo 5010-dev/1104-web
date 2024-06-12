@@ -3,7 +3,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useScrollStore } from '../../../store/globalUiStore'
 
-import Hero from '../../../components/feature/hero/hero.component'
+import HomeHero from '../../../components/feature/home-hero/home-hero.component'
 import About from '../../../components/feature/about/about.component'
 import Service from '../../../components/feature/service/service.component'
 import Achievement from '../../../components/feature/achievement/achievement.component'
@@ -35,7 +35,7 @@ export default function Home() {
 
 	return (
 		<HomeContainer $deviceType={deviceType}>
-			<Hero />
+			<HomeHero />
 			<About />
 			<Service />
 			<div id="achievement-result-container">

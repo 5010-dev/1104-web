@@ -4,11 +4,11 @@ import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
 import { getColour, hexToRgba } from '../../../utils/colour.utils'
 
-import { AboutUsHeroContainerProps } from './about-us-hero.types'
+import { HeroContainerProps } from './hero.types'
 
-type Props = AboutUsHeroContainerProps
+type Props = HeroContainerProps
 
-export const AboutUsHeroContainer = styled.div<Props>`
+export const HeroContainer = styled.div<Props>`
 	position: relative;
 
 	width: ${({ theme }) => theme.layout.section.width};
@@ -111,7 +111,7 @@ export const AboutUsHeroContainer = styled.div<Props>`
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
-		h3#subheading {
+		span#subheading {
 			${({ theme }) => getTypography(theme, 'heading3')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};

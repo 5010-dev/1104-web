@@ -1,36 +1,39 @@
-import Lottie from 'lottie-react'
+// import Lottie from 'lottie-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesDown } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAboutUsContentsStore } from '../../../store/aboutUsContentsStore'
+// import { useAboutUsContentsStore } from '../../../store/aboutUsContentsStore'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 
-import growAnim from '../../../assets/lottie/grow-anim.json'
+// import growAnim from '../../../assets/lottie/grow-anim.json'
 
-import { AboutUsHeroContainer } from './about-us-hero.styles'
+import { HeroProps } from './hero.types'
+import { HeroContainer } from './hero.styles'
 
-export default function AboutUsHero() {
+export default function Hero(props: HeroProps) {
+	const { id, className, image, heading, subheading } = props
+
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { image, text } = useAboutUsContentsStore((state) => state.hero)
-	const { heading, subheading } = text
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
 
 	return (
-		<AboutUsHeroContainer
+		<HeroContainer
+			id={id}
+			className={className}
 			$deviceType={deviceType}
 			$imageUrl={image}
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
 		>
 			<div className="container-row" />
-			<Lottie animationData={growAnim} id="hero-anim" />
+			{/* <Lottie animationData={growAnim} id="hero-anim" /> */}
 			<div id="hero-text-container">
 				<h1 id="heading">{heading}</h1>
-				<h3 id="subheading">{subheading}</h3>
+				<span id="subheading">{subheading}</span>
 			</div>
 			<div className="container-row">
 				<FontAwesomeIcon icon={faAnglesDown} id="down-icon" />
 			</div>
-		</AboutUsHeroContainer>
+		</HeroContainer>
 	)
 }

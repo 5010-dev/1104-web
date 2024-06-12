@@ -1,12 +1,14 @@
 import styled, { css } from 'styled-components'
 import { SectionContainer } from '../../global/section/section.styles'
 
-import { HeroContainerProps } from './hero.types'
+import { HomeHeroContainerProps } from './home-hero.types'
 
 import { getTypography } from '../../../utils/typo.utils'
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
-export const HeroContainer = styled(SectionContainer)<HeroContainerProps>`
+type Props = HomeHeroContainerProps
+
+export const HomeHeroContainer = styled(SectionContainer)<Props>`
 	position: relative;
 
 	min-height: ${({ theme }) => theme.layout.section.minHeight};

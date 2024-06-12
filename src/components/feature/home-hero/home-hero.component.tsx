@@ -5,13 +5,13 @@ import { useHomeContentsStore } from '../../../store/homeContentsStore'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 import { useBannerStore } from '../../../store/globalUiStore'
 
-import { HeroContainer } from './hero.styles'
+import { HomeHeroContainer } from './home-hero.styles'
 
 import { ReactComponent as Icon } from '../../../assets/svg/telegram-icon.svg'
 import Button from '../../global/button/button.component'
 import TextLink from '../../global/text-link/text-link.component'
 
-export default function Hero() {
+export default function HomeHero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useHomeContentsStore((state) => state.home)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
@@ -21,7 +21,7 @@ export default function Hero() {
 	const handleTextLinkClick = (e: MouseEvent<HTMLDivElement>) => {}
 
 	return (
-		<HeroContainer
+		<HomeHeroContainer
 			$deviceType={deviceType}
 			$imageUrl={image.backgroundImage}
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
@@ -54,6 +54,6 @@ export default function Hero() {
 				</div>
 			</div>
 			<img id="mockup-image" src={image.mockupImage} alt={image.mockupImage} />
-		</HeroContainer>
+		</HomeHeroContainer>
 	)
 }
