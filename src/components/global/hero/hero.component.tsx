@@ -1,18 +1,15 @@
-// import Lottie from 'lottie-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesDown } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-// import { useAboutUsContentsStore } from '../../../store/aboutUsContentsStore'
-import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 
-// import growAnim from '../../../assets/lottie/grow-anim.json'
+import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 
 import { HeroProps } from './hero.types'
 import { HeroContainer } from './hero.styles'
 
 export default function Hero(props: HeroProps) {
-	const { id, className, image, heading, subheading } = props
+	const { id, className, image, category, heading, subheading } = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
@@ -26,8 +23,8 @@ export default function Hero(props: HeroProps) {
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
 		>
 			<div className="container-row" />
-			{/* <Lottie animationData={growAnim} id="hero-anim" /> */}
 			<div id="hero-text-container">
+				<span id="category">{category}</span>
 				<h1 id="heading">{heading}</h1>
 				<span id="subheading">{subheading}</span>
 			</div>

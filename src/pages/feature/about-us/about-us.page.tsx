@@ -23,7 +23,12 @@ export default function AboutUs() {
 
 	return (
 		<AboutUsContainer $deviceType={deviceType}>
-			<Hero image={image} heading={text.heading} subheading={text.subheading} />
+			<Hero
+				image={image}
+				category={text.category}
+				heading={text.heading}
+				subheading={text.subheading}
+			/>
 			<BackgroundSection />
 			<ObjectiveSection />
 			<Community />

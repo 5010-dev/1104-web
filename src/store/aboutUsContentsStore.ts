@@ -8,6 +8,7 @@ import ipoImage from '../assets/img/about-us-ipo-image.webp'
 export type Hero = {
 	image: string
 	text: {
+		category: string
 		heading: string
 		subheading: string
 	}
@@ -63,6 +64,7 @@ export const useAboutUsContentsStore = create<AboutUsContentsState>((set) => ({
 	hero: {
 		image: heroImage,
 		text: {
+			category: 'ABOUT US',
 			heading: 'We Revolutionise Crypto Market & Trading Industry',
 			subheading: '우리는 암호화폐 시장과 트레이딩 산업에서 혁신하고 있습니다.',
 		},

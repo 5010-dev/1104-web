@@ -103,6 +103,13 @@ export const HeroContainer = styled.div<Props>`
 			`}
 		}
 
+		span#category {
+			${({ theme }) => getTypography(theme, 'heading3')}
+			color: ${({ theme }) => getColour(theme, 'accent', 'primary', 'active')};
+			filter: none;
+			-webkit-filter: none;
+		}
+
 		h1#heading {
 			${({ theme }) => getTypography(theme, 'display')}
 			font-size: ${({ $deviceType }) =>

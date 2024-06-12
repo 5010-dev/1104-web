@@ -4,6 +4,7 @@ export type HeroProps = {
 	id?: string
 	className?: string
 	image: string
+	category: string
 	heading: string
 	subheading: string
 }

@@ -50,32 +50,8 @@ export default function LoginForm() {
 		} finally {
 			updateIsLoading(false)
 		}
-
-		// loginWithCallback(
-		// 	{ email, password },
-		// 	() => updateIsLoading(true), // onLoading
-		// 	(token, loginEmail, is_email_verified) => {
-		// 		setAccessToken(token.access)
-		// 		setRefreshToken(token.refresh)
-
-		// 		if (is_email_verified) {
-		// 			updateLoginUser('userId', loginEmail)
-		// 			updateLoginUser('isEmailVerified', is_email_verified)
-		// 			updateToastMessage('성공적으로 로그인 했습니다.')
-		// 			navigate('/')
-		// 		} else {
-		// 			updateToastMessage('이메일 인증이 필요합니다.')
-		// 			navigate(`/verification?email=${loginEmail}`, { replace: true })
-		// 		}
-		// 	},
-		// 	(error) => {
-		// 		updateToastMessage(error)
-		// 	},
-		// 	() => updateIsLoading(false), // onLoadingDone
-		// )
 	}
 
-	// TODO: 이 부분은 한 번 더 점검 필요. 이메일 인증 전/후 계정에 따라 어떻게 반응하는지 체크 필요.
 	useEffect(() => {
 		if (userId && isEmailVerified) {
 			navigate('/')
