@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useHomeContentsStore } from '../../../store/homeContentsStore'
+import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
 
 import { FooterContainer } from './footer.styles'
 

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { DeviceType } from '../../../store/deviceTypeStore'
 
 export type HeroProps = {
@@ -7,10 +8,14 @@ export type HeroProps = {
 	category: string
 	heading: string
 	subheading: string
+	fullScreen?: boolean
+	showArrow?: boolean
+	bodyContents?: ReactNode | null
 }
 
 export type HeroContainerProps = {
 	$deviceType: DeviceType
 	$imageUrl: string
 	$isPointerCoarseAndSafari: boolean
+	$fullScreen: boolean
 }

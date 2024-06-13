@@ -12,15 +12,13 @@ export const HeroContainer = styled.div<Props>`
 	position: relative;
 
 	width: ${({ theme }) => theme.layout.section.width};
-	min-height: ${({ theme }) => theme.layout.section.minHeight};
+	min-height: ${({ theme, $fullScreen }) =>
+		$fullScreen && theme.layout.section.minHeight};
 
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
-	padding: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'section')};
 
 	background-image: url(${({ $imageUrl }) => $imageUrl});
 	background-size: cover;
@@ -72,61 +70,77 @@ export const HeroContainer = styled.div<Props>`
 		`}
 	}
 
-	div#hero-text-container {
+	div#hero-contents-container {
 		width: ${({ theme }) => theme.layout.container.width};
-		max-width: 40rem;
+		max-width: ${({ theme }) => theme.layout.section.maxWidth};
 
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-start;
+		justify-content: center;
 		align-items: center;
 		gap: ${({ theme }) => theme.layout.section.gutter};
 
+		padding: ${({ theme, $deviceType }) =>
+			getDeviceTypePadding(theme, $deviceType, 'section')};
+
 		z-index: 2;
 
-		& > * {
-			${({ theme }) => css`
-				-webkit-filter: drop-shadow(
-					0 0 0.25rem
-						${hexToRgba(
-							getColour(theme, 'neutral', 'secondary', 'active'),
-							0.5,
-						)}
-				);
-				filter: drop-shadow(
-					0 0 0.25rem
-						${hexToRgba(
-							getColour(theme, 'neutral', 'secondary', 'active'),
-							0.5,
-						)}
-				);
-			`}
-		}
+		div#hero-text-container {
+			width: ${({ theme }) => theme.layout.container.width};
+			max-width: 40rem;
 
-		span#category {
-			${({ theme }) => getTypography(theme, 'heading3')}
-			color: ${({ theme }) => getColour(theme, 'accent', 'primary', 'active')};
-			filter: none;
-			-webkit-filter: none;
-		}
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+			gap: ${({ theme }) => theme.layout.section.gutter};
 
-		h1#heading {
-			${({ theme }) => getTypography(theme, 'display')}
-			font-size: ${({ $deviceType }) =>
-				$deviceType === 'mobile' ? '2.75rem' : '4rem'};
-			color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'active')};
-		}
+			& > * {
+				${({ theme }) => css`
+					-webkit-filter: drop-shadow(
+						0 0 0.25rem
+							${hexToRgba(
+								getColour(theme, 'neutral', 'secondary', 'active'),
+								0.5,
+							)}
+					);
+					filter: drop-shadow(
+						0 0 0.25rem
+							${hexToRgba(
+								getColour(theme, 'neutral', 'secondary', 'active'),
+								0.5,
+							)}
+					);
+				`}
+			}
 
-		span#subheading {
-			${({ theme }) => getTypography(theme, 'heading3')}
-			color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'active')};
+			span#category {
+				${({ theme }) => getTypography(theme, 'subheading')}
+				color: ${({ theme }) =>
+					getColour(theme, 'accent', 'primary', 'active')};
+				filter: none;
+				-webkit-filter: none;
+			}
+
+			h1#heading {
+				${({ theme }) => getTypography(theme, 'display')}
+				font-size: ${({ $deviceType }) =>
+					$deviceType === 'mobile' ? '2.75rem' : '4rem'};
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'active')};
+			}
+
+			span#subheading {
+				${({ theme }) => getTypography(theme, 'heading3')}
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'active')};
+			}
 		}
 	}
 
 	div.container-row {
 		height: 100%;
+		min-height: 15vh;
 		width: 100%;
 		flex: 1 0 auto;
 

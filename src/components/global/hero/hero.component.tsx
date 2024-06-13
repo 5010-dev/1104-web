@@ -9,7 +9,17 @@ import { HeroProps } from './hero.types'
 import { HeroContainer } from './hero.styles'
 
 export default function Hero(props: HeroProps) {
-	const { id, className, image, category, heading, subheading } = props
+	const {
+		id,
+		className,
+		image,
+		category,
+		heading,
+		subheading,
+		fullScreen = true,
+		showArrow = true,
+		bodyContents,
+	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
@@ -21,15 +31,21 @@ export default function Hero(props: HeroProps) {
 			$deviceType={deviceType}
 			$imageUrl={image}
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
+			$fullScreen={fullScreen}
 		>
 			<div className="container-row" />
-			<div id="hero-text-container">
-				<span id="category">{category}</span>
-				<h1 id="heading">{heading}</h1>
-				<span id="subheading">{subheading}</span>
+			<div id="hero-contents-container">
+				<div id="hero-text-container">
+					<span id="category">{category}</span>
+					<h1 id="heading">{heading}</h1>
+					<span id="subheading">{subheading}</span>
+				</div>
+				{bodyContents ? bodyContents : null}
 			</div>
 			<div className="container-row">
-				<FontAwesomeIcon icon={faAnglesDown} id="down-icon" />
+				{showArrow ? (
+					<FontAwesomeIcon icon={faAnglesDown} id="down-icon" />
+				) : null}
 			</div>
 		</HeroContainer>
 	)

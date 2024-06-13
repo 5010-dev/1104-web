@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAboutUsContentsStore } from '../../../store/aboutUsContentsStore'
+import { useAboutUsContentsStore } from '../../../store/contents/aboutUsContentsStore'
 
 import { AboutUsContainer } from './about-us.styles'
 

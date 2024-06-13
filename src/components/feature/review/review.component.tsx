@@ -2,7 +2,7 @@ import { motion, useMotionTemplate } from 'framer-motion'
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useHomeContentsStore } from '../../../store/homeContentsStore'
+import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
 
 import { ReviewContainer } from './review.styles'
 

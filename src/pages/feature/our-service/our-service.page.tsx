@@ -3,7 +3,7 @@
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
-import { useOurServiceContentsStore } from '../../../store/ourServiceContentsStore'
+import { useOurServiceContentsStore } from '../../../store/contents/ourServiceContentsStore'
 
 import { OurServiceContainer } from './our-service.styles'
 
@@ -21,26 +21,43 @@ export default function OurService() {
 	return (
 		<OurServiceContainer $deviceType={deviceType}>
 			<Hero
+				id="our-service-hero"
 				image={image}
 				category={text.category}
 				heading={text.heading}
 				subheading={text.subheading}
-				id="our-service-hero"
+				fullScreen={false}
+				// showArrow={false}
+				bodyContents={
+					<>
+						<hr id="our-service-hero-horizontal-line" />
+						<div id="our-service-hero-body-container">
+							{text.body.map((item, index) => (
+								<p key={index} className="our-service-hero-body">
+									{item}
+								</p>
+							))}
+						</div>
+					</>
+				}
 			/>
-			<div id="our-service-contents-container" className="our-service-row">
-				<div id="our-service-items-container">
+			<div id="our-service-contents-container">
+				<div className="our-service-contents-row">
 					{serviceList.map((item, index) => (
 						<OurServiceItem
 							key={index}
 							imageUrl={item.image}
-							title={item.title}
-							description={item.description}
+							heading={item.heading}
+							subheading={item.subheading}
+							body={item.body}
+							features={item.features}
 							handleSeeDetails={() => {
 								// navigate
 							}}
 						/>
 					))}
 				</div>
+				<div className="our-service-contents-row"></div>
 				{/* TODO: <div id='our-service-free-trial-container'></div> */}
 			</div>
 		</OurServiceContainer>

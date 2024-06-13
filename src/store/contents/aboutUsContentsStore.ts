@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 
-import heroImage from '../assets/img/about-us-hero-image.webp'
-import backgroundImage from '../assets/img/background-paragraph-image.webp'
-import displayImage from '../assets/img/about-us-display-image.webp'
-import ipoImage from '../assets/img/about-us-ipo-image.webp'
+import heroImage from '../../assets/img/about-us-hero-image.webp'
+import backgroundImage from '../../assets/img/background-paragraph-image.webp'
+import displayImage from '../../assets/img/about-us-display-image.webp'
+import ipoImage from '../../assets/img/about-us-ipo-image.webp'
 
 export type Hero = {
 	image: string

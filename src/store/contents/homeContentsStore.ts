@@ -1,16 +1,16 @@
 import { create } from 'zustand'
 
-import logoImage from '../assets/logo/1104-logo-white.svg'
-import backgroundImage from '../assets/img/home-about-image.webp'
-import mockupImage from '../assets/img/home-mockup-image.webp'
-import serviceImage1 from '../assets/img/service-image-1.webp'
-import serviceImage2 from '../assets/img/service-image-2.webp'
-import serviceImage3 from '../assets/img/service-image-3.webp'
-import resultImage1 from '../assets/img/result-persona-image-1.webp'
-import resultImage2 from '../assets/img/result-persona-image-2.webp'
-import resultImage3 from '../assets/img/result-persona-image-3.webp'
-import resultImage4 from '../assets/img/result-persona-image-4.webp'
-import communityImage from '../assets/img/community-image.webp'
+import logoImage from '../../assets/logo/1104-logo-white.svg'
+import backgroundImage from '../../assets/img/home-about-image.webp'
+import mockupImage from '../../assets/img/home-mockup-image.webp'
+import serviceImage1 from '../../assets/img/service-image-1.webp'
+import serviceImage2 from '../../assets/img/service-image-2.webp'
+import serviceImage3 from '../../assets/img/service-image-3.webp'
+import resultImage1 from '../../assets/img/result-persona-image-1.webp'
+import resultImage2 from '../../assets/img/result-persona-image-2.webp'
+import resultImage3 from '../../assets/img/result-persona-image-3.webp'
+import resultImage4 from '../../assets/img/result-persona-image-4.webp'
+import communityImage from '../../assets/img/community-image.webp'
 
 export type AchievementItem = {
 	caption: string

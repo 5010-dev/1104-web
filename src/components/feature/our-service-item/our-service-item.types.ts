@@ -2,8 +2,10 @@ import { MouseEvent } from 'react'
 
 export type OurServiceItemProps = {
 	imageUrl: string
-	title: string
-	description: string
+	heading: string
+	subheading: string
+	features: string[]
+	body: string[]
 	handleSeeDetails: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
