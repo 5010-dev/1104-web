@@ -1,12 +1,17 @@
 import styled from 'styled-components'
 
 import { getDeviceTypePadding } from '../../../utils/device.utils'
+import { getContainerStyle } from '../../../utils/style.utils'
 import { getTypography } from '../../../utils/typo.utils'
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
+import { OurServiceContainerProps } from './our-service.types'
+
 import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
 
-export const OurServiceContainer = styled(PageLayoutContainer)`
+type Props = OurServiceContainerProps
+
+export const OurServiceContainer = styled(PageLayoutContainer)<Props>`
 	position: relative;
 	/* gap: 0; */
 
@@ -96,7 +101,64 @@ export const OurServiceContainer = styled(PageLayoutContainer)`
 			align-items: center;
 			gap: ${({ theme }) => theme.layout.section.gutter};
 
-			margin-bottom: ${({ theme }) => theme.layout.page.gutter};
+			/* margin-bottom: ${({ theme }) => theme.layout.page.gutter}; */
+
+			div#our-service-free-trial-container {
+				width: ${({ theme }) => theme.layout.container.width};
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: ${({ theme }) => theme.layout.container.gutter};
+
+				border-radius: ${({ theme }) =>
+					theme.shape.filled.rounded1.borderRadii};
+
+				background-image: url(${({ $imageUrl }) => $imageUrl});
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+
+				/* ${({ theme }) =>
+					getContainerStyle(
+						theme,
+						'accent',
+						'primary',
+						'filled',
+						'rounded1',
+						0.5,
+					)}; */
+
+				padding: ${({ theme, $deviceType }) =>
+					`${theme.layout.section.padding.lg} ${getDeviceTypePadding(
+						theme,
+						$deviceType,
+						'section',
+					)}`};
+
+				h3#our-service-free-trial-heading {
+					${({ theme, $deviceType }) =>
+						$deviceType === 'mobile'
+							? getTypography(theme, 'heading2')
+							: getTypography(theme, 'heading1')}
+					color: ${({ theme }) =>
+						getColour(theme, 'neutral', 'secondary', 'active')};
+				}
+
+				p#our-service-free-trial-body {
+					${({ theme }) => getTypography(theme, 'body')}
+					color: ${({ theme }) =>
+						hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.75,
+						)};
+				}
+
+				#our-service-free-trial-button {
+					margin-top: ${({ theme }) => theme.layout.container.gutter};
+				}
+			}
 		}
 	}
 `

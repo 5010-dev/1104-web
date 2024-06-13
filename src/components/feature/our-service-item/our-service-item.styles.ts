@@ -29,11 +29,11 @@ export const OurServiceItemContainer = styled(SectionContainer)<Props>`
 	/* ${({ theme }) => css`
 		-webkit-filter: drop-shadow(
 			0 0 1rem
-				${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.25)}
+				${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.15)}
 		);
 		filter: drop-shadow(
 			0 0 1rem
-				${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.25)}
+				${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.15)}
 		);
 	`} */
 
@@ -99,6 +99,7 @@ export const OurServiceItemContainer = styled(SectionContainer)<Props>`
 			div.our-service-item-features-container {
 				display: flex;
 				gap: 0.25rem;
+				padding-top: ${({ theme }) => theme.layout.component.gutter};
 			}
 		}
 

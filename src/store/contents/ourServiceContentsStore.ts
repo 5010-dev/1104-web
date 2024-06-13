@@ -3,6 +3,7 @@ import { create } from 'zustand'
 import backgroundImage from '../../assets/img/home-about-image.webp'
 import educationImage from '../../assets/img/service-image-1.webp'
 import quantImage from '../../assets/img/service-quant-image.webp'
+import bannerBackgroundImage from '../../assets/img/banner-background-img.webp'
 
 type Hero = {
 	image: string
@@ -22,9 +23,16 @@ type Service = {
 	body: string[]
 }
 
+type FreeTrial = {
+	image: string
+	heading: string
+	body: string
+}
+
 export interface OurServiceContentsState {
 	hero: Hero
 	serviceList: Service[]
+	freeTrial: FreeTrial
 }
 
 export const useOurServiceContentsStore = create<OurServiceContentsState>(
@@ -63,5 +71,10 @@ export const useOurServiceContentsStore = create<OurServiceContentsState>(
 				],
 			},
 		],
+		freeTrial: {
+			image: bannerBackgroundImage,
+			heading: '고민되신 다면, 무료로 먼저 체험해 보세요.',
+			body: '1104 R&I는 모든 서비스에 대해 어떤 조건도 없이 사용할 수 있는 3일의 무료 체험 기간을 제공하고 있어요.',
+		},
 	}),
 )
