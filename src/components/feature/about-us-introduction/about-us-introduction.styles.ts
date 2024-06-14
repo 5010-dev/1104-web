@@ -15,7 +15,7 @@ export const AboutUsIntroductionContainer = styled(baseContainer)<Props>`
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		align-items: flex-start;
+		align-items: center;
 		gap: ${({ theme }) => theme.layout.section.gutter};
 
 		padding: ${({ theme, $deviceType }) =>
@@ -25,16 +25,15 @@ export const AboutUsIntroductionContainer = styled(baseContainer)<Props>`
 				'section',
 			)}`};
 
-		text-align: left;
+		text-align: center;
 
 		span#about-us-introduction-caption {
 			align-self: center;
 
 			${({ theme }) => getTypography(theme, 'display')}
-			/* font-size: ${({ $deviceType }) =>
-				$deviceType === 'mobile' && '2.75rem'}; */
-      
-      background-image: url(${({ $displayImage }) => $displayImage});
+			font-size: ${({ $deviceType }) => $deviceType === 'mobile' && '2.75rem'};
+
+			background-image: url(${({ $displayImage }) => $displayImage});
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat;
@@ -48,6 +47,8 @@ export const AboutUsIntroductionContainer = styled(baseContainer)<Props>`
 		}
 
 		h3#about-us-introduction-heading {
+			max-width: ${({ theme }) => theme.layout.container.maxWidth};
+
 			${({ theme }) => getTypography(theme, 'heading3')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
