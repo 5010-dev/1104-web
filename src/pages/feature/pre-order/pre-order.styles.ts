@@ -27,10 +27,10 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 
 		background: ${({ theme }) =>
 			`linear-gradient(to bottom, ${hexToRgba(
-				theme.colour.neutral.tertiary.active,
+				theme.colour.neutral.primary.active,
 				0,
-			)}, ${hexToRgba(theme.colour.neutral.tertiary.active, 0.15)}, ${hexToRgba(
-				theme.colour.neutral.tertiary.active,
+			)}, ${hexToRgba(theme.colour.neutral.primary.active, 0.15)}, ${hexToRgba(
+				theme.colour.neutral.primary.active,
 				1,
 			)})`};
 
@@ -48,64 +48,104 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 		height: 100vh;
 		/* max-width: ${({ theme }) => theme.layout.section.maxWidth}; */
 
-		#quant-logo {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
-			${({ $deviceType }) =>
-				$deviceType === 'mobile'
-					? css`
-							width: 130%;
-							height: 100%;
-					  `
-					: css`
-							height: 80%;
-							width: 100%;
-					  `}
-		}
+		div#quant-logo-container {
+			position: relative;
 
-		div#quant-text-container {
-			position: absolute;
-			bottom: 0;
-			left: 50%;
-			transform: translateX(-50%);
+			width: 100%;
+			height: 100%;
+			max-height: ${({ $deviceType }) => {
+				if ($deviceType === 'desktop') {
+					return '50rem'
+				} else if ($deviceType === 'tablet') {
+					return '40rem'
+				} else if ($deviceType === 'mobile') {
+					return '30rem'
+				}
+			}};
+			min-height: 24rem;
 
-			width: ${({ theme }) => theme.layout.container.width};
-			max-width: 25rem;
-			height: 50%;
+			#quant-logo {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
 
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			gap: ${({ theme }) => theme.layout.component.gutter};
-
-			padding: ${({ theme, $deviceType }) =>
-				`0 ${getDeviceTypePadding(theme, $deviceType, 'section')}`};
-
-			h1#quant-text-heading {
-				width: 100%;
-				font-family: 'Big Shoulders Display';
-				font-weight: 400;
-				font-size: 2rem;
-				text-align: center;
-
-				display: flex;
-				justify-content: space-between;
+				height: 100%;
 			}
 
-			span#quant-text-subheading {
-				width: 100%;
+			div#quant-text-container {
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
 
-				${({ theme }) => getTypography(theme, 'heading2')}
-				font-size: 1.125rem;
-				letter-spacing: 0;
-				text-align: center;
+				width: ${({ $deviceType }) =>
+					$deviceType === 'mobile' ? '85%' : '100%'};
+				max-width: 25rem;
+				height: 50%;
 
 				display: flex;
-				justify-content: space-between;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 0.5rem;
+
+				padding: ${({ theme, $deviceType }) =>
+					`0 ${getDeviceTypePadding(theme, $deviceType, 'section')}`};
+
+				margin-top: ${({ theme, $deviceType }) =>
+					$deviceType === 'mobile' && theme.layout.component.gutter};
+
+				h1#quant-text-heading {
+					width: 100%;
+					font-family: 'Big Shoulders Display';
+					font-weight: 400;
+					font-size: 2rem;
+					line-height: 100%;
+					text-align: center;
+
+					display: flex;
+					justify-content: space-between;
+				}
+
+				span#quant-text-subheading {
+					width: 100%;
+
+					${({ theme }) => getTypography(theme, 'heading2')}
+					font-size: 1.125rem;
+					line-height: 100%;
+					letter-spacing: 0;
+					text-align: center;
+
+					display: flex;
+					justify-content: space-between;
+
+					background: ${({ theme }) =>
+						`linear-gradient(to right, ${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0,
+						)}, ${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.2,
+						)}, ${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.25,
+						)},
+            ${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.2,
+						)}, ${hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0,
+						)})`};
+
+					padding: 0.25rem 0;
+				}
 			}
 		}
 	}
