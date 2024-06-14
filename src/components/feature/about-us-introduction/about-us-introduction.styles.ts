@@ -27,27 +27,42 @@ export const AboutUsIntroductionContainer = styled(baseContainer)<Props>`
 
 		text-align: center;
 
-		span#about-us-introduction-caption {
-			align-self: center;
+		div#about-us-introduction-caption-container {
+			width: ${({ theme }) => theme.layout.container.width};
 
-			${({ theme }) => getTypography(theme, 'display')}
-			line-height: 120%;
-			font-size: ${({ $deviceType }) => $deviceType === 'mobile' && '2.75rem'};
-
-			background-image: url(${({ $displayImage }) => $displayImage});
-			background-size: cover;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-clip: text;
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-attachment: ${({ $isPointerCoarseAndSafari }) =>
-				$isPointerCoarseAndSafari ? 'scroll' : 'fixed'};
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+			gap: ${({ theme }) => theme.layout.container.gutter};
 
 			margin-bottom: ${({ theme }) => theme.layout.container.gutter};
 
+			& > span {
+				background-image: url(${({ $displayImage }) => $displayImage});
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-clip: text;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-attachment: ${({ $isPointerCoarseAndSafari }) =>
+					$isPointerCoarseAndSafari ? 'scroll' : 'fixed'};
+			}
+
 			span#about-us-introduction-caption-span {
+				${({ theme }) => getTypography(theme, 'display')}
 				font-size: 2.5rem;
+			}
+
+			span#about-us-introduction-caption {
+				align-self: center;
+
+				${({ theme }) => getTypography(theme, 'display')}
+				font-family: 'Big Shoulders Display';
+				line-height: 120%;
+				font-size: ${({ $deviceType }) =>
+					$deviceType === 'mobile' ? '3.5rem' : '6rem'};
 			}
 		}
 

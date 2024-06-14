@@ -25,11 +25,10 @@ export default function AboutUsIntroduction() {
 		>
 			<div className="contents-container">
 				<Card hierarchy="secondary" id="about-us-introdcution" shape="rounded1">
-					<span id="about-us-introduction-caption">
+					<div id="about-us-introduction-caption-container">
 						<span id="about-us-introduction-caption-span">✨</span>
-						<br />
-						BEYOND THE LIMITS
-					</span>
+						<span id="about-us-introduction-caption">BEYOND THE LIMITS</span>
+					</div>
 					<h3 id="about-us-introduction-heading">{heading}</h3>
 				</Card>
 				<div id="aobut-us-introduction-paragraph-container">

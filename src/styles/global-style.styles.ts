@@ -30,7 +30,8 @@ const GlobalStyle = styled.createGlobalStyle`
 		font-family: ${designTokens.typo.typeface.default}, -apple-system,
 			BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
 			'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'SF_HambakSnow',
-			'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+			'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+			'Big Shoulders Display', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 
