@@ -31,6 +31,7 @@ export const AboutUsIntroductionContainer = styled(baseContainer)<Props>`
 			align-self: center;
 
 			${({ theme }) => getTypography(theme, 'display')}
+			line-height: 120%;
 			font-size: ${({ $deviceType }) => $deviceType === 'mobile' && '2.75rem'};
 
 			background-image: url(${({ $displayImage }) => $displayImage});
@@ -44,14 +45,19 @@ export const AboutUsIntroductionContainer = styled(baseContainer)<Props>`
 				$isPointerCoarseAndSafari ? 'scroll' : 'fixed'};
 
 			margin-bottom: ${({ theme }) => theme.layout.container.gutter};
+
+			span#about-us-introduction-caption-span {
+				font-size: 2.5rem;
+			}
 		}
 
 		h3#about-us-introduction-heading {
 			max-width: ${({ theme }) => theme.layout.container.maxWidth};
 
-			${({ theme }) => getTypography(theme, 'heading3')}
+			${({ theme }) => getTypography(theme, 'subheading')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
+			margin-bottom: ${({ theme }) => theme.layout.container.gutter};
 		}
 	}
 
@@ -59,32 +65,34 @@ export const AboutUsIntroductionContainer = styled(baseContainer)<Props>`
 		width: ${({ theme }) => theme.layout.container.width};
 
 		display: flex;
-		flex-direction: column;
+		flex-direction: ${({ $deviceType }) =>
+			$deviceType === 'mobile' ? 'column' : 'row'};
 		justify-content: flex-start;
 		align-items: flex-start;
 		gap: ${({ theme }) => theme.layout.section.gutter};
-	}
-	div.about-us-introduction-paragraph {
-		width: ${({ theme }) => theme.layout.container.width};
 
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		gap: ${({ theme }) => theme.layout.component.gutter};
+		div.about-us-introduction-paragraph {
+			width: ${({ theme }) => theme.layout.container.width};
 
-		h4.about-us-introduction-paragraph-heading {
-			${({ theme }) => getTypography(theme, 'subheading')}
-			color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'active')};
-			text-align: left;
-		}
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			gap: ${({ theme }) => theme.layout.component.gutter};
 
-		p.about-us-introduction-paragraph-body {
-			${({ theme }) => getTypography(theme, 'body')}
-			color: ${({ theme }) =>
-				hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
-			text-align: left;
+			h4.about-us-introduction-paragraph-heading {
+				${({ theme }) => getTypography(theme, 'heading3')}
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'active')};
+				text-align: left;
+			}
+
+			p.about-us-introduction-paragraph-body {
+				${({ theme }) => getTypography(theme, 'body')}
+				color: ${({ theme }) =>
+					hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
+				text-align: left;
+			}
 		}
 	}
 `
