@@ -26,6 +26,7 @@ import AboutUs from './pages/feature/about-us/about-us.page'
 import OurService from './pages/feature/our-service/our-service.page'
 import Account from './pages/feature/account/account.page'
 import IndicatorRegistration from './pages/feature/indicator-registration/indicator-registration.page'
+import PreOrder from './pages/feature/pre-order/pre-order.page'
 
 import Loading from './components/global/loading/loading.component'
 import Toast from './components/global/toast/toast.component'
@@ -85,6 +86,7 @@ function App() {
 					<GlobalStyle />
 					<div className="App">
 						<Routes>
+							<Route path="pre-order" element={<PreOrder />} />
 							<Route path="/" element={<MainLayout />}>
 								<Route index element={<Home />} />
 								<Route path="/about" element={<AboutUs />} />
