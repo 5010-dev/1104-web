@@ -6,9 +6,9 @@ import { useAboutUsContentsStore } from '../../../store/contents/aboutUsContents
 import { AboutUsContainer } from './about-us.styles'
 
 import Hero from '../../../components/global/hero/hero.component'
+import AboutUsIntroduction from '../../../components/feature/about-us-introduction/about-us-introduction.component'
 import BackgroundSection from '../../../components/feature/about-us-section/background-section/background-section.component'
 import ObjectiveSection from '../../../components/feature/about-us-section/objective-section/objective-section.component'
-import Community from '../../../components/feature/community/community.component'
 
 export default function AboutUs() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -29,9 +29,9 @@ export default function AboutUs() {
 				heading={text.heading}
 				subheading={text.subheading}
 			/>
+			<AboutUsIntroduction />
 			<BackgroundSection />
 			<ObjectiveSection />
-			<Community />
 		</AboutUsContainer>
 	)
 }

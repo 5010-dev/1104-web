@@ -11,6 +11,13 @@ export type Hero = {
 		category: string
 		heading: string
 		subheading: string
+		body: {
+			heading: string
+			paragraph: Array<{
+				heading: string
+				text: string
+			}>
+		}
 	}
 }
 
@@ -67,6 +74,22 @@ export const useAboutUsContentsStore = create<AboutUsContentsState>((set) => ({
 			category: 'ABOUT US',
 			heading: 'We Revolutionise Crypto Market & Trading Industry',
 			subheading: '우리는 암호화폐 시장과 트레이딩 산업에서 혁신하고 있습니다.',
+			body: {
+				heading:
+					'1104 R&I는 교육과 IT 기술을 접목하여 투자 시장에 혁신을 가져오는 것을 목표로 하는 기업입니다. 우리는 각 분야의 전문가들과 협력하여 투자 시장의 모든 것을 총망라한 5010 매매 전략을 개발하여 보급하였고, 이제는 더 높은 곳을 향해 나아가고 있습니다.',
+				paragraph: [
+					{
+						heading:
+							'1104 R&I는 투자자들에게 시장에 대한 명확한 이해, 고차원적인 통찰력, 그리고 개개인의 투자 전략 개발에 도움을 주는 것을 목표로 합니다.',
+						text: '우리는 최신 기술과 응용 수학을 활용하여 획기적인 계량적 투자 시스템을 만들고자 노력하고 있으며, 빅데이터, 인공지능, 기계학습 등의 첨단 기술을 투자 전략에 접목하여 보다 정교하고 효과적인 투자 시스템을 개발하고 있습니다. 이를 통해 우리는 투자자들에게 더 나은 투자 성과와 리스크 관리를 제공할 수 있을 것으로 기대합니다.',
+					},
+					{
+						heading:
+							'1104 R&I는 불투명하고 허위 주장이 난무하는 투자 시장에서 투자자들에게 명확한 길잡이가 되고자 합니다.',
+						text: '우리는 개발자이자 트레이더로서 우리가 알고 있는 것을 진실된 마음으로 공유하고자 하며, 투자자들을 현혹하거나 오도하지 않겠습니다. 그리고 우리는 투자 시장에 대한 깊은 이해와 기술적 전문성을 바탕으로 투자자들에게 진정으로 도움이 되는 서비스를 제공할 것이며, 앞으로도 끊임없는 연구와 혁신을 통해 투자 시장의 발전에 기여하고, 투자자들의 신뢰할 수 있는 파트너가 될 수 있도록 최선을 다하겠습니다.',
+					},
+				],
+			},
 		},
 	},
 	backgroundSection: {
