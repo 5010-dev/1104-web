@@ -5,6 +5,7 @@ import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 import { AboutUsIntroductionContainer } from './about-us-introduction.styles'
 
 import Card from '../../global/card/card.component'
+import FormattedNumbering from './formatted-numbering/formatted-numbering.component'
 
 export default function AboutUsIntroduction() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -34,6 +35,7 @@ export default function AboutUsIntroduction() {
 				<div id="aobut-us-introduction-paragraph-container">
 					{paragraph.map((item, index) => (
 						<div className="about-us-introduction-paragraph" key={index}>
+							<FormattedNumbering num={index} />
 							<h4 className="about-us-introduction-paragraph-heading">
 								{item.heading}
 							</h4>
