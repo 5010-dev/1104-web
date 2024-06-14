@@ -19,6 +19,7 @@ export const FormattedNumberingContainer = styled.div<Props>`
 			  `}
 
 	position: relative;
+	opacity: 0.25;
 
 	margin-bottom: ${({ theme }) => theme.layout.container.gutter};
 
