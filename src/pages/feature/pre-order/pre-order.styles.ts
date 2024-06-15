@@ -191,10 +191,15 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			gap: ${({ theme, $deviceType }) =>
-				$deviceType === 'mobile'
-					? theme.layout.component.padding.sm
-					: theme.layout.section.gutter};
+			gap: ${({ theme, $deviceType }) => {
+				if ($deviceType === 'desktop') {
+					return theme.layout.section.gutter
+				} else if ($deviceType === 'tablet') {
+					return theme.layout.container.gutter
+				} else if ($deviceType === 'mobile') {
+					return theme.layout.component.padding.sm
+				}
+			}};
 
 			margin-top: ${({ theme }) => theme.layout.container.gutter};
 
