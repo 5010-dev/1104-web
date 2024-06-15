@@ -11,6 +11,11 @@ type Props = PreOrderContainerProps
 
 export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 	position: relative;
+	height: 100vh;
+	min-height: ${({ $deviceType }) =>
+		$deviceType === 'mobile' ? '42rem' : '65rem'};
+
+	justify-content: center;
 
 	background-image: url(${({ $imageUrl }) => $imageUrl});
 	background-position: center;
@@ -45,51 +50,55 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 		position: relative;
 
 		width: ${({ theme }) => theme.layout.section.width};
-		height: 100vh;
-		min-height: 100vh;
-		/* max-width: ${({ theme }) => theme.layout.section.maxWidth}; */
+		height: 50%;
 
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		align-items: center;
 
+		${({ $deviceType }) =>
+			$deviceType === 'mobile'
+				? css`
+						margin-bottom: 2rem;
+				  `
+				: css`
+						margin-top: 5rem;
+				  `}
+
 		#quant-logo {
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate(-50%, -65%);
 
-			height: 100%;
-			max-height: ${({ $deviceType }) => {
+			height: ${({ $deviceType }) => {
 				if ($deviceType === 'desktop') {
-					return '50rem'
+					return '52rem'
 				} else if ($deviceType === 'tablet') {
 					return '40rem'
 				} else if ($deviceType === 'mobile') {
 					return '30rem'
 				}
 			}};
-			min-height: 24rem;
 		}
 
 		div#quant-text-counter-container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, 12.5%);
+
 			width: ${({ theme }) => theme.layout.container.width};
-			height: 50%;
 
 			display: flex;
 			flex-direction: column;
-			justify-content: center;
+			justify-content: flex-start;
 			align-items: center;
 			gap: ${({ theme }) => theme.layout.section.gutter};
 		}
 
 		div#quant-text-container {
-			/* position: absolute;
-			bottom: 0;
-			left: 50%;
-			transform: translateX(-50%); */
-
 			width: ${({ $deviceType }) =>
 				$deviceType === 'mobile' ? '85%' : '100%'};
 			max-width: 25rem;
@@ -121,9 +130,9 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 			span#quant-text-subheading {
 				width: 100%;
 
-				${({ theme }) => getTypography(theme, 'heading2')}
-				font-size: 1.125rem;
-				line-height: 100%;
+				${({ theme }) => getTypography(theme, 'heading3')}
+				/* font-size: 1.75rem; */
+				line-height: 120%;
 				letter-spacing: 0;
 				text-align: center;
 
@@ -151,6 +160,25 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 
 				padding: 0.25rem 0;
 			}
+
+			span.quant-text-letter {
+				${({ theme }) => css`
+					-webkit-filter: drop-shadow(
+						0 0 0.1rem
+							${hexToRgba(
+								getColour(theme, 'neutral', 'primary', 'active'),
+								0.5,
+							)}
+					);
+					filter: drop-shadow(
+						0 0 0.1rem
+							${hexToRgba(
+								getColour(theme, 'neutral', 'primary', 'active'),
+								0.5,
+							)}
+					);
+				`}
+			}
 		}
 
 		div#quant-counter-container {
@@ -160,8 +188,14 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 
 			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
+			justify-content: center;
 			align-items: center;
+			gap: ${({ theme, $deviceType }) =>
+				$deviceType === 'mobile'
+					? theme.layout.component.padding.sm
+					: theme.layout.section.gutter};
+
+			margin-top: ${({ theme }) => theme.layout.container.gutter};
 
 			span.quant-counter {
 				font-family: 'Big Shoulders Display';
@@ -172,11 +206,23 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 					} else if ($deviceType === 'tablet') {
 						return '6rem'
 					} else if ($deviceType === 'mobile') {
-						return '3rem'
+						return '3.5rem'
 					}
 				}};
 				line-height: 100%;
 				text-align: center;
+			}
+
+			span.quant-counter-separator {
+				${({ theme }) => getTypography(theme, 'display')}
+				font-size: ${({ $deviceType }) => $deviceType === 'mobile' && '2.5rem'};
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'tertiary', 'active')};
+			}
+
+			span.quant-counter-num::first-letter {
+				letter-spacing: ${({ theme, $deviceType }) =>
+					$deviceType === 'mobile' ? '0.25rem' : theme.layout.container.gutter};
 			}
 		}
 	}

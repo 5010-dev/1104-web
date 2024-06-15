@@ -23,30 +23,47 @@ export default function PreOrder() {
 					<div id="quant-text-container">
 						<h1 id="quant-text-heading">
 							{headingLetters.map((letter, index) => (
-								<span key={index}>{letter}</span>
+								<span key={index} className="quant-text-letter">
+									{letter}
+								</span>
 							))}
 						</h1>
 						<span id="quant-text-subheading">
+							{/* {subheading} */}
 							{subheadingLetters.map((letter, index) => (
-								<span key={index}>{letter}</span>
+								<span key={index} className="quant-text-letter">
+									{letter}
+								</span>
 							))}
 						</span>
 					</div>
 
 					<div id="quant-counter-container">
-						<span id="quant-counter-days" className="quant-counter">
+						<span
+							id="quant-counter-days"
+							className="quant-counter-num quant-counter"
+						>
 							00
 						</span>
 						<span className="quant-counter-separator quant-counter">:</span>
-						<span id="quant-counter-hours" className="quant-counter">
+						<span
+							id="quant-counter-hours"
+							className="quant-counter-num quant-counter"
+						>
 							00
 						</span>
 						<span className="quant-counter-separator quant-counter">:</span>
-						<span id="quant-counter-mins" className="quant-counter">
+						<span
+							id="quant-counter-mins"
+							className="quant-counter-num quant-counter"
+						>
 							00
 						</span>
 						<span className="quant-counter-separator quant-counter">:</span>
-						<span id="quant-counter-seconds" className="quant-counter">
+						<span
+							id="quant-counter-seconds"
+							className="quant-counter-num quant-counter"
+						>
 							00
 						</span>
 					</div>
