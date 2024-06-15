@@ -13,6 +13,7 @@ export type ChipProps = {
 	stroke: ComponentStroke
 	shape: ComponentShape
 	size?: ComponentSize
+	inverted?: boolean
 	text: string
 	id?: string
 	className?: string
@@ -25,4 +26,5 @@ export type ChipContainerProps = {
 	$stroke: ComponentStroke
 	$shape: ComponentShape
 	$size: ComponentSize
+	$inverted: boolean
 }

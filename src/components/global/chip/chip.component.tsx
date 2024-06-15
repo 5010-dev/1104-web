@@ -4,8 +4,17 @@ import { ChipProps } from './chip.types'
 import { ChipContainer } from './chip.styles'
 
 export default function Chip(props: ChipProps) {
-	const { appearance, hierarchy, stroke, shape, size, text, id, className } =
-		props
+	const {
+		appearance,
+		hierarchy,
+		stroke,
+		shape,
+		size,
+		inverted = false,
+		text,
+		id,
+		className,
+	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -17,6 +26,7 @@ export default function Chip(props: ChipProps) {
 			$stroke={stroke}
 			$shape={shape}
 			$size={size ? size : 'sm'}
+			$inverted={inverted}
 			id={id}
 			className={className}
 		>

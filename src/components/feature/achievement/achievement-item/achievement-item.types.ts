@@ -1,3 +1,3 @@
-import { AchievementItem } from '../../../../store/homeContentsStore'
+import { AchievementItem } from '../../../../store/contents/homeContentsStore'
 
 export type AchievementItemProps = AchievementItem

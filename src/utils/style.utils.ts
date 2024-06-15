@@ -98,6 +98,7 @@ export const getPadding = (theme: DefaultTheme, size: ComponentSize) => {
  * @param stroke 컴포넌트의 외곽선 속성 ('outlined', 'filled' 중 하나)
  * @param shape 컴포넌트의 모양 속성 ('rounding', 'rounded1', 'rounded2', 'rounded3', 'flat' 중 하나)
  * @param opacity 컴포넌트의 배경 및 보더 색상 투명도 속성 ('0'부터 '1'까지)
+ * @param inverted 컴포넌트의 배경 및 텍스트 색상 반전 속성
  * @returns 컨테이너 스타일을 나타내는 CSS 문자열
  */
 export const getContainerStyle = (
@@ -107,6 +108,7 @@ export const getContainerStyle = (
 	stroke: ComponentStroke,
 	shape: ComponentShape,
 	opacity?: number,
+	inverted?: boolean,
 ) => {
 	// 선택된 stroke와 shape에 해당하는 border와 borderRadii 값을 가져옴
 	const { boxShadow, borderRadii } = theme.shape[stroke][shape]
@@ -134,7 +136,9 @@ export const getContainerStyle = (
 					getColour(theme, appearance, hierarchy, 'active'),
 					colourOpacity,
 				)};
-				color: ${getColour(theme, appearance, hierarchy, 'active')};
+				color: ${inverted
+					? getColour(theme, appearance, 'secondary', 'active')
+					: getColour(theme, appearance, hierarchy, 'active')};
 			`
 		default:
 			throw new Error(`Unsupported button shape: ${stroke}`)

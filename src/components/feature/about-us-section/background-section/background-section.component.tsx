@@ -1,5 +1,5 @@
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
-import { useAboutUsContentsStore } from '../../../../store/aboutUsContentsStore'
+import { useAboutUsContentsStore } from '../../../../store/contents/aboutUsContentsStore'
 import usePointerCoarseAndSafari from '../../../../hooks/usePointerCoarseAndSafari'
 
 import { BackgroundSectionContainer } from './background-section.styles'
