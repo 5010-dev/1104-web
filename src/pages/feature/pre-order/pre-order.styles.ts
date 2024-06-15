@@ -98,7 +98,10 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 			flex-direction: column;
 			justify-content: flex-start;
 			align-items: center;
-			gap: ${({ theme }) => theme.layout.section.gutter};
+			gap: ${({ theme, $deviceType }) =>
+				$deviceType === 'mobile'
+					? theme.layout.container.gutter
+					: theme.layout.section.gutter};
 		}
 
 		div#quant-text-container {
