@@ -63,7 +63,7 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 		${({ $deviceType }) =>
 			$deviceType === 'mobile'
 				? css`
-						margin-bottom: 2rem;
+						margin-bottom: 1rem;
 				  `
 				: css`
 						margin-top: 5rem;
