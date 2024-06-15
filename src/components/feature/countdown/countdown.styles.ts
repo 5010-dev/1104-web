@@ -6,7 +6,7 @@ import { getColour } from '../../../utils/colour.utils'
 import { CountdownContainerProps } from './countdown.types'
 
 export const CountdownContainer = styled.div<CountdownContainerProps>`
-	width: 80%;
+	width: ${({ theme }) => theme.layout.container.width};
 
 	max-width: ${({ theme, $deviceType }) =>
 		$deviceType === 'desktop' && theme.layout.section.maxWidth};

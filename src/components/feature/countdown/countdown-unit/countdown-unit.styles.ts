@@ -63,7 +63,7 @@ export const CountdownUnitContainer = styled.div<CountdownUnitContainerProps>`
 				  `
 				: css`
 						top: 50%;
-						transform: translate(-50%, -50%);
+						transform: translate(-50%, -30%);
 				  `}
 
 		font-size: ${({ $deviceType }) => {
@@ -79,12 +79,12 @@ export const CountdownUnitContainer = styled.div<CountdownUnitContainerProps>`
 
 		${({ theme }) => css`
 			-webkit-filter: drop-shadow(
-				0 0 0.2rem
-					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.25)}
+				0 0 0.1rem
+					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.15)}
 			);
 			filter: drop-shadow(
-				0 0 0.2rem
-					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.25)}
+				0 0 0.1rem
+					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.15)}
 			);
 		`}
 	}
