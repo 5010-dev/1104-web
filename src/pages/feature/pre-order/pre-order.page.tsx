@@ -5,6 +5,8 @@ import backgroundImage from '../../../assets/img/pre-order-image.webp'
 
 import { PreOrderContainer } from './pre-order.styles'
 
+import Countdown from '../../../components/feature/countdown/countdown.component'
+
 export default function PreOrder() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -13,6 +15,8 @@ export default function PreOrder() {
 
 	const headingLetters = heading.split('')
 	const subheadingLetters = subheading.split('')
+
+	const targetDate = new Date('2024-07-10T00:00:00Z')
 
 	return (
 		<PreOrderContainer $deviceType={deviceType} $imageUrl={backgroundImage}>
@@ -36,36 +40,7 @@ export default function PreOrder() {
 							))}
 						</span>
 					</div>
-
-					<div id="quant-counter-container">
-						<span
-							id="quant-counter-days"
-							className="quant-counter-num quant-counter"
-						>
-							00
-						</span>
-						<span className="quant-counter-separator quant-counter">:</span>
-						<span
-							id="quant-counter-hours"
-							className="quant-counter-num quant-counter"
-						>
-							00
-						</span>
-						<span className="quant-counter-separator quant-counter">:</span>
-						<span
-							id="quant-counter-mins"
-							className="quant-counter-num quant-counter"
-						>
-							00
-						</span>
-						<span className="quant-counter-separator quant-counter">:</span>
-						<span
-							id="quant-counter-seconds"
-							className="quant-counter-num quant-counter"
-						>
-							00
-						</span>
-					</div>
+					<Countdown targetDate={targetDate} />
 				</div>
 			</div>
 		</PreOrderContainer>

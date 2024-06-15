@@ -11,6 +11,9 @@ type Props = PreOrderContainerProps
 
 export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 	position: relative;
+
+	overflow: hidden;
+
 	height: 100vh;
 	min-height: ${({ $deviceType }) =>
 		$deviceType === 'mobile' ? '40rem' : '58rem'};
@@ -179,56 +182,6 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 							)}
 					);
 				`}
-			}
-		}
-
-		div#quant-counter-container {
-			width: 80%;
-			max-width: ${({ theme, $deviceType }) =>
-				$deviceType === 'desktop' && theme.layout.section.maxWidth};
-
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-			gap: ${({ theme, $deviceType }) => {
-				if ($deviceType === 'desktop') {
-					return theme.layout.section.gutter
-				} else if ($deviceType === 'tablet') {
-					return theme.layout.container.gutter
-				} else if ($deviceType === 'mobile') {
-					return theme.layout.component.padding.sm
-				}
-			}};
-
-			margin-top: ${({ theme }) => theme.layout.container.gutter};
-
-			span.quant-counter {
-				font-family: 'Big Shoulders Display';
-				font-weight: 900;
-				font-size: ${({ $deviceType }) => {
-					if ($deviceType === 'desktop') {
-						return '10rem'
-					} else if ($deviceType === 'tablet') {
-						return '6rem'
-					} else if ($deviceType === 'mobile') {
-						return '3.5rem'
-					}
-				}};
-				line-height: 100%;
-				text-align: center;
-			}
-
-			span.quant-counter-separator {
-				${({ theme }) => getTypography(theme, 'display')}
-				font-size: ${({ $deviceType }) => $deviceType === 'mobile' && '2.5rem'};
-				color: ${({ theme }) =>
-					getColour(theme, 'neutral', 'tertiary', 'active')};
-			}
-
-			span.quant-counter-num::first-letter {
-				letter-spacing: ${({ theme, $deviceType }) =>
-					$deviceType === 'mobile' ? '0.25rem' : theme.layout.container.gutter};
 			}
 		}
 	}
