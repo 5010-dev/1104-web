@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRocket } from '@fortawesome/free-solid-svg-icons'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAboutUsContentsStore } from '../../../store/contents/aboutUsContentsStore'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
@@ -26,7 +29,10 @@ export default function AboutUsIntroduction() {
 			<div className="contents-container">
 				<Card hierarchy="secondary" id="about-us-introdcution" shape="rounded1">
 					<div id="about-us-introduction-caption-container">
-						<span id="about-us-introduction-caption-span">✨</span>
+						<FontAwesomeIcon
+							icon={faRocket}
+							id="about-us-introduction-caption-icon"
+						/>
 						<span id="about-us-introduction-caption">BEYOND THE LIMITS</span>
 					</div>
 					<h3 id="about-us-introduction-heading">{heading}</h3>

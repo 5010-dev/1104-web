@@ -50,9 +50,11 @@ export const AboutUsIntroductionContainer = styled(baseContainer)<Props>`
 					$isPointerCoarseAndSafari ? 'scroll' : 'fixed'};
 			}
 
-			span#about-us-introduction-caption-span {
-				${({ theme }) => getTypography(theme, 'display')}
-				font-size: 2.5rem;
+			#about-us-introduction-caption-icon {
+				font-size: ${({ $deviceType }) =>
+					$deviceType === 'mobile' ? '2.5rem' : '3rem'};
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'inactive')};
 			}
 
 			span#about-us-introduction-caption {

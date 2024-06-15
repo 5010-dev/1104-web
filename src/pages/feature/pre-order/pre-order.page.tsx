@@ -17,8 +17,9 @@ export default function PreOrder() {
 	return (
 		<PreOrderContainer $deviceType={deviceType} $imageUrl={backgroundImage}>
 			<div id="quant-logo-section">
-				<div id="quant-logo-container">
-					<QuantLogo id="quant-logo" />
+				<QuantLogo id="quant-logo" />
+
+				<div id="quant-text-counter-container">
 					<div id="quant-text-container">
 						<h1 id="quant-text-heading">
 							{headingLetters.map((letter, index) => (
@@ -29,6 +30,24 @@ export default function PreOrder() {
 							{subheadingLetters.map((letter, index) => (
 								<span key={index}>{letter}</span>
 							))}
+						</span>
+					</div>
+
+					<div id="quant-counter-container">
+						<span id="quant-counter-days" className="quant-counter">
+							00
+						</span>
+						<span className="quant-counter-separator quant-counter">:</span>
+						<span id="quant-counter-hours" className="quant-counter">
+							00
+						</span>
+						<span className="quant-counter-separator quant-counter">:</span>
+						<span id="quant-counter-mins" className="quant-counter">
+							00
+						</span>
+						<span className="quant-counter-separator quant-counter">:</span>
+						<span id="quant-counter-seconds" className="quant-counter">
+							00
 						</span>
 					</div>
 				</div>

@@ -46,17 +46,20 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 
 		width: ${({ theme }) => theme.layout.section.width};
 		height: 100vh;
+		min-height: 100vh;
 		/* max-width: ${({ theme }) => theme.layout.section.maxWidth}; */
 
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-end;
 		align-items: center;
 
-		div#quant-logo-container {
-			position: relative;
+		#quant-logo {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 
-			width: 100%;
 			height: 100%;
 			max-height: ${({ $deviceType }) => {
 				if ($deviceType === 'desktop') {
@@ -68,84 +71,112 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 				}
 			}};
 			min-height: 24rem;
+		}
 
-			#quant-logo {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
+		div#quant-text-counter-container {
+			width: ${({ theme }) => theme.layout.container.width};
+			height: 50%;
 
-				height: 100%;
-			}
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: ${({ theme }) => theme.layout.section.gutter};
+		}
 
-			div#quant-text-container {
-				position: absolute;
-				bottom: 0;
-				left: 50%;
-				transform: translateX(-50%);
+		div#quant-text-container {
+			/* position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%); */
 
-				width: ${({ $deviceType }) =>
-					$deviceType === 'mobile' ? '85%' : '100%'};
-				max-width: 25rem;
-				height: 50%;
+			width: ${({ $deviceType }) =>
+				$deviceType === 'mobile' ? '85%' : '100%'};
+			max-width: 25rem;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+
+			padding: ${({ theme, $deviceType }) =>
+				`0 ${getDeviceTypePadding(theme, $deviceType, 'section')}`};
+
+			margin-top: ${({ theme, $deviceType }) =>
+				$deviceType === 'mobile' && theme.layout.component.gutter};
+
+			h1#quant-text-heading {
+				width: 100%;
+				font-family: 'Big Shoulders Display';
+				font-weight: 400;
+				font-size: 2rem;
+				line-height: 100%;
+				text-align: center;
 
 				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				gap: 0.5rem;
+				justify-content: space-between;
+			}
 
-				padding: ${({ theme, $deviceType }) =>
-					`0 ${getDeviceTypePadding(theme, $deviceType, 'section')}`};
+			span#quant-text-subheading {
+				width: 100%;
 
-				margin-top: ${({ theme, $deviceType }) =>
-					$deviceType === 'mobile' && theme.layout.component.gutter};
+				${({ theme }) => getTypography(theme, 'heading2')}
+				font-size: 1.125rem;
+				line-height: 100%;
+				letter-spacing: 0;
+				text-align: center;
 
-				h1#quant-text-heading {
-					width: 100%;
-					font-family: 'Big Shoulders Display';
-					font-weight: 400;
-					font-size: 2rem;
-					line-height: 100%;
-					text-align: center;
+				display: flex;
+				justify-content: space-between;
 
-					display: flex;
-					justify-content: space-between;
-				}
-
-				span#quant-text-subheading {
-					width: 100%;
-
-					${({ theme }) => getTypography(theme, 'heading2')}
-					font-size: 1.125rem;
-					line-height: 100%;
-					letter-spacing: 0;
-					text-align: center;
-
-					display: flex;
-					justify-content: space-between;
-
-					background: ${({ theme }) =>
-						`linear-gradient(to right, ${hexToRgba(
-							getColour(theme, 'neutral', 'secondary', 'active'),
-							0,
-						)}, ${hexToRgba(
-							getColour(theme, 'neutral', 'secondary', 'active'),
-							0.2,
-						)}, ${hexToRgba(
-							getColour(theme, 'neutral', 'secondary', 'active'),
-							0.25,
-						)},
+				background: ${({ theme }) =>
+					`linear-gradient(to right, ${hexToRgba(
+						getColour(theme, 'neutral', 'secondary', 'active'),
+						0,
+					)}, ${hexToRgba(
+						getColour(theme, 'neutral', 'secondary', 'active'),
+						0.2,
+					)}, ${hexToRgba(
+						getColour(theme, 'neutral', 'secondary', 'active'),
+						0.25,
+					)},
             ${hexToRgba(
 							getColour(theme, 'neutral', 'secondary', 'active'),
 							0.2,
 						)}, ${hexToRgba(
-							getColour(theme, 'neutral', 'secondary', 'active'),
-							0,
-						)})`};
+						getColour(theme, 'neutral', 'secondary', 'active'),
+						0,
+					)})`};
 
-					padding: 0.25rem 0;
-				}
+				padding: 0.25rem 0;
+			}
+		}
+
+		div#quant-counter-container {
+			width: 80%;
+			max-width: ${({ theme, $deviceType }) =>
+				$deviceType === 'desktop' && theme.layout.section.maxWidth};
+
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+
+			span.quant-counter {
+				font-family: 'Big Shoulders Display';
+				font-weight: 900;
+				font-size: ${({ $deviceType }) => {
+					if ($deviceType === 'desktop') {
+						return '10rem'
+					} else if ($deviceType === 'tablet') {
+						return '6rem'
+					} else if ($deviceType === 'mobile') {
+						return '3rem'
+					}
+				}};
+				line-height: 100%;
+				text-align: center;
 			}
 		}
 	}
