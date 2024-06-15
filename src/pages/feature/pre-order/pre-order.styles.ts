@@ -13,7 +13,7 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 	position: relative;
 	height: 100vh;
 	min-height: ${({ $deviceType }) =>
-		$deviceType === 'mobile' ? '42rem' : '65rem'};
+		$deviceType === 'mobile' ? '40rem' : '58rem'};
 
 	justify-content: center;
 
@@ -130,8 +130,9 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 			span#quant-text-subheading {
 				width: 100%;
 
-				${({ theme }) => getTypography(theme, 'heading3')}
-				/* font-size: 1.75rem; */
+				${({ theme }) => getTypography(theme, 'subheading')}
+				font-size: ${({ $deviceType }) =>
+					$deviceType === 'mobile' && '0.875rem'};
 				line-height: 120%;
 				letter-spacing: 0;
 				text-align: center;

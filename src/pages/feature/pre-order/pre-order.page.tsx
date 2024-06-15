@@ -9,7 +9,7 @@ export default function PreOrder() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
 	const heading = 'QUANT SOLUTION'
-	const subheading = '1104 R&I 퀀트 솔루션, 출시까지'
+	const subheading = '1104 R&I 퀀트 솔루션 | 2024. 07. 10. 출시'
 
 	const headingLetters = heading.split('')
 	const subheadingLetters = subheading.split('')
@@ -29,7 +29,6 @@ export default function PreOrder() {
 							))}
 						</h1>
 						<span id="quant-text-subheading">
-							{/* {subheading} */}
 							{subheadingLetters.map((letter, index) => (
 								<span key={index} className="quant-text-letter">
 									{letter}
