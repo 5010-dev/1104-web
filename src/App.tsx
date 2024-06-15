@@ -13,6 +13,7 @@ import { useToastMessageStore } from './store/globalUiStore'
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
 
+import EventRoute from './components/global/event-route/event-route.component'
 import GuestOnlyRoute from './components/global/\bguest-only-route/guest-only-route.component'
 import PrivateRoute from './components/global/private-route/private-route.component'
 
@@ -87,27 +88,30 @@ function App() {
 					<div className="App">
 						<Routes>
 							<Route path="pre-order" element={<PreOrder />} />
-							<Route path="/" element={<MainLayout />}>
-								<Route index element={<Home />} />
-								<Route path="/about" element={<AboutUs />} />
-								<Route path="/service" element={<OurService />} />
+
+							<Route element={<EventRoute />}>
+								<Route path="/" element={<MainLayout />}>
+									<Route index element={<Home />} />
+									<Route path="/about" element={<AboutUs />} />
+									<Route path="/service" element={<OurService />} />
+
+									<Route element={<PrivateRoute />}>
+										<Route path="/account" element={<Account />} />
+									</Route>
+								</Route>
+
+								<Route element={<GuestOnlyRoute />}>
+									<Route path="/login" element={<Login />} />
+									<Route path="/verification" element={<EmailVerification />} />
+								</Route>
 
 								<Route element={<PrivateRoute />}>
-									<Route path="/account" element={<Account />} />
+									<Route path="/checkout" element={<Checkout />} />
+									<Route
+										path="/registration"
+										element={<IndicatorRegistration />}
+									/>
 								</Route>
-							</Route>
-
-							<Route element={<GuestOnlyRoute />}>
-								<Route path="/login" element={<Login />} />
-								<Route path="/verification" element={<EmailVerification />} />
-							</Route>
-
-							<Route element={<PrivateRoute />}>
-								<Route path="/checkout" element={<Checkout />} />
-								<Route
-									path="/registration"
-									element={<IndicatorRegistration />}
-								/>
 							</Route>
 
 							<Route path="*" element={<NotFound />} />

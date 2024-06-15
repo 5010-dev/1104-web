@@ -146,14 +146,14 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 						0,
 					)}, ${hexToRgba(
 						getColour(theme, 'neutral', 'secondary', 'active'),
-						0.2,
+						0.25,
 					)}, ${hexToRgba(
 						getColour(theme, 'neutral', 'secondary', 'active'),
 						0.25,
 					)},
             ${hexToRgba(
 							getColour(theme, 'neutral', 'secondary', 'active'),
-							0.2,
+							0.25,
 						)}, ${hexToRgba(
 						getColour(theme, 'neutral', 'secondary', 'active'),
 						0,
