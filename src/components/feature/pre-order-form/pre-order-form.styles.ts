@@ -93,6 +93,59 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			}
 		}
 
+		div#quant-pre-order-event-container {
+			width: ${({ theme }) => theme.layout.container.width};
+			max-width: 28rem;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: ${({ theme }) => theme.layout.container.gutter};
+
+			${({ theme }) =>
+				getContainerStyle(theme, 'neutral', 'secondary', 'filled', 'rounded2')}
+
+			padding: ${({ theme, $deviceType }) =>
+				getDeviceTypePadding(theme, $deviceType, 'container')};
+
+			span#quant-pre-order-event-heading {
+				font-size: 0.875rem;
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'inactive')};
+			}
+
+			ol#quant-pre-order-event-option-list {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+				gap: ${({ theme }) => theme.layout.component.gutter};
+				padding: 0;
+
+				counter-reset: item;
+				list-style-type: none;
+
+				li.quant-pre-order-event-option {
+					position: relative;
+					${({ theme }) => getTypography(theme, 'subheading')}
+					text-align: left;
+					/* text-indent: -3rem; */
+					padding-left: 3.5rem;
+
+					&::before {
+						position: absolute;
+						left: 0;
+						width: 3rem;
+						content: '혜택 ' counter(item) '. ';
+						counter-increment: item;
+						color: ${({ theme }) =>
+							getColour(theme, 'neutral', 'secondary', 'inactive')};
+					}
+				}
+			}
+		}
+
 		div#quant-pre-order-input-container {
 			width: ${({ theme }) => theme.layout.container.width};
 
@@ -102,14 +155,32 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			align-items: center;
 			gap: ${({ theme }) => theme.layout.container.gutter};
 
-			#quant-pre-order-input {
+			.quant-pre-order-input {
 				width: ${({ theme }) => theme.layout.component.width};
-				max-width: 30rem;
+				max-width: 28rem;
+			}
+
+			div#quant-pre-order-terms-container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+
+				& > * {
+					flex: 0 0 auto;
+
+					span#check-box-icon {
+						line-height: 120%;
+						font-size: 1.25rem;
+					}
+				}
 			}
 
 			#quant-pre-order-button {
 				width: 100%;
-				max-width: 16rem;
+				max-width: 12rem;
+				margin-top: ${({ theme }) => theme.layout.component.gutter};
 
 				${({ theme }) => css`
 					-webkit-filter: drop-shadow(

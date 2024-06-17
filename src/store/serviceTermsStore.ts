@@ -11,6 +11,8 @@ import privacyThirdParty from '../data/privacy-third-party.md'
 import purchaseAgreement from '../data/purchase-agreement.md'
 import subscription from '../data/subscription.md'
 
+import eventTerms from '../data/event-terms.md'
+
 type Terms = {
 	data: string
 	agreement: boolean
@@ -25,6 +27,7 @@ export interface ServiceTermsList {
 	privacyThirdParty: Terms
 	purchaseAgreement: Terms
 	subscription: Terms
+	eventTerms: Terms
 }
 
 export interface ServiceTermsState {
@@ -47,6 +50,7 @@ const initialState: ServiceTermsList = {
 	privacyThirdParty: { data: '', agreement: false },
 	purchaseAgreement: { data: '', agreement: false },
 	subscription: { data: '', agreement: false },
+	eventTerms: { data: '', agreement: false },
 }
 
 export const useServiceTermsStore = create<
@@ -64,6 +68,7 @@ export const useServiceTermsStore = create<
 			privacyThirdParty,
 			purchaseAgreement,
 			subscription,
+			eventTerms,
 		}[key]
 
 		if (!filePath) {

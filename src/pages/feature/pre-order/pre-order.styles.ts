@@ -201,16 +201,6 @@ export const PreOrderContainer = styled(PageLayoutContainer)<Props>`
 				font-size: 2rem;
 				opacity: 0.5;
 			}
-
-			div#quant-buttons-container {
-				width: ${({ theme }) => theme.layout.container.width};
-
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-				gap: ${({ theme }) => theme.layout.container.gutter};
-			}
 		}
 	}
 `
