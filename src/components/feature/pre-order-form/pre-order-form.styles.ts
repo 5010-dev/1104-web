@@ -23,6 +23,11 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'section')};
 
+	margin-top: ${({ theme, $deviceType }) =>
+		$deviceType === 'mobile'
+			? theme.layout.container.gutter
+			: theme.layout.section.gutter};
+
 	div#pre-order-form-contents-container {
 		width: ${({ theme }) => theme.layout.container.width};
 
@@ -60,11 +65,16 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			align-items: center;
 			gap: ${({ theme }) => theme.layout.component.gutter};
 
-			span#pre-order-form-caption {
+			#pre-order-form-chip {
+				font-size: 0.875rem;
+			}
+
+			span#pre-order-form-subheading {
 				${({ theme }) => getTypography(theme, 'subheading')}
 				font-weight: bold;
 				color: ${({ theme }) =>
-					getColour(theme, 'accent', 'primary', 'active')};
+					getColour(theme, 'neutral', 'secondary', 'inactive')};
+				margin-bottom: ${({ theme }) => theme.layout.section.gutter};
 			}
 
 			h1#pre-order-form-heading {
@@ -75,18 +85,10 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 				line-height: 120%;
 			}
 
-			span#pre-order-form-subheading {
-				${({ theme }) => getTypography(theme, 'heading3')}
-				font-weight: bold;
-				color: ${({ theme }) =>
-					getColour(theme, 'neutral', 'secondary', 'active')};
-				margin-bottom: ${({ theme }) => theme.layout.section.gutter};
-			}
-
 			p.pre-order-form-body {
 				${({ theme }) => getTypography(theme, 'body')}
 				color: ${({ theme }) =>
-					getColour(theme, 'neutral', 'secondary', 'inactive')};
+					hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
 				text-align: left;
 			}
 		}
@@ -99,8 +101,6 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			justify-content: flex-start;
 			align-items: center;
 			gap: ${({ theme }) => theme.layout.container.gutter};
-
-			/* margin-top: ${({ theme }) => theme.layout.component.gutter}; */
 
 			#quant-pre-order-input {
 				width: ${({ theme }) => theme.layout.component.width};

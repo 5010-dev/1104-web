@@ -4,6 +4,7 @@ import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
 import { PreOrderFormContainer } from './pre-order-form.styles'
 
+import Chip from '../../global/chip/chip.component'
 import Input from '../../global/input/input.component'
 import Button from '../../global/button/button.component'
 
@@ -33,11 +34,19 @@ export default function PreOrderForm() {
 		<PreOrderFormContainer $deviceType={deviceType} onSubmit={handleSubmit}>
 			<div id="pre-order-form-contents-container">
 				<div id="pre-order-form-text-container">
-					<span id="pre-order-form-caption">
+					<Chip
+						id="pre-order-form-chip"
+						appearance="accent"
+						hierarchy="primary"
+						stroke="filled"
+						shape="rounded3"
+						text="사전예약 진행중"
+						// inverted
+					/>
+					<h1 id="pre-order-form-heading">르네상스 퀀트 솔루션</h1>
+					<span id="pre-order-form-subheading">
 						Devloped & Provided by 1104 R&I
 					</span>
-					<h1 id="pre-order-form-heading">르네상스 퀀트 솔루션</h1>
-					<span id="pre-order-form-subheading">사전예약 진행중</span>
 					<p className="pre-order-form-body">
 						1104 R&I가 새롭게 선보이는 르네상스 퀀트 솔루션은 리스크 관리에
 						초점을 맞춘 개량적 투자 전략과 자동 매매 시스템을 제공합니다.
