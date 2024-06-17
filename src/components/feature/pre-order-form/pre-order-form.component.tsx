@@ -1,6 +1,9 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
+import axios from 'axios'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useLoadingStore } from '../../../store/loadingStore'
 
 import { PreOrderFormContainer } from './pre-order-form.styles'
 
@@ -10,6 +13,10 @@ import Button from '../../global/button/button.component'
 
 export default function PreOrderForm() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const updateToastMessage = useToastMessageStore(
+		(state) => state.updateToastMessage,
+	)
+	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 
 	const [email, setEmail] = useState<string>('')
 	const [isValid, setIsValid] = useState<boolean>(false)
@@ -21,8 +28,41 @@ export default function PreOrderForm() {
 		setIsValid(validateInput(inputValue, emailRegex))
 	}
 
-	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
+		updateIsLoading(true)
+		try {
+			const response = await axios.post(
+				`https://api.stibee.com/v1/lists/${process.env.REACT_APP_STIBEE_EMAIL_LIST_ID}/subscribers`,
+				{
+					eventOccurredBy: 'SUBSCRIBER',
+					confirmEmailYN: 'N',
+					subscribers: [
+						{
+							email: email,
+							name: '',
+							$ad_agreed: 'Y',
+						},
+					],
+				},
+				{
+					headers: {
+						AccessToken: process.env.REACT_APP_STIBEE_API_KEY,
+					},
+				},
+			)
+			if (response.status === 200 && response.data.Ok) {
+				updateToastMessage('사전예약 신청이 완료되었습니다.')
+			} else {
+				updateToastMessage(
+					'문제가 발생했습니다. 잠시 후 다시 시도하시거나, 고객 지원 센터로 연락주세요.',
+				)
+			}
+		} catch (error: any) {
+			updateToastMessage(error)
+		}
+		updateIsLoading(false)
 	}
 
 	const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/
@@ -68,11 +108,12 @@ export default function PreOrderForm() {
 						handleChange={handleInputChange}
 						isValid={email.length === 0 || isValid}
 					/>
+					{/* TODO: 사전예약 개인정보 이용약관 */}
 					<Button
 						id="quant-pre-order-button"
 						type="submit"
 						accessibleName="quant-logo-section-contents-container"
-						text="사전예약 신청하기"
+						text="동의하고 사전예약 신청하기"
 						appearance="accent"
 						hierarchy="primary"
 						stroke="filled"
