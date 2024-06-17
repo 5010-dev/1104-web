@@ -8,11 +8,16 @@ import { getTypography } from '../../../utils/typo.utils'
 import { ModalContainerProps } from './modal.types'
 
 export const ModalContainer = styled.div<ModalContainerProps>`
-	position: absolute;
+	/* position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;
+	bottom: 0; */
+
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 
 	width: 100vw;
 	height: 100vh;
@@ -32,7 +37,8 @@ export const ModalContainer = styled.div<ModalContainerProps>`
 		css`
 			&::before {
 				content: '';
-				position: absolute;
+				/* position: absolute; */
+				position: fixed;
 				top: 0;
 				left: 0;
 				right: 0;

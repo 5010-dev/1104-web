@@ -1,12 +1,10 @@
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
+import { useState, FormEvent, ChangeEvent, MouseEvent } from 'react'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { usePreOrderContentsStore } from '../../../store/contents/preOrderContentsStore'
-import {
-	useServiceTermsStore,
-	ServiceTermsList,
-} from '../../../store/serviceTermsStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import { useLoadingStore } from '../../../store/loadingStore'
 
@@ -15,8 +13,8 @@ import { PreOrderFormContainer } from './pre-order-form.styles'
 import Chip from '../../global/chip/chip.component'
 import Input from '../../global/input/input.component'
 import Button from '../../global/button/button.component'
-import CheckBox from '../../global/check-box/check-box.component'
 import TextLink from '../../global/text-link/text-link.component'
+import PreOrderTerms from './pre-order-terms/pre-order-terms.component'
 
 export default function PreOrderForm() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -26,16 +24,12 @@ export default function PreOrderForm() {
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const { caption, heading, subheading, body, event } =
 		usePreOrderContentsStore((state) => state.formData)
-	const { updateTermsAgreement, resetServiceTermsStore } =
-		useServiceTermsStore()
-	const eventTerms = useServiceTermsStore(
-		(state) => state.serviceTermsList.eventTerms,
-	)
 
 	const [email, setEmail] = useState<string>('')
 	const [tel, setTel] = useState<string>('')
 	const [isEmailValid, setIsEmailValid] = useState<boolean>(false)
 	const [isTelValid, setIsTelValid] = useState<boolean>(false)
+	const [showTerms, setShowTerms] = useState<boolean>(false)
 
 	const handleEmailInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
@@ -53,10 +47,8 @@ export default function PreOrderForm() {
 		setIsTelValid(validateInput(formattedValue, telRegex))
 	}
 
-	const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
-		const inputName = e.target.name
-		updateTermsAgreement(inputName as keyof ServiceTermsList, e.target.checked)
-	}
+	const handleShowTerms = (e: MouseEvent<HTMLSpanElement> | KeyboardEvent) =>
+		setShowTerms((state) => !state)
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -114,12 +106,12 @@ export default function PreOrderForm() {
 		}
 	}
 
-	useEffect(() => {
-		resetServiceTermsStore()
-	}, [resetServiceTermsStore])
-
 	return (
 		<PreOrderFormContainer $deviceType={deviceType} onSubmit={handleSubmit}>
+			{showTerms ? (
+				<PreOrderTerms handleClose={(e) => handleShowTerms(e)} />
+			) : null}
+
 			<div id="pre-order-form-contents-container">
 				<div id="pre-order-form-text-container">
 					<Chip
@@ -174,28 +166,24 @@ export default function PreOrderForm() {
 						isValid={tel.length === 0 || isTelValid}
 						isRequired
 					/>
+					<TextLink
+						id="pre-order-terms-see-details"
+						size="sm"
+						description="개인정보 제공 동의 : 1104 R&I 이벤트 "
+						text="상세보기"
+						handleClick={handleShowTerms}
+						appearance="neutral"
+						hierarchy="secondary"
+						underlined
+					/>
 
-					<div id="quant-pre-order-terms-container">
-						<CheckBox
-							id="pre-order-terms-checkbox"
-							name="eventTerms"
-							hierarchy="secondary"
-							checked={eventTerms.agreement}
-							handleCheck={handleCheck}
-							text="사전예약을 위한 개인정보 제공 동의"
-							size="sm"
-						/>
-						<TextLink
-							id="pre-order-terms-see-details"
-							size="sm"
-							text="약관 보기"
-							handleClick={() => {
-								// TODO: 약관 모달
-							}}
-							appearance="neutral"
-							hierarchy="secondary"
-						/>
-					</div>
+					<p id="quant-pre-oder-button-description">
+						<FontAwesomeIcon
+							icon={faCheck}
+							id="quant-pre-oder-button-description-icon"
+						/>{' '}
+						사전예약 내용을 확인하였으며, 정보 제공 등에 동의합니다.
+					</p>
 
 					<Button
 						id="quant-pre-order-button"
@@ -206,7 +194,7 @@ export default function PreOrderForm() {
 						hierarchy="primary"
 						stroke="filled"
 						shape="rounding"
-						disabled={!isEmailValid || !isTelValid || !eventTerms.agreement}
+						disabled={!isEmailValid || !isTelValid}
 					/>
 				</div>
 			</div>

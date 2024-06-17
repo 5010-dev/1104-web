@@ -160,27 +160,17 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 				max-width: 28rem;
 			}
 
-			div#quant-pre-order-terms-container {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				gap: 0.5rem;
-				flex-wrap: wrap;
-
-				& > * {
-					flex: 0 0 auto;
-
-					span#check-box-icon {
-						line-height: 120%;
-						font-size: 1.25rem;
-					}
-				}
+			p#quant-pre-oder-button-description {
+				${({ theme }) => getTypography(theme, 'body')}
+				font-size: 0.875rem;
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'active')};
+				margin-top: ${({ theme }) => theme.layout.container.gutter};
 			}
 
 			#quant-pre-order-button {
 				width: 100%;
 				max-width: 12rem;
-				margin-top: ${({ theme }) => theme.layout.component.gutter};
 
 				${({ theme }) => css`
 					-webkit-filter: drop-shadow(
