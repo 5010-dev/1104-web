@@ -26,7 +26,14 @@ export default function Modal(props: ModalProps) {
 
 	useEffect(() => {
 		if (scrollToTop) window.scrollTo({ top: 0, behavior: 'auto' })
+
+		const originalOverflow = document.body.style.overflow
+		const originalPaddingRight = document.body.style.paddingRight
+		const scrollbarWidth =
+			window.innerWidth - document.documentElement.clientWidth
+
 		document.body.style.overflowY = 'hidden'
+		document.body.style.paddingRight = `${scrollbarWidth}px`
 
 		const handleEscapeKey = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') {
@@ -36,8 +43,11 @@ export default function Modal(props: ModalProps) {
 		document.addEventListener('keydown', handleEscapeKey)
 
 		return () => {
-			document.body.style.overflowY = 'unset'
+			// document.body.style.overflowY = 'unset'
+			document.body.style.overflow = originalOverflow
+			document.body.style.paddingRight = originalPaddingRight
 			document.removeEventListener('keydown', handleEscapeKey)
+			// document.removeEventListener('keydown', handleEscapeKey)
 		}
 	}, [handleClose, scrollToTop])
 
