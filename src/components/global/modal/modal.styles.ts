@@ -19,8 +19,8 @@ export const ModalContainer = styled.div<ModalContainerProps>`
 	left: 50%;
 	transform: translate(-50%, -50%);
 
-	width: 100vw;
-	height: 100vh;
+	width: 120vw;
+	height: 120vh;
 
 	z-index: 100;
 
@@ -61,7 +61,7 @@ export const ModalContainer = styled.div<ModalContainerProps>`
 	div#modal-contents-container {
 		z-index: 1000;
 
-		width: ${({ theme }) => theme.layout.container.width};
+		width: 80%;
 		max-width: 28rem;
 		max-height: 70vh;
 

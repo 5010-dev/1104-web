@@ -18,7 +18,7 @@ export const PreOrderTermsContainer = styled.div`
 	}
 
 	ul {
-		padding-left: 1rem;
+		padding-left: 1.5rem;
 
 		display: flex;
 		flex-direction: column;
@@ -30,7 +30,7 @@ export const PreOrderTermsContainer = styled.div`
 	}
 
 	ol {
-		padding-left: 1rem;
+		padding-left: 1.5rem;
 
 		display: flex;
 		flex-direction: column;
