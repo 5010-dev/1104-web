@@ -5,17 +5,27 @@ import { useAuthDataStore } from '../../../store/authDataStore'
 
 import { CheckoutOptionContainer } from './checkout-option.styles'
 
+import TermsModal from '../../global/terms-modal/terms-modal.component'
+
 export default function CheckoutOption() {
 	const [showTerms, setShowTerms] = useState<boolean>(false)
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 
-	const handleSeeTerms = (e: MouseEvent<HTMLSpanElement>) =>
+	const toggleShowTerms = (e: MouseEvent<HTMLSpanElement> | KeyboardEvent) =>
 		setShowTerms((state) => !state)
 
 	return (
 		<CheckoutOptionContainer $deviceType={deviceType}>
+			{showTerms ? (
+				<TermsModal
+					title="환불 정책 전체보기"
+					terms="refundPolicy"
+					handleClose={(e) => toggleShowTerms(e)}
+				/>
+			) : null}
+
 			<div className="container-row">
 				<h2 className="heading-2">결제 및 환불 정책</h2>
 				<div className="checkout-option-container">
@@ -35,7 +45,7 @@ export default function CheckoutOption() {
 						<li className="body-sm">
 							주문 후 7일 이내에 취소하는 경우 전액 환불됩니다. 그 외 자세한
 							환불 관련 내용은 환불 정책 전문을 참고해 주세요.{' '}
-							<span onClick={handleSeeTerms}>환불 정책 전체보기</span>
+							<span onClick={toggleShowTerms}>환불 정책 전체보기</span>
 						</li>
 					</ul>
 				</div>

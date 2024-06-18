@@ -12,7 +12,7 @@ export default function TermsModal(props: TermsModalProps) {
 	const { title, terms, handleClose } = props
 	const fetchTermsData = useServiceTermsStore((state) => state.fetchTermsData)
 	const termsData = useServiceTermsStore(
-		(state) => state.serviceTermsList.eventTerms.data,
+		(state) => state.serviceTermsList[terms].data,
 	)
 
 	useEffect(() => {
