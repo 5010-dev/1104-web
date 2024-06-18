@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
+import { useFooterContentsStore } from '../../../store/contents/footerContentsStore'
 
 import { FooterContainer } from './footer.styles'
 
@@ -9,19 +9,18 @@ import TextLink from '../text-link/text-link.component'
 
 export default function Footer() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { logoUrl, simpleDisclaimer } = useHomeContentsStore(
-		(state) => state.footer,
-	)
+	const { logoUrl, simpleDisclaimer } = useFooterContentsStore()
 	const {
 		name,
 		ceo,
 		address,
+		tel,
 		regNum,
 		onlineBizNum,
 		privacyOfficer,
 		csMail,
 		hosting,
-	} = useHomeContentsStore((state) => state.footer.companyInfo)
+	} = useFooterContentsStore((state) => state.companyInfo)
 
 	const handleNumCheckClick = (e: MouseEvent<HTMLSpanElement>) => {
 		const numStr = regNum.replace(/-/g, '')
@@ -35,7 +34,8 @@ export default function Footer() {
 				<div id="company-info">
 					<img id="company-logo" src={logoUrl} alt="company-logo" />
 					<div id="company-info-text-container">
-						<p className="company-info-text">{`상호: ${name} | 대표: ${ceo} | 소재지: ${address}`}</p>
+						<p className="company-info-text">{`상호: ${name} | 대표: ${ceo} | 전화: ${tel}`}</p>
+						<p className="company-info-text">{`소재지: ${address}`}</p>
 						<p className="company-info-text">
 							{`사업자등록번호: ${regNum}`}
 							<span id="reg-num-check-link" onClick={handleNumCheckClick}>
