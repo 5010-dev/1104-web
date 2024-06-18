@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import { getTypography } from '../../../../utils/typo.utils'
+import { getTypography } from '../../../utils/typo.utils'
 
-export const PreOrderTermsContainer = styled.div`
+export const TermsModalContainer = styled.div`
 	width: ${({ theme }) => theme.layout.container.width};
 
 	display: flex;

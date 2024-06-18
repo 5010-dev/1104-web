@@ -1,22 +1,43 @@
+import { useState, MouseEvent } from 'react'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
 
 import { CheckoutOptionContainer } from './checkout-option.styles'
 
 export default function CheckoutOption() {
+	const [showTerms, setShowTerms] = useState<boolean>(false)
+
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
+
+	const handleSeeTerms = (e: MouseEvent<HTMLSpanElement>) =>
+		setShowTerms((state) => !state)
 
 	return (
 		<CheckoutOptionContainer $deviceType={deviceType}>
 			<div className="container-row">
-				<h2 className="heading-2">구독 주기</h2>
+				<h2 className="heading-2">결제 및 환불 정책</h2>
 				<div className="checkout-option-container">
-					<h3 className="heading-3">1개월 간격 고정 구독</h3>
-					<p className="body-sm">
-						다음 예상 결제일은 30일 뒤 입니다. <br /> 구독일정 확인 및 구독
-						취소는 내 정보 → 구독중인 서비스에서 확인 가능합니다.
-					</p>
+					<h3 className="heading-3">31일 이용 가능 | 7일 이내 전액 환불</h3>
+					<ul id="checkout-options-list">
+						<li className="body-sm">
+							서비스는 결제일로부터 31일간 사용 가능합니다.
+						</li>
+						<li className="body-sm">
+							사용 기간 종료 이후에는 재구매를 통해 서비스를 계속해서 이용할 수
+							있습니다.
+						</li>
+						<li className="body-sm">
+							첫 구매 이후 재구매 시에는 초기 설치 비용을 제외한 비용만
+							청구됩니다.
+						</li>
+						<li className="body-sm">
+							주문 후 7일 이내에 취소하는 경우 전액 환불됩니다. 그 외 자세한
+							환불 관련 내용은 환불 정책 전문을 참고해 주세요.{' '}
+							<span onClick={handleSeeTerms}>환불 정책 전체보기</span>
+						</li>
+					</ul>
 				</div>
 			</div>
 			<hr />

@@ -10,6 +10,7 @@ import ecommerce from '../data/ecommerce.md'
 import privacyThirdParty from '../data/privacy-third-party.md'
 import purchaseAgreement from '../data/purchase-agreement.md'
 import subscription from '../data/subscription.md'
+import refundPolicy from '../data/refund-policy.md'
 
 import eventTerms from '../data/event-terms.md'
 
@@ -28,6 +29,7 @@ export interface ServiceTermsList {
 	purchaseAgreement: Terms
 	subscription: Terms
 	eventTerms: Terms
+	refundPolicy: Terms
 }
 
 export interface ServiceTermsState {
@@ -51,6 +53,7 @@ const initialState: ServiceTermsList = {
 	purchaseAgreement: { data: '', agreement: false },
 	subscription: { data: '', agreement: false },
 	eventTerms: { data: '', agreement: false },
+	refundPolicy: { data: '', agreement: false },
 }
 
 export const useServiceTermsStore = create<
@@ -69,6 +72,7 @@ export const useServiceTermsStore = create<
 			purchaseAgreement,
 			subscription,
 			eventTerms,
+			refundPolicy,
 		}[key]
 
 		if (!filePath) {

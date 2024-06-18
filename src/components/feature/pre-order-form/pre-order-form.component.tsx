@@ -14,7 +14,7 @@ import Chip from '../../global/chip/chip.component'
 import Input from '../../global/input/input.component'
 import Button from '../../global/button/button.component'
 import TextLink from '../../global/text-link/text-link.component'
-import PreOrderTerms from './pre-order-terms/pre-order-terms.component'
+import TermsModal from '../../global/terms-modal/terms-modal.component'
 
 export default function PreOrderForm() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -109,7 +109,11 @@ export default function PreOrderForm() {
 	return (
 		<PreOrderFormContainer $deviceType={deviceType} onSubmit={handleSubmit}>
 			{showTerms ? (
-				<PreOrderTerms handleClose={(e) => handleShowTerms(e)} />
+				<TermsModal
+					title="이벤트 개인정보 제공 동의"
+					terms={'eventTerms'}
+					handleClose={(e) => handleShowTerms(e)}
+				/>
 			) : null}
 
 			<div id="pre-order-form-contents-container">
