@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { getTypography } from '../../../utils/typo.utils'
+import { getContainerStyle } from '../../../utils/style.utils'
 
 export const TermsModalContainer = styled.div`
 	width: ${({ theme }) => theme.layout.container.width};
@@ -47,5 +48,13 @@ export const TermsModalContainer = styled.div`
 
 	& > :last-child {
 		padding-bottom: 0;
+	}
+
+	& > blockquote {
+		padding: ${({ theme }) =>
+			theme.layout.component.padding.default} !important;
+		${({ theme }) =>
+			getContainerStyle(theme, 'neutral', 'primary', 'filled', 'rounded3', 0.1)}
+		margin-top: 1rem;
 	}
 `
