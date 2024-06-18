@@ -16,6 +16,10 @@ export interface PreOrderContentsState {
 			options: string[]
 		}
 	}
+	detailsData: {
+		heading: string
+		body: string
+	}
 }
 
 export const usePreOrderContentsStore = create<PreOrderContentsState>(
@@ -42,6 +46,10 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 					'개별 맞춤 자산 설계 제공',
 				],
 			},
+		},
+		detailsData: {
+			heading: '퀀트 솔루션이 궁금하시다면,',
+			body: '출시 전에 미리 살펴볼 수 있어요.',
 		},
 	}),
 )

@@ -11,6 +11,7 @@ import { PreOrderContainer } from './pre-order.styles'
 
 import Countdown from '../../../components/feature/countdown/countdown.component'
 import PreOrderForm from '../../../components/feature/pre-order-form/pre-order-form.component'
+import PreOrderDetails from '../../../components/feature/pre-order-details/pre-order-details.component'
 import Footer from '../../../components/global/footer/footer.component'
 
 export default function PreOrder() {
@@ -44,12 +45,12 @@ export default function PreOrder() {
 							</span>
 						</div>
 						<Countdown targetDate={launchingDate} />
-
 						<FontAwesomeIcon icon={faAnglesDown} id="down-icon" />
 					</div>
 				</div>
 			</div>
 			<PreOrderForm />
+			<PreOrderDetails />
 			<Footer />
 		</PreOrderContainer>
 	)

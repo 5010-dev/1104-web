@@ -11,7 +11,7 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 	position: relative;
 
 	width: ${({ theme }) => theme.layout.section.width};
-	max-width: ${({ theme }) => theme.layout.section.maxWidth};
+	max-width: ${({ theme }) => theme.layout.container.maxWidth};
 	/* min-height: ${({ $deviceType }) =>
 		$deviceType === 'mobile' ? '40rem' : '64rem'}; */
 
@@ -58,6 +58,7 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 
 		div#pre-order-form-text-container {
 			width: ${({ theme }) => theme.layout.container.width};
+			max-width: 28rem;
 
 			display: flex;
 			flex-direction: column;
