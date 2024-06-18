@@ -9,6 +9,8 @@ import { useServiceDataStore, Service } from '../../../store/serviceDataStore'
 import { usePaymentStore } from '../../../store/paymentStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
+import { checkoutProduct } from '../../../services/payment/payment-service'
+
 import { CheckoutContainer } from './checkout.styles'
 
 import CheckoutItem from '../../../components/feature/checkout-item/checkout-item.component'
@@ -37,14 +39,25 @@ export default function Checkout() {
 
 	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
 
-	const handleCheckout = (e: MouseEvent<HTMLButtonElement>) => {
+	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		// TODO: 결제 요청 및 확인 API 호출 구현
-		updateStatus('processing')
 
-		// HACK: 결제 프로세스 진행을 위해 임시 처리
-		setTimeout(() => {
-			updateStatus('success')
-		}, 3000)
+		try {
+			updateStatus('processing')
+
+			const response = await checkoutProduct({
+				id: checkoutItem.id as number,
+				coupon: checkoutItem.coupon.code && checkoutItem.coupon.code,
+			})
+			console.log(response)
+		} catch (error: any) {
+			updateToastMessage(error.message)
+		} finally {
+			// HACK: 결제 프로세스 진행을 위해 임시 처리
+			setTimeout(() => {
+				updateStatus('success')
+			}, 3000)
+		}
 	}
 
 	useEffect(() => {

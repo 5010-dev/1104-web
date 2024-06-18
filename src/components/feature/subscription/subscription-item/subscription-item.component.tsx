@@ -54,6 +54,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 					<span id="plan-text">{plan}</span>
 					{tag.map((item, index) => (
 						<Chip
+							key={index}
 							id="best-tag"
 							appearance="system"
 							hierarchy="secondary"

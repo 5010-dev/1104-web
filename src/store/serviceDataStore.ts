@@ -91,7 +91,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			isFlagship: false,
 			thumbnailImg: ultimateThumbnailImg,
 			summary:
-				'새롭게 선보이는 르네상스 퀀트 솔루션은 리스크 관리에 초점을 맞춘 개량적 투자 전략과 자동 매매 시스템을 제공합니다.',
+				'새롭게 선보이는 르네상스 퀀트 솔루션은 리스크 관리에 초점을 맞춘 개량적 투자 전략과 자동 매매 시스템을 제공해요.',
 			features: [
 				'24시간 자동 매매 시스템',
 				'퀀트 솔루션 전용 인디케이터',

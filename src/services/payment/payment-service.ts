@@ -1,35 +1,17 @@
-import axios from 'axios'
 import axiosInstance from '../../api/api'
 
 import { handleError } from '../service-error'
 
-import { Product } from './payment-service.types'
+import {
+	Product,
+	CheckoutPayload,
+	CheckoutResponse,
+} from './payment-service.types'
 
-// TODO: 결제 요청 및 확인 API 작성 + 콜백에서 프로미스로 변경 필요!!!
 /**
- * 결제 요청 및 처리 후 결과에 따라 콜백 함수를 호출하는 함수
- * @param onLoading
- * @param onSuccess
- * @param onError
- * @param onLoadingDone
+ * 상품 정보를 가져오는 비동기 함수
+ * @returns {Promise<Product>} 상품 정보를 담은 Promise 객체
  */
-export const checkoutWithCallback = async (
-	onLoading: () => void,
-	onSuccess: () => void,
-	onError: (error: any) => void,
-	onLoadingDone: () => void,
-) => {
-	try {
-		onLoading()
-		// 결제 API 호출
-		onSuccess() // 결제 결과 반환
-	} catch (error) {
-		onError(error)
-	} finally {
-		onLoadingDone()
-	}
-}
-
 export const getProduct = async (): Promise<Product> => {
 	try {
 		const response = await axiosInstance.get('/products')
@@ -41,6 +23,56 @@ export const getProduct = async (): Promise<Product> => {
 			price: price,
 			subscription_price: subscription_price,
 			description: description,
+		}
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+/**
+ * 쿠폰 코드를 확인하는 비동기 함수
+ * @param {string} coupon - 확인할 쿠폰 코드
+ * @returns {Promise<{ code: string }>} 확인된 쿠폰 ID 코드를 담은 Promise 객체
+ */
+export const checkCoupon = async (
+	coupon: string,
+): Promise<{ code: string }> => {
+	try {
+		const response = await axiosInstance.post('/coupons/check', {
+			code: coupon,
+		})
+		const { data } = response.data
+		const { code } = data
+		return { code: code }
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+/**
+ * 상품 결제를 진행하는 비동기 함수
+ * @param {CheckoutPayload} { id, coupon } - 상품 ID와 쿠폰 정보를 담은 객체
+ * @returns {Promise<CheckoutResponse>} 결제 응답 정보를 담은 Promise 객체
+ */
+export const checkoutProduct = async ({
+	id,
+	coupon,
+}: CheckoutPayload): Promise<CheckoutResponse> => {
+	try {
+		const requestData = coupon ? { coupon_code: coupon } : {}
+		const response = await axiosInstance.post(
+			`/products/${id}/order`,
+			requestData,
+		)
+		const { data } = response.data
+		const { product_id, coupon_id, number, total_price, status, created } = data
+		return {
+			product_id: product_id,
+			coupon_id: coupon_id,
+			number: number,
+			total_price: total_price,
+			status: status,
+			created: created,
 		}
 	} catch (error) {
 		throw new Error(handleError(error))
