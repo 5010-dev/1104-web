@@ -1,16 +1,11 @@
 import { useEffect, MouseEvent } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
-import {
-	useServiceDataStore,
-	ServicePlan,
-	Service,
-} from '../../../store/serviceDataStore'
+import { useServiceDataStore, Service } from '../../../store/serviceDataStore'
 import { usePaymentStore } from '../../../store/paymentStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
@@ -31,15 +26,13 @@ export default function Checkout() {
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
 	const service = useServiceDataStore((state) => state.service)
-	const { status, updateStatus } = usePaymentStore()
+	const { status, updateStatus, checkoutItem } = usePaymentStore()
 	const navigate = useNavigateWithScroll()
 
-	const [searchParams] = useSearchParams()
-	const plan = searchParams.get('plan') as ServicePlan
-
-	const getServiceByPlan = (plan: ServicePlan): Service => {
-		if (plan) return service.find((item) => item.plan === plan) ?? service[0]
-		else return service[0]
+	const getServiceById = (id: number | null): Service => {
+		if (id) {
+			return service.find((item) => item.id === id) ?? service[0]
+		} else return service[0]
 	}
 
 	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
@@ -60,16 +53,16 @@ export default function Checkout() {
 	}, [updateStatus])
 
 	useEffect(() => {
-		if (userId.length === 0 || !plan) {
+		if (userId.length === 0 || !checkoutItem.id) {
 			navigate('/')
 		}
-	}, [userId, navigate, plan])
+	}, [userId, navigate, checkoutItem])
 
 	useEffect(() => {
-		if (userId.length === 0 || !plan) {
+		if (userId.length === 0 || !checkoutItem.id) {
 			updateToastMessage('잘못된 요청입니다.')
 		}
-	}, [userId, updateToastMessage, plan])
+	}, [userId, updateToastMessage, checkoutItem])
 
 	if (status !== 'success') {
 		return (
@@ -89,13 +82,13 @@ export default function Checkout() {
 						<div id="item-columns-container">
 							<div className="item-column" id="left-column">
 								<h2 className="column-heading">주문 정보</h2>
-								<CheckoutItem item={getServiceByPlan(plan)} />
+								<CheckoutItem item={getServiceById(checkoutItem.id)} />
 								<CheckoutOption />
 								<CheckoutCodeInput />
 							</div>
 							<div className="item-column" id="right-column">
 								<h2 className="column-heading">결제 정보</h2>
-								<CheckoutBilling item={getServiceByPlan(plan)} />
+								<CheckoutBilling item={getServiceById(checkoutItem.id)} />
 								<CheckoutTerms handleCheckout={handleCheckout} />
 							</div>
 						</div>

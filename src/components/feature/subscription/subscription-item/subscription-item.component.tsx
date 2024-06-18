@@ -6,6 +6,7 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../../store/authDataStore'
 import { useToastMessageStore } from '../../../../store/globalUiStore'
+import { usePaymentStore } from '../../../../store/paymentStore'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
 import { SubscriptionItemProps } from './subscription-item.typs'
@@ -16,11 +17,12 @@ import Button from '../../../global/button/button.component'
 
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
-	const { plan, name, tag, summary, features, price, priceCaption } = item
+	const { plan, id, name, tag, summary, features, price, priceCaption } = item
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
+	const { updateCheckoutItem } = usePaymentStore()
 	const navigate = useNavigateWithScroll()
 
 	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
@@ -32,8 +34,10 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 				'noopener,noreferrer',
 			)
 		} else {
-			if (userId) navigate(`/checkout/?plan=${item.plan}`)
-			else {
+			if (userId) {
+				updateCheckoutItem('id', id)
+				navigate('/checkout')
+			} else {
 				navigate('/login', { routeState: 'signup' })
 				updateToastMessage('회원가입 및 로그인이 필요합니다.')
 			}

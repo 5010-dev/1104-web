@@ -1,7 +1,7 @@
 import axios from 'axios'
 import axiosInstance from '../../api/api'
 
-import { handleError } from './auth-error'
+import { handleError } from '../service-error'
 
 import {
 	UserAuthToken,

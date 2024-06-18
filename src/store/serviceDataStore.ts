@@ -5,8 +5,11 @@ import premiumThumbnailImg from '../assets/img/plan-thumbnail-premium-img.webp'
 import freeThumbnailImg from '../assets/img/plan-thumbnail-free-img.webp'
 
 export type ServicePlan = 'FREE' | 'PREMIUM' | 'ULTIMATE'
+export type ServiceTitle = 'trial' | '5010' | 'quant'
 
 export type Service = {
+	id: number
+	title: ServiceTitle
 	name: string
 	plan: ServicePlan
 	tag: string[]
@@ -41,6 +44,8 @@ export interface AssetOptionState {
 export const useServiceDataStore = create<ServiceDataState>((set) => ({
 	service: [
 		{
+			id: 999,
+			title: 'trial',
 			name: '5010 매매 전략 체험판',
 			plan: 'FREE',
 			tag: [],
@@ -57,6 +62,8 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			priceCaption: '체험판 이용중 구매시 할인 혜택',
 		},
 		{
+			id: 0,
+			title: '5010',
 			name: '5010 매매 전략',
 			plan: 'PREMIUM',
 			tag: ['popular'],
@@ -76,6 +83,8 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			priceCaption: '최초 결제 비용 | 이후 ₩228,000',
 		},
 		{
+			id: 1,
+			title: 'quant',
 			name: '르네상스 퀀트 솔루션',
 			plan: 'ULTIMATE',
 			tag: ['best'],

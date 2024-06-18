@@ -19,7 +19,7 @@ export default function CheckoutItem(props: CheckoutItemProps) {
 						<p className="body">
 							{name} | {plan}
 						</p>
-						<span className="caption">1개월 정기구독</span>
+						<span className="caption">디지털 상품 및 서비스</span>
 						<h3 className="heading-3">
 							최초 ₩{price.toLocaleString()} <span>({priceCaption})</span>
 						</h3>
