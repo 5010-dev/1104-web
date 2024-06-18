@@ -112,8 +112,10 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 
 			span#quant-pre-order-event-heading {
 				font-size: 0.875rem;
+				line-height: 150%;
 				color: ${({ theme }) =>
 					getColour(theme, 'neutral', 'secondary', 'inactive')};
+				margin-bottom: ${({ theme }) => theme.layout.component.gutter};
 			}
 
 			ol#quant-pre-order-event-option-list {

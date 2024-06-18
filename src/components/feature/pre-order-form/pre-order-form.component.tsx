@@ -133,7 +133,9 @@ export default function PreOrderForm() {
 				</div>
 
 				<div id="quant-pre-order-event-container">
-					<span id="quant-pre-order-event-heading">{event.heading}</span>
+					<span id="quant-pre-order-event-heading">
+						사전 예약 신청자 중 <br /> {event.heading}
+					</span>
 					<ol id="quant-pre-order-event-option-list">
 						{event.options.map((item, index) => (
 							<li key={index} className="quant-pre-order-event-option">

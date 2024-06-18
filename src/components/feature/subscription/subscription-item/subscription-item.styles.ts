@@ -138,6 +138,13 @@ export const SubscriptionItemContainer = styled.div<Props>`
 
 			padding: ${({ theme }) => `${theme.layout.container.padding.sm} 0`};
 
+			span#service-name {
+				${({ theme }) => getTypography(theme, 'heading3')}
+				line-height: 120%;
+				color: ${({ theme, $hierarchy }) =>
+					hexToRgba(getColour(theme, 'neutral', $hierarchy, 'active'), 0.75)};
+			}
+
 			h1#heading {
 				${({ theme }) => getTypography(theme, 'display')}
 				font-size: 2.5rem;

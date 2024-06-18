@@ -16,7 +16,7 @@ import Button from '../../../global/button/button.component'
 
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
-	const { plan, summary, features, price, priceCaption } = item
+	const { plan, name, tag, summary, features, price, priceCaption } = item
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
@@ -24,35 +24,47 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const navigate = useNavigateWithScroll()
 
 	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
-		if (userId) navigate(`/checkout/?plan=${item.plan}`)
-		else {
-			navigate('/login', { routeState: 'signup' })
-			updateToastMessage('회원가입 및 로그인이 필요합니다.')
+		// HACK: D2C에서 5010 매매 전략 구매 구현 전까지 크몽으로 리디렉션
+		if (hierarchy === 'primary') {
+			window.open(
+				'https://kmong.com/gig/455172',
+				'_blank',
+				'noopener,noreferrer',
+			)
+		} else {
+			if (userId) navigate(`/checkout/?plan=${item.plan}`)
+			else {
+				navigate('/login', { routeState: 'signup' })
+				updateToastMessage('회원가입 및 로그인이 필요합니다.')
+			}
 		}
 	}
-	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) => {}
+	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) => {
+		// TODO: 체험판 신청 페이지로 navigate
+	}
 
 	return (
 		<SubscriptionItemContainer $deviceType={deviceType} $hierarchy={hierarchy}>
 			<div id="item-contents-container">
 				<div id="plan-text-container">
 					<span id="plan-text">{plan}</span>
-					{hierarchy === 'primary' ? (
+					{tag.map((item, index) => (
 						<Chip
 							id="best-tag"
 							appearance="system"
 							hierarchy="secondary"
 							stroke="filled"
 							shape="rounded3"
-							text="BEST"
+							text={item.toUpperCase()}
 						/>
-					) : null}
+					))}
 				</div>
 				<div id="price-text-container">
+					<span id="service-name">{name}</span>
 					<h1 id="heading">
 						{price !== 0 ? (
 							<>
-								<span id="price-caption">최초 ₩</span>
+								<span id="price-caption">₩</span>
 								{price.toLocaleString()}
 							</>
 						) : (
@@ -80,7 +92,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 			<div id="button-container">
 				<Button
 					accessibleName="button-container"
-					text={price !== 0 ? '지금 구독하기 →' : '무료 체험하기 →'}
+					text={price !== 0 ? '지금 구매하기 →' : '무료 체험하기 →'}
 					appearance={hierarchy === 'primary' ? 'accent' : 'neutral'}
 					hierarchy={hierarchy}
 					stroke={hierarchy === 'primary' ? 'filled' : 'outlined'}
@@ -89,7 +101,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 				/>
 				<span id="caption">
 					{price !== 0
-						? '구독 후 30일 이내 환불 가능'
+						? '구매 후 30일 이내 환불 가능'
 						: '1:1 무료 상담 후 제공'}
 				</span>
 			</div>
