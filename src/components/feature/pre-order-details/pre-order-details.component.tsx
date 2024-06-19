@@ -1,8 +1,10 @@
 import { MouseEvent } from 'react'
+import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { usePreOrderContentsStore } from '../../../store/contents/preOrderContentsStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useFadeIn from '../../../hooks/useFadeIn'
 
 import { PreOrderDetailsContainer } from './pre-order-details.styles'
 
@@ -16,6 +18,11 @@ export default function PreOrderDetails() {
 	)
 	const navigate = useNavigateWithScroll()
 
+	const { ref, fadeInVariants, controls } = useFadeIn({
+		delay: 0.25,
+		threshold: 0.1,
+	})
+
 	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) =>
 		navigate('/quant')
 
@@ -23,6 +30,11 @@ export default function PreOrderDetails() {
 		<PreOrderDetailsContainer
 			id="quant-pre-order-details-container"
 			$deviceType={deviceType}
+			as={motion.div}
+			ref={ref}
+			variants={fadeInVariants}
+			initial="hidden"
+			animate={controls}
 		>
 			<Card
 				id="quant-pre-order-details-card"

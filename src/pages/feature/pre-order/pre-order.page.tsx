@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesDown } from '@fortawesome/free-solid-svg-icons'
+import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { usePreOrderContentsStore } from '../../../store/contents/preOrderContentsStore'
+import useFadeIn from '../../../hooks/useFadeIn'
 
 import { ReactComponent as QuantLogo } from '../../../assets/svg/quant/quant-logo.svg'
 import backgroundImage from '../../../assets/img/pre-order-image.webp'
@@ -19,12 +21,20 @@ export default function PreOrder() {
 	const { launchingDate, title } = usePreOrderContentsStore()
 	const { heading, subheading } = title
 
+	const { ref, controls, fadeInVariants } = useFadeIn({ duration: 3 })
+
 	const headingLetters = heading.split('')
 	const subheadingLetters = subheading.split('')
 
 	return (
 		<PreOrderContainer $deviceType={deviceType} $imageUrl={backgroundImage}>
-			<div id="quant-logo-section">
+			<motion.div
+				id="quant-logo-section"
+				ref={ref}
+				variants={fadeInVariants}
+				initial="hidden"
+				animate={controls}
+			>
 				<div id="quant-logo-section-contents-container">
 					<QuantLogo id="quant-logo" />
 					<div id="quant-text-counter-container">
@@ -48,7 +58,7 @@ export default function PreOrder() {
 						<FontAwesomeIcon icon={faAnglesDown} id="down-icon" />
 					</div>
 				</div>
-			</div>
+			</motion.div>
 			<PreOrderForm />
 			<PreOrderDetails />
 			<Footer />

@@ -2,11 +2,13 @@ import { useState, FormEvent, ChangeEvent, MouseEvent } from 'react'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { usePreOrderContentsStore } from '../../../store/contents/preOrderContentsStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
 import { useLoadingStore } from '../../../store/loadingStore'
+import useFadeIn from '../../../hooks/useFadeIn'
 
 import { PreOrderFormContainer } from './pre-order-form.styles'
 
@@ -30,6 +32,11 @@ export default function PreOrderForm() {
 	const [isEmailValid, setIsEmailValid] = useState<boolean>(false)
 	const [isTelValid, setIsTelValid] = useState<boolean>(false)
 	const [showTerms, setShowTerms] = useState<boolean>(false)
+
+	const { ref, controls, fadeInVariants } = useFadeIn({
+		delay: 0.25,
+		threshold: 0.1,
+	})
 
 	const handleEmailInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
@@ -107,7 +114,15 @@ export default function PreOrderForm() {
 	}
 
 	return (
-		<PreOrderFormContainer $deviceType={deviceType} onSubmit={handleSubmit}>
+		<PreOrderFormContainer
+			$deviceType={deviceType}
+			onSubmit={handleSubmit}
+			as={motion.form}
+			ref={ref}
+			variants={fadeInVariants}
+			initial="hidden"
+			animate={controls}
+		>
 			{showTerms ? (
 				<TermsModal
 					title="이벤트 개인정보 제공 동의"
