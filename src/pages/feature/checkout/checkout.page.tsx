@@ -1,4 +1,5 @@
 import { useEffect, MouseEvent } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { RequestPayParams, RequestPayResponse } from 'iamport-typings'
@@ -26,13 +27,18 @@ import PaymentComplete from '../../../components/feature/payment-complete/paymen
 
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { isUserDataLoaded } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
 	const service = useServiceDataStore((state) => state.service)
 	const { status, updateStatus, checkoutItem } = usePaymentStore()
 	const navigate = useNavigateWithScroll()
+	const [searchParams] = useSearchParams()
 
 	const BASE_URL = window.location.origin
+	const id = searchParams.get('id')
+	const name = searchParams.get('name')
+	const plan = searchParams.get('plan')
 
 	const getServiceById = (id: number | null): Service => {
 		if (id) {
@@ -48,8 +54,11 @@ export default function Checkout() {
 		try {
 			updateStatus('processing')
 
-			const { number, total_price } = await checkoutProduct({
-				id: checkoutItem.id as number,
+			const {
+				number,
+				// total_price
+			} = await checkoutProduct({
+				id: Number(id),
 				coupon: checkoutItem.coupon.code && checkoutItem.coupon.code,
 			})
 
@@ -61,24 +70,25 @@ export default function Checkout() {
 				pg: `tosspayments.${process.env.REACT_APP_TOSSPAYMENTS_ID}`,
 				pay_method: 'card',
 				merchant_uid: number,
-				name: `${getServiceById(checkoutItem.id).name} | ${
-					getServiceById(checkoutItem.id).plan
-				}`,
-				amount: parseInt(total_price),
+				name: `${name} | ${plan}`,
+				// amount: parseInt(total_price),
+				amount: 200, // HACK: 결제 테스트를 위한 임의 금액 설정
 				buyer_email: userId,
 				buyer_tel: '',
-				m_redirect_url: `${BASE_URL}/checkout`,
-				confirm_url: `${BASE_URL}/checkout`,
+				m_redirect_url: `${BASE_URL}/checkout?id=${id}&name=${name}&plan=${plan}`,
+				confirm_url: `${BASE_URL}/checkout?id=${id}&name=${name}&plan=${plan}`,
 			}
 
 			const onPaymentAccepted = async (response: RequestPayResponse) => {
 				// NOTE: PC 환경에서만 결제 프로세스 완료 후 실행
+
 				if (response.error_code != null) {
-					updateToastMessage('결제에 실패했습니다.')
-					throw new Error()
+					response.error_msg && updateToastMessage(response.error_msg)
+					updateStatus('idle')
+				} else {
+					// TODO: 결제완료 API 엔드포인트
+					updateStatus('success')
 				}
-				// TODO: 결제완료 API 엔드포인트
-				updateStatus('success')
 			}
 
 			IMP.request_pay(params, onPaymentAccepted)
@@ -99,16 +109,37 @@ export default function Checkout() {
 	}, [updateStatus])
 
 	useEffect(() => {
-		if (userId.length === 0 || !checkoutItem.id) {
-			navigate('/')
+		if (isUserDataLoaded) {
+			if (userId.length === 0) {
+				navigate('/')
+			}
 		}
-	}, [userId, navigate, checkoutItem])
+	}, [userId, navigate, checkoutItem, isUserDataLoaded])
 
 	useEffect(() => {
-		if (userId.length === 0 || !checkoutItem.id) {
-			updateToastMessage('잘못된 요청입니다.')
+		if (isUserDataLoaded) {
+			if (userId.length === 0) {
+				updateToastMessage('잘못된 요청입니다.')
+			}
 		}
-	}, [userId, updateToastMessage, checkoutItem])
+	}, [userId, updateToastMessage, checkoutItem, isUserDataLoaded])
+
+	// 모바일 환경에서의 쿼리 리디렉션에 따른 결제 프로세스 로직
+	useEffect(() => {
+		const imp_uid = searchParams.has('imp_uid')
+		const merchant_uid = searchParams.has('merchant_uid')
+		const error_code = searchParams.has('error_code')
+		const error_msg = searchParams.get('error_msg')
+
+		if (imp_uid && merchant_uid) {
+			if (!error_code) {
+				updateStatus('success')
+			} else {
+				updateStatus('idle')
+				error_msg && updateToastMessage(error_msg)
+			}
+		}
+	}, [searchParams, updateStatus, updateToastMessage])
 
 	if (status !== 'success') {
 		return (
@@ -128,14 +159,14 @@ export default function Checkout() {
 						<div id="item-columns-container">
 							<div className="item-column" id="left-column">
 								<h2 className="column-heading">주문 정보</h2>
-								<CheckoutItem item={getServiceById(checkoutItem.id)} />
+								<CheckoutItem item={getServiceById(Number(id))} />
 								<CheckoutOption />
 								<CheckoutCodeInput />
 							</div>
 							<div className="item-column" id="right-column">
 								<h2 className="column-heading">결제 정보</h2>
 								<CheckoutBilling
-									item={getServiceById(checkoutItem.id)}
+									item={getServiceById(Number(id))}
 									discount={checkoutItem.discount && checkoutItem.discount}
 								/>
 								<CheckoutTerms handleCheckout={handleCheckout} />
