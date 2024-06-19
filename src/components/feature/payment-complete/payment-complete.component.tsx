@@ -10,7 +10,7 @@ import {
 
 import Button from '../../global/button/button.component'
 import Complete from '../../global/complete/complete.component'
-import TextLink from '../../global/text-link/text-link.component'
+// import TextLink from '../../global/text-link/text-link.component'
 
 export default function PaymentComplete() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -18,8 +18,8 @@ export default function PaymentComplete() {
 
 	const handleHome = (e: MouseEvent<HTMLSpanElement>) => navigate('/')
 
-	const handleRegistration = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/registration')
+	// const handleRegistration = (e: MouseEvent<HTMLButtonElement>) =>
+	// 	navigate('/registration')
 
 	return (
 		<PaymentCompleteContainer $deviceType={deviceType}>
@@ -27,8 +27,29 @@ export default function PaymentComplete() {
 				$deviceType={deviceType}
 				id="contents-container"
 			>
-				<Complete text="결제가 완료되었습니다." />
-				<div id="button-container">
+				<div id="checkout-complete-title-container">
+					<Complete text="결제가 완료되었어요!" />
+					<p className="checkout-complete-subheading">
+						원활한 서비스 초기 셋팅을 위해 독자님께 전담 배정된 트레이딩
+						어드바이저가 직접 연락드릴 예정이에요.
+					</p>
+				</div>
+				<div id="checkout-complete-body-container">
+					<p className="checkout-complete-body">
+						5010.cs.kr@5010.tech 이메일을 통해 로그인 이메일로 메뉴얼을 동봉하여
+						발송드릴 예정이오니 메일함 또는 스팸 메일함을 꼭 확인해 주세요.
+					</p>
+				</div>
+				<Button
+					appearance="neutral"
+					hierarchy="secondary"
+					stroke="filled"
+					shape="rounding"
+					text="← 홈으로 돌아가기"
+					handleClick={handleHome}
+				/>
+				{/* NOTE: 추후 서비스 세팅 자동화 기능 추가시 사용 */}
+				{/* <div id="button-container">
 					<Button
 						appearance="accent"
 						hierarchy="primary"
@@ -45,7 +66,7 @@ export default function PaymentComplete() {
 						text="홈으로 돌아가기"
 						handleClick={handleHome}
 					/>
-				</div>
+				</div> */}
 			</PaymentCompleteSectionContainer>
 		</PaymentCompleteContainer>
 	)

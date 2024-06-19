@@ -46,11 +46,14 @@ export default function Checkout() {
 		} else return service[0]
 	}
 
-	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
+	const trimBracketContent = (str: string): string => {
+		return str.replace(/\[[^\]]+\]\s*/, '')
+	}
+
+	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate('/')
 
 	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		// TODO: 결제 요청 및 확인 API 호출 구현
-
 		try {
 			updateStatus('processing')
 
@@ -83,7 +86,8 @@ export default function Checkout() {
 				// NOTE: PC 환경에서만 결제 프로세스 완료 후 실행
 
 				if (response.error_code != null) {
-					response.error_msg && updateToastMessage(response.error_msg)
+					response.error_msg &&
+						updateToastMessage(trimBracketContent(response.error_msg))
 					updateStatus('idle')
 				} else {
 					// TODO: 결제완료 API 엔드포인트
@@ -95,12 +99,6 @@ export default function Checkout() {
 		} catch (error: any) {
 			updateToastMessage(error.message)
 		}
-		// finally {
-		// 	// HACK: 결제 프로세스 진행을 위해 임시 처리
-		// 	setTimeout(() => {
-		// 		updateStatus('success')
-		// 	}, 3000)
-		// }
 	}
 
 	useEffect(() => {
@@ -124,8 +122,8 @@ export default function Checkout() {
 		}
 	}, [userId, updateToastMessage, checkoutItem, isUserDataLoaded])
 
-	// 모바일 환경에서의 쿼리 리디렉션에 따른 결제 프로세스 로직
 	useEffect(() => {
+		// 모바일 환경에서의 쿼리 리디렉션에 따른 결제 프로세스 로직
 		const imp_uid = searchParams.has('imp_uid')
 		const merchant_uid = searchParams.has('merchant_uid')
 		const error_code = searchParams.has('error_code')
@@ -136,7 +134,7 @@ export default function Checkout() {
 				updateStatus('success')
 			} else {
 				updateStatus('idle')
-				error_msg && updateToastMessage(error_msg)
+				error_msg && updateToastMessage(trimBracketContent(error_msg))
 			}
 		}
 	}, [searchParams, updateStatus, updateToastMessage])

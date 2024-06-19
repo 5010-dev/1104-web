@@ -12,6 +12,7 @@ import CustomerService from '../../../components/feature/customer-service/custom
 
 export default function Account() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { isUserDataLoaded } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const navigate = useNavigateWithScroll()
 
@@ -33,10 +34,12 @@ export default function Account() {
 	}, [])
 
 	useEffect(() => {
-		if (userId.length === 0) {
-			navigate('/')
+		if (isUserDataLoaded) {
+			if (userId.length === 0) {
+				navigate('/')
+			}
 		}
-	}, [userId, navigate])
+	}, [userId, navigate, isUserDataLoaded])
 
 	return (
 		<AccountContainer $deviceType={deviceType}>
