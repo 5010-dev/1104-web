@@ -14,7 +14,7 @@ import Button from '../../global/button/button.component'
 
 export default function CheckoutCodeInput() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const updateCoupon = usePaymentStore((state) => state.updateCoupon)
+	const { updateCheckoutItem, updateCoupon } = usePaymentStore()
 	const { code, isValid } = usePaymentStore(
 		(state) => state.checkoutItem.coupon,
 	)
@@ -33,10 +33,8 @@ export default function CheckoutCodeInput() {
 		try {
 			setIsChecking(true)
 			const { discount_percentage } = await checkCoupon(code)
-
 			updateCoupon('isValid', true)
-			// TODO: Need to check later
-			console.log(discount_percentage)
+			updateCheckoutItem('discount', discount_percentage)
 		} catch (error: any) {
 			updateToastMessage(error.message)
 			updateCoupon('isValid', false)

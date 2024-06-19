@@ -10,6 +10,7 @@ export interface PaymentState {
 			code: string
 			isValid: boolean | undefined
 		}
+		discount: number | undefined
 	}
 }
 
@@ -27,6 +28,7 @@ const initialState: PaymentState = {
 			code: '',
 			isValid: undefined,
 		},
+		discount: undefined,
 	},
 }
 

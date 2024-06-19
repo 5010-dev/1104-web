@@ -6,6 +6,13 @@ import { getColour } from '../../../utils/colour.utils'
 import { StyledSectionContainer } from '../../global/styled-section/styled-section.styles'
 
 export const CheckoutBillingContainer = styled(StyledSectionContainer)`
+	div.price-body-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-end;
+	}
+
 	div#billing-price-container {
 		gap: 0;
 		align-items: flex-end;

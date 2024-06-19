@@ -101,7 +101,10 @@ export default function Checkout() {
 							</div>
 							<div className="item-column" id="right-column">
 								<h2 className="column-heading">결제 정보</h2>
-								<CheckoutBilling item={getServiceById(checkoutItem.id)} />
+								<CheckoutBilling
+									item={getServiceById(checkoutItem.id)}
+									discount={checkoutItem.discount && checkoutItem.discount}
+								/>
 								<CheckoutTerms handleCheckout={handleCheckout} />
 							</div>
 						</div>
