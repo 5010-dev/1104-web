@@ -40,7 +40,7 @@ export default function PreOrderDetails() {
 				id="quant-pre-order-details-card"
 				hierarchy="tertiary"
 				shape="rounded1"
-				opacity={0.5}
+				opacity={1}
 			>
 				<div id="quant-pre-order-details-text-container">
 					<h1 id="quant-pre-order-details-heading">{heading}</h1>

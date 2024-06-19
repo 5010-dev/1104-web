@@ -38,14 +38,7 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 		gap: ${({ theme }) => theme.layout.section.gutter};
 
 		${({ theme }) =>
-			getContainerStyle(
-				theme,
-				'neutral',
-				'tertiary',
-				'filled',
-				'rounded1',
-				0.5,
-			)}
+			getContainerStyle(theme, 'neutral', 'tertiary', 'filled', 'rounded1', 1)}
 
 		padding: ${({ theme, $deviceType }) =>
 			`${theme.layout.section.padding.lg} ${getDeviceTypePadding(
