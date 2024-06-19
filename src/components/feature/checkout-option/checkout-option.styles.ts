@@ -37,6 +37,7 @@ export const CheckoutOptionContainer = styled(StyledSectionContainer)`
 					color: ${({ theme }) =>
 						getColour(theme, 'neutral', 'secondary', 'active')};
 					text-decoration: underline;
+					white-space: nowrap;
 					cursor: pointer;
 				}
 			}
