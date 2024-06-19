@@ -5558,6 +5558,11 @@ hyphenate-style-name@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.5.tgz#70b68605ee601b7142362239a0236159a8b2dc33"
   integrity sha512-fedL7PRwmeVkgyhu9hLeTBaI6wcGk7JGJswdaRsa5aUbkXI1kr1xZwTPBtaYPpwf56878iDek6VbVnuWMebJmw==
 
+iamport-typings@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/iamport-typings/-/iamport-typings-1.4.0.tgz#e9cff799dfa4f4903527735db41a12057a875b55"
+  integrity sha512-7V+/qtyPb+JS7fxcZpWaLHGXqJA5rrmAqAjx+CaoveYntU4VIG4yW5X3Cmw69uByDahOQv6jzv2qYbi6gJKlwg==
+
 iconv-lite@0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"

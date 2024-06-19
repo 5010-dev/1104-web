@@ -1,6 +1,7 @@
 import { useEffect, MouseEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { RequestPayParams, RequestPayResponse } from 'iamport-typings'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -31,6 +32,8 @@ export default function Checkout() {
 	const { status, updateStatus, checkoutItem } = usePaymentStore()
 	const navigate = useNavigateWithScroll()
 
+	const BASE_URL = window.location.origin
+
 	const getServiceById = (id: number | null): Service => {
 		if (id) {
 			return service.find((item) => item.id === id) ?? service[0]
@@ -45,35 +48,33 @@ export default function Checkout() {
 		try {
 			updateStatus('processing')
 
-			const response = await checkoutProduct({
+			const { number, total_price } = await checkoutProduct({
 				id: checkoutItem.id as number,
 				coupon: checkoutItem.coupon.code && checkoutItem.coupon.code,
 			})
-			console.log(response)
 
 			if (!window.IMP) return
 			const { IMP } = window
-			IMP.init('imp10637376')
+			IMP.init(process.env.REACT_APP_IMP_ID)
 
-			if (response) {
-				IMP.request_pay(
-					{
-						pg: 'tosspayments.iamporttest_3',
-						pay_method: 'card',
-						merchant_uid: response.number,
-						name: 'Quant',
-						amount: 1,
-						buyer_email: userId,
-					},
-					async (response) => {
-						if (response.error_code !== null) {
-							updateToastMessage('결제에 실패했습니다.')
-						}
-
-						// const ni
-					},
-				)
+			const params: RequestPayParams = {
+				pg: `tosspayments.${process.env.REACT_APP_TOSSPAYMENTS_ID}`,
+				pay_method: 'card',
+				merchant_uid: number,
+				name: 'Quant',
+				amount: parseInt(total_price),
+				buyer_email: userId,
+				buyer_tel: '',
+				m_redirect_url: `${BASE_URL}/checkout`,
+				confirm_url: 'https://helloworld.com/api/v1/payments/confirm',
 			}
+
+			const onPaymentAccepted = (response: RequestPayResponse) => {
+				const { imp_uid, merchant_uid } = response
+				console.log(imp_uid, merchant_uid)
+			}
+
+			IMP.request_pay(params, onPaymentAccepted)
 		} catch (error: any) {
 			updateToastMessage(error.message)
 		} finally {

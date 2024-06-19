@@ -6,5 +6,7 @@ declare namespace NodeJS {
 		REACT_APP_ENV: string
 		REACT_APP_STIBEE_API_KEY: string
 		REACT_APP_STIBEE_EMAIL_LIST_ID: string
+		REACT_APP_IMP_ID: string
+		REACT_APP_TOSSPAYMENTS_ID: string
 	}
 }

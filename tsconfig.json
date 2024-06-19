@@ -14,7 +14,8 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
+		"types": ["iamport-typings"]
 	},
 	"include": ["src", "@types/react-app-env.d.ts", "@types/react-app-env.d.ts"]
 }
