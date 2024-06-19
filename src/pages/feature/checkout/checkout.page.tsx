@@ -61,28 +61,36 @@ export default function Checkout() {
 				pg: `tosspayments.${process.env.REACT_APP_TOSSPAYMENTS_ID}`,
 				pay_method: 'card',
 				merchant_uid: number,
-				name: 'Quant',
+				name: `${getServiceById(checkoutItem.id).name} | ${
+					getServiceById(checkoutItem.id).plan
+				}`,
 				amount: parseInt(total_price),
 				buyer_email: userId,
 				buyer_tel: '',
 				m_redirect_url: `${BASE_URL}/checkout`,
-				confirm_url: 'https://helloworld.com/api/v1/payments/confirm',
+				confirm_url: `${BASE_URL}/checkout`,
 			}
 
-			const onPaymentAccepted = (response: RequestPayResponse) => {
-				const { imp_uid, merchant_uid } = response
-				console.log(imp_uid, merchant_uid)
+			const onPaymentAccepted = async (response: RequestPayResponse) => {
+				// NOTE: PC 환경에서만 결제 프로세스 완료 후 실행
+				if (response.error_code != null) {
+					updateToastMessage('결제에 실패했습니다.')
+					throw new Error()
+				}
+				// TODO: 결제완료 API 엔드포인트
+				updateStatus('success')
 			}
 
 			IMP.request_pay(params, onPaymentAccepted)
 		} catch (error: any) {
 			updateToastMessage(error.message)
-		} finally {
-			// HACK: 결제 프로세스 진행을 위해 임시 처리
-			setTimeout(() => {
-				updateStatus('success')
-			}, 3000)
 		}
+		// finally {
+		// 	// HACK: 결제 프로세스 진행을 위해 임시 처리
+		// 	setTimeout(() => {
+		// 		updateStatus('success')
+		// 	}, 3000)
+		// }
 	}
 
 	useEffect(() => {

@@ -7,14 +7,14 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import useOnClickOutside from '../../../hooks/useOnClickOutside'
-import { useAuthDataStore } from '../../../store/authDataStore'
-import { useBannerStore } from '../../../store/globalUiStore'
+// import { useAuthDataStore } from '../../../store/authDataStore'
+// import { useBannerStore } from '../../../store/globalUiStore'
 
 import { NavigationContainer } from './navigation.styles'
 
 import { ReactComponent as Logo } from '../../../assets/logo/1104-logo-white.svg'
 import NavigationMenu from '../../feature/navigation-menu/navigation-menu.component'
-import RegistrationRequiredBanner from '../../feature/registration-required-banner/registration-required-banner.component'
+// import RegistrationRequiredBanner from '../../feature/registration-required-banner/registration-required-banner.component'
 
 const menuIconVariants = {
 	closed: { rotate: 0 },
@@ -28,8 +28,8 @@ export default function Navigation() {
 	const [isScrolled, setIsScrolled] = useState<boolean>(false)
 
 	const { scrollYProgress } = useScroll()
-	const { loginUser } = useAuthDataStore()
-	const { isBannerOn, updateBanerVisibility } = useBannerStore()
+	// const { loginUser } = useAuthDataStore()
+	// const { isBannerOn, updateBanerVisibility } = useBannerStore()
 	const location = useLocation()
 
 	const ref = useRef<HTMLDivElement>(null)
@@ -63,17 +63,17 @@ export default function Navigation() {
 		setIsMenuOpen(false)
 	}, [location])
 
-	useEffect(() => {
-		if (
-			loginUser.userId &&
-			loginUser.tradingviewId.length === 0 &&
-			location.pathname === '/'
-		) {
-			updateBanerVisibility(true)
-		} else {
-			updateBanerVisibility(false)
-		}
-	}, [loginUser, updateBanerVisibility, location])
+	// useEffect(() => {
+	// 	if (
+	// 		loginUser.userId &&
+	// 		loginUser.tradingviewId.length === 0 &&
+	// 		location.pathname === '/'
+	// 	) {
+	// 		updateBanerVisibility(true)
+	// 	} else {
+	// 		updateBanerVisibility(false)
+	// 	}
+	// }, [loginUser, updateBanerVisibility, location])
 
 	useOnClickOutside(ref, () => setIsMenuOpen(false))
 
@@ -90,7 +90,8 @@ export default function Navigation() {
 				layout
 				transition={{ duration: 0.15 }}
 			/>
-			{isBannerOn ? <RegistrationRequiredBanner /> : null}
+			{/* TODO: 추후 서비스 초기 세팅 자동화 시 다시 사용 */}
+			{/* {isBannerOn ? <RegistrationRequiredBanner /> : null} */}
 			<div id="nav-bar">
 				<div className="nav-bar-container" id="nav-bar-left-container">
 					<Link id="home-link" to="/" onClick={handleLogoClick}>

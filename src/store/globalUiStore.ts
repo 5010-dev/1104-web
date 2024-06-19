@@ -19,13 +19,13 @@ export interface ScrollAction {
 	resetScrollState: () => void
 }
 
-export interface BannerState {
-	isBannerOn: boolean
-}
+// export interface BannerState {
+// 	isBannerOn: boolean
+// }
 
-export interface BannerAction {
-	updateBanerVisibility: (value: boolean) => void
-}
+// export interface BannerAction {
+// 	updateBanerVisibility: (value: boolean) => void
+// }
 
 export const useToastMessageStore = create<
 	ToastMessageState & ToastMessageAction
@@ -44,7 +44,8 @@ export const useScrollStore = create<ScrollState & ScrollAction>((set) => ({
 		set({ isSamePage: false, isScrollToSubscription: false }),
 }))
 
-export const useBannerStore = create<BannerState & BannerAction>((set) => ({
-	isBannerOn: false,
-	updateBanerVisibility: (value) => set({ isBannerOn: value }),
-}))
+// TODO: 추후 서비스 초기 세팅 자동화 시 다시 사용
+// export const useBannerStore = create<BannerState & BannerAction>((set) => ({
+// 	isBannerOn: false,
+// 	updateBanerVisibility: (value) => set({ isBannerOn: value }),
+// }))
