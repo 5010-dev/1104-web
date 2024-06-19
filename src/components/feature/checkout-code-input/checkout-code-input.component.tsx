@@ -1,4 +1,6 @@
 import { useState, ChangeEvent, MouseEvent } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { usePaymentStore } from '../../../store/paymentStore'
@@ -12,7 +14,7 @@ import Button from '../../global/button/button.component'
 
 export default function CheckoutCodeInput() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const updateCoupone = usePaymentStore((state) => state.updateCoupone)
+	const updateCoupon = usePaymentStore((state) => state.updateCoupon)
 	const { code, isValid } = usePaymentStore(
 		(state) => state.checkoutItem.coupon,
 	)
@@ -24,30 +26,27 @@ export default function CheckoutCodeInput() {
 	const handleCodeInput = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
 
-		updateCoupone('code', inputValue)
+		updateCoupon('code', inputValue)
 	}
 
 	const handleApplyCode = async (e: MouseEvent<HTMLButtonElement>) => {
 		try {
 			setIsChecking(true)
-			const response = await checkCoupon(code)
+			const { discount_percentage } = await checkCoupon(code)
 
+			updateCoupon('isValid', true)
 			// TODO: Need to check later
-			if (response.code) {
-				updateCoupone('isValid', true)
-			} else {
-				updateCoupone('isValid', false)
-			}
-			console.log(response)
+			console.log(discount_percentage)
 		} catch (error: any) {
 			updateToastMessage(error.message)
+			updateCoupon('isValid', false)
 		} finally {
 			setIsChecking(false)
 		}
 	}
 
 	return (
-		<CheckoutCodeInputContainer $deviceType={deviceType}>
+		<CheckoutCodeInputContainer $deviceType={deviceType} $isValid={isValid}>
 			<div className="container-row">
 				<h2 className="heading-2">할인 코드 입력</h2>
 				<div className="item-row" id="code-input-container">
@@ -58,7 +57,7 @@ export default function CheckoutCodeInput() {
 						name="coupon"
 						value={code}
 						handleChange={handleCodeInput}
-						isValid
+						isValid={isValid !== undefined ? isValid : true}
 					/>
 					<Button
 						accessibleName="code-input-container"
@@ -71,8 +70,21 @@ export default function CheckoutCodeInput() {
 						handleClick={handleApplyCode}
 						disabled={code.length === 0 || isChecking}
 					/>
-					{/* isValid ? 코드 적용이 완료되었습니다. : null */}
 				</div>
+
+				{isValid !== undefined ? (
+					<div id="coupon-validity-container">
+						<FontAwesomeIcon
+							icon={isValid ? faCheck : faXmark}
+							className="coupon-validity-caption"
+						/>
+						<span className="coupon-validity-caption">
+							{isValid
+								? '할인 코드 적용이 완료되었습니다.'
+								: '잘못된 코드입니다. 코드를 다시 확인해 주세요.'}
+						</span>
+					</div>
+				) : null}
 			</div>
 		</CheckoutCodeInputContainer>
 	)

@@ -6,6 +6,12 @@ export type Product = {
 	description: string
 }
 
+export type CheckCouponResponse = {
+	id: number
+	discount_price: string
+	discount_percentage: string
+}
+
 export type CheckoutPayload = {
 	id: number
 	coupon?: string

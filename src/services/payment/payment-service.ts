@@ -4,6 +4,7 @@ import { handleError } from '../service-error'
 
 import {
 	Product,
+	CheckCouponResponse,
 	CheckoutPayload,
 	CheckoutResponse,
 } from './payment-service.types'
@@ -36,14 +37,18 @@ export const getProduct = async (): Promise<Product> => {
  */
 export const checkCoupon = async (
 	coupon: string,
-): Promise<{ code: string }> => {
+): Promise<CheckCouponResponse> => {
 	try {
 		const response = await axiosInstance.post('/coupons/check', {
 			code: coupon,
 		})
 		const { data } = response.data
-		const { code } = data
-		return { code: code }
+		const { id, discount_price, discount_percentage } = data
+		return {
+			id: id,
+			discount_price: discount_price,
+			discount_percentage: discount_percentage,
+		}
 	} catch (error) {
 		throw new Error(handleError(error))
 	}

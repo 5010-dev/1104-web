@@ -8,7 +8,7 @@ export interface PaymentState {
 		id: number | null
 		coupon: {
 			code: string
-			isValid: boolean
+			isValid: boolean | undefined
 		}
 	}
 }
@@ -16,7 +16,7 @@ export interface PaymentState {
 export interface PaymentAction {
 	updateStatus: (status: PaymentStatus) => void
 	updateCheckoutItem: (key: string, value: number | string) => void
-	updateCoupone: (key: string, value: string | boolean) => void
+	updateCoupon: (key: string, value: string | boolean) => void
 }
 
 const initialState: PaymentState = {
@@ -25,7 +25,7 @@ const initialState: PaymentState = {
 		id: null,
 		coupon: {
 			code: '',
-			isValid: false,
+			isValid: undefined,
 		},
 	},
 }
@@ -40,7 +40,7 @@ export const usePaymentStore = create<PaymentState & PaymentAction>((set) => ({
 			...state,
 			checkoutItem: { ...state.checkoutItem, [key]: value },
 		})),
-	updateCoupone: (key, value) =>
+	updateCoupon: (key, value) =>
 		set((state) => ({
 			...state,
 			checkoutItem: {
