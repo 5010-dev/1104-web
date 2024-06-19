@@ -50,6 +50,30 @@ export default function Checkout() {
 				coupon: checkoutItem.coupon.code && checkoutItem.coupon.code,
 			})
 			console.log(response)
+
+			if (!window.IMP) return
+			const { IMP } = window
+			IMP.init('imp10637376')
+
+			if (response) {
+				IMP.request_pay(
+					{
+						pg: 'tosspayments.iamporttest_3',
+						pay_method: 'card',
+						merchant_uid: response.number,
+						name: 'Quant',
+						amount: 1,
+						buyer_email: userId,
+					},
+					async (response) => {
+						if (response.error_code !== null) {
+							updateToastMessage('결제에 실패했습니다.')
+						}
+
+						// const ni
+					},
+				)
+			}
 		} catch (error: any) {
 			updateToastMessage(error.message)
 		} finally {
