@@ -73,6 +73,8 @@ export const PreOrderDetailsContainer = styled(PageLayoutContainer)`
 			justify-content: flex-start;
 			align-items: center;
 
+			padding-bottom: ${({ theme }) => theme.layout.page.gutter};
+
 			img.quant-details-img {
 				width: ${({ theme }) => theme.layout.component.width};
 			}
