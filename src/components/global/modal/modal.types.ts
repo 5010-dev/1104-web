@@ -8,6 +8,7 @@ export type ModalProps = {
 	backgroundPanel?: boolean
 	handleClose: (e: MouseEvent<HTMLButtonElement> | KeyboardEvent) => void
 	handleBottomButtonClick?: (e: MouseEvent<HTMLButtonElement>) => void
+	scrollToTop?: boolean
 }
 
 export type ModalContainerProps = {

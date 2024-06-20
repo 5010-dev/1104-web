@@ -2,17 +2,16 @@ import { useEffect, MouseEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { RequestPayParams, RequestPayResponse } from 'iamport-typings'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
-import {
-	useServiceDataStore,
-	ServicePlan,
-	Service,
-} from '../../../store/serviceDataStore'
+import { useServiceDataStore, Service } from '../../../store/serviceDataStore'
 import { usePaymentStore } from '../../../store/paymentStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+
+import { checkoutProduct } from '../../../services/payment/payment-service'
 
 import { CheckoutContainer } from './checkout.styles'
 
@@ -28,30 +27,78 @@ import PaymentComplete from '../../../components/feature/payment-complete/paymen
 
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { isUserDataLoaded } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
 	const service = useServiceDataStore((state) => state.service)
-	const { status, updateStatus } = usePaymentStore()
+	const { status, updateStatus, checkoutItem } = usePaymentStore()
 	const navigate = useNavigateWithScroll()
-
 	const [searchParams] = useSearchParams()
-	const plan = searchParams.get('plan') as ServicePlan
 
-	const getServiceByPlan = (plan: ServicePlan): Service => {
-		if (plan) return service.find((item) => item.plan === plan) ?? service[0]
-		else return service[0]
+	const BASE_URL = window.location.origin
+	const id = searchParams.get('id')
+	const name = searchParams.get('name')
+	const plan = searchParams.get('plan')
+
+	const getServiceById = (id: number | null): Service => {
+		if (id) {
+			return service.find((item) => item.id === id) ?? service[0]
+		} else return service[0]
 	}
 
-	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
+	const trimBracketContent = (str: string): string => {
+		return str.replace(/\[[^\]]+\]\s*/, '')
+	}
 
-	const handleCheckout = (e: MouseEvent<HTMLButtonElement>) => {
+	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate('/')
+
+	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		// TODO: 결제 요청 및 확인 API 호출 구현
-		updateStatus('processing')
+		try {
+			updateStatus('processing')
 
-		// HACK: 결제 프로세스 진행을 위해 임시 처리
-		setTimeout(() => {
-			updateStatus('success')
-		}, 3000)
+			const {
+				number,
+				// total_price
+			} = await checkoutProduct({
+				id: Number(id),
+				coupon: checkoutItem.coupon.code && checkoutItem.coupon.code,
+			})
+
+			if (!window.IMP) return
+			const { IMP } = window
+			IMP.init(process.env.REACT_APP_IMP_ID)
+
+			const params: RequestPayParams = {
+				pg: `tosspayments.${process.env.REACT_APP_TOSSPAYMENTS_ID}`,
+				pay_method: 'card',
+				merchant_uid: number,
+				name: `${name} | ${plan}`,
+				// amount: parseInt(total_price),
+				amount: 200, // HACK: 결제 테스트를 위한 임의 금액 설정
+				buyer_email: userId,
+				buyer_tel: '',
+				m_redirect_url: `${BASE_URL}/checkout?id=${id}&name=${name}&plan=${plan}`,
+				confirm_url: `${BASE_URL}/checkout?id=${id}&name=${name}&plan=${plan}`,
+			}
+
+			const onPaymentAccepted = async (response: RequestPayResponse) => {
+				// NOTE: PC 환경에서만 결제 프로세스 완료 후 실행
+
+				if (response.error_code != null) {
+					response.error_msg &&
+						updateToastMessage(trimBracketContent(response.error_msg))
+					updateStatus('idle')
+				} else {
+					// TODO: 결제완료 API 엔드포인트
+					updateStatus('success')
+				}
+			}
+
+			IMP.request_pay(params, onPaymentAccepted)
+		} catch (error: any) {
+			updateToastMessage(error.message)
+		}
 	}
 
 	useEffect(() => {
@@ -60,16 +107,37 @@ export default function Checkout() {
 	}, [updateStatus])
 
 	useEffect(() => {
-		if (userId.length === 0 || !plan) {
-			navigate('/')
+		if (isUserDataLoaded) {
+			if (userId.length === 0) {
+				navigate('/')
+			}
 		}
-	}, [userId, navigate, plan])
+	}, [userId, navigate, checkoutItem, isUserDataLoaded])
 
 	useEffect(() => {
-		if (userId.length === 0 || !plan) {
-			updateToastMessage('잘못된 요청입니다.')
+		if (isUserDataLoaded) {
+			if (userId.length === 0) {
+				updateToastMessage('잘못된 요청입니다.')
+			}
 		}
-	}, [userId, updateToastMessage, plan])
+	}, [userId, updateToastMessage, checkoutItem, isUserDataLoaded])
+
+	useEffect(() => {
+		// 모바일 환경에서의 쿼리 리디렉션에 따른 결제 프로세스 로직
+		const imp_uid = searchParams.has('imp_uid')
+		const merchant_uid = searchParams.has('merchant_uid')
+		const error_code = searchParams.has('error_code')
+		const error_msg = searchParams.get('error_msg')
+
+		if (imp_uid && merchant_uid) {
+			if (!error_code) {
+				updateStatus('success')
+			} else {
+				updateStatus('idle')
+				error_msg && updateToastMessage(trimBracketContent(error_msg))
+			}
+		}
+	}, [searchParams, updateStatus, updateToastMessage])
 
 	if (status !== 'success') {
 		return (
@@ -89,13 +157,16 @@ export default function Checkout() {
 						<div id="item-columns-container">
 							<div className="item-column" id="left-column">
 								<h2 className="column-heading">주문 정보</h2>
-								<CheckoutItem item={getServiceByPlan(plan)} />
+								<CheckoutItem item={getServiceById(Number(id))} />
 								<CheckoutOption />
 								<CheckoutCodeInput />
 							</div>
 							<div className="item-column" id="right-column">
 								<h2 className="column-heading">결제 정보</h2>
-								<CheckoutBilling item={getServiceByPlan(plan)} />
+								<CheckoutBilling
+									item={getServiceById(Number(id))}
+									discount={checkoutItem.discount && checkoutItem.discount}
+								/>
 								<CheckoutTerms handleCheckout={handleCheckout} />
 							</div>
 						</div>

@@ -3,7 +3,7 @@ import { MouseEvent } from 'react'
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
-import { useBannerStore } from '../../../store/globalUiStore'
+// import { useBannerStore } from '../../../store/globalUiStore'
 
 import { HomeHeroContainer } from './home-hero.styles'
 
@@ -15,7 +15,7 @@ export default function HomeHero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useHomeContentsStore((state) => state.home)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
-	const isBannerOn = useBannerStore((state) => state.isBannerOn)
+	// const isBannerOn = useBannerStore((state) => state.isBannerOn)
 
 	const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {}
 	const handleTextLinkClick = (e: MouseEvent<HTMLDivElement>) => {}
@@ -25,7 +25,10 @@ export default function HomeHero() {
 			$deviceType={deviceType}
 			$imageUrl={image.backgroundImage}
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
-			$isBannerOn={isBannerOn}
+			// TODO: 추후 서비스 초기 세팅 자동화 시 다시 사용
+			// $isBannerOn={isBannerOn}
+			// HACK: 서비스 초기 세팅 자동화 전까지 값 강제 주입
+			$isBannerOn={false}
 		>
 			<div id="text-container">
 				<h1 id="display">{text.display}</h1>

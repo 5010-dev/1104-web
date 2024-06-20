@@ -69,4 +69,19 @@ export const InputContainer = styled.input<InputContainerProps>`
 		color: ${({ theme, $hierarchy }) =>
 			getColour(theme, 'neutral', $hierarchy, 'inactive')};
 	}
+
+	&::-webkit-autofill {
+		-webkit-box-shadow: 0 0 0 1000px white inset;
+		-webkit-text-fill-color: black;
+	}
+
+	&:-moz-autofill {
+		-moz-box-shadow: 0 0 0 1000px white inset;
+		-moz-text-fill-color: black;
+	}
+
+	&:-ms-input-placeholder {
+		background-color: white;
+		color: black;
+	}
 `

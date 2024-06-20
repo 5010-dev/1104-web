@@ -23,11 +23,24 @@ export const CheckoutOptionContainer = styled(StyledSectionContainer)`
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
-		p.body-sm {
-			${({ theme }) => getTypography(theme, 'body')}
-			color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'inactive')};
-			font-size: 0.875rem;
+		ul#checkout-options-list {
+			padding-left: 1.25rem;
+
+			li.body-sm {
+				${({ theme }) => getTypography(theme, 'body')}
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'inactive')};
+				font-size: 0.875rem;
+
+				span {
+					font-weight: bold;
+					color: ${({ theme }) =>
+						getColour(theme, 'neutral', 'secondary', 'active')};
+					text-decoration: underline;
+					white-space: nowrap;
+					cursor: pointer;
+				}
+			}
 		}
 	}
 `

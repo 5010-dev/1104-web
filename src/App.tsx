@@ -38,7 +38,8 @@ import { getRefreshToken } from './utils/token.utils'
 function App() {
 	const deviceType = useDeviceType()
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
-	const { updateLoginUser, resetLoginUser } = useAuthDataStore()
+	const { updateLoginUser, updateIsUserDataLoaded, resetLoginUser } =
+		useAuthDataStore()
 	const { toastMessgae, resetToastMessage } = useToastMessageStore()
 	const { isLoading, updateIsLoading } = useLoadingStore()
 
@@ -54,6 +55,7 @@ function App() {
 
 			try {
 				updateIsLoading(true)
+				updateIsUserDataLoaded(false)
 
 				const { email: loginEmail, is_email_verified } =
 					await getLoginUserData()
@@ -71,11 +73,12 @@ function App() {
 				console.log(error.message)
 			} finally {
 				updateIsLoading(false)
+				updateIsUserDataLoaded(true)
 			}
 		}
 
 		fetchLoginUserData()
-	}, [updateIsLoading, updateLoginUser, resetLoginUser])
+	}, [updateIsLoading, updateLoginUser, resetLoginUser, updateIsUserDataLoaded])
 
 	return (
 		<HelmetProvider>

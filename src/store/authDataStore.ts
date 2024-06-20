@@ -15,11 +15,13 @@ export interface AuthDataState {
 	email: string
 	password: string
 	verificationCode: string
+	isUserDataLoaded: boolean
 	loginUser: User
 }
 
 export interface AuthDataAction {
 	updateAuthData: (key: string, value: string) => void
+	updateIsUserDataLoaded: (value: boolean) => void
 	updateLoginUser: (key: string, value: string | boolean) => void
 	resetAuthData: () => void
 	resetLoginUser: () => void
@@ -29,6 +31,7 @@ const initialState: AuthDataState = {
 	email: '',
 	password: '',
 	verificationCode: '',
+	isUserDataLoaded: false,
 	loginUser: {
 		userId: '',
 		isEmailVerified: false,
@@ -45,6 +48,8 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 		...initialState,
 		updateAuthData: (key, value) =>
 			set((state) => ({ ...state, [key]: value })),
+		updateIsUserDataLoaded: (value) =>
+			set((state) => ({ ...state, isUserDataLoaded: value })),
 		updateLoginUser: (key, value) =>
 			set((state) => ({
 				...state,

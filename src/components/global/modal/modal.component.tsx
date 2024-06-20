@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -18,12 +19,13 @@ export default function Modal(props: ModalProps) {
 		backgroundPanel = true,
 		handleClose,
 		handleBottomButtonClick,
+		scrollToTop = true,
 	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
 	useEffect(() => {
-		window.scrollTo({ top: 0, behavior: 'auto' })
+		if (scrollToTop) window.scrollTo({ top: 0, behavior: 'auto' })
 		document.body.style.overflowY = 'hidden'
 
 		const handleEscapeKey = (e: KeyboardEvent) => {
@@ -37,11 +39,11 @@ export default function Modal(props: ModalProps) {
 			document.body.style.overflowY = 'unset'
 			document.removeEventListener('keydown', handleEscapeKey)
 		}
-	}, [handleClose])
+	}, [handleClose, scrollToTop])
 
 	const resetOverflow = () => (document.body.style.overflowY = 'unset')
 
-	return (
+	return createPortal(
 		<ModalContainer $deviceType={deviceType} $backgroundPanel={backgroundPanel}>
 			<div id="modal-contents-container">
 				<div id="modal-top-bar">
@@ -78,6 +80,7 @@ export default function Modal(props: ModalProps) {
 					</div>
 				) : null}
 			</div>
-		</ModalContainer>
+		</ModalContainer>,
+		document.body,
 	)
 }

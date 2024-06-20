@@ -5,10 +5,14 @@ import premiumThumbnailImg from '../assets/img/plan-thumbnail-premium-img.webp'
 import freeThumbnailImg from '../assets/img/plan-thumbnail-free-img.webp'
 
 export type ServicePlan = 'FREE' | 'PREMIUM' | 'ULTIMATE'
+export type ServiceTitle = 'trial' | '5010' | 'quant'
 
 export type Service = {
+	id: number
+	title: ServiceTitle
 	name: string
 	plan: ServicePlan
+	tag: string[]
 	isFlagship: boolean
 	thumbnailImg: string
 	summary: string
@@ -40,8 +44,11 @@ export interface AssetOptionState {
 export const useServiceDataStore = create<ServiceDataState>((set) => ({
 	service: [
 		{
-			name: '5010 매매 전략',
+			id: 999,
+			title: 'trial',
+			name: '5010 매매 전략 체험판',
 			plan: 'FREE',
+			tag: [],
 			isFlagship: false,
 			thumbnailImg: freeThumbnailImg,
 			summary:
@@ -55,36 +62,45 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			priceCaption: '체험판 이용중 구매시 할인 혜택',
 		},
 		{
+			id: 0,
+			title: '5010',
 			name: '5010 매매 전략',
 			plan: 'PREMIUM',
+			tag: ['popular'],
 			isFlagship: true,
 			thumbnailImg: premiumThumbnailImg,
 			summary:
-				'전자책부터 자산 설계와 인디케이터, 그리고 어드바이저 서포트까지, 5010 매매 전략의 핵심을 경험해 보세요.',
+				'전자책, 인디케이터, 자산설계, 그리고 진입시점 및 기술적 분석 강의 VOD까지, 5010 매매 전략의 모든 것을 누려보세요.',
 			features: [
 				'5010 매매 전략 전자책',
 				'5010 인디케이터',
-				'5010 시크릿노트',
-				'5010 자산 설계',
+				'5010 시크릿노트 + 자산 설계',
+				'진입시점 강의 VOD + 강의자료',
+				'기술적 분석 강의 VOD + 강의자료',
 				'24시간 어드바이저 서포트',
 			],
-			price: 258000,
-			priceCaption: '이후 월 ₩228,000',
+			price: 1550000,
+			priceCaption: '최초 결제 비용 | 이후 ₩228,000',
 		},
 		{
-			name: '5010 매매 전략',
+			id: 1,
+			title: 'quant',
+			name: '르네상스 퀀트 솔루션',
 			plan: 'ULTIMATE',
+			tag: ['best'],
 			isFlagship: false,
 			thumbnailImg: ultimateThumbnailImg,
 			summary:
-				'프리미엄 플랜의 모든 구성품 포함하여 진입시점 및 기술적 분석 강의 VOD까지, 5010 매매 전략의 모든 것을 누려보세요.',
+				'새롭게 선보이는 르네상스 퀀트 솔루션은 리스크 관리에 초점을 맞춘 개량적 투자 전략과 자동 매매 시스템을 제공해요.',
 			features: [
-				'프리미엄 플랜 구성품 전체 (전자책, 인디케이터, 시크릿노트, 자산 설계, 어드바이저 서포트)',
-				'진입시점 강의 VOD + 강의자료',
-				'기술적 분석 강의 VOD + 강의자료',
+				'24시간 자동 매매 시스템',
+				'퀀트 솔루션 전용 인디케이터',
+				'퀀트 솔루션 전용 자산 설계',
+				'퀀트 솔루션 백테스팅',
+				'24시간 어드바이저 서포트',
 			],
-			price: 928000,
-			priceCaption: '이후 월 ₩228,000',
+			price: 7500000,
+			priceCaption: '최초 결제 비용 | 이후 ₩50,000',
 		},
 	],
 }))

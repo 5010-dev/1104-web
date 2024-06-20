@@ -8,14 +8,19 @@ import { getTypography } from '../../../utils/typo.utils'
 import { ModalContainerProps } from './modal.types'
 
 export const ModalContainer = styled.div<ModalContainerProps>`
-	position: absolute;
+	/* position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;
+	bottom: 0; */
 
-	width: 100vw;
-	height: 100vh;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	width: 120vw;
+	height: 120vh;
 
 	z-index: 100;
 
@@ -32,7 +37,8 @@ export const ModalContainer = styled.div<ModalContainerProps>`
 		css`
 			&::before {
 				content: '';
-				position: absolute;
+				/* position: absolute; */
+				position: fixed;
 				top: 0;
 				left: 0;
 				right: 0;
@@ -55,7 +61,7 @@ export const ModalContainer = styled.div<ModalContainerProps>`
 	div#modal-contents-container {
 		z-index: 1000;
 
-		width: ${({ theme }) => theme.layout.container.width};
+		width: 80%;
 		max-width: 28rem;
 		max-height: 70vh;
 
