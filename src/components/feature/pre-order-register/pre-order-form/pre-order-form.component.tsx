@@ -151,16 +151,56 @@ export default function PreOrderForm() {
 				</div>
 
 				<div id="quant-pre-order-event-container">
-					<span id="quant-pre-order-event-heading">
-						사전 예약 신청자 중 <br /> {event.heading}
-					</span>
-					<ol id="quant-pre-order-event-option-list">
-						{event.options.map((item, index) => (
-							<li key={index} className="quant-pre-order-event-option">
-								{item}
-							</li>
-						))}
-					</ol>
+					{event.map((item, index) => (
+						<div key={index} className="quant-pre-order-event">
+							<Chip
+								className="quant-pre-order-event-chip"
+								appearance="accent"
+								hierarchy="primary"
+								stroke="filled"
+								shape="rounded3"
+								inverted
+								text={`EVENT #${index + 1}.`}
+							/>
+							<div className="quant-pre-order-event-heading-container">
+								<h3 className="quant-pre-order-event-heading">
+									{item.heading}
+								</h3>
+								<span className="quant-pre-order-event-period">
+									{item.period.start} - {item.period.end}
+								</span>
+							</div>
+							<div className="quant-pre-order-event-subheading-container">
+								{item.subheading.map((item, index) => (
+									<span
+										key={index}
+										className="quant-pre-order-event-subheading"
+									>
+										{item}
+									</span>
+								))}
+							</div>
+							<ol className="quant-pre-order-event-option-list">
+								{item.options.map((item, index) => (
+									<li key={index} className="quant-pre-order-event-option">
+										{item}
+									</li>
+								))}
+							</ol>
+							{item.caption ? (
+								<>
+									<hr className="quant-pre-order-event-caption-line" />
+									<ul className="quant-pre-order-event-caption-list">
+										{item.caption.map((item, index) => (
+											<li key={index} className="quant-pre-order-event-caption">
+												{item}
+											</li>
+										))}
+									</ul>
+								</>
+							) : null}
+						</div>
+					))}
 				</div>
 
 				<div id="quant-pre-order-input-container">
