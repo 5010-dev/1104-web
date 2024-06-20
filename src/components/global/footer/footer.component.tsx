@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react'
+// import { MouseEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useFooterContentsStore } from '../../../store/contents/footerContentsStore'
@@ -16,17 +16,17 @@ export default function Footer() {
 		address,
 		tel,
 		regNum,
-		onlineBizNum,
+		// onlineBizNum,
 		privacyOfficer,
 		csMail,
 		hosting,
 	} = useFooterContentsStore((state) => state.companyInfo)
 
-	const handleNumCheckClick = (e: MouseEvent<HTMLSpanElement>) => {
-		const numStr = regNum.replace(/-/g, '')
-		const num = parseInt(numStr)
-		window.open(`http://www.ftc.go.kr/bizCommPop.do?wrkr_no=${num}`, '_blank')
-	}
+	// const handleNumCheckClick = (e: MouseEvent<HTMLSpanElement>) => {
+	// 	const numStr = regNum.replace(/-/g, '')
+	// 	const num = parseInt(numStr)
+	// 	window.open(`http://www.ftc.go.kr/bizCommPop.do?wrkr_no=${num}`, '_blank')
+	// }
 
 	return (
 		<FooterContainer $deviceType={deviceType}>
@@ -38,11 +38,12 @@ export default function Footer() {
 						<p className="company-info-text">{`소재지: ${address}`}</p>
 						<p className="company-info-text">
 							{`사업자등록번호: ${regNum}`}
-							<span id="reg-num-check-link" onClick={handleNumCheckClick}>
+							{/* // TODO: 통신판매업 등록 이후 활성화 */}
+							{/* <span id="reg-num-check-link" onClick={handleNumCheckClick}>
 								사업자정보확인
-							</span>
+							</span> */}
 						</p>
-						<p className="company-info-text">{`통신판매신고번호: ${onlineBizNum}`}</p>
+						{/* <p className="company-info-text">{`통신판매신고번호: ${onlineBizNum}`}</p> */}
 						<p className="company-info-text">{`개인정보관리책임자: ${privacyOfficer} | 이메일: ${csMail}`}</p>
 						<p className="company-info-text">{`호스팅 제공자: ${hosting}`}</p>
 					</div>
