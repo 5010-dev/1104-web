@@ -14,7 +14,7 @@ import { PreOrderRegisterContainer } from './pre-order-register.styles'
 import Countdown from '../../../components/feature/countdown/countdown.component'
 import PreOrderForm from './pre-order-form/pre-order-form.component'
 import PreOrderShowDetails from './pre-order-show-details/pre-order-show-details.component'
-// import Footer from '../../../components/global/footer/footer.component'
+import Footer from '../../../components/global/footer/footer.component'
 
 export default function PreOrderRegister() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -64,6 +64,7 @@ export default function PreOrderRegister() {
 			</motion.div>
 			<PreOrderForm />
 			<PreOrderShowDetails />
+			<Footer />
 		</PreOrderRegisterContainer>
 	)
 }

@@ -1,5 +1,6 @@
 import { MouseEvent } from 'react'
 import { motion } from 'framer-motion'
+import { Helmet } from 'react-helmet-async'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
@@ -7,13 +8,12 @@ import useFadeIn from '../../../hooks/useFadeIn'
 
 import { ReactComponent as QuantLogoSm } from '../../../assets/svg/quant/quant-logo-sm.svg'
 
-import { PreOrderDetailsContainer } from './pre-order-details.styles'
+import {
+	PreOrderDetailsContainer,
+	PreOrderDetialsGlobalStyle,
+} from './pre-order-details.styles'
 
-import quantDetails_1 from '../../../assets/img/service-details/quant/Quant_1024_01_01_gif.gif'
-import quantDetails_2 from '../../../assets/img/service-details/quant/Quant_1024_01_02_gif.gif'
-import quantDetails_3 from '../../../assets/img/service-details/quant/Quant_1024_01_03_s_gif.gif'
-
-import Card from '../../global/card/card.component'
+import PreOrderDetailsBody from './pre-order-details-body/pre-order-details-body.component'
 import Button from '../../global/button/button.component'
 
 export default function PreOrderDetails() {
@@ -40,9 +40,13 @@ export default function PreOrderDetails() {
 			initial="hidden"
 			animate={controls}
 		>
+			<Helmet>
+				<meta name="theme-color" content="#000000" />
+			</Helmet>
+			<PreOrderDetialsGlobalStyle />
 			<div id="pre-order-details-contents-container">
 				<div id="pre-order-details-title-container">
-					<span className="title-span">
+					<span className="title-span" id="left-title-span">
 						{titleLeftLetters.map((letter, index) => (
 							<span key={index} className="title-span-letter">
 								{letter}
@@ -50,7 +54,7 @@ export default function PreOrderDetails() {
 						))}
 					</span>
 					<QuantLogoSm id="quant-logo" />
-					<span className="title-span">
+					<span className="title-span" id="right-title-span">
 						{titleRightLetters.map((letter, index) => (
 							<span key={index} className="title-span-letter">
 								{letter}
@@ -58,29 +62,8 @@ export default function PreOrderDetails() {
 						))}
 					</span>
 				</div>
-				<Card
-					id="pre-order-details-card"
-					hierarchy="secondary"
-					shape="rounded1"
-					opacity={1}
-				>
-					<h1 id="pre-order-details-heading">퀀트 솔루션 상세보기</h1>
-					{/* TODO: 여기에 상세페이지 이미지 배치 */}
-					<img
-						src={quantDetails_1}
-						alt="qunat-img-1"
-						className="quant-details-img"
-					/>
-					<img
-						src={quantDetails_2}
-						alt="qunat-img-2"
-						className="quant-details-img"
-					/>
-					<img
-						src={quantDetails_3}
-						alt="qunat-img-3"
-						className="quant-details-img"
-					/>
+				<PreOrderDetailsBody />
+				<div id="pre-order-details-bottom-bar">
 					<Button
 						id="pre-order-to-register-button"
 						accessibleName="pre-order-details-contents-container"
@@ -91,7 +74,7 @@ export default function PreOrderDetails() {
 						text="← 사전예약 신청하러 가기"
 						handleClick={handleRegister}
 					/>
-				</Card>
+				</div>
 			</div>
 		</PreOrderDetailsContainer>
 	)

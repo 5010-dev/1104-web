@@ -8,7 +8,6 @@ import { PreOrderContainer } from './pre-order.styles'
 
 import PreOrderRegister from '../../../components/feature/pre-order-register/pre-order-register.component'
 import PreOrderDetails from '../../../components/feature/pre-order-details/pre-order-details.component'
-import Footer from '../../../components/global/footer/footer.component'
 
 export default function PreOrder() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -30,7 +29,6 @@ export default function PreOrder() {
 	return (
 		<PreOrderContainer $deviceType={deviceType} $imageUrl={backgroundImage}>
 			{renderComponent()}
-			<Footer />
 		</PreOrderContainer>
 	)
 }

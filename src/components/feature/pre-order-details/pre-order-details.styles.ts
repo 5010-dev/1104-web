@@ -1,10 +1,11 @@
-import styled from 'styled-components'
+import styled, { css, createGlobalStyle } from 'styled-components'
 
 import { getDeviceTypePadding } from '../../../utils/device.utils'
-import { getTypography } from '../../../utils/typo.utils'
-import { getColour } from '../../../utils/colour.utils'
+import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
 import PageLayoutContainer from '../../../pages/global/page-layout/page-layout.styles'
+
+const globalStyled = { createGlobalStyle }
 
 export const PreOrderDetailsContainer = styled(PageLayoutContainer)`
 	position: relative;
@@ -20,9 +21,9 @@ export const PreOrderDetailsContainer = styled(PageLayoutContainer)`
 		align-items: center;
 
 		width: ${({ theme }) => theme.layout.container.width};
-		max-width: ${({ theme }) => theme.layout.section.maxWidth};
+		max-width: ${({ theme }) => theme.layout.container.maxWidth};
 
-		padding: ${({ theme, $deviceType }) =>
+		padding-top: ${({ theme, $deviceType }) =>
 			getDeviceTypePadding(theme, $deviceType, 'section')};
 
 		div#pre-order-details-title-container {
@@ -46,6 +47,16 @@ export const PreOrderDetailsContainer = styled(PageLayoutContainer)`
 					$deviceType === 'mobile' ? '0.25rem' : '0.5rem'};
 			}
 
+			span#left-title-span {
+				justify-content: flex-end;
+				padding-right: 1rem;
+			}
+
+			span#right-title-span {
+				justify-content: flex-start;
+				padding-left: 1rem;
+			}
+
 			#quant-logo {
 				flex: 0 0 auto;
 				width: auto;
@@ -54,29 +65,65 @@ export const PreOrderDetailsContainer = styled(PageLayoutContainer)`
 			}
 		}
 
-		#pre-order-details-card {
+		div#pre-order-details-img-container {
+			width: ${({ theme }) => theme.layout.container.width};
+
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
 			align-items: center;
 
-			justify-content: flex-start;
-
-			h1#pre-order-details-heading {
-				${({ theme }) => getTypography(theme, 'heading3')}
-				color: ${({ theme }) =>
-					getColour(theme, 'neutral', 'primary', 'active')};
-				margin-bottom: ${({ theme }) => theme.layout.container.gutter};
-			}
-
 			img.quant-details-img {
-				width: 100%;
-			}
-
-			#pre-order-to-register-button {
-				position: fixed;
-
-				bottom: 1rem;
-				margin-top: ${({ theme }) => theme.layout.section.gutter};
-				z-index: 10;
+				width: ${({ theme }) => theme.layout.component.width};
 			}
 		}
+
+		div#pre-order-details-bottom-bar {
+			position: fixed;
+			bottom: 0;
+
+			width: ${({ theme }) => theme.layout.container.width};
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			padding: ${({ theme, $deviceType }) =>
+				getDeviceTypePadding(theme, $deviceType, 'container')};
+			padding-top: ${({ theme }) => theme.layout.component.padding.default};
+
+			/* background: linear-gradient(
+				to bottom,
+				rgba(0, 0, 0, 0),
+				rgba(0, 0, 0, 0.3),
+				rgba(0, 0, 0, 1)
+			); */
+
+			background-color: ${({ theme }) =>
+				hexToRgba(theme.colour.neutral.primary.active, 0)};
+			-webkit-backdrop-filter: blur(1rem);
+			backdrop-filter: blur(1rem);
+
+			z-index: 10;
+
+			#pre-order-to-register-button {
+				${({ theme }) => css`
+					-webkit-filter: drop-shadow(
+						0 0 1rem
+							${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 1)}
+					);
+					filter: drop-shadow(
+						0 0 1rem
+							${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 1)}
+					);
+				`}
+			}
+		}
+	}
+`
+
+export const PreOrderDetialsGlobalStyle = globalStyled.createGlobalStyle`
+	body {
+		background-color: #000;
 	}
 `

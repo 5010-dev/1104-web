@@ -34,7 +34,6 @@ export default function PreOrderForm() {
 	const [showTerms, setShowTerms] = useState<boolean>(false)
 
 	const { ref, controls, fadeInVariants } = useFadeIn({
-		delay: 0.25,
 		threshold: 0.05,
 	})
 
