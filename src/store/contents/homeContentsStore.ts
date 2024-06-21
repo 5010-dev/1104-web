@@ -9,7 +9,7 @@ import resultImage1 from '../../assets/img/result-persona-image-1.webp'
 import resultImage2 from '../../assets/img/result-persona-image-2.webp'
 import resultImage3 from '../../assets/img/result-persona-image-3.webp'
 import resultImage4 from '../../assets/img/result-persona-image-4.webp'
-import communityImage from '../../assets/img/community-image.webp'
+import communityImage from '../../assets/img/banner-background-img.webp'
 
 export type AchievementItem = {
 	caption: string
@@ -98,7 +98,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 			subheading:
 				'금융 전문가와 수학자들이 설계한 최첨단 기술을 통해 여러분의 거래 경험을 향상해 보세요.',
 			ctaButtonText: '5010 매매전략 무료 전자책 받기 →',
-			linkText: '1:1 무료 상담받고 할인코드 받아가세요!',
+			linkText: '1:1 무료 상담받고 다양한 이벤트에 참여해 보세요!',
 		},
 	},
 	about: {
@@ -294,7 +294,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 		text: {
 			caption: 'JOIN 1104 R&I TODAY',
 			heading: '커뮤니티에 참여하고 최신 정보를 받아보세요.',
-			body: '아래 버튼을 클릭하시면 1104 R&I 공식 디스코드 커뮤니티로 이동합니다.',
+			body: '아래 버튼을 클릭하시면 1104 R&I 공식 텔레그램 커뮤니티로 이동합니다.',
 		},
 		linkUrl: '',
 	},

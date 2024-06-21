@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react'
+
 import { motion, useMotionTemplate } from 'framer-motion'
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation'
 
@@ -14,6 +16,13 @@ export default function Review() {
 	const { items } = useHomeContentsStore((state) => state.review)
 	const { ref, scrollX, handleMouseEnter, handleMouseLeave } =
 		useScrollAnimation(true)
+
+	const handleSeeMore = (e: MouseEvent<HTMLButtonElement>) =>
+		window.open(
+			'https://1104.framer.website/ahcievement',
+			'_blank',
+			'noopener,noreferrer',
+		)
 
 	return (
 		<ReviewContainer $deviceType={deviceType} as={motion.div} ref={ref}>
@@ -50,6 +59,7 @@ export default function Review() {
 					hierarchy="primary"
 					stroke="outlined"
 					shape="rounding"
+					handleClick={handleSeeMore}
 				/>
 			</div>
 		</ReviewContainer>

@@ -3,6 +3,7 @@ import { MouseEvent } from 'react'
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 // import { useBannerStore } from '../../../store/globalUiStore'
 
 import { HomeHeroContainer } from './home-hero.styles'
@@ -15,9 +16,11 @@ export default function HomeHero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useHomeContentsStore((state) => state.home)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
+	const navigate = useNavigateWithScroll()
 	// const isBannerOn = useBannerStore((state) => state.isBannerOn)
 
-	const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {}
+	const handleFreeTrial = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate('/free-trial')
 	const handleTextLinkClick = (e: MouseEvent<HTMLDivElement>) => {}
 
 	return (
@@ -43,14 +46,14 @@ export default function HomeHero() {
 						shape="rounding"
 						size="md"
 						text={text.ctaButtonText}
-						handleClick={handleButtonClick}
+						handleClick={handleFreeTrial}
 					/>
 					<TextLink
 						appearance="neutral"
 						hierarchy="secondary"
 						size="sm"
 						icon={<Icon id="link-icon" />}
-						text="1:1 무료 상담받고 할인코드 받아가세요!"
+						text={text.linkText}
 						underlined
 						handleClick={handleTextLinkClick}
 					/>

@@ -7,8 +7,16 @@ import Chip from '../../global/chip/chip.component'
 import Button from '../../global/button/button.component'
 
 export default function OurServiceItem(props: OurServiceItemProps) {
-	const { imageUrl, heading, subheading, body, features, handleSeeDetails } =
-		props
+	const {
+		imageUrl,
+		heading,
+		subheading,
+		body,
+		freeTrial,
+		features,
+		handleSeeDetails,
+		handleFreeTrial,
+	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -53,6 +61,18 @@ export default function OurServiceItem(props: OurServiceItemProps) {
 						text="서비스 자세히 보기 →"
 						handleClick={handleSeeDetails}
 					/>
+					{freeTrial ? (
+						<Button
+							className="our-service-item-button"
+							accessibleName="our-service-item-buttons-container"
+							appearance="neutral"
+							hierarchy="secondary"
+							stroke="filled"
+							shape="rounding"
+							text="무료 체험판 신청하기 →"
+							handleClick={handleFreeTrial}
+						/>
+					) : null}
 				</div>
 			</div>
 		</OurServiceItemContainer>

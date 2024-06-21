@@ -1,4 +1,5 @@
 import { useSearchParams, Navigate } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
@@ -22,7 +23,7 @@ export default function PreOrder() {
 		} else if (details) {
 			return <PreOrderDetails />
 		} else {
-			return <Navigate to="/pre-order?register" replace />
+			return <Navigate to={`${ROUTES.PRE_ORDER}?register`} replace />
 		}
 	}
 

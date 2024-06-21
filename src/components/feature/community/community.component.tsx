@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
 
@@ -11,6 +13,13 @@ export default function Community() {
 	const { caption, heading, body } = useHomeContentsStore(
 		(state) => state.community.text,
 	)
+
+	const handleJoinCommunity = (e: MouseEvent<HTMLButtonElement>) =>
+		window.open(
+			'https://t.me/+wihj13Yb06U3YWM1',
+			'_blank',
+			'noopener,noreferrer',
+		)
 
 	return (
 		<CommunityContainer $deviceType={deviceType} $imageUrl={image}>
@@ -30,7 +39,8 @@ export default function Community() {
 					hierarchy="primary"
 					stroke="filled"
 					shape="rounding"
-					text="JOIN DISCORD"
+					text="JOIN TELEGRAM"
+					handleClick={handleJoinCommunity}
 				/>
 			</div>
 		</CommunityContainer>

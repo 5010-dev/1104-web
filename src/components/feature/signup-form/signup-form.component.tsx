@@ -64,7 +64,14 @@ export default function SignupForm() {
 					}}
 				/>
 			) : (
-				<UserAgreement handleButtonClick={handleAgreeButton} />
+				<UserAgreement
+					handleButtonClick={handleAgreeButton}
+					textLink={{
+						descriptionMessage: '이미 회원이시라면',
+						linkMessage: '로그인하기',
+						handleTextLink: handleLoginLink,
+					}}
+				/>
 			)}
 		</>
 	)

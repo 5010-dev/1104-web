@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { getDeviceTypePadding } from '../../../utils/device.utils'
-import { getContainerStyle } from '../../../utils/style.utils'
 import { getTypography } from '../../../utils/typo.utils'
 import { hexToRgba, getColour } from '../../../utils/colour.utils'
 
@@ -103,7 +102,7 @@ export const OurServiceContainer = styled(PageLayoutContainer)<Props>`
 
 			/* margin-bottom: ${({ theme }) => theme.layout.page.gutter}; */
 
-			div#our-service-free-trial-container {
+			div#our-service-subscribe-service-container {
 				width: ${({ theme }) => theme.layout.container.width};
 
 				display: flex;
@@ -120,16 +119,6 @@ export const OurServiceContainer = styled(PageLayoutContainer)<Props>`
 				background-repeat: no-repeat;
 				background-size: cover;
 
-				/* ${({ theme }) =>
-					getContainerStyle(
-						theme,
-						'accent',
-						'primary',
-						'filled',
-						'rounded1',
-						0.5,
-					)}; */
-
 				padding: ${({ theme, $deviceType }) =>
 					`${theme.layout.section.padding.lg} ${getDeviceTypePadding(
 						theme,
@@ -137,16 +126,14 @@ export const OurServiceContainer = styled(PageLayoutContainer)<Props>`
 						'section',
 					)}`};
 
-				h3#our-service-free-trial-heading {
-					${({ theme, $deviceType }) =>
-						$deviceType === 'mobile'
-							? getTypography(theme, 'heading2')
-							: getTypography(theme, 'heading1')}
+				h3#our-service-subscribe-service-heading {
+					width: 90%;
+					${({ theme }) => getTypography(theme, 'heading1')}
 					color: ${({ theme }) =>
 						getColour(theme, 'neutral', 'secondary', 'active')};
 				}
 
-				p#our-service-free-trial-body {
+				p#our-service-subscribe-service-body {
 					${({ theme }) => getTypography(theme, 'body')}
 					color: ${({ theme }) =>
 						hexToRgba(
@@ -155,7 +142,7 @@ export const OurServiceContainer = styled(PageLayoutContainer)<Props>`
 						)};
 				}
 
-				#our-service-free-trial-button {
+				#our-service-subscribe-service-button {
 					margin-top: ${({ theme }) => theme.layout.container.gutter};
 				}
 			}

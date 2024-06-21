@@ -11,9 +11,10 @@ import { UserAgreementContainer } from './user-agreement.styles'
 import ServiceTerms from '../../service-terms/service-terms.component'
 import CheckBox from '../../../global/check-box/check-box.component'
 import Button from '../../../global/button/button.component'
+import TextLink from '../../../global/text-link/text-link.component'
 
 export default function UserAgreement(props: UserAgreementProps) {
-	const { handleButtonClick } = props
+	const { handleButtonClick, textLink } = props
 
 	const [isAllChecked, setIsAllChecked] = useState<boolean>(false)
 	const {
@@ -102,6 +103,15 @@ export default function UserAgreement(props: UserAgreementProps) {
 				text="동의하고 회원 가입하기"
 				disabled={!isAllChecked}
 				handleClick={handleButtonClick}
+			/>
+			<TextLink
+				description={textLink.descriptionMessage}
+				appearance="neutral"
+				hierarchy="secondary"
+				size="sm"
+				underlined
+				text={textLink.linkMessage}
+				handleClick={textLink.handleTextLink}
 			/>
 		</UserAgreementContainer>
 	)

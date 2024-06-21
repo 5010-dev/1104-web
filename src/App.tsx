@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 import { useDeviceTypeStore } from './store/deviceTypeStore'
@@ -13,22 +13,7 @@ import { useToastMessageStore } from './store/globalUiStore'
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
 
-import EventRoute from './components/global/event-route/event-route.component'
-import GuestOnlyRoute from './components/global/\bguest-only-route/guest-only-route.component'
-import PrivateRoute from './components/global/private-route/private-route.component'
-
-import MainLayout from './pages/main-layout'
-import NotFound from './pages/global/not-found/not-found.page'
-import Home from './pages/feature/home/home.page'
-import Login from './pages/feature/login/login.page'
-import EmailVerification from './pages/feature/email-verification/email-verification.page'
-import Checkout from './pages/feature/checkout/checkout.page'
-import AboutUs from './pages/feature/about-us/about-us.page'
-import OurService from './pages/feature/our-service/our-service.page'
-import Account from './pages/feature/account/account.page'
-import IndicatorRegistration from './pages/feature/indicator-registration/indicator-registration.page'
-import PreOrder from './pages/feature/pre-order/pre-order.page'
-
+import AppRoutes from './routes/app-routes'
 import Loading from './components/global/loading/loading.component'
 import Toast from './components/global/toast/toast.component'
 
@@ -89,36 +74,7 @@ function App() {
 				<ThemeProvider theme={DesignSystem}>
 					<GlobalStyle />
 					<div className="App">
-						<Routes>
-							<Route path="pre-order" element={<PreOrder />} />
-
-							<Route element={<EventRoute />}>
-								<Route path="/" element={<MainLayout />}>
-									<Route index element={<Home />} />
-									<Route path="/about" element={<AboutUs />} />
-									<Route path="/service" element={<OurService />} />
-
-									<Route element={<PrivateRoute />}>
-										<Route path="/account" element={<Account />} />
-									</Route>
-								</Route>
-
-								<Route element={<GuestOnlyRoute />}>
-									<Route path="/login" element={<Login />} />
-									<Route path="/verification" element={<EmailVerification />} />
-								</Route>
-
-								<Route element={<PrivateRoute />}>
-									<Route path="/checkout" element={<Checkout />} />
-									<Route
-										path="/registration"
-										element={<IndicatorRegistration />}
-									/>
-								</Route>
-							</Route>
-
-							<Route path="*" element={<NotFound />} />
-						</Routes>
+						<AppRoutes />
 						{toastMessgae.length !== 0 ? (
 							<Toast
 								text={toastMessgae}

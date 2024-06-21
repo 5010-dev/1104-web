@@ -1,5 +1,6 @@
 import { MouseEvent } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 
 import { useAuthDataStore } from '../../../store/authDataStore'
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
@@ -17,7 +18,7 @@ export default function NavigationMenu() {
 	const updateScrollState = useScrollStore((state) => state.updateScrollState)
 
 	const scrollToSubscription = () => {
-		location.pathname === '/'
+		location.pathname === ROUTES.HOME
 			? updateScrollState('isSamePage', true)
 			: updateScrollState('isSamePage', false)
 		updateScrollState('isScrollToSubscription', true)
@@ -28,16 +29,20 @@ export default function NavigationMenu() {
 
 	return (
 		<NavigationMenuContainer $deviceType={deviceType}>
-			<Link className="menu-link" to="/about" onClick={handleClick}>
+			<Link className="menu-link" to={ROUTES.ABOUT} onClick={handleClick}>
 				<span>ABOUT</span>
 			</Link>
-			<Link className="menu-link" to="/service" onClick={handleClick}>
+			<Link className="menu-link" to={ROUTES.SERVICE} onClick={handleClick}>
 				<span>SERVICE</span>
 			</Link>
-			<Link className="menu-link" to="/" onClick={scrollToSubscription}>
+			<Link
+				className="menu-link"
+				to={ROUTES.HOME}
+				onClick={scrollToSubscription}
+			>
 				<span>PRICING</span>
 			</Link>
-			<Link className="menu-link" to="/partnership" onClick={handleClick}>
+			<Link className="menu-link" to={ROUTES.PARTNERSHIP} onClick={handleClick}>
 				<span>PARTNERSHIP</span>
 			</Link>
 			{userId.length === 0 ? (

@@ -16,7 +16,7 @@ export default function AchievementItem(props: AchievementItemProps) {
 
 	const handleClick = (e: MouseEvent<HTMLButtonElement>, url: string): void => {
 		e.preventDefault()
-		window.open(url, '_blank')
+		window.open(url, '_blank', 'noopener,noreferrer')
 	}
 
 	return (

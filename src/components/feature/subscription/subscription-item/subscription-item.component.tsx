@@ -43,9 +43,8 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 			}
 		}
 	}
-	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) => {
-		// TODO: 체험판 신청 페이지로 navigate
-	}
+	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate('/free-trial')
 
 	return (
 		<SubscriptionItemContainer $deviceType={deviceType} $hierarchy={hierarchy}>
@@ -101,13 +100,12 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 					appearance={hierarchy === 'primary' ? 'accent' : 'neutral'}
 					hierarchy={hierarchy}
 					stroke={hierarchy === 'primary' ? 'filled' : 'outlined'}
+					// stroke="filled"
 					shape="rounding"
 					handleClick={price !== 0 ? handleSubscribe : handleTryFree}
 				/>
 				<span id="caption">
-					{price !== 0
-						? '구매 후 30일 이내 환불 가능'
-						: '1:1 무료 상담 후 제공'}
+					{price !== 0 ? '구매 후 7일 이내 환불 가능' : '1:1 무료 상담 후 제공'}
 				</span>
 			</div>
 		</SubscriptionItemContainer>

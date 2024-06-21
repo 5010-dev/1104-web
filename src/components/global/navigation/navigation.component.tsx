@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react'
 
 import { Link, useLocation } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 import { motion, AnimatePresence, useScroll } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -94,7 +95,7 @@ export default function Navigation() {
 			{/* {isBannerOn ? <RegistrationRequiredBanner /> : null} */}
 			<div id="nav-bar">
 				<div className="nav-bar-container" id="nav-bar-left-container">
-					<Link id="home-link" to="/" onClick={handleLogoClick}>
+					<Link id="home-link" to={ROUTES.HOME} onClick={handleLogoClick}>
 						<Logo id="logo" />
 					</Link>
 				</div>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 
 import { useToastMessageStore } from '../../../store/globalUiStore'
 
@@ -25,6 +26,6 @@ export default function PrivateRoute() {
 	return isAuthenticated() ? (
 		<Outlet />
 	) : (
-		<Navigate to="/login" state={{ mode: 'login' }} replace={true} />
+		<Navigate to={ROUTES.LOGIN} state={{ mode: 'login' }} replace={true} />
 	)
 }
