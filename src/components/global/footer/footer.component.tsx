@@ -1,11 +1,13 @@
-// import { MouseEvent } from 'react'
+import { useState, MouseEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useFooterContentsStore } from '../../../store/contents/footerContentsStore'
 
+import { FooterTerms } from './footer.types'
 import { FooterContainer } from './footer.styles'
 
 import TextLink from '../text-link/text-link.component'
+import TermsModal from '../terms-modal/terms-modal.component'
 
 export default function Footer() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -21,6 +23,8 @@ export default function Footer() {
 		csMail,
 		hosting,
 	} = useFooterContentsStore((state) => state.companyInfo)
+	const [showTerms, setShowTerms] = useState<boolean>(false)
+	const [termsData, setTermsData] = useState<FooterTerms>()
 
 	// const handleNumCheckClick = (e: MouseEvent<HTMLSpanElement>) => {
 	// 	const numStr = regNum.replace(/-/g, '')
@@ -28,8 +32,23 @@ export default function Footer() {
 	// 	window.open(`http://www.ftc.go.kr/bizCommPop.do?wrkr_no=${num}`, '_blank')
 	// }
 
+	const handleShowTerms = (
+		e: MouseEvent<HTMLSpanElement> | KeyboardEvent,
+		terms: FooterTerms,
+	) => {
+		terms && setTermsData(terms)
+		setShowTerms((state) => !state)
+	}
+
 	return (
 		<FooterContainer $deviceType={deviceType}>
+			{showTerms && termsData !== undefined ? (
+				<TermsModal
+					title="이벤트 개인정보 제공 동의"
+					terms={termsData}
+					handleClose={(e) => handleShowTerms(e, termsData)}
+				/>
+			) : null}
 			<div id="components-container">
 				<div id="company-info">
 					<img id="company-logo" src={logoUrl} alt="company-logo" />
@@ -54,14 +73,14 @@ export default function Footer() {
 						hierarchy="secondary"
 						size="sm"
 						text="서비스 이용약관"
-						handleClick={() => {}}
+						handleClick={(e) => handleShowTerms(e, 'policyTerms')}
 					/>
 					<TextLink
 						appearance="neutral"
 						hierarchy="secondary"
 						size="sm"
 						text="개인정보 처리방침"
-						handleClick={() => {}}
+						handleClick={(e) => handleShowTerms(e, 'privacyTerms')}
 					/>
 				</div>
 				<div id="disclaimer-container">
@@ -69,7 +88,7 @@ export default function Footer() {
 						<p key={index}>{item}</p>
 					))}
 					<div id="copyright-text">
-						<span>© Copyright 1104 R&I.</span>All rights Reserved
+						<span>© Copyright TEAM 5010.</span>All rights Reserved
 					</div>
 				</div>
 			</div>

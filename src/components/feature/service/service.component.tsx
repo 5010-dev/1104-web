@@ -5,9 +5,9 @@ import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
-import Button from '../../global/button/button.component'
-
 import { ServiceContainer } from './service.styles'
+
+import Button from '../../global/button/button.component'
 
 export default function Service() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -25,8 +25,6 @@ export default function Service() {
 			navigate(`${ROUTES.SERVICE_ITEM(id)}`)
 		}
 	}
-
-	// const handleJoinCommunity
 
 	return (
 		<ServiceContainer $deviceType={deviceType}>
