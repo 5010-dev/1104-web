@@ -44,7 +44,11 @@ export default function Footer() {
 		<FooterContainer $deviceType={deviceType}>
 			{showTerms && termsData !== undefined ? (
 				<TermsModal
-					title="이벤트 개인정보 제공 동의"
+					title={
+						termsData === 'policyTerms'
+							? '서비스 이용약관'
+							: '개인정보 처리방침'
+					}
 					terms={termsData}
 					handleClose={(e) => handleShowTerms(e, termsData)}
 				/>

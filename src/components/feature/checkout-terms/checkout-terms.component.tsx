@@ -29,8 +29,15 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 		toggleAllTermsAgreement,
 		resetServiceTermsStore,
 	} = useServiceTermsStore()
-	const { ecommerce, privacyThirdParty, purchaseAgreement, subscription } =
-		serviceTermsList
+	const {
+		policyTerms,
+		refundPolicy,
+		// ecommerce,
+		// privacyThirdParty,
+		privacyTerms,
+		// purchaseAgreement,
+		// subscription,
+	} = serviceTermsList
 
 	const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputName = e.target.name
@@ -45,18 +52,24 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 
 	useEffect(() => {
 		if (
-			ecommerce.agreement &&
-			privacyThirdParty.agreement &&
-			purchaseAgreement.agreement &&
-			subscription.agreement
+			// ecommerce.agreement &&
+			// privacyThirdParty.agreement &&
+			privacyTerms.agreement &&
+			policyTerms.agreement &&
+			refundPolicy.agreement
+			// purchaseAgreement.agreement &&
+			// subscription.agreement
 		) {
 			setIsAllChecked(true)
 		} else setIsAllChecked(false)
 	}, [
-		ecommerce.agreement,
-		privacyThirdParty.agreement,
-		purchaseAgreement.agreement,
-		subscription.agreement,
+		// ecommerce.agreement,
+		privacyTerms.agreement,
+		policyTerms.agreement,
+		// privacyThirdParty.agreement,
+		refundPolicy.agreement,
+		// purchaseAgreement.agreement,
+		// subscription.agreement,
 	])
 
 	return (
@@ -74,7 +87,7 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 				</div>
 
 				<div className="container-row" id="terms-container">
-					<Accordion
+					{/* <Accordion
 						heading={
 							<CheckBox
 								hierarchy="secondary"
@@ -88,8 +101,38 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 						body={<ServiceTerms terms="purchaseAgreement" height="8rem" />}
 						container={false}
 						size="sm"
+					/> */}
+					<Accordion
+						heading={
+							<CheckBox
+								hierarchy="secondary"
+								size="sm"
+								name="policyTerms"
+								checked={policyTerms.agreement}
+								text="서비스 이용약관 동의"
+								handleCheck={handleCheck}
+							/>
+						}
+						body={<ServiceTerms terms="policyTerms" height="8rem" />}
+						container={false}
+						size="sm"
 					/>
 					<Accordion
+						heading={
+							<CheckBox
+								hierarchy="secondary"
+								size="sm"
+								name="privacyTerms"
+								checked={privacyTerms.agreement}
+								text="개인정보 수집 이용 및 제 3자 제공 동의"
+								handleCheck={handleCheck}
+							/>
+						}
+						body={<ServiceTerms terms="privacyTerms" height="8rem" />}
+						container={false}
+						size="sm"
+					/>
+					{/* <Accordion
 						heading={
 							<CheckBox
 								hierarchy="secondary"
@@ -103,8 +146,23 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 						body={<ServiceTerms terms="privacyThirdParty" height="8rem" />}
 						container={false}
 						size="sm"
-					/>
+					/> */}
 					<Accordion
+						heading={
+							<CheckBox
+								hierarchy="secondary"
+								size="sm"
+								name="refundPolicy"
+								checked={refundPolicy.agreement}
+								text="환불 및 취소 정책 동의"
+								handleCheck={handleCheck}
+							/>
+						}
+						body={<ServiceTerms terms="refundPolicy" height="8rem" />}
+						container={false}
+						size="sm"
+					/>
+					{/* <Accordion
 						heading={
 							<CheckBox
 								hierarchy="secondary"
@@ -118,8 +176,8 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 						body={<ServiceTerms terms="subscription" height="8rem" />}
 						container={false}
 						size="sm"
-					/>
-					<Accordion
+					/> */}
+					{/* <Accordion
 						heading={
 							<CheckBox
 								hierarchy="secondary"
@@ -133,7 +191,7 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 						body={<ServiceTerms terms="ecommerce" height="8rem" />}
 						container={false}
 						size="sm"
-					/>
+					/> */}
 				</div>
 			</CheckoutTermsContainer>
 			<Button
