@@ -59,6 +59,7 @@ export interface HomeContentsState {
 	service: {
 		items: {
 			imgUrl: string
+			title: string
 			caption: string
 			heading: string
 			body: string
@@ -127,20 +128,23 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 		items: [
 			{
 				imgUrl: serviceImage1,
+				title: '5010',
 				caption: '5010 매매 전략',
-				heading: '절대 지지 않는 방법이 계속해서 이기는 방법이다.',
+				heading: '절대 지지 않는 방법이 계속해서 이기는 방법',
 				body: '쉽고 명확하고 과학적인 방법으로. 5010 매매 전략은 투자 시장의 모든 것을 총망라한, 단순 기법이 아닌 전략으로서의 투자 교육입니다.',
 				buttonText: '5010 매매 전략 자세히 보기 →',
 			},
 			{
 				imgUrl: serviceImage2,
-				caption: '5010 인디케이터',
-				heading: '가격 형성 원리에 입각한 매매 보조 지표',
-				body: '5010 매매 전략을 보조하기 위해 개발되었습니다. 가장 단순하고 명확하게, 기계적인 매매가 가능하도록, 그래서 누구나 사용할 수 있도록 만들었습니다.',
-				buttonText: '5010 인디케이터 자세히 보기 →',
+				title: 'quant',
+				caption: '5010 퀀트 솔루션',
+				heading: '기술과 수학의 힘으로 전통적 투자의 한계를 넘어',
+				body: '데이터 과학과 인공지능 기술을 활용하여 금융시장의 복잡한 패턴을 분석하고, 최적의 매매 전략을 수립하고 실행하는 자동화 솔루션입니다.',
+				buttonText: '5010 퀀트 솔루션 자세히 보기 →',
 			},
 			{
 				imgUrl: serviceImage3,
+				title: 'community',
 				caption: '1104 R&I 공식 커뮤니티',
 				heading: '투자는 단거리 경주가 아닌 끝없는 마라톤',
 				body: '여러분이 초심을 잃지 않고 나아갈 수 있도록, 잘못된 투자 방식 교정과 동기부여 지속 제공을 통해 페이스 페이커가 되어 여러분과 함께 합니다.',

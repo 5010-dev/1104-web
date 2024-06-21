@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 import backgroundImage from '../../assets/img/home-about-image.webp'
 import educationImage from '../../assets/img/service-image-1.webp'
-import quantImage from '../../assets/img/service-quant-image.webp'
+import quantImage from '../../assets/img/service-image-2.webp'
 import bannerBackgroundImage from '../../assets/img/banner-background-img.webp'
 
 type Hero = {
