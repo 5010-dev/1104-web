@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +17,7 @@ export default function RegistrationRequiredBanner() {
 	const navigate = useNavigateWithScroll()
 
 	const handleSettingStart = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/registration')
+		navigate(ROUTES.REGISTRATION)
 
 	return (
 		<Banner

@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { Helmet } from 'react-helmet-async'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -40,7 +41,7 @@ export default function AuthLayout(props: AuthLayoutProps) {
 						id="company-logo"
 						src={logoUrl}
 						alt="company-logo"
-						onClick={() => navigate('/')}
+						onClick={() => navigate(ROUTES.HOME)}
 					/>
 					<button id="close-icon" aria-label="top-row" onClick={handleClose}>
 						<FontAwesomeIcon icon={faXmark} />

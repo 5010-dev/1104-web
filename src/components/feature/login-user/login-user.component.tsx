@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
@@ -23,7 +24,7 @@ export default function LoginUser() {
 		window.scrollTo({
 			top: 0,
 		})
-		navigate('/account')
+		navigate(ROUTES.ACCOUNT)
 	}
 
 	const handleSignOut = async (e: MouseEvent<HTMLSpanElement>) => {
@@ -31,7 +32,7 @@ export default function LoginUser() {
 			await logout()
 			resetLoginUser()
 			updateToastMessage('성공적으로 로그아웃 되었습니다.')
-			navigate('/')
+			navigate(ROUTES.HOME)
 		} catch (error: any) {
 			console.log(error.message)
 		}

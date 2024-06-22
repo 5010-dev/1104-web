@@ -5,11 +5,10 @@ import premiumThumbnailImg from '../assets/img/plan-thumbnail-premium-img.webp'
 import freeThumbnailImg from '../assets/img/plan-thumbnail-free-img.webp'
 
 export type ServicePlan = 'FREE' | 'PREMIUM' | 'ULTIMATE'
-export type ServiceTitle = 'trial' | '5010' | 'quant'
 
 export type Service = {
 	id: number
-	title: ServiceTitle
+	title: string
 	name: string
 	plan: ServicePlan
 	tag: string[]
@@ -17,6 +16,7 @@ export type Service = {
 	thumbnailImg: string
 	summary: string
 	features: string[]
+	overview: string[]
 	price: number
 	priceCaption: string
 }
@@ -53,7 +53,8 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			thumbnailImg: freeThumbnailImg,
 			summary:
 				'1:1 무료 상담부터 받고, 부담없이 5010 매매 전략 전자책 체험판과 5010 인디케이터를 무료로 체험해 보세요.',
-			features: [
+			features: [],
+			overview: [
 				'5010 매매 전략 전자책 체험판',
 				'5010 인디케이터 무료 체험 3일',
 				'체험판 이용 중 구매시 할인 혜택 (별도 안내)',
@@ -71,7 +72,8 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			thumbnailImg: premiumThumbnailImg,
 			summary:
 				'전자책, 인디케이터, 자산설계, 그리고 진입시점 및 기술적 분석 강의 VOD까지, 5010 매매 전략의 모든 것을 누려보세요.',
-			features: [
+			features: ['전자책', 'VOD', '인디케이터'],
+			overview: [
 				'5010 매매 전략 전자책',
 				'5010 인디케이터 + 자산 설계',
 				'5010 강의 VOD + 강의자료',
@@ -92,7 +94,8 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			thumbnailImg: ultimateThumbnailImg,
 			summary:
 				'새롭게 선보이는 르네상스 퀀트 솔루션은 리스크 관리에 초점을 맞춘 개량적 투자 전략과 자동 매매 시스템을 제공해요.',
-			features: [
+			features: ['인디케이터', '자동 매매', '대시보드 (예정)'],
+			overview: [
 				'24시간 자동 매매 시스템',
 				// '퀀트 솔루션 전용 인디케이터',
 				// '퀀트 솔루션 백테스팅',

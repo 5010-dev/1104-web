@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react'
-
 import { Link, useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 import { motion, AnimatePresence, useScroll } from 'framer-motion'
@@ -68,7 +67,7 @@ export default function Navigation() {
 	// 	if (
 	// 		loginUser.userId &&
 	// 		loginUser.tradingviewId.length === 0 &&
-	// 		location.pathname === '/'
+	// 		location.pathname === ROUTES.HOME
 	// 	) {
 	// 		updateBanerVisibility(true)
 	// 	} else {

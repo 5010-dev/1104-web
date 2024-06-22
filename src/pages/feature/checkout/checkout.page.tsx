@@ -1,5 +1,6 @@
 import { useEffect, MouseEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { RequestPayParams, RequestPayResponse } from 'iamport-typings'
@@ -50,7 +51,8 @@ export default function Checkout() {
 		return str.replace(/\[[^\]]+\]\s*/, '')
 	}
 
-	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate('/')
+	const handleClose = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate(ROUTES.HOME)
 
 	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		// TODO: 결제 요청 및 확인 API 호출 구현
@@ -109,7 +111,7 @@ export default function Checkout() {
 	useEffect(() => {
 		if (isUserDataLoaded) {
 			if (userId.length === 0) {
-				navigate('/')
+				navigate(ROUTES.HOME)
 			}
 		}
 	}, [userId, navigate, checkoutItem, isUserDataLoaded])

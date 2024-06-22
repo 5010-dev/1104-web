@@ -17,6 +17,7 @@ type Hero = {
 
 type Service = {
 	image: string
+	id: number
 	heading: string
 	subheading: string
 	features: string[]
@@ -54,6 +55,7 @@ export const useOurServiceContentsStore = create<OurServiceContentsState>(
 		serviceList: [
 			{
 				image: educationImage,
+				id: 0,
 				heading: '5010 매매 전략',
 				subheading: '쉽고 명확하며 과학적인 투자의 길',
 				features: ['전자책', 'VOD', '인디케이터'],
@@ -65,6 +67,7 @@ export const useOurServiceContentsStore = create<OurServiceContentsState>(
 			},
 			{
 				image: quantImage,
+				id: 1,
 				heading: '르네상스 퀀트 솔루션',
 				subheading: '전통적 투자의 한계를 넘어',
 				features: ['인디케이터', '자동 매매', '백테스팅 전략'],

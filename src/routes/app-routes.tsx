@@ -29,10 +29,7 @@ export default function AppRoutes() {
 					<Route index element={<Home />} />
 					<Route path={ROUTES.ABOUT} element={<AboutUs />} />
 					<Route path={ROUTES.SERVICE} element={<OurService />} />
-					<Route
-						path={ROUTES.SERVICE_ITEM('quant')}
-						element={<ServiceQuant />}
-					/>
+					<Route path={ROUTES.SERVICE_ITEM.path} element={<ServiceQuant />} />
 
 					<Route element={<PrivateRoute />}>
 						<Route path={ROUTES.ACCOUNT} element={<Account />} />

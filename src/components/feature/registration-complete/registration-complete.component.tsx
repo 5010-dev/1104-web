@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
@@ -18,7 +19,8 @@ export default function RegistrationComplete() {
 	const navigate = useNavigateWithScroll()
 	const userId = useAuthDataStore((state) => state.loginUser.userId)
 
-	const handleGoHome = (e: MouseEvent<HTMLButtonElement>) => navigate('/')
+	const handleGoHome = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate(ROUTES.HOME)
 
 	const handleSeeDetails = (e: MouseEvent<HTMLDivElement>) =>
 		window.open(
@@ -28,7 +30,7 @@ export default function RegistrationComplete() {
 		)
 
 	const handleSeeProgress = (e: MouseEvent<HTMLDivElement>) =>
-		navigate('/account', { replace: true })
+		navigate(ROUTES.ACCOUNT, { replace: true })
 
 	return (
 		<RgistrationCompleteContainer>

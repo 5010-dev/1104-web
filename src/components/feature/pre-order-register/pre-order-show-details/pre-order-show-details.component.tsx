@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../../routes/routes'
 import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
@@ -24,7 +25,7 @@ export default function PreOrderShowDetails() {
 	})
 
 	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/pre-order?details')
+		navigate(`${ROUTES.PRE_ORDER}?details`)
 
 	return (
 		<PreOrderShowDetailsContainer

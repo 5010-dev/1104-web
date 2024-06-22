@@ -1,3 +1,5 @@
+import { ROUTES } from '../../../routes/routes'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
@@ -21,12 +23,12 @@ export default function LoginButton(props: LoginButtonProps) {
 			window.scrollTo({
 				top: 0,
 			})
-			navigate('/login', { routeState: 'signup' })
+			navigate(ROUTES.LOGIN, { routeState: 'signup' })
 		} else {
 			window.scrollTo({
 				top: 0,
 			})
-			navigate('/login', { routeState: 'login' })
+			navigate(ROUTES.LOGIN, { routeState: 'login' })
 		}
 	}
 

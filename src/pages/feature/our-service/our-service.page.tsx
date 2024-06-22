@@ -26,31 +26,25 @@ export default function OurService() {
 	const updateScrollState = useScrollStore((state) => state.updateScrollState)
 
 	const handleFreeTrial = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/free-trial')
+		navigate(ROUTES.FREE_TRIAL)
 
 	const handleUseService = (e: MouseEvent<HTMLButtonElement>) => {
-		navigate('/')
+		navigate(ROUTES.HOME)
 		location.pathname === ROUTES.HOME
 			? updateScrollState('isSamePage', true)
 			: updateScrollState('isSamePage', false)
 		updateScrollState('isScrollToSubscription', true)
 	}
 
-	// TODO: 패스네임들을 정리해 둘 필요가 있음 (route.ts 상수로 정리)
-	const pathNameList = ['5010', 'quant']
-
-	const handleNavigate = (
-		e: MouseEvent<HTMLButtonElement>,
-		pathName: string,
-	) => {
+	const handleNavigate = (e: MouseEvent<HTMLButtonElement>, itemId: number) => {
 		// HACK: 5010 매매 전략 D2C 판매 준비 전까지
-		if (pathName === '5010') {
+		if (itemId === 0) {
 			window.open(
 				'https://kmong.com/gig/455172',
 				'_blank',
 				'noopener,noreferrer',
 			)
-		} else navigate(pathName)
+		} else navigate(`${ROUTES.SERVICE_ITEM.createPath(itemId)}`)
 	}
 
 	return (
@@ -90,7 +84,7 @@ export default function OurService() {
 							body={item.body}
 							freeTrial={item.freeTrial}
 							features={item.features}
-							handleSeeDetails={(e) => handleNavigate(e, pathNameList[index])}
+							handleSeeDetails={(e) => handleNavigate(e, item.id)}
 							handleFreeTrial={handleFreeTrial}
 						/>
 					))}

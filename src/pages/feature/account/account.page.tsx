@@ -1,4 +1,5 @@
 import { useEffect, MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -36,7 +37,7 @@ export default function Account() {
 	useEffect(() => {
 		if (isUserDataLoaded) {
 			if (userId.length === 0) {
-				navigate('/')
+				navigate(ROUTES.HOME)
 			}
 		}
 	}, [userId, navigate, isUserDataLoaded])

@@ -1,4 +1,5 @@
 import { useState, useEffect, FormEvent, MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { useAuthDataStore } from '../../../store/authDataStore'
 import {
@@ -54,7 +55,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 
 			updateToastMessage('회원 가입이 완료되었습니다.')
 			resetAuthData()
-			navigate('/')
+			navigate(ROUTES.HOME)
 		} catch (error: any) {
 			updateToastMessage(error.message)
 		} finally {

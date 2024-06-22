@@ -1,4 +1,5 @@
 import { useState, FormEvent, MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { signUp, sendVerification } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -24,7 +25,7 @@ export default function SignupForm() {
 	const navigate = useNavigateWithScroll()
 
 	const handleLoginLink = (e: MouseEvent<HTMLSpanElement>) => {
-		navigate('/login', { replace: true, routeState: 'login' })
+		navigate(ROUTES.LOGIN, { replace: true, routeState: 'login' })
 	}
 
 	const handleAgreeButton = (e: MouseEvent<HTMLButtonElement>) =>

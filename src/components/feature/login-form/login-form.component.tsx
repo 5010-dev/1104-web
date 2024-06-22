@@ -1,4 +1,5 @@
 import { useEffect, FormEvent, MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { login } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -20,7 +21,7 @@ export default function LoginForm() {
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 
 	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) =>
-		navigate('/login', { replace: true, routeState: 'signup' })
+		navigate(ROUTES.LOGIN, { replace: true, routeState: 'signup' })
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -40,10 +41,12 @@ export default function LoginForm() {
 				updateLoginUser('userId', loginEmail)
 				updateLoginUser('isEmailVerified', is_email_verified)
 				updateToastMessage('성공적으로 로그인 했습니다.')
-				navigate('/')
+				navigate(ROUTES.HOME)
 			} else {
 				updateToastMessage('이메일 인증이 필요합니다.')
-				navigate(`/verification?email=${loginEmail}`, { replace: true })
+				navigate(`${ROUTES.VERIFICATION}?email=${loginEmail}`, {
+					replace: true,
+				})
 			}
 		} catch (error: any) {
 			updateToastMessage(error.message)
@@ -54,7 +57,7 @@ export default function LoginForm() {
 
 	useEffect(() => {
 		if (userId && isEmailVerified) {
-			navigate('/')
+			navigate(ROUTES.HOME)
 		}
 	}, [userId, isEmailVerified, navigate])
 

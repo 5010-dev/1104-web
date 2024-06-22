@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
@@ -16,7 +17,8 @@ export default function About() {
 	const { items } = useHomeContentsStore((state) => state.about)
 	const navigate = useNavigateWithScroll()
 
-	const hadleAboutUs = (e: MouseEvent<HTMLButtonElement>) => navigate('/about')
+	const hadleAboutUs = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate(ROUTES.ABOUT)
 
 	return (
 		<AboutContainer $deviceType={deviceType}>

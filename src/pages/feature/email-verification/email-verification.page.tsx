@@ -1,5 +1,6 @@
 import { useEffect, MouseEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 
 import Lottie from 'lottie-react'
 import verificationAnim from '../../../assets/lottie/verification-anim.json'
@@ -29,7 +30,7 @@ export default function EmailVerification() {
 
 	useEffect(() => {
 		if (!email) {
-			navigate('/login', { routeState: 'login', replace: true })
+			navigate(ROUTES.LOGIN, { routeState: 'login', replace: true })
 		}
 	}, [email, navigate])
 

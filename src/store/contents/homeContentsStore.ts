@@ -59,7 +59,7 @@ export interface HomeContentsState {
 	service: {
 		items: {
 			imgUrl: string
-			title: string
+			id: number | null
 			caption: string
 			heading: string
 			body: string
@@ -98,8 +98,8 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 			display: 'Elevate your investing journey',
 			subheading:
 				'금융 전문가와 수학자들이 설계한 최첨단 기술을 통해 여러분의 거래 경험을 향상해 보세요.',
-			ctaButtonText: '5010 매매전략 무료 전자책 받기 →',
-			linkText: '1:1 무료 상담받고 다양한 이벤트에 참여해 보세요!',
+			ctaButtonText: '지금 바로 서비스 이용하기 →',
+			linkText: '1:1 무료 상담받고 5010 전자책 체험판 받아보세요!',
 		},
 	},
 	about: {
@@ -128,15 +128,15 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 		items: [
 			{
 				imgUrl: serviceImage1,
-				title: '5010',
+				id: 0,
 				caption: '5010 매매 전략',
-				heading: '절대 지지 않는 방법이 계속해서 이기는 방법',
+				heading: '절대 지지 않는 방법이 계속해서 이기는 방법이다.',
 				body: '쉽고 명확하고 과학적인 방법으로. 5010 매매 전략은 투자 시장의 모든 것을 총망라한, 단순 기법이 아닌 전략으로서의 투자 교육입니다.',
 				buttonText: '5010 매매 전략 자세히 보기 →',
 			},
 			{
 				imgUrl: serviceImage2,
-				title: 'quant',
+				id: 1,
 				caption: '5010 퀀트 솔루션',
 				heading: '기술과 수학의 힘으로 전통적 투자의 한계를 넘어',
 				body: '데이터 과학과 인공지능 기술을 활용하여 금융시장의 복잡한 패턴을 분석하고, 최적의 매매 전략을 수립하고 실행하는 자동화 솔루션입니다.',
@@ -144,7 +144,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 			},
 			{
 				imgUrl: serviceImage3,
-				title: 'community',
+				id: null,
 				caption: '1104 R&I 공식 커뮤니티',
 				heading: '투자는 단거리 경주가 아닌 끝없는 마라톤',
 				body: '여러분이 초심을 잃지 않고 나아갈 수 있도록, 잘못된 투자 방식 교정과 동기부여 지속 제공을 통해 페이스 페이커가 되어 여러분과 함께 합니다.',

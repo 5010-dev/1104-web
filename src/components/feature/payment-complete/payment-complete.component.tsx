@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
@@ -16,10 +17,10 @@ export default function PaymentComplete() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const navigate = useNavigateWithScroll()
 
-	const handleHome = (e: MouseEvent<HTMLSpanElement>) => navigate('/')
+	const handleHome = (e: MouseEvent<HTMLSpanElement>) => navigate(ROUTES.HOME)
 
 	// const handleRegistration = (e: MouseEvent<HTMLButtonElement>) =>
-	// 	navigate('/registration')
+	// 	navigate(ROUTES.REGISTRATION)
 
 	return (
 		<PaymentCompleteContainer $deviceType={deviceType}>

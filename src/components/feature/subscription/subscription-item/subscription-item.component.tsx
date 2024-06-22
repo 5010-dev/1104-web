@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../../routes/routes'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
@@ -17,7 +18,7 @@ import Button from '../../../global/button/button.component'
 
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
-	const { plan, id, name, tag, summary, features, price, priceCaption } = item
+	const { plan, id, name, tag, summary, overview, price, priceCaption } = item
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
@@ -38,13 +39,13 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 				updateCheckoutItem('id', id)
 				navigate(`/checkout?id=${id}&name=${name}&plan=${plan}`)
 			} else {
-				navigate('/login', { routeState: 'signup' })
+				navigate(ROUTES.LOGIN, { routeState: 'signup' })
 				updateToastMessage('회원가입 및 로그인이 필요합니다.')
 			}
 		}
 	}
 	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/free-trial')
+		navigate(ROUTES.FREE_TRIAL)
 
 	return (
 		<SubscriptionItemContainer $deviceType={deviceType} $hierarchy={hierarchy}>
@@ -80,7 +81,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 				<div id="description-text-container">
 					<p id="body">{summary}</p>
 					<div id="features-text-container">
-						{features.map((item, index) => (
+						{overview.map((item, index) => (
 							<div key={index} className="feature-text">
 								<FontAwesomeIcon
 									icon={faCircleCheck}

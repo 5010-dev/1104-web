@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 
@@ -29,7 +30,7 @@ export default function PreOrderDetails() {
 	const titleRightLetters = titleRight.split('')
 
 	const handleRegister = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/pre-order?register')
+		navigate(`${ROUTES.PRE_ORDER}?register`)
 
 	return (
 		<PreOrderDetailsContainer
