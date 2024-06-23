@@ -4,7 +4,57 @@ import ultimateThumbnailImg from '../assets/img/plan-thumbnail-ultimate-img.webp
 import premiumThumbnailImg from '../assets/img/plan-thumbnail-premium-img.webp'
 import freeThumbnailImg from '../assets/img/plan-thumbnail-free-img.webp'
 
+import quantDetails_01 from '../assets/img/service-details/quant/Quant_1024_01_01_gif.gif'
+import quantDetails_02 from '../assets/img/service-details/quant/Quant_1024_01_02_gif.gif'
+import quantDetails_03 from '../assets/img/service-details/quant/Quant_1024_01_03_s_gif.gif'
+import quantDetails_04 from '../assets/img/service-details/quant/Quant_1024_02_01_gif.gif'
+import quantDetails_05 from '../assets/img/service-details/quant/Quant_1024_02_02_s_gif.gif'
+import quantDetails_06 from '../assets/img/service-details/quant/Quant_1024_02_03_gif.gif'
+import quantDetails_07 from '../assets/img/service-details/quant/Quant_1024_02_04_gif.gif'
+import quantDetails_08 from '../assets/img/service-details/quant/Quant_1024_03_01_gif.gif'
+import quantDetails_09 from '../assets/img/service-details/quant/Quant_1024_03_02_gif.gif'
+import quantDetails_10 from '../assets/img/service-details/quant/Quant_1024_03_03_gif.gif'
+import quantDetails_11 from '../assets/img/service-details/quant/Quant_1024_03_04_gif.gif'
+import quantDetails_12 from '../assets/img/service-details/quant/Quant_1024_03_05_gif.gif'
+import quantDetails_13 from '../assets/img/service-details/quant/Quant_1024_04_01_gif.gif'
+import quantDetails_14 from '../assets/img/service-details/quant/Quant_1024_04_02_gif.gif'
+import quantDetails_15 from '../assets/img/service-details/quant/Quant_1024_04_03.jpg'
+import quantDetails_16 from '../assets/img/service-details/quant/Quant_1024_04_04_gif.gif'
+import quantDetails_17 from '../assets/img/service-details/quant/Quant_1024_05_01_gif.gif'
+import quantDetails_18 from '../assets/img/service-details/quant/Quant_1024_05_02.jpg'
+import quantDetails_19 from '../assets/img/service-details/quant/Quant_1024_05_03_gif.gif'
+
 export type ServicePlan = 'FREE' | 'PREMIUM' | 'ULTIMATE'
+
+const quantDetails: string[] = [
+	quantDetails_01,
+	quantDetails_02,
+	quantDetails_03,
+	quantDetails_04,
+	quantDetails_05,
+	quantDetails_06,
+	quantDetails_07,
+	quantDetails_08,
+	quantDetails_09,
+	quantDetails_10,
+	quantDetails_11,
+	quantDetails_12,
+	quantDetails_13,
+	quantDetails_14,
+	quantDetails_15,
+	quantDetails_16,
+	quantDetails_17,
+	quantDetails_18,
+	quantDetails_19,
+]
+
+const servieNotes: string[] = [
+	'전자책 및 VOD 등의 디지털 제품은 영구 소장 가능합니다.',
+	'인디케이터 및 자동화 서비스는 결제일로부터 31일간 사용 가능합니다.',
+	'결제 후, 서비스 초기 셋팅을 위해 5010.cs.kr@5010.tech 이메일을 통해 결제자 이메일로 업무일 기준 24시간 이내 연락을 드립니다.',
+	'사용 기간 종료 이후에는 재구매를 통해 서비스를 계속해서 이용할 수 있습니다.',
+	'첫 구매 이후 재구매 시에는 초기 설치 비용을 제외한 비용만 청구됩니다.',
+]
 
 export type Service = {
 	id: number
@@ -19,6 +69,8 @@ export type Service = {
 	overview: string[]
 	price: number
 	priceCaption: string
+	details?: string[]
+	notes?: string[]
 }
 
 export interface ServiceDataState {
@@ -83,6 +135,8 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			],
 			price: 1550000,
 			priceCaption: '최초 결제 비용 | 이후 ₩228,000',
+			// TODO: 추후 D2C에서 5010 매매 전략 판매시, 상세페이지 추가 필요 (최종적으로는 서버에서 처리해야함)
+			notes: servieNotes,
 		},
 		{
 			id: 1,
@@ -105,6 +159,8 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			],
 			price: 7500000,
 			priceCaption: '최초 결제 비용 | 이후 ₩50,000',
+			details: quantDetails,
+			notes: servieNotes,
 		},
 	],
 }))

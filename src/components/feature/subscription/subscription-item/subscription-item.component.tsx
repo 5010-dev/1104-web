@@ -36,8 +36,9 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 			)
 		} else {
 			if (userId) {
+				// TODO: updateCheckoutItem 유지할 필요 있는지 체크 필요
 				updateCheckoutItem('id', id)
-				navigate(`/checkout?id=${id}&name=${name}&plan=${plan}`)
+				navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${name}&plan=${plan}`)
 			} else {
 				navigate(ROUTES.LOGIN, { routeState: 'signup' })
 				updateToastMessage('회원가입 및 로그인이 필요합니다.')

@@ -1,23 +1,15 @@
-import styled from 'styled-components'
-
-import { getDeviceTypePadding } from '../../../utils/device.utils'
+import styled, { createGlobalStyle } from 'styled-components'
 
 import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
 
+const globalStyled = { createGlobalStyle }
+
 export const ServiceItemContainer = styled(PageLayoutContainer)`
 	position: relative;
+`
 
-	div#service-item-contents-container {
-		width: ${({ theme }) => theme.layout.section.width};
-		max-width: ${({ theme }) => theme.layout.section.maxWidth};
-
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-
-		padding: ${({ theme, $deviceType }) =>
-			getDeviceTypePadding(theme, $deviceType, 'section')};
-		padding-top: 6rem;
+export const ServiceItemDetialsGlobalStyle = globalStyled.createGlobalStyle`
+	body {
+		background-color: #000;
 	}
 `

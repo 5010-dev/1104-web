@@ -1,4 +1,5 @@
 import { To, useNavigate } from 'react-router-dom'
+import { useCallback } from 'react'
 
 /**
  * 주어진 경로로 이동하고 스크롤을 최상단으로 이동하는 커스텀 훅
@@ -15,27 +16,31 @@ export default function useNavigateWithScroll() {
 	 * @param options.routeState 라우트 상태로 전달할 값
 	 * @param options.smooth 부드러운 스크롤 효과 적용 여부
 	 */
-	const navigateWithScroll = (
-		pathOrIndex: string | number,
-		options: {
-			replace?: boolean
-			routeState?: string
-			smooth?: boolean
-		} = {},
-	) => {
-		const { replace = false, routeState, smooth = false } = options
+	const navigateWithScroll = useCallback(
+		(
+			pathOrIndex: string | number,
+			options: {
+				replace?: boolean
+				routeState?: string
+				smooth?: boolean
+			} = {},
+		) => {
+			const { replace = false, routeState, smooth = false } = options
 
-		const navigateOptions: { replace?: boolean; state?: { mode: string } } = {}
+			const navigateOptions: { replace?: boolean; state?: { mode: string } } =
+				{}
 
-		if (routeState) navigateOptions.state = { mode: routeState }
-		if (replace) navigateOptions.replace = replace
+			if (routeState) navigateOptions.state = { mode: routeState }
+			if (replace) navigateOptions.replace = replace
 
-		if (typeof pathOrIndex === 'number') navigate(pathOrIndex)
-		else navigate(pathOrIndex as To, navigateOptions)
+			if (typeof pathOrIndex === 'number') navigate(pathOrIndex)
+			else navigate(pathOrIndex as To, navigateOptions)
 
-		if (smooth) window.scrollTo({ top: 0, behavior: 'smooth' })
-		else window.scrollTo({ top: 0, behavior: 'auto' })
-	}
+			if (smooth) window.scrollTo({ top: 0, behavior: 'smooth' })
+			else window.scrollTo({ top: 0, behavior: 'auto' })
+		},
+		[navigate],
+	)
 
 	return navigateWithScroll
 }
