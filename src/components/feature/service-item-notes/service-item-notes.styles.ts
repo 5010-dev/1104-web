@@ -16,7 +16,7 @@ export const ServiceItemNotesContainer = styled(SectionContainer)`
 		color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
 	}
 
-	.service-item-notes-card ul.service-item-notes-ul {
+	ul.service-item-notes-ul {
 		width: ${({ theme }) => theme.layout.container.width};
 
 		display: flex;

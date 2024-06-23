@@ -42,7 +42,17 @@ export default function ServiceItemNotes(props: ServiceItemNotesProps) {
 				heading={
 					<h3 className="service-item-accordion-heading">상품 정보 고시</h3>
 				}
-				body={<div></div>}
+				body={
+					item.serviceInfo ? (
+						<ul className="service-item-notes-ul">
+							{item.serviceInfo.map((item, index) => (
+								<li key={index} className="service-item-notes-li">
+									{item}
+								</li>
+							))}
+						</ul>
+					) : null
+				}
 				size="md"
 				container
 			/>

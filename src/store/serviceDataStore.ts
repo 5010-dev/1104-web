@@ -56,6 +56,16 @@ const servieNotes: string[] = [
 	'첫 구매 이후 재구매 시에는 초기 설치 비용을 제외한 비용만 청구됩니다.',
 ]
 
+const serviceInfo: string[] = [
+	'제작자 또는 공급자: TEAM 5010',
+	'이용조건: 상품 상세 참조',
+	'상품 제공 방식: 상품 상세 참조',
+	'최소 시스템 사양, 필수 소프트위어: 상품 상세 참조',
+	'청약철회 또는 계약해지의 효과: 상품 상세 참조',
+	'이용조건: 상품 상세 참조',
+	'소비자상담전화: (TEAM 5010 고객센터) 010-7520-1301',
+]
+
 export type Service = {
 	id: number
 	title: string
@@ -71,6 +81,7 @@ export type Service = {
 	priceCaption: string
 	details?: string[]
 	notes?: string[]
+	serviceInfo?: string[]
 }
 
 export interface ServiceDataState {
@@ -137,6 +148,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			priceCaption: '최초 결제 비용 | 이후 ₩228,000',
 			// TODO: 추후 D2C에서 5010 매매 전략 판매시, 상세페이지 추가 필요 (최종적으로는 서버에서 처리해야함)
 			notes: servieNotes,
+			serviceInfo: serviceInfo,
 		},
 		{
 			id: 1,
@@ -161,6 +173,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 			priceCaption: '최초 결제 비용 | 이후 ₩50,000',
 			details: quantDetails,
 			notes: servieNotes,
+			serviceInfo: serviceInfo,
 		},
 	],
 }))
