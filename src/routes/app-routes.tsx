@@ -17,7 +17,7 @@ import OurService from '../pages/feature/our-service/our-service.page'
 import Account from '../pages/feature/account/account.page'
 import IndicatorRegistration from '../pages/feature/indicator-registration/indicator-registration.page'
 import PreOrder from '../pages/feature/pre-order/pre-order.page'
-import ServiceQuant from '../pages/feature/service-quant/service-quant.page'
+import ServiceItem from '../pages/feature/service-item/service-item.page'
 
 export default function AppRoutes() {
 	return (
@@ -29,7 +29,7 @@ export default function AppRoutes() {
 					<Route index element={<Home />} />
 					<Route path={ROUTES.ABOUT} element={<AboutUs />} />
 					<Route path={ROUTES.SERVICE} element={<OurService />} />
-					<Route path={ROUTES.SERVICE_ITEM.path} element={<ServiceQuant />} />
+					<Route path={ROUTES.SERVICE_ITEM.path} element={<ServiceItem />} />
 
 					<Route element={<PrivateRoute />}>
 						<Route path={ROUTES.ACCOUNT} element={<Account />} />
