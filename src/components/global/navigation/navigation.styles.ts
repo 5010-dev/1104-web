@@ -9,7 +9,7 @@ import { NavigationContainerProps } from './navigation.types'
 type Props = NavigationContainerProps
 
 export const NavigationContainer = styled(motion.header)<Props>`
-	position: ${(props) => (props.$isOverlaped ? 'fixed' : 'sticky')};
+	position: ${({ $isOverlaped }) => ($isOverlaped ? 'fixed' : 'sticky')};
 	top: 0;
 
 	width: ${({ theme }) => theme.layout.component.width};

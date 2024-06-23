@@ -27,6 +27,14 @@ export interface ScrollAction {
 // 	updateBanerVisibility: (value: boolean) => void
 // }
 
+export interface NavigationState {
+	showNavigation: boolean
+}
+
+export interface NavigationAction {
+	updateshowNavigation: (value: boolean) => void
+}
+
 export const useToastMessageStore = create<
 	ToastMessageState & ToastMessageAction
 >((set) => ({
@@ -49,3 +57,10 @@ export const useScrollStore = create<ScrollState & ScrollAction>((set) => ({
 // 	isBannerOn: false,
 // 	updateBanerVisibility: (value) => set({ isBannerOn: value }),
 // }))
+
+export const useNavigationStore = create<NavigationState & NavigationAction>(
+	(set) => ({
+		showNavigation: true,
+		updateshowNavigation: (value) => set({ showNavigation: value }),
+	}),
+)
