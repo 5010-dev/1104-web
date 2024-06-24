@@ -19,7 +19,7 @@ export default function PreOrderService() {
 	const navigate = useNavigateWithScroll()
 
 	const { ref, fadeInVariants, controls } = useFadeIn({
-		delay: 0.25,
+		threshold: 0.25,
 	})
 
 	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) =>

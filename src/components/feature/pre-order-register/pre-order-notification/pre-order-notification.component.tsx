@@ -19,7 +19,7 @@ export default function PreOrderNotification() {
 	)
 
 	const { ref, fadeInVariants, controls } = useFadeIn({
-		delay: 0.25,
+		threshold: 0.25,
 	})
 
 	const handleSeeNotification = (e: MouseEvent<HTMLButtonElement>) =>
