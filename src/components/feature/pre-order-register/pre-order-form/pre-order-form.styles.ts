@@ -23,11 +23,6 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'section')};
 
-	margin-top: ${({ theme, $deviceType }) =>
-		$deviceType === 'mobile'
-			? theme.layout.container.gutter
-			: theme.layout.section.gutter};
-
 	div#pre-order-form-contents-container {
 		width: ${({ theme }) => theme.layout.container.width};
 
@@ -83,7 +78,7 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 				${({ theme }) => getTypography(theme, 'body')}
 				color: ${({ theme }) =>
 					hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
-				text-align: left;
+				text-align: center;
 			}
 		}
 
@@ -116,7 +111,11 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 					)}
 
 				padding: ${({ theme, $deviceType }) =>
-					getDeviceTypePadding(theme, $deviceType, 'container')};
+					`${theme.layout.container.padding.lg} ${getDeviceTypePadding(
+						theme,
+						$deviceType,
+						'container',
+					)}`};
 
 				.quant-pre-order-event-chip {
 					font-size: 1rem;
@@ -250,6 +249,8 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			#quant-pre-order-button {
 				width: 100%;
 				max-width: 12rem;
+
+				margin-bottom: ${({ theme }) => theme.layout.section.gutter};
 
 				${({ theme }) => css`
 					-webkit-filter: drop-shadow(

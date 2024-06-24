@@ -69,7 +69,7 @@ export default function Footer() {
 						<p key={index}>{item}</p>
 					))}
 					<div id="copyright-text">
-						<span>© Copyright 1104 R&I.</span>All rights Reserved
+						<span>© Copyright TEAM 5010.</span>All rights Reserved
 					</div>
 				</div>
 			</div>

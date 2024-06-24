@@ -12,8 +12,9 @@ import backgroundImage from '../../../assets/img/pre-order-image.webp'
 import { PreOrderRegisterContainer } from './pre-order-register.styles'
 
 import Countdown from '../../../components/feature/countdown/countdown.component'
+import PreOrderService from './pre-order-service/pre-order-service.component'
+import PreOrderNotification from './pre-order-notification/pre-order-notification.component'
 import PreOrderForm from './pre-order-form/pre-order-form.component'
-import PreOrderShowDetails from './pre-order-show-details/pre-order-show-details.component'
 import Footer from '../../../components/global/footer/footer.component'
 
 export default function PreOrderRegister() {
@@ -62,8 +63,9 @@ export default function PreOrderRegister() {
 					</div>
 				</div>
 			</motion.div>
+			<PreOrderService />
+			<PreOrderNotification />
 			<PreOrderForm />
-			<PreOrderShowDetails />
 			<Footer />
 		</PreOrderRegisterContainer>
 	)

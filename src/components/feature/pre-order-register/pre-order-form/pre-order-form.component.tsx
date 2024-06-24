@@ -24,8 +24,9 @@ export default function PreOrderForm() {
 		(state) => state.updateToastMessage,
 	)
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
-	const { caption, heading, subheading, body, event } =
-		usePreOrderContentsStore((state) => state.formData)
+	const { heading, body, terms, agreement, event } = usePreOrderContentsStore(
+		(state) => state.formData,
+	)
 
 	const [email, setEmail] = useState<string>('')
 	const [tel, setTel] = useState<string>('')
@@ -132,22 +133,63 @@ export default function PreOrderForm() {
 
 			<div id="pre-order-form-contents-container">
 				<div id="pre-order-form-text-container">
-					<Chip
-						id="pre-order-form-chip"
+					<h1 id="pre-order-form-heading">{heading}</h1>
+					<p className="pre-order-form-body">{body}</p>
+				</div>
+
+				<div id="quant-pre-order-input-container">
+					<Input
+						className="quant-pre-order-input"
+						type="email"
+						name="email"
+						placeholder="이메일을 입력해 주세요."
+						hierarchy="secondary"
+						value={email}
+						handleChange={handleEmailInputChange}
+						isValid={email.length === 0 || isEmailValid}
+						isRequired
+					/>
+					<Input
+						className="quant-pre-order-input"
+						type="tel"
+						name="tel"
+						placeholder="핸드폰 번호를 입력해 주세요."
+						hierarchy="secondary"
+						value={tel}
+						handleChange={handleTelInputChange}
+						isValid={tel.length === 0 || isTelValid}
+						isRequired
+					/>
+					<TextLink
+						id="pre-order-terms-see-details"
+						size="sm"
+						description={terms}
+						text="상세보기"
+						handleClick={handleShowTerms}
+						appearance="neutral"
+						hierarchy="secondary"
+						underlined
+					/>
+
+					<p id="quant-pre-oder-button-description">
+						<FontAwesomeIcon
+							icon={faCheck}
+							id="quant-pre-oder-button-description-icon"
+						/>{' '}
+						{agreement}
+					</p>
+
+					<Button
+						id="quant-pre-order-button"
+						type="submit"
+						accessibleName="quant-logo-section-contents-container"
+						text="사전예약 신청하기"
 						appearance="accent"
 						hierarchy="primary"
 						stroke="filled"
-						shape="rounded3"
-						text={caption}
-						// inverted
+						shape="rounding"
+						disabled={!isEmailValid || !isTelValid}
 					/>
-					<h1 id="pre-order-form-heading">{heading}</h1>
-					<span id="pre-order-form-subheading">{subheading}</span>
-					{body.map((item, index) => (
-						<p key={index} className="pre-order-form-body">
-							{item}
-						</p>
-					))}
 				</div>
 
 				<div id="quant-pre-order-event-container">
@@ -201,61 +243,6 @@ export default function PreOrderForm() {
 							) : null}
 						</div>
 					))}
-				</div>
-
-				<div id="quant-pre-order-input-container">
-					<Input
-						className="quant-pre-order-input"
-						type="email"
-						name="email"
-						placeholder="이메일을 입력해 주세요."
-						hierarchy="secondary"
-						value={email}
-						handleChange={handleEmailInputChange}
-						isValid={email.length === 0 || isEmailValid}
-						isRequired
-					/>
-					<Input
-						className="quant-pre-order-input"
-						type="tel"
-						name="tel"
-						placeholder="핸드폰 번호를 입력해 주세요."
-						hierarchy="secondary"
-						value={tel}
-						handleChange={handleTelInputChange}
-						isValid={tel.length === 0 || isTelValid}
-						isRequired
-					/>
-					<TextLink
-						id="pre-order-terms-see-details"
-						size="sm"
-						description="개인정보 제공 동의 : 1104 R&I 이벤트 "
-						text="상세보기"
-						handleClick={handleShowTerms}
-						appearance="neutral"
-						hierarchy="secondary"
-						underlined
-					/>
-
-					<p id="quant-pre-oder-button-description">
-						<FontAwesomeIcon
-							icon={faCheck}
-							id="quant-pre-oder-button-description-icon"
-						/>{' '}
-						사전예약 내용을 확인하였으며, 정보 제공 등에 동의합니다.
-					</p>
-
-					<Button
-						id="quant-pre-order-button"
-						type="submit"
-						accessibleName="quant-logo-section-contents-container"
-						text="사전예약 신청하기"
-						appearance="accent"
-						hierarchy="primary"
-						stroke="filled"
-						shape="rounding"
-						disabled={!isEmailValid || !isTelValid}
-					/>
 				</div>
 			</div>
 		</PreOrderFormContainer>

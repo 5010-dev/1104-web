@@ -6,29 +6,27 @@ import { usePreOrderContentsStore } from '../../../../store/contents/preOrderCon
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 import useFadeIn from '../../../../hooks/useFadeIn'
 
-import { PreOrderShowDetailsContainer } from './pre-order-show-details.styles'
+import { PreOrderServiceContainer } from './pre-order-service.styles'
 
-import Card from '../../../global/card/card.component'
+import Chip from '../../../global/chip/chip.component'
 import Button from '../../../global/button/button.component'
 
-export default function PreOrderShowDetails() {
+export default function PreOrderService() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { heading, body } = usePreOrderContentsStore(
-		(state) => state.detailsData,
+	const { caption, heading, subheading, body } = usePreOrderContentsStore(
+		(state) => state.service,
 	)
 	const navigate = useNavigateWithScroll()
 
 	const { ref, fadeInVariants, controls } = useFadeIn({
 		delay: 0.25,
-		threshold: 0.1,
 	})
 
 	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) =>
 		navigate('/pre-order?details')
 
 	return (
-		<PreOrderShowDetailsContainer
-			id="quant-pre-order-details-container"
+		<PreOrderServiceContainer
 			$deviceType={deviceType}
 			as={motion.div}
 			ref={ref}
@@ -36,27 +34,34 @@ export default function PreOrderShowDetails() {
 			initial="hidden"
 			animate={controls}
 		>
-			<Card
-				id="quant-pre-order-details-card"
-				hierarchy="tertiary"
-				shape="rounded1"
-				opacity={1}
-			>
-				<div id="quant-pre-order-details-text-container">
-					<h1 id="quant-pre-order-details-heading">{heading}</h1>
-					<p id="quant-pre-order-details-body">{body}</p>
-				</div>
-				<Button
-					accessibleName="quant-pre-order-details-card"
-					type="button"
+			<div id="pre-order-service-contents-container">
+				<Chip
+					id="pre-order-service-chip"
 					appearance="accent"
 					hierarchy="primary"
+					stroke="filled"
+					shape="rounded3"
+					text={caption}
+					// inverted
+				/>
+				<h1 id="pre-order-service-heading">{heading}</h1>
+				<span id="pre-order-service-subheading">{subheading}</span>
+				{body.map((item, index) => (
+					<p key={index} className="pre-order-service-body">
+						{item}
+					</p>
+				))}
+				<Button
+					id="pre-order-service-button"
+					accessibleName="pre-order-service-contents-container"
+					appearance="neutral"
+					hierarchy="secondary"
 					stroke="filled"
 					shape="rounding"
 					text="서비스 자세히 보기 →"
 					handleClick={handleSeeDetails}
 				/>
-			</Card>
-		</PreOrderShowDetailsContainer>
+			</div>
+		</PreOrderServiceContainer>
 	)
 }
