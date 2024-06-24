@@ -27,7 +27,7 @@ export default function Checkout() {
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
 	const service = useServiceDataStore((state) => state.service)
-	const { updateStatus, checkoutItem } = usePaymentStore()
+	const { checkoutItem } = usePaymentStore()
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
 
@@ -48,7 +48,6 @@ export default function Checkout() {
 	// 페이지 초기화 및 userId가 잘못되었거나 제품 id가 제공되지 않았을 때, 메인 화면으로 리디렉션
 	useEffect(() => {
 		window.scrollTo({ top: 0 })
-		updateStatus('idle')
 
 		if (isUserDataLoaded) {
 			if (userId.length === 0 || !id) {
@@ -74,15 +73,7 @@ export default function Checkout() {
 				navigate(ROUTES.HOME)
 			}
 		}
-	}, [
-		userId,
-		navigate,
-		updateToastMessage,
-		isUserDataLoaded,
-		id,
-		updateStatus,
-		service,
-	])
+	}, [userId, navigate, updateToastMessage, isUserDataLoaded, id, service])
 
 	return (
 		<>

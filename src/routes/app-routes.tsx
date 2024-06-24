@@ -12,6 +12,8 @@ import Home from '../pages/feature/home/home.page'
 import Login from '../pages/feature/login/login.page'
 import EmailVerification from '../pages/feature/email-verification/email-verification.page'
 import Checkout from '../pages/feature/checkout/checkout.page'
+import CheckoutSuccess from '../pages/feature/checkout/checkout-success/checkout-success.page'
+import CheckoutFail from '../pages/feature/checkout/checkout-fail/checkout-fail.page'
 import AboutUs from '../pages/feature/about-us/about-us.page'
 import OurService from '../pages/feature/our-service/our-service.page'
 import Account from '../pages/feature/account/account.page'
@@ -43,6 +45,8 @@ export default function AppRoutes() {
 
 				<Route element={<PrivateRoute />}>
 					<Route path={ROUTES.CHECKOUT} element={<Checkout />} />
+					<Route path={ROUTES.CHECKOUT_SUCCESS} element={<CheckoutSuccess />} />
+					<Route path={ROUTES.CEHCKOUT_FAIL} element={<CheckoutFail />} />
 					<Route
 						path={ROUTES.REGISTRATION}
 						element={<IndicatorRegistration />}

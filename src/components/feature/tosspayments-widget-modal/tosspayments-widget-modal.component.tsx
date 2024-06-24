@@ -5,6 +5,7 @@ import {
 	ANONYMOUS,
 } from '@tosspayments/payment-widget-sdk'
 import { nanoid } from 'nanoid'
+import { ROUTES } from '../../../routes/routes'
 import Lottie from 'lottie-react'
 import spinnerAnim from '../../../assets/lottie/spinner-anim-dark.json'
 
@@ -42,6 +43,7 @@ export default function TosspaymentsWidgetModal(
 		PaymentWidgetInstance['renderPaymentMethods']
 	> | null>(null)
 
+	const BASE_URL = window.location.origin
 	const widgetClientKey = process.env.REACT_APP_CLIENT_KEY
 	const customerKey = ANONYMOUS
 
@@ -54,8 +56,8 @@ export default function TosspaymentsWidgetModal(
 				orderId: nanoid(),
 				orderName: `${item.name} | ${item.plan}`,
 				customerEmail: userId,
-				successUrl: `${window.location.origin}/success`,
-				failUrl: `${window.location.origin}/fail`,
+				successUrl: `${BASE_URL}${ROUTES.CHECKOUT_SUCCESS}`,
+				failUrl: `${BASE_URL}${ROUTES.CEHCKOUT_FAIL}`,
 			})
 		} catch (error: any) {
 			updateToastMessage(error.message)

@@ -1,18 +1,18 @@
 import styled from 'styled-components'
 
-import { getDeviceTypePadding } from '../../../utils/device.utils'
-import { getContainerStyle } from '../../../utils/style.utils'
-import { getTypography } from '../../../utils/typo.utils'
-import { getColour } from '../../../utils/colour.utils'
+import { getDeviceTypePadding } from '../../../../utils/device.utils'
+import { getContainerStyle } from '../../../../utils/style.utils'
+import { getTypography } from '../../../../utils/typo.utils'
+import { getColour } from '../../../../utils/colour.utils'
 
-import PageLayoutContainer from '../../../pages/global/page-layout/page-layout.styles'
-import { SectionContainer } from '../../global/section/section.styles'
+import PageLayoutContainer from '../../../global/page-layout/page-layout.styles'
+import { SectionContainer } from '../../../../components/global/section/section.styles'
 
-export const PaymentCompleteContainer = styled(PageLayoutContainer)`
+export const CheckoutSuccessContainer = styled(PageLayoutContainer)`
 	justify-content: center;
 `
 
-export const PaymentCompleteSectionContainer = styled(SectionContainer)`
+export const CheckoutSuccessSectionContainer = styled(SectionContainer)`
 	/* NOTE: 추후 서비스 세팅 자동화 기능 추가시 사용 */
 	/* div#button-container {
 		width: ${({ theme }) => theme.layout.container.width};
@@ -27,7 +27,7 @@ export const PaymentCompleteSectionContainer = styled(SectionContainer)`
 
 	max-width: ${({ theme }) => theme.layout.container.maxWidth};
 
-	div#checkout-complete-title-container {
+	div#checkout-success-title-container {
 		width: ${({ theme }) => theme.layout.container.width};
 		max-width: 24rem;
 
@@ -37,7 +37,7 @@ export const PaymentCompleteSectionContainer = styled(SectionContainer)`
 		align-items: center;
 		gap: ${({ theme }) => theme.layout.container.gutter};
 
-		p.checkout-complete-subheading {
+		p.checkout-success-subheading {
 			${({ theme }) => getTypography(theme, 'subheading')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
@@ -45,7 +45,7 @@ export const PaymentCompleteSectionContainer = styled(SectionContainer)`
 		}
 	}
 
-	div#checkout-complete-body-container {
+	div#checkout-success-body-container {
 		width: ${({ theme }) => theme.layout.container.width};
 		max-width: 24rem;
 
@@ -61,7 +61,7 @@ export const PaymentCompleteSectionContainer = styled(SectionContainer)`
 		${({ theme }) =>
 			getContainerStyle(theme, 'neutral', 'tertiary', 'filled', 'rounded2', 1)}
 
-		p.checkout-complete-body {
+		p.checkout-success-body {
 			${({ theme }) => getTypography(theme, 'body')}
 			font-size: 0.875rem;
 			color: ${({ theme }) =>

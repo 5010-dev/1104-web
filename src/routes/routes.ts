@@ -11,6 +11,8 @@ export const ROUTES = {
 	LOGIN: '/login',
 	VERIFICATION: '/verification',
 	CHECKOUT: '/checkout',
+	CHECKOUT_SUCCESS: '/checkout/success',
+	CEHCKOUT_FAIL: '/checkout/fail',
 	REGISTRATION: '/registration',
 	PRE_ORDER: '/pre-oreder',
 	FREE_TRIAL: '/free-trial',

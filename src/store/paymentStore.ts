@@ -2,10 +2,7 @@ import { create } from 'zustand'
 
 // import { Service } from './serviceDataStore'
 
-export type PaymentStatus = 'idle' | 'processing' | 'success' | 'failure'
-
 export interface PaymentState {
-	status: PaymentStatus
 	checkoutItem: {
 		id: number | null
 		coupon: {
@@ -17,13 +14,11 @@ export interface PaymentState {
 }
 
 export interface PaymentAction {
-	updateStatus: (status: PaymentStatus) => void
 	updateCheckoutItem: (key: string, value: number | string) => void
 	updateCoupon: (key: string, value: string | boolean) => void
 }
 
 const initialState: PaymentState = {
-	status: 'idle',
 	checkoutItem: {
 		id: null,
 		coupon: {
@@ -36,9 +31,7 @@ const initialState: PaymentState = {
 
 export const usePaymentStore = create<PaymentState & PaymentAction>((set) => ({
 	...initialState,
-	updateStatus: (status: PaymentStatus) => {
-		set((state) => ({ ...state, status: status }))
-	},
+
 	updateCheckoutItem: (key, value) =>
 		set((state) => ({
 			...state,
