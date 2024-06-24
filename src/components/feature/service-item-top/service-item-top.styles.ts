@@ -78,7 +78,8 @@ export const ServiceItemTopContainer = styled(SectionContainer)`
 
 		div#service-item-price-container {
 			display: flex;
-			flex-direction: row;
+			flex-direction: ${({ $deviceType }) =>
+				$deviceType === 'mobile' ? 'column' : 'row'};
 			justify-content: center;
 			align-items: center;
 			column-gap: ${({ theme }) => theme.layout.container.gutter};
