@@ -27,7 +27,7 @@ export const useFooterContentsStore = create<FooterContentsState>(() => ({
 		address: '경기도 용인시 수지구 현암로 108',
 		tel: '010-7251-1301', // TODO: 070 인터넷 전화번호로 변경 필요
 		regNum: '202-81-68226',
-		onlineBizNum: '', // TODO: 통신 판매 사업자 등록 필요
+		onlineBizNum: '2024-용인수지-1350',
 		privacyOfficer: '임채선',
 		csNum: '010-7251-1301',
 		csMail: '5010.cs.kr@5010.tech',

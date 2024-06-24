@@ -38,8 +38,7 @@ export default function Checkout() {
 	// const name = searchParams.get('name')
 	// const plan = searchParams.get('plan')
 
-	const handleClose = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate(ROUTES.HOME)
+	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
 
 	const toggleModal = (e: MouseEvent<HTMLButtonElement> | KeyboardEvent) => {
 		setShowModal((state) => !state)
