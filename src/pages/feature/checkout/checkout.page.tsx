@@ -61,6 +61,7 @@ export default function Checkout() {
 			if (numberedId === 0 || numberedId === 999) {
 				updateToastMessage('서비스를 찾을 수 없습니다.')
 				navigate(ROUTES.HOME)
+				return
 			}
 
 			const foundItem = service.find((item) => item.id === numberedId)

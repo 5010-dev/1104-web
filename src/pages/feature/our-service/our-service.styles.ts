@@ -60,10 +60,11 @@ export const OurServiceContainer = styled(PageLayoutContainer)<Props>`
 				max-width: ${({ theme }) => theme.layout.container.maxWidth};
 
 				display: flex;
-				flex-direction: column;
+				flex-direction: ${({ $deviceType }) =>
+					$deviceType === 'mobile' ? 'column' : 'row'};
 				justify-content: flex-start;
 				align-items: flex-start;
-				gap: ${({ theme }) => theme.layout.container.gutter};
+				gap: ${({ theme }) => theme.layout.section.gutter};
 
 				p.our-service-hero-body {
 					${({ theme }) => getTypography(theme, 'body')}
