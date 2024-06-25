@@ -25,7 +25,7 @@ export const useFooterContentsStore = create<FooterContentsState>(() => ({
 		name: '주식회사 오공일공',
 		ceo: '노승준',
 		address: '경기도 용인시 수지구 현암로 108',
-		tel: '010-7251-1301', // TODO: 070 인터넷 전화번호로 변경 필요
+		tel: '031-894-5019',
 		regNum: '202-81-68226',
 		onlineBizNum: '2024-용인수지-1350',
 		privacyOfficer: '임채선',
