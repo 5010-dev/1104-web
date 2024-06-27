@@ -69,7 +69,7 @@ export const signUp = async ({
  */
 export const sendVerification = async (access: string): Promise<void> => {
 	try {
-		await axiosInstance.post(`/email-verifications/signup`, null)
+		await axiosInstance.post(`/emails/signup-verification`, null)
 	} catch (error) {
 		throw new Error(handleError(error))
 	}
@@ -92,7 +92,7 @@ export const confirmSignup = async ({
 }> => {
 	try {
 		const response = await axiosInstance.post(
-			`/email-verifications/signup/verify`,
+			`/emails/signup-verification/verify`,
 			{ code },
 		)
 		const { data } = response.data
