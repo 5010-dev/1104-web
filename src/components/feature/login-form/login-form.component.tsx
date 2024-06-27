@@ -54,6 +54,7 @@ export default function LoginForm() {
 				updateToastMessage('이메일 인증이 필요합니다.')
 				navigate(`${ROUTES.VERIFICATION}?email=${loginEmail}`, {
 					replace: true,
+					routeState: 'signup',
 				})
 			}
 		} catch (error: any) {

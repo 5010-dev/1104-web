@@ -43,7 +43,10 @@ export default function SignupForm() {
 
 			await sendVerification(getAccessToken())
 			updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.')
-			navigate(`/verification?email=${signedUpEmail}`, { replace: true })
+			navigate(`${ROUTES.VERIFICATION}?email=${signedUpEmail}`, {
+				replace: true,
+				routeState: 'signup',
+			})
 		} catch (error: any) {
 			updateToastMessage(error.message)
 		} finally {
