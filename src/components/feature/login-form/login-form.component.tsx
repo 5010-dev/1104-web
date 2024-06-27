@@ -12,7 +12,13 @@ import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
 import AuthForm from '../../global/auth-form/auth-form.component'
 
 export default function LoginForm() {
-	const { email, password, updateLoginUser } = useAuthDataStore()
+	const {
+		email,
+		password,
+		updateLoginUser,
+		updateIsUserDataLoaded,
+		resetAuthData,
+	} = useAuthDataStore()
 	const { userId, isEmailVerified } = useAuthDataStore(
 		(state) => state.loginUser,
 	)
@@ -40,7 +46,9 @@ export default function LoginForm() {
 			if (is_email_verified) {
 				updateLoginUser('userId', loginEmail)
 				updateLoginUser('isEmailVerified', is_email_verified)
+				updateIsUserDataLoaded(true)
 				updateToastMessage('성공적으로 로그인 했습니다.')
+				resetAuthData()
 				navigate(ROUTES.HOME)
 			} else {
 				updateToastMessage('이메일 인증이 필요합니다.')

@@ -48,6 +48,7 @@ function App() {
 				if (is_email_verified) {
 					updateLoginUser('userId', loginEmail)
 					updateLoginUser('isEmailValified', is_email_verified)
+					updateIsUserDataLoaded(true)
 				} else {
 					logout()
 					resetLoginUser()
@@ -58,7 +59,6 @@ function App() {
 				console.log(error.message)
 			} finally {
 				updateIsLoading(false)
-				updateIsUserDataLoaded(true)
 			}
 		}
 

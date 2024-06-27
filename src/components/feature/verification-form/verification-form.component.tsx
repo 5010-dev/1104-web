@@ -27,8 +27,13 @@ export default function VerificationForm(props: VerificationFormProps) {
 	const { email } = props
 
 	const { updateToastMessage } = useToastMessageStore()
-	const { verificationCode, updateAuthData, updateLoginUser, resetAuthData } =
-		useAuthDataStore()
+	const {
+		verificationCode,
+		updateAuthData,
+		updateLoginUser,
+		updateIsUserDataLoaded,
+		resetAuthData,
+	} = useAuthDataStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const [isValid, setIsValid] = useState<boolean>(false)
 	const navigate = useNavigateWithScroll()
@@ -52,7 +57,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 			setRefreshToken(token.refresh)
 			updateLoginUser('userId', loginEmail)
 			updateLoginUser('isEmailVerified', is_email_verified)
-
+			updateIsUserDataLoaded(true)
 			updateToastMessage('회원 가입이 완료되었습니다.')
 			resetAuthData()
 			navigate(ROUTES.HOME)
