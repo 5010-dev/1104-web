@@ -4,8 +4,10 @@ import { ROUTES } from '../../../routes/routes'
 
 import { useAuthDataStore } from '../../../store/authDataStore'
 import {
-	confirmSignup,
 	sendVerification,
+	confirmSignup,
+	sendPasswordResetVerification,
+	confirmPasswordReset,
 } from '../../../services/auth/auth-service'
 import { useLoadingStore } from '../../../store/loadingStore'
 import { useToastMessageStore } from '../../../store/globalUiStore'
@@ -50,22 +52,15 @@ export default function VerificationForm(props: VerificationFormProps) {
 		try {
 			updateIsLoading(true)
 
-			const {
-				token,
-				email: loginEmail,
-				is_email_verified,
-			} = await confirmSignup({
-				access: getAccessToken(),
-				code: verificationCode,
-			})
-			setAccessToken(token.access)
-			setRefreshToken(token.refresh)
-			updateLoginUser('userId', loginEmail)
-			updateLoginUser('isEmailVerified', is_email_verified)
+			if (routeState?.mode === 'signup') {
+				await handleSignupConfirmation()
+			} else if (routeState?.mode === 'password-reset') {
+				await handlePasswordResetConfirmation()
+			} else {
+				throw new Error('잘못된 요청입니다.')
+			}
+
 			updateIsUserDataLoaded(true)
-			updateToastMessage('회원 가입이 완료되었습니다.')
-			resetAuthData()
-			navigate(ROUTES.HOME)
 		} catch (error: any) {
 			updateToastMessage(error.message)
 		} finally {
@@ -73,11 +68,44 @@ export default function VerificationForm(props: VerificationFormProps) {
 		}
 	}
 
+	const handleSignupConfirmation = async () => {
+		const { token, email, is_email_verified } = await confirmSignup({
+			access: getAccessToken(),
+			code: verificationCode,
+		})
+		setAccessToken(token.access)
+		setRefreshToken(token.refresh)
+		updateCommonState(email, is_email_verified)
+		updateToastMessage('회원 가입이 완료되었습니다.')
+		navigate(ROUTES.HOME, { replace: true })
+	}
+
+	const handlePasswordResetConfirmation = async () => {
+		const { password_reset_token } = await confirmPasswordReset({
+			access: getAccessToken(),
+			code: verificationCode,
+		})
+		updateAuthData('passwordResetToken', password_reset_token)
+		updateCommonState(email, true)
+		updateToastMessage('인증에 성공했습니다.')
+		navigate(ROUTES.LOGIN, { replace: true, routeState: 'password-reset' })
+	}
+
+	const updateCommonState = (email: string, isEmailVerified: boolean) => {
+		updateLoginUser('userId', email)
+		updateLoginUser('isEmailVerified', isEmailVerified)
+		resetAuthData()
+	}
+
 	const handleResendCode = async (e: MouseEvent<HTMLSpanElement>) => {
 		try {
 			updateIsLoading(true)
 
-			await sendVerification(getAccessToken())
+			if (routeState?.mode === 'signup') {
+				await sendVerification(getAccessToken())
+			} else if (routeState?.mode === 'password-reset') {
+				await sendPasswordResetVerification(getAccessToken())
+			}
 			updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.')
 		} catch (error: any) {
 			updateToastMessage(error.message)

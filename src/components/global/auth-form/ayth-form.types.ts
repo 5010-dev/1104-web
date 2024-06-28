@@ -6,9 +6,10 @@ export type AuthValidity = {
 }
 
 export type AuthFormProps = {
+	variant?: 'email' | 'password-reset'
 	heading: string
 	submitText: string
-	textLink: {
+	textLink?: {
 		descriptionMessage: string
 		linkMessage: string
 		handleTextLink: (e: MouseEvent<HTMLSpanElement>) => void

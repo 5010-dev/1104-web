@@ -137,6 +137,62 @@ export const sendPasswordResetVerification = async (
 }
 
 /**
+ * 비밀번호 변경 인증 코드를 확인하고 사용자 인증 토큰을 받아오는 비동기 함수
+ * @param {Object} emailVerification - 이메일 인증 정보 객체
+ * @param {string} emailVerification.accessToken - 사용자 인증 토큰
+ * @param {string} emailVerification.code - 이메일 인증 코드
+ * @returns {Promise<{ password_reset_token: string }>} - 비밀번호 변경 토큰, 이메일, 이메일 인증 여부를 포함한 객체를 반환하는 Promise 객체
+ */
+export const confirmPasswordReset = async ({
+	access,
+	code,
+}: EmailVerification): Promise<{
+	password_reset_token: string
+}> => {
+	try {
+		const response = await axiosInstance.post(
+			`/emails/password-reset-verification/verify`,
+			{ code },
+		)
+		const { data } = response.data
+		const { password_reset_token } = data
+		return {
+			password_reset_token,
+		}
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+export const changePassword = async ({
+	password_reset_token,
+	password,
+}: {
+	password_reset_token: string
+	password: string
+}): Promise<{
+	token: UserAuthToken
+	email: string
+	is_email_verified: boolean
+}> => {
+	try {
+		const response = await axiosInstance.patch('/users/password', {
+			password_reset_token,
+			password,
+		})
+		const { data } = response.data
+		const { token, email, is_email_verified } = data
+		return {
+			token,
+			email,
+			is_email_verified,
+		}
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+/**
  * 로그아웃을 수행하는 함수
  * @returns {Promise<void>} - Promise 객체
  */

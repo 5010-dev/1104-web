@@ -1,4 +1,4 @@
-import { useEffect, FormEvent, MouseEvent } from 'react'
+import { FormEvent, MouseEvent } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
 import { login } from '../../../services/auth/auth-service'
@@ -19,9 +19,6 @@ export default function LoginForm() {
 		updateIsUserDataLoaded,
 		resetAuthData,
 	} = useAuthDataStore()
-	const { userId, isEmailVerified } = useAuthDataStore(
-		(state) => state.loginUser,
-	)
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigateWithScroll()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
@@ -63,12 +60,6 @@ export default function LoginForm() {
 			updateIsLoading(false)
 		}
 	}
-
-	useEffect(() => {
-		if (userId && isEmailVerified) {
-			navigate(ROUTES.HOME)
-		}
-	}, [userId, isEmailVerified, navigate])
 
 	return (
 		<AuthForm

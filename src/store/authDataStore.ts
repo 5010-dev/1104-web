@@ -16,6 +16,7 @@ export interface AuthDataState {
 	password: string
 	verificationCode: string
 	isUserDataLoaded: boolean
+	passwordResetToken: string
 	loginUser: User
 }
 
@@ -24,6 +25,7 @@ export interface AuthDataAction {
 	updateIsUserDataLoaded: (value: boolean) => void
 	updateLoginUser: (key: string, value: string | boolean) => void
 	resetAuthData: () => void
+	resetPasswordResetToken: () => void
 	resetLoginUser: () => void
 }
 
@@ -32,6 +34,7 @@ const initialState: AuthDataState = {
 	password: '',
 	verificationCode: '',
 	isUserDataLoaded: false,
+	passwordResetToken: '',
 	loginUser: {
 		userId: '',
 		isEmailVerified: false,
@@ -61,6 +64,12 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 				email: '',
 				password: '',
 				verificationCode: '',
+				isUserDataLoaded: false,
+			})),
+		resetPasswordResetToken: () =>
+			set((state) => ({
+				...state,
+				passwordResetToken: '',
 			})),
 		resetLoginUser: () => set(initialState),
 	}),

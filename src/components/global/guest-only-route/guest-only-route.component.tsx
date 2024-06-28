@@ -4,7 +4,11 @@ import { ROUTES } from '../../../routes/routes'
 import { useAuthDataStore } from '../../../store/authDataStore'
 
 export default function GuestOnlyRoute() {
-	const loginUser = useAuthDataStore((state) => state.loginUser)
+	const { loginUser, passwordResetToken } = useAuthDataStore()
 
-	return !loginUser.userId ? <Outlet /> : <Navigate to={ROUTES.HOME} />
+	return !loginUser.userId || passwordResetToken.length !== 0 ? (
+		<Outlet />
+	) : (
+		<Navigate to={ROUTES.HOME} />
+	)
 }
