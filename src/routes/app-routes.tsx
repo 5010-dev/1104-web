@@ -32,6 +32,7 @@ export default function AppRoutes() {
 					<Route path={ROUTES.ABOUT} element={<AboutUs />} />
 					<Route path={ROUTES.SERVICE} element={<OurService />} />
 					<Route path={ROUTES.SERVICE_ITEM.path} element={<ServiceItem />} />
+					<Route path={ROUTES.VERIFICATION} element={<EmailVerification />} />
 
 					<Route element={<PrivateRoute />}>
 						<Route path={ROUTES.ACCOUNT} element={<Account />} />
@@ -40,7 +41,6 @@ export default function AppRoutes() {
 
 				<Route element={<GuestOnlyRoute />}>
 					<Route path={ROUTES.LOGIN} element={<Login />} />
-					<Route path={ROUTES.VERIFICATION} element={<EmailVerification />} />
 				</Route>
 
 				<Route element={<PrivateRoute />}>

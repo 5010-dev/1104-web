@@ -69,7 +69,7 @@ export const signUp = async ({
  */
 export const sendVerification = async (access: string): Promise<void> => {
 	try {
-		await axiosInstance.post(`/emails/signup-verification`, null)
+		await axiosInstance.post('/emails/signup-verification', null)
 	} catch (error) {
 		throw new Error(handleError(error))
 	}
@@ -116,6 +116,21 @@ export const getLoginUserData = async (): Promise<{
 		const { data } = response.data
 		const { email: loginEmail, is_email_verified } = data
 		return { email: loginEmail, is_email_verified }
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+/**
+ * 비밀번호 변경 인증 코드 전송을 요청하는 비동기 함수
+ * @param {string} access - 액세스 토큰
+ * @returns {Promise<void>} - Promise 객체
+ */
+export const sendPasswordResetVerification = async (
+	access: string,
+): Promise<void> => {
+	try {
+		await axiosInstance.post('/emails/password-reset-verification', null)
 	} catch (error) {
 		throw new Error(handleError(error))
 	}

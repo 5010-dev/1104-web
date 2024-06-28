@@ -40,7 +40,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 	const navigate = useNavigateWithScroll()
 	const location = useLocation()
 	const routeState = location.state as
-		| { mode: 'signup' | 'passwordReset' }
+		| { mode: 'signup' | 'password-reset' }
 		| undefined
 	const maxLength = 6
 
