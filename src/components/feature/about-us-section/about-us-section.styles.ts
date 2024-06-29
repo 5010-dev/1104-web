@@ -7,7 +7,7 @@ import { getColour } from '../../../utils/colour.utils'
 import { SectionContainer } from '../../global/section/section.styles'
 
 export const AboutUsSectionContainer = styled(SectionContainer)`
-	width: ${({ theme }) => theme.layout.page.width};
+	width: ${({ theme }) => theme.layout.section.width};
 
 	justify-content: flex-start;
 	align-items: center;

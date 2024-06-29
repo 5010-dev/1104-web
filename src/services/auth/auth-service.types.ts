@@ -28,3 +28,14 @@ export interface LoginResponse {
 		is_email_verified: boolean
 	}
 }
+
+export interface ChangePassword {
+	password_reset_token: string
+	password: string
+}
+
+export interface ChangePasswordResponse {
+	token: UserAuthToken
+	email: string
+	is_email_verified: boolean
+}

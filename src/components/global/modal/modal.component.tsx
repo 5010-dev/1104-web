@@ -13,6 +13,8 @@ import Button from '../button/button.component'
 
 export default function Modal(props: ModalProps) {
 	const {
+		id,
+		className,
 		children,
 		title,
 		bottomButtonText,
@@ -44,7 +46,12 @@ export default function Modal(props: ModalProps) {
 	const resetOverflow = () => (document.body.style.overflowY = 'unset')
 
 	return createPortal(
-		<ModalContainer $deviceType={deviceType} $backgroundPanel={backgroundPanel}>
+		<ModalContainer
+			$deviceType={deviceType}
+			$backgroundPanel={backgroundPanel}
+			id={id}
+			className={className}
+		>
 			<div id="modal-contents-container">
 				<div id="modal-top-bar">
 					<h3 id="modal-subheading">{title}</h3>

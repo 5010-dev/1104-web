@@ -48,7 +48,7 @@ export const ObjectiveSectionContainer = styled(Container)<Props>`
 		& > h2.display {
 			${({ theme }) => getTypography(theme, 'display')}
 			font-size: ${({ $deviceType }) =>
-				$deviceType === 'mobile' ? '3.5rem' : '6rem'};
+				$deviceType === 'mobile' ? '3rem' : '5rem'};
 		}
 	}
 
@@ -69,7 +69,7 @@ export const ObjectiveSectionContainer = styled(Container)<Props>`
 
 	div#vertical-line {
 		width: 0.125rem;
-		height: 8rem;
+		height: 6rem;
 		background-color: ${({ theme }) =>
 			getColour(theme, 'neutral', 'secondary', 'inactive')};
 

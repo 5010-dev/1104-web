@@ -150,7 +150,14 @@ export const BackgroundSectionContainer = styled(Container)<Props>`
 			)}`};
 
 		${({ theme }) =>
-			getContainerStyle(theme, 'neutral', 'tertiary', 'filled', 'rounded2', 1)}
+			getContainerStyle(
+				theme,
+				'neutral',
+				'secondary',
+				'filled',
+				'rounded2',
+				0.05,
+			)}
 		color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
 
 		div#last-heading-container {

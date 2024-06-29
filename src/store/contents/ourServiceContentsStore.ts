@@ -80,7 +80,7 @@ export const useOurServiceContentsStore = create<OurServiceContentsState>(
 		],
 		subscribeService: {
 			image: bannerBackgroundImage,
-			heading: 'Start your investing journey today',
+			heading: 'Start Your Investing Journey Today',
 			subheading: 'with 1104 R&I',
 			body: '금융 전문가와 수학자들이 설계한 최첨단 기술과 함께 새로운 투자 여정을 시작해 보세요.',
 		},

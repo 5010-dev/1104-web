@@ -9,6 +9,8 @@ import {
 	EmailVerification,
 	SignUpResponse,
 	LoginResponse,
+	ChangePassword,
+	ChangePasswordResponse,
 } from './auth-service.types'
 import { removeAccessToken, removeRefreshToken } from '../../utils/token.utils'
 
@@ -137,11 +139,11 @@ export const sendPasswordResetVerification = async (
 }
 
 /**
- * 비밀번호 변경 인증 코드를 확인하고 사용자 인증 토큰을 받아오는 비동기 함수
- * @param {Object} emailVerification - 이메일 인증 정보 객체
- * @param {string} emailVerification.accessToken - 사용자 인증 토큰
- * @param {string} emailVerification.code - 이메일 인증 코드
- * @returns {Promise<{ password_reset_token: string }>} - 비밀번호 변경 토큰, 이메일, 이메일 인증 여부를 포함한 객체를 반환하는 Promise 객체
+ * 비밀번호 변경 인증 코드를 확인하고 비밀번호 재설정 토큰을 받아오는 비동기 함수
+ * @param {Object} params - 비밀번호 재설정 확인에 필요한 매개변수
+ * @param {string} params.access - 접근 토큰 (현재 사용되지 않음)
+ * @param {string} params.code - 이메일로 받은 확인 코드
+ * @returns {Promise<{password_reset_token: string}>} 비밀번호 재설정 토큰
  */
 export const confirmPasswordReset = async ({
 	access,
@@ -164,17 +166,17 @@ export const confirmPasswordReset = async ({
 	}
 }
 
+/**
+ * 사용자 비밀번호 변경 함수
+ * @param {Object} params - 비밀번호 변경에 필요한 매개변수
+ * @param {string} params.password_reset_token - 비밀번호 재설정 토큰
+ * @param {string} params.password - 새로운 비밀번호
+ * @returns {Promise<ChangePasswordResponse>} 비밀번호 변경 결과
+ */
 export const changePassword = async ({
 	password_reset_token,
 	password,
-}: {
-	password_reset_token: string
-	password: string
-}): Promise<{
-	token: UserAuthToken
-	email: string
-	is_email_verified: boolean
-}> => {
+}: ChangePassword): Promise<ChangePasswordResponse> => {
 	try {
 		const response = await axiosInstance.patch('/users/password', {
 			password_reset_token,
