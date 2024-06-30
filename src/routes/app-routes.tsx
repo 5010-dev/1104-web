@@ -17,6 +17,7 @@ import CheckoutFail from '../pages/feature/checkout/checkout-fail/checkout-fail.
 import AboutUs from '../pages/feature/about-us/about-us.page'
 import OurService from '../pages/feature/our-service/our-service.page'
 import Account from '../pages/feature/account/account.page'
+import FreeTrial from '../pages/feature/free-trial/free-trial.page'
 import IndicatorRegistration from '../pages/feature/indicator-registration/indicator-registration.page'
 import PreOrder from '../pages/feature/pre-order/pre-order.page'
 import ServiceItem from '../pages/feature/service-item/service-item.page'
@@ -33,6 +34,7 @@ export default function AppRoutes() {
 					<Route path={ROUTES.SERVICE} element={<OurService />} />
 					<Route path={ROUTES.SERVICE_ITEM.path} element={<ServiceItem />} />
 					<Route path={ROUTES.VERIFICATION} element={<EmailVerification />} />
+					<Route path={ROUTES.FREE_TRIAL} element={<FreeTrial />} />
 
 					<Route element={<PrivateRoute />}>
 						<Route path={ROUTES.ACCOUNT} element={<Account />} />

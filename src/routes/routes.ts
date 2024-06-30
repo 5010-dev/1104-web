@@ -14,7 +14,7 @@ export const ROUTES = {
 	CHECKOUT_SUCCESS: '/checkout/success',
 	CEHCKOUT_FAIL: '/checkout/fail',
 	REGISTRATION: '/registration',
-	PRE_ORDER: '/pre-oreder',
+	PRE_ORDER: '/pre-order',
 	FREE_TRIAL: '/free-trial',
 } as const
 
