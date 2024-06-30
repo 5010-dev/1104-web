@@ -55,6 +55,15 @@ export const AboutUsContainer = styled(PageLayoutContainer)`
 					padding: 0;
 				}
 			}
+
+			#show-letter-close-button {
+				width: auto;
+				padding: 1rem;
+
+				#show-letter-close-button-icon {
+					width: 1rem;
+				}
+			}
 		}
 
 		div#show-letter-button-container {
@@ -71,8 +80,12 @@ export const AboutUsContainer = styled(PageLayoutContainer)`
 			}
 
 			#show-letter-button {
-				width: auto;
+				width: 16.75rem;
 				margin-bottom: ${({ theme }) => theme.layout.component.gutter};
+
+				#show-letter-button-icon {
+					width: 1rem;
+				}
 			}
 		}
 	}

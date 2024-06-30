@@ -53,7 +53,10 @@ export default function AboutUs() {
 							stroke="filled"
 							shape="rounding"
 							icon={
-								<FontAwesomeIcon icon={showLetter ? faXmark : faEnvelope} />
+								<FontAwesomeIcon
+									icon={showLetter ? faXmark : faEnvelope}
+									id="show-letter-button-icon"
+								/>
 							}
 							text="모든 투자자 분들께 드리는 서한"
 							handleClick={handleShowLetter}
@@ -68,13 +71,30 @@ export default function AboutUs() {
 						>
 							<BackgroundSection />
 							<ObjectiveSection />
+							<Button
+								id="show-letter-close-button"
+								accessibleName="letter-contents-container"
+								appearance="neutral"
+								hierarchy="secondary"
+								stroke="outlined"
+								shape="rounding"
+								icon={
+									<FontAwesomeIcon
+										icon={faXmark}
+										id="show-letter-close-button-icon"
+									/>
+								}
+								handleClick={handleShowLetter}
+							/>
 						</motion.div>
 					) : null}
 				</div>
 			</AnimatePresence>
-			<div id="horizontal-line-container">
-				<hr id="horizontal-line" />
-			</div>
+			{showLetter ? null : (
+				<div id="horizontal-line-container">
+					<hr id="horizontal-line" />
+				</div>
+			)}
 		</AboutUsContainer>
 	)
 }
