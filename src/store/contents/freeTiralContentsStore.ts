@@ -1,10 +1,15 @@
 import { create } from 'zustand'
 
-import serviceImage from '../../assets/img/service-image-1.webp'
+import mockupImage from '../../assets/img/free-trial/free-trial-mockup-img.webp'
+import backgroundImage from '../../assets/img/free-trial/free-trial-background-img.webp'
 
 export interface FreeTrialContentState {
-	heading: string
-	subtitle: string
+	image: {
+		mockupImage: string
+		backgroundImage: string
+	}
+	heading: string[]
+	subheading: string
 	overview: {
 		features: string[]
 		summary: string
@@ -18,7 +23,7 @@ export interface FreeTrialContentState {
 		heading: string
 		subheading: string
 	}
-	imageUrl: string
+
 	ctaButton: {
 		caption: string
 		text: string
@@ -26,8 +31,12 @@ export interface FreeTrialContentState {
 }
 
 export const useFreeTrialContentStore = create<FreeTrialContentState>(() => ({
-	heading: '절대 지지 않는 방법이 계속해서 이기는 방법이다.',
-	subtitle:
+	image: {
+		mockupImage: mockupImage,
+		backgroundImage: backgroundImage,
+	},
+	heading: ['수학과 공학으로', '풀어낸 비트코인 투자'],
+	subheading:
 		'단순 기법이 아닌 전략으로서의 투자교육으로, 자산 설계와 운용, 그리고 심법까지 모든것을 총망라했습니다.',
 	overview: {
 		features: [
@@ -51,7 +60,6 @@ export const useFreeTrialContentStore = create<FreeTrialContentState>(() => ({
 		subheading:
 			'5010 매매 전략을 보조하기 위해 3년간 3억 원을 투자해 연구/개발한 5010 매매 전략 전용 지표도 체험판으로 사용해 보실 수 있습니다!',
 	},
-	imageUrl: serviceImage,
 	ctaButton: {
 		caption: '백문이 불여일견, 직접 살펴보시고 결정하세요!',
 		text: '5010 매매 전략 상세보기 →',
