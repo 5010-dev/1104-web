@@ -33,7 +33,10 @@ export const FreeTrialAudienceSectionContainer = styled(SectionContainer)`
 		list-style-type: none;
 
 		li.free-trial-audience-li {
-			${({ theme }) => getTypography(theme, 'heading3')}
+			${({ theme, $deviceType }) =>
+				$deviceType === 'mobile'
+					? getTypography(theme, 'subheading')
+					: getTypography(theme, 'heading3')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
 
@@ -45,7 +48,7 @@ export const FreeTrialAudienceSectionContainer = styled(SectionContainer)`
 	}
 
 	h3#free-trial-audience-summary {
-		${({ theme }) => getTypography(theme, 'heading1')}
+		${({ theme }) => getTypography(theme, 'heading2')}
 		color: ${({ theme }) =>
 			hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
 	}

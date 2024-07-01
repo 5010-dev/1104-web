@@ -33,7 +33,7 @@ export const FreeTrialOverviewSectionContainer = styled(SectionContainer)`
 					0.15,
 				)}
 			padding: ${({ theme }) =>
-				`${theme.layout.container.padding.sm} ${theme.layout.container.padding.default}`};
+				`${theme.layout.component.padding.default} ${theme.layout.container.padding.default}`};
 
 			${({ theme, $deviceType }) =>
 				$deviceType === 'mobile'

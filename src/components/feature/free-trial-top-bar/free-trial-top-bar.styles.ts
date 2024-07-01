@@ -34,6 +34,8 @@ export const FreeTrialTopBarContainer = styled.nav<FreeTrialTopBarContainerProps
 	#logo {
 		width: 4rem;
 		height: auto;
+
+		cursor: pointer;
 	}
 
 	button#close-icon {

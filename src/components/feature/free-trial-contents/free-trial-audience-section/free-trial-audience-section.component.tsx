@@ -14,7 +14,7 @@ export default function FreeTrialAudienceSection() {
 
 	return (
 		<FreeTrialAudienceSectionContainer $deviceType={deviceType}>
-			<hr className="free-trial-vertical-line" />
+			{/* <hr className="free-trial-vertical-line" /> */}
 			<ul id="free-trial-audience-ul">
 				{features.map((item, index) => (
 					<li key={index} className="free-trial-audience-li">
@@ -27,7 +27,7 @@ export default function FreeTrialAudienceSection() {
 				))}
 			</ul>
 			<h3 id="free-trial-audience-summary">{summary}</h3>
-			<hr className="free-trial-vertical-line" />
+			{/* <hr className="free-trial-vertical-line" /> */}
 		</FreeTrialAudienceSectionContainer>
 	)
 }

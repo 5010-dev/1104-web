@@ -58,7 +58,7 @@ export const useFreeTrialContentStore = create<FreeTrialContentState>(() => ({
 		caption: 'ONE MORE SPECIAL THING,',
 		heading: '5010 인디케이터',
 		subheading:
-			'5010 매매 전략을 보조하기 위해 3년간 3억 원을 투자해 연구/개발한 5010 매매 전략 전용 지표도 체험판으로 사용해 보실 수 있습니다!',
+			'5010 매매 전략을 보조하기 위해 3년간 3억 원을 투자해 연구/개발한 5010 매매 전략 전용 지표도 3일간 체험판으로 사용해 보실 수 있습니다.',
 	},
 	ctaButton: {
 		caption: '백문이 불여일견, 직접 살펴보시고 결정하세요!',
