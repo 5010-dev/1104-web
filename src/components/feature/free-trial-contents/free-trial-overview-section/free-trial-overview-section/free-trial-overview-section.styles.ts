@@ -39,7 +39,8 @@ export const FreeTrialOverviewSectionContainer = styled(SectionContainer)`
 				$deviceType === 'mobile'
 					? getTypography(theme, 'subheading')
 					: getTypography(theme, 'heading3')}
-			color: ${({ theme }) => getColour(theme, 'accent', 'primary', 'active')};
+			color: ${({ theme }) =>
+				hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
 
 			${({ theme }) => css`
 				-webkit-filter: drop-shadow(
