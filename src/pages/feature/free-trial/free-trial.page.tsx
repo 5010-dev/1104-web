@@ -6,7 +6,7 @@ import { FreeTrialContainer } from './free-trial.styles'
 import FreeTrialTopBar from '../../../components/feature/free-trial-top-bar/free-trial-top-bar.component'
 import FreeTrialTitleSection from '../../../components/feature/free-trial-contents/free-trial-title-section/free-trial-title-section.component'
 import FreeTrialOverviewSection from '../../../components/feature/free-trial-contents/free-trial-overview-section/free-trial-overview-section/free-trial-overview-section.component'
-import FreeTrialAudienceSection from '../../../components/feature/free-trial-contents/free-trial-audience-section/free-trial-audience-section.component'
+// import FreeTrialAudienceSection from '../../../components/feature/free-trial-contents/free-trial-audience-section/free-trial-audience-section.component'
 import Footer from '../../../components/global/footer/footer.component'
 
 export default function FreeTrial() {
@@ -22,7 +22,7 @@ export default function FreeTrial() {
 			<div id="free-trial-contents-container">
 				<FreeTrialTitleSection />
 				<FreeTrialOverviewSection />
-				<FreeTrialAudienceSection />
+				{/* <FreeTrialAudienceSection /> */}
 			</div>
 			<Footer />
 		</FreeTrialContainer>
