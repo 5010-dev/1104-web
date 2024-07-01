@@ -12,7 +12,7 @@ export interface FreeTrialContentState {
 	subheading: string
 	overview: {
 		features: string[]
-		summary: string
+		summary: string[]
 	}
 	audience: {
 		features: string[]
@@ -44,7 +44,7 @@ export const useFreeTrialContentStore = create<FreeTrialContentState>(() => ({
 			'100 ~ 500 만 원의 부담없는 초기 자금으로',
 			'2년 내에 월 1억 고정 수입 달성을 목표로 하는',
 		],
-		summary: '가장 현실적인 재태크 방법론',
+		summary: ['가장 현실적인', '재태크 방법론'],
 	},
 	audience: {
 		features: [

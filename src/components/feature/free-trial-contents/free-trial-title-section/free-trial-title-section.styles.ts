@@ -1,12 +1,13 @@
 import styled, { css } from 'styled-components'
 
-import { getTypography } from '../../../utils/typo.utils'
-import { hexToRgba, getColour } from '../../../utils/colour.utils'
+import { getTypography } from '../../../../utils/typo.utils'
+import { hexToRgba, getColour } from '../../../../utils/colour.utils'
 
-import { SectionContainer } from '../../global/section/section.styles'
+import { SectionContainer } from '../../../global/section/section.styles'
 
 export const FreeTrialTitleSectionContainer = styled(SectionContainer)`
 	max-width: ${({ theme }) => theme.layout.section.maxWidth};
+	overflow-y: visible;
 
 	justify-content: center;
 

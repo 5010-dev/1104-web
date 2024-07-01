@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { getColour } from '../../../utils/colour.utils'
+
 import PageLayoutContainer from '../../global/page-layout/page-layout.styles'
 
 import { FreeTrialContainerProps } from './free-trial.types'
@@ -41,5 +43,14 @@ export const FreeTrialContainer = styled(PageLayoutContainer)<Props>`
 		justify-content: flex-start;
 		align-items: center;
 		gap: ${({ theme }) => theme.layout.page.gutter};
+
+		hr.free-trial-vertical-line {
+			border: none;
+			height: 4rem;
+			width: 0.0625rem;
+
+			background-color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'inactive')};
+		}
 	}
 `

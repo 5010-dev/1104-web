@@ -27,7 +27,7 @@ export const FreeTrialTopBarContainer = styled.nav<FreeTrialTopBarContainerProps
 		)}`};
 
 	background-color: ${({ theme }) =>
-		hexToRgba(theme.colour.neutral.primary.active, 0.5)};
+		hexToRgba(theme.colour.neutral.primary.active, 0)};
 	-webkit-backdrop-filter: blur(1rem);
 	backdrop-filter: blur(1rem);
 
