@@ -22,17 +22,24 @@ export const FreeTrialContainer = styled(PageLayoutContainer)<Props>`
 		right: 0;
 		bottom: 0;
 
-		/* background-image: url(${({ $backgroundImage }) => $backgroundImage});
+		background-image: url(${({ $backgroundImage }) => $backgroundImage});
 		background-position: top;
 		background-size: cover;
-		background-repeat: no-repeat; */
+		background-repeat: no-repeat;
 
 		opacity: 0.1;
-		/* filter: blur(1.5rem);
-		backdrop-filter: blur(1.5rem);
-		-webkit-backdrop-filter: blur(1.5rem); */
-
 		z-index: -1;
+	}
+
+	hr.free-trial-vertical-line {
+		border: none;
+		height: 6rem;
+		width: 0.0625rem;
+
+		margin: 2.5rem 0;
+
+		background-color: ${({ theme }) =>
+			getColour(theme, 'neutral', 'secondary', 'inactive')};
 	}
 
 	div#free-trial-contents-container {
@@ -43,14 +50,5 @@ export const FreeTrialContainer = styled(PageLayoutContainer)<Props>`
 		justify-content: flex-start;
 		align-items: center;
 		gap: ${({ theme }) => theme.layout.page.gutter};
-
-		hr.free-trial-vertical-line {
-			border: none;
-			height: 4rem;
-			width: 0.0625rem;
-
-			background-color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'inactive')};
-		}
 	}
 `

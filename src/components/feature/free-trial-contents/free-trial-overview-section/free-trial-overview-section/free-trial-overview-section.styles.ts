@@ -23,6 +23,12 @@ export const FreeTrialOverviewSectionContainer = styled(SectionContainer)`
 		li.free-trial-overview-li {
 			width: ${({ theme }) => theme.layout.component.width};
 
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+
 			${({ theme }) =>
 				getContainerStyle(
 					theme,
@@ -52,6 +58,9 @@ export const FreeTrialOverviewSectionContainer = styled(SectionContainer)`
 						${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.75)}
 				);
 			`}
+
+			.free-trial-overview-li-chip {
+			}
 		}
 	}
 
@@ -62,23 +71,22 @@ export const FreeTrialOverviewSectionContainer = styled(SectionContainer)`
 		align-items: center;
 
 		span#free-trial-overview-summary-caption {
-			${({ theme }) => getTypography(theme, 'body')}
+			${({ theme }) => getTypography(theme, 'subheading')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
 		h3#free-trial-overview-summary {
-			${({ theme }) => getTypography(theme, 'heading1')}
-			font-size: 3rem;
-			line-height: 150%;
+			${({ theme, $deviceType }) =>
+				$deviceType === 'mobile'
+					? getTypography(theme, 'heading2')
+					: getTypography(theme, 'heading1')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
 			background: ${({ theme }) =>
-				`linear-gradient(transparent 65%, ${getColour(
-					theme,
-					'accent',
-					'primary',
-					'inactive',
+				`linear-gradient(transparent 65%, ${hexToRgba(
+					getColour(theme, 'neutral', 'secondary', 'active'),
+					0.15,
 				)} 65%)`};
 			padding: 0 0.5rem;
 		}
