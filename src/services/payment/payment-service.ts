@@ -70,9 +70,9 @@ export const checkoutProduct = async ({
 			requestData,
 		)
 		const { data } = response.data
-		const { product_id, coupon_id, number, total_price, status, created } = data
+		const { product, coupon_id, number, total_price, status, created } = data
 		return {
-			product_id: product_id,
+			product: product,
 			coupon_id: coupon_id,
 			number: number,
 			total_price: total_price,

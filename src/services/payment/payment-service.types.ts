@@ -18,7 +18,7 @@ export type CheckoutPayload = {
 }
 
 export type CheckoutResponse = {
-	product_id: number
+	product: number
 	coupon_id: number
 	number: string
 	total_price: string

@@ -64,7 +64,7 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 				email: '',
 				password: '',
 				verificationCode: '',
-				isUserDataLoaded: false,
+				// isUserDataLoaded: false,
 			})),
 		resetPasswordResetToken: () =>
 			set((state) => ({
