@@ -21,10 +21,10 @@ export const PartnershipFormContainer = styled(SectionContainer)`
 		gap: ${({ theme }) => theme.layout.section.gutter};
 
 		${({ theme }) =>
-			getContainerStyle(theme, 'accent', 'primary', 'filled', 'rounded2', 0.1)}
+			getContainerStyle(theme, 'accent', 'primary', 'filled', 'rounded1', 0.1)}
 
 		padding: ${({ theme, $deviceType }) =>
-			`${theme.layout.container.padding.default} ${getDeviceTypePadding(
+			`${theme.layout.section.padding.default} ${getDeviceTypePadding(
 				theme,
 				$deviceType,
 				'container',
