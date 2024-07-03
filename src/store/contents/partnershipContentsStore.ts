@@ -19,7 +19,8 @@ export type Partnership = {
 export interface PartnershipContentsState {
 	hero: ParternshipHero
 	partnershipList: Partnership[]
-	contact: string
+	contact: { heading: string; body: string }
+	caption: string
 }
 
 export const usePartnershipContentsStore = create<PartnershipContentsState>(
@@ -43,6 +44,11 @@ export const usePartnershipContentsStore = create<PartnershipContentsState>(
 				body: '1104 R&I가 제공하는 서비스에 관심있거나 레버리지하고자 하는 기업들에게, 비즈니스 규모나 업종에 관계없이 다양한 B2B 옵션들과 업무 협약 등을 제공하고 있어요.',
 			},
 		],
-		contact: '관심있는 분들은 언제든지 아래의 양식을 작성하여 문의주세요!',
+		contact: {
+			heading: 'Contact Us',
+			body: '파트너십 관련 문의는 아래 양식을 작성해 주세요.',
+		},
+		caption:
+			'제공하신 개인정보(이메일, 성명, 전화번호 등)는 저장되지 않고 바로 폐기되며, 오직 파트너십 관련 소통 용도로만 사용됩니다.',
 	}),
 )

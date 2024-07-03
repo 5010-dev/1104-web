@@ -10,6 +10,13 @@ import { useLoadingStore } from '../../../../store/loadingStore'
 import { useToastMessageStore } from '../../../../store/globalUiStore'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
+import {
+	validateWithRegex,
+	RegexKey,
+	formatTelNumber,
+} from '../../../../utils/regex.utils'
+
+import { FreeTrialFormData } from './free-trial-form.types'
 import { FreeTrialFormContainer } from './free-trial-form.styles'
 
 import TermsModal from '../../../global/terms-modal/terms-modal.component'
@@ -23,26 +30,37 @@ export default function FreeTrialForm() {
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigateWithScroll()
 
-	const [email, setEmail] = useState<string>('')
-	const [tel, setTel] = useState<string>('')
-	const [isEmailValid, setIsEmailValid] = useState<boolean>(false)
-	const [isTelValid, setIsTelValid] = useState<boolean>(false)
+	const [formData, setFormData] = useState<FreeTrialFormData>({
+		email: '',
+		tel: '',
+	})
+	const [isValid, setIsValid] = useState({
+		email: false,
+		tel: false,
+	})
 	const [showTerms, setShowTerms] = useState<boolean>(false)
 
-	const handleEmailInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
+		const inputName = e.target.name
 
-		setEmail(inputValue)
-		setIsEmailValid(validateInput(inputValue, emailRegex))
-	}
+		if (inputName === 'tel') {
+			const numericValue = inputValue.replace(/\D/g, '')
+			const formattedValue = formatTelNumber(numericValue)
 
-	const handleTelInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const inputValue = e.target.value
-		const numericValue = inputValue.replace(/\D/g, '')
-		const formattedValue = formatTelNumber(numericValue)
+			setFormData((state) => ({ ...state, tel: formattedValue }))
+			setIsValid((state) => ({
+				...state,
+				[inputName]: validateWithRegex('tel', formattedValue),
+			}))
+			return
+		}
 
-		setTel(formattedValue)
-		setIsTelValid(validateInput(formattedValue, telRegex))
+		setFormData((state) => ({ ...state, [inputName]: inputValue }))
+		setIsValid((state) => ({
+			...state,
+			[inputName]: validateWithRegex(inputName as RegexKey, inputValue),
+		}))
 	}
 
 	const handleShowTerms = (
@@ -64,8 +82,8 @@ export default function FreeTrialForm() {
 					confirmEmailYN: 'N',
 					subscribers: [
 						{
-							email: email,
-							tel: tel,
+							email: formData.email,
+							tel: formData.tel,
 							$ad_agreed: 'Y',
 						},
 					],
@@ -87,25 +105,6 @@ export default function FreeTrialForm() {
 			updateToastMessage(error)
 		}
 		updateIsLoading(false)
-	}
-
-	const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/
-	const telRegex = /^01[0-9]-\d{4}-\d{4}$/
-
-	const validateInput = (input: string, regex: RegExp): boolean =>
-		regex.test(input)
-
-	const formatTelNumber = (numericNumber: string) => {
-		if (numericNumber.length <= 3) {
-			return numericNumber
-		} else if (numericNumber.length <= 7) {
-			return `${numericNumber.slice(0, 3)}-${numericNumber.slice(3)}`
-		} else {
-			return `${numericNumber.slice(0, 3)}-${numericNumber.slice(
-				3,
-				7,
-			)}-${numericNumber.slice(7, 11)}`
-		}
 	}
 
 	return (
@@ -132,9 +131,9 @@ export default function FreeTrialForm() {
 					name="email"
 					placeholder="이메일을 입력해 주세요."
 					hierarchy="secondary"
-					value={email}
-					handleChange={handleEmailInputChange}
-					isValid={email.length === 0 || isEmailValid}
+					value={formData.email}
+					handleChange={handleInputChange}
+					isValid={formData.email.length === 0 || isValid.email}
 					isRequired
 				/>
 				<Input
@@ -143,9 +142,9 @@ export default function FreeTrialForm() {
 					name="tel"
 					placeholder="핸드폰 번호를 입력해 주세요."
 					hierarchy="secondary"
-					value={tel}
-					handleChange={handleTelInputChange}
-					isValid={tel.length === 0 || isTelValid}
+					value={formData.tel}
+					handleChange={handleInputChange}
+					isValid={formData.tel.length === 0 || isValid.tel}
 					isRequired
 				/>
 				<TextLink
@@ -176,7 +175,7 @@ export default function FreeTrialForm() {
 					hierarchy="primary"
 					stroke="filled"
 					shape="rounding"
-					disabled={!isEmailValid || !isTelValid}
+					disabled={!isValid.email || !isValid.tel}
 				/>
 			</div>
 		</FreeTrialFormContainer>
