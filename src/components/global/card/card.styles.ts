@@ -13,7 +13,13 @@ export const CardContainer = styled.div<CardContainerProps>`
 	align-items: flex-start;
 	gap: ${({ theme }) => theme.layout.container.guttuer};
 	padding: ${({ theme, $deviceType }) =>
-		getDeviceTypePadding(theme, $deviceType, 'container')};
+		$deviceType === 'mobile'
+			? `${theme.layout.container.padding.default} ${getDeviceTypePadding(
+					theme,
+					$deviceType,
+					'container',
+			  )}`
+			: getDeviceTypePadding(theme, $deviceType, 'container')};
 
 	cursor: ${({ $handleClick }) => $handleClick && 'pointer'};
 
