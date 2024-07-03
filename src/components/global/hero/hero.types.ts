@@ -11,6 +11,7 @@ export type HeroProps = {
 	fullScreen?: boolean
 	showArrow?: boolean
 	bodyContents?: ReactNode | null
+	shadeOpacity?: number[]
 }
 
 export type HeroContainerProps = {
@@ -18,4 +19,5 @@ export type HeroContainerProps = {
 	$imageUrl: string
 	$isPointerCoarseAndSafari: boolean
 	$fullScreen: boolean
+	$shadeOpacity: number[]
 }

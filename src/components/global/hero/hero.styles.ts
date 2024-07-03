@@ -10,6 +10,7 @@ type Props = HeroContainerProps
 
 export const HeroContainer = styled.div<Props>`
 	position: relative;
+	overflow: hidden;
 
 	width: ${({ theme }) => theme.layout.section.width};
 	min-height: ${({ theme, $fullScreen }) =>
@@ -40,13 +41,16 @@ export const HeroContainer = styled.div<Props>`
 		box-sizing: border-box;
 
 		/* background-color: rgba(0, 0, 0, 0.15); */
-		background: ${({ theme }) =>
+		background: ${({ theme, $shadeOpacity }) =>
 			`linear-gradient(to bottom, ${hexToRgba(
 				theme.colour.neutral.primary.active,
-				0.15,
-			)},  ${hexToRgba(theme.colour.neutral.primary.active, 0.2)}, ${hexToRgba(
+				$shadeOpacity[0],
+			)},  ${hexToRgba(
 				theme.colour.neutral.primary.active,
-				1,
+				$shadeOpacity[1],
+			)}, ${hexToRgba(
+				theme.colour.neutral.primary.active,
+				$shadeOpacity[2],
 			)})`};
 
 		z-index: 1;

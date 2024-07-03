@@ -20,6 +20,7 @@ import Account from '../pages/feature/account/account.page'
 import FreeTrial from '../pages/feature/free-trial/free-trial.page'
 import IndicatorRegistration from '../pages/feature/indicator-registration/indicator-registration.page'
 import PreOrder from '../pages/feature/pre-order/pre-order.page'
+import Partnership from '../pages/feature/partnership/partnership.page'
 import ServiceItem from '../pages/feature/service-item/service-item.page'
 
 export default function AppRoutes() {
@@ -35,6 +36,7 @@ export default function AppRoutes() {
 					<Route path={ROUTES.SERVICE} element={<OurService />} />
 					<Route path={ROUTES.SERVICE_ITEM.path} element={<ServiceItem />} />
 					<Route path={ROUTES.VERIFICATION} element={<EmailVerification />} />
+					<Route path={ROUTES.PARTNERSHIP} element={<Partnership />} />
 
 					<Route element={<PrivateRoute />}>
 						<Route path={ROUTES.ACCOUNT} element={<Account />} />

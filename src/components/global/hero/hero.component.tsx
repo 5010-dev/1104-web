@@ -19,6 +19,7 @@ export default function Hero(props: HeroProps) {
 		fullScreen = true,
 		showArrow = true,
 		bodyContents,
+		shadeOpacity = [0.15, 0.2, 1],
 	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -32,6 +33,7 @@ export default function Hero(props: HeroProps) {
 			$imageUrl={image}
 			$isPointerCoarseAndSafari={isPointerCoarseAndSafari}
 			$fullScreen={fullScreen}
+			$shadeOpacity={shadeOpacity}
 		>
 			<div className="container-row" />
 			<div id="hero-contents-container">
