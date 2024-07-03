@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
-import { useFreeTrialContentStore } from '../../../../store/contents/freeTiralContentsStore'
+import { useFreeTrialContentStore } from '../../../../store/contents/freeTrialContentsStore'
 
 import { FreeTrialTitleSectionContainer } from './free-trial-title-section.styles'
 

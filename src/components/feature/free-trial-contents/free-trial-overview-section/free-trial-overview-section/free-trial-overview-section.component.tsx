@@ -1,5 +1,5 @@
 import { useDeviceTypeStore } from '../../../../../store/deviceTypeStore'
-import { useFreeTrialContentStore } from '../../../../../store/contents/freeTiralContentsStore'
+import { useFreeTrialContentStore } from '../../../../../store/contents/freeTrialContentsStore'
 
 import { FreeTrialOverviewSectionContainer } from './free-trial-overview-section.styles'
 
