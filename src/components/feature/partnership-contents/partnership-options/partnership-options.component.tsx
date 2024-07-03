@@ -14,7 +14,7 @@ export default function PartnershipOptions() {
 			{partnershipList.map((item, index) => (
 				<Card
 					hierarchy="tertiary"
-					opacity={0.5}
+					opacity={1}
 					key={index}
 					className="partnership-option-container"
 				>
