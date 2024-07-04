@@ -34,7 +34,6 @@ export default function PreOrder() {
 
 		if (referralCode && referralCode.length !== 0) {
 			updateCode(referralCode)
-			console.log(code)
 		}
 	}, [updateCode, code, searchParams])
 
