@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useEventReferralStore } from '../../../store/eventReferralStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 import useFadeIn from '../../../hooks/useFadeIn'
 
@@ -18,6 +19,7 @@ import Button from '../../global/button/button.component'
 
 export default function PreOrderDetails() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { code } = useEventReferralStore()
 	const navigate = useNavigateWithScroll()
 
 	const { ref, fadeInVariants, controls } = useFadeIn({ duration: 2 })
@@ -28,8 +30,10 @@ export default function PreOrderDetails() {
 	const titleLeftLetters = titleLeft.split('')
 	const titleRightLetters = titleRight.split('')
 
-	const handleRegister = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/pre-order?register')
+	const handleRegister = (e: MouseEvent<HTMLButtonElement>) => {
+		if (code.length !== 0) navigate(`/pre-order?register&code=${code}`)
+		else navigate('/pre-order?register')
+	}
 
 	return (
 		<PreOrderDetailsContainer

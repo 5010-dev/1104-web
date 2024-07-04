@@ -8,6 +8,7 @@ import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { usePreOrderContentsStore } from '../../../../store/contents/preOrderContentsStore'
 import { useToastMessageStore } from '../../../../store/globalUiStore'
 import { useLoadingStore } from '../../../../store/loadingStore'
+import { useEventReferralStore } from '../../../../store/eventReferralStore'
 import useFadeIn from '../../../../hooks/useFadeIn'
 
 import { PreOrderFormContainer } from './pre-order-form.styles'
@@ -27,6 +28,7 @@ export default function PreOrderForm() {
 	const { heading, body, terms, agreement, event } = usePreOrderContentsStore(
 		(state) => state.formData,
 	)
+	const { code } = useEventReferralStore()
 
 	const [email, setEmail] = useState<string>('')
 	const [tel, setTel] = useState<string>('')
@@ -61,9 +63,15 @@ export default function PreOrderForm() {
 		e.preventDefault()
 
 		updateIsLoading(true)
+
 		try {
+			const emailList =
+				code === '12308'
+					? process.env.REACT_APP_STIBEE_CO_OP_EMAIL_LIST_ID
+					: process.env.REACT_APP_STIBEE_EMAIL_LIST_ID
+
 			const response = await axios.post(
-				`https://api.stibee.com/v1/lists/${process.env.REACT_APP_STIBEE_EMAIL_LIST_ID}/subscribers`,
+				`https://api.stibee.com/v1/lists/${emailList}/subscribers`,
 				{
 					eventOccurredBy: 'SUBSCRIBER',
 					confirmEmailYN: 'N',

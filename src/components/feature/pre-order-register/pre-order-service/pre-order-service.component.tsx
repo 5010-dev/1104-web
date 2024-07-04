@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { usePreOrderContentsStore } from '../../../../store/contents/preOrderContentsStore'
+import { useEventReferralStore } from '../../../../store/eventReferralStore'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 import useFadeIn from '../../../../hooks/useFadeIn'
 
@@ -16,14 +17,17 @@ export default function PreOrderService() {
 	const { caption, heading, subheading, body } = usePreOrderContentsStore(
 		(state) => state.service,
 	)
+	const { code } = useEventReferralStore()
 	const navigate = useNavigateWithScroll()
 
 	const { ref, fadeInVariants, controls } = useFadeIn({
 		threshold: 0.25,
 	})
 
-	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/pre-order?details')
+	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) => {
+		if (code.length !== 0) navigate(`/pre-order?details&code=${code}`)
+		else navigate('/pre-order?details')
+	}
 
 	return (
 		<PreOrderServiceContainer

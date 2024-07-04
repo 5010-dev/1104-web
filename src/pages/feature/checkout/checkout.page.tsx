@@ -2,7 +2,6 @@ import { useEffect, MouseEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { RequestPayParams, RequestPayResponse } from 'iamport-typings'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useAuthDataStore } from '../../../store/authDataStore'
@@ -11,7 +10,7 @@ import { useServiceDataStore, Service } from '../../../store/serviceDataStore'
 import { usePaymentStore } from '../../../store/paymentStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
-import { checkoutProduct } from '../../../services/payment/payment-service'
+// import { checkoutProduct } from '../../../services/payment/payment-service'
 
 import { CheckoutContainer } from './checkout.styles'
 
@@ -35,10 +34,10 @@ export default function Checkout() {
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
 
-	const BASE_URL = window.location.origin
+	// const BASE_URL = window.location.origin
 	const id = searchParams.get('id')
-	const name = searchParams.get('name')
-	const plan = searchParams.get('plan')
+	// const name = searchParams.get('name')
+	// const plan = searchParams.get('plan')
 
 	const getServiceById = (id: number | null): Service => {
 		if (id) {
@@ -54,51 +53,6 @@ export default function Checkout() {
 
 	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		// TODO: 결제 요청 및 확인 API 호출 구현
-		try {
-			updateStatus('processing')
-
-			const {
-				number,
-				// total_price
-			} = await checkoutProduct({
-				id: Number(id),
-				coupon: checkoutItem.coupon.code && checkoutItem.coupon.code,
-			})
-
-			if (!window.IMP) return
-			const { IMP } = window
-			IMP.init(process.env.REACT_APP_IMP_ID)
-
-			const params: RequestPayParams = {
-				pg: `tosspayments.${process.env.REACT_APP_TOSSPAYMENTS_ID}`,
-				pay_method: 'card',
-				merchant_uid: number,
-				name: `${name} | ${plan}`,
-				// amount: parseInt(total_price),
-				amount: 200, // HACK: 결제 테스트를 위한 임의 금액 설정
-				buyer_email: userId,
-				buyer_tel: '',
-				m_redirect_url: `${BASE_URL}/checkout?id=${id}&name=${name}&plan=${plan}`,
-				confirm_url: `${BASE_URL}/checkout?id=${id}&name=${name}&plan=${plan}`,
-			}
-
-			const onPaymentAccepted = async (response: RequestPayResponse) => {
-				// NOTE: PC 환경에서만 결제 프로세스 완료 후 실행
-
-				if (response.error_code != null) {
-					response.error_msg &&
-						updateToastMessage(trimBracketContent(response.error_msg))
-					updateStatus('idle')
-				} else {
-					// TODO: 결제완료 API 엔드포인트
-					updateStatus('success')
-				}
-			}
-
-			IMP.request_pay(params, onPaymentAccepted)
-		} catch (error: any) {
-			updateToastMessage(error.message)
-		}
 	}
 
 	useEffect(() => {
