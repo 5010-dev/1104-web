@@ -34,7 +34,7 @@ export const DesignSystem: DefaultTheme = {
 		neutral: {
 			primary: {
 				active: designTokens.colour.grayscale[1000],
-				inactive: designTokens.colour.grayscale[1000],
+				inactive: hexToRgba(designTokens.colour.grayscale[1000], 0.5),
 				pressed: designTokens.colour.grayscale[900],
 				hover: designTokens.colour.grayscale[800],
 			} as ColourVariant,
