@@ -1,4 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { usePartnershipContentsStore } from '../../../../store/contents/partnershipContentsStore'
@@ -73,6 +75,10 @@ export default function PartnershipForm() {
 		<PartnershipFormContainer $deviceType={deviceType}>
 			<div id="partnership-form-contents-container">
 				<div id="partnership-form-title-container">
+					<FontAwesomeIcon
+						icon={faEnvelopeOpenText}
+						id="partnership-form-icon"
+					/>
 					<h3 id="partnership-form-heading">{heading}</h3>
 					<p id="partnership-form-body">{body}</p>
 				</div>
@@ -83,7 +89,7 @@ export default function PartnershipForm() {
 							type="text"
 							name="name"
 							placeholder="이름을 입력해 주세요."
-							hierarchy="secondary"
+							hierarchy="primary"
 							value={formData.name}
 							handleChange={handleInputChange}
 							isValid={formData.name.length === 0 || isValid.name}
@@ -94,7 +100,7 @@ export default function PartnershipForm() {
 							type="email"
 							name="email"
 							placeholder="이메일을 입력해 주세요."
-							hierarchy="secondary"
+							hierarchy="primary"
 							value={formData.email}
 							handleChange={handleInputChange}
 							isValid={formData.email.length === 0 || isValid.email}
@@ -105,7 +111,7 @@ export default function PartnershipForm() {
 							type="tel"
 							name="tel"
 							placeholder="핸드폰 번호를 입력해 주세요."
-							hierarchy="secondary"
+							hierarchy="primary"
 							value={formData.tel}
 							handleChange={handleInputChange}
 							isValid={formData.tel.length === 0 || isValid.tel}
@@ -116,7 +122,7 @@ export default function PartnershipForm() {
 							type="text"
 							name="org"
 							placeholder="회사 및 소속을 입력해 주세요 (선택)."
-							hierarchy="secondary"
+							hierarchy="primary"
 							value={formData.org}
 							handleChange={handleInputChange}
 							isValid={formData.org.length === 0 || isValid.org}
@@ -128,7 +134,7 @@ export default function PartnershipForm() {
 							type="text"
 							name="title"
 							placeholder="제목을 입력해 주세요. (50자 이내)"
-							hierarchy="secondary"
+							hierarchy="primary"
 							value={formData.title}
 							handleChange={handleInputChange}
 							maxLength={50}

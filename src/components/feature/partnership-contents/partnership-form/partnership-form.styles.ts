@@ -21,10 +21,10 @@ export const PartnershipFormContainer = styled(SectionContainer)`
 		gap: ${({ theme }) => theme.layout.section.gutter};
 
 		${({ theme }) =>
-			getContainerStyle(theme, 'accent', 'primary', 'filled', 'rounded1', 0.1)}
+			getContainerStyle(theme, 'neutral', 'secondary', 'filled', 'rounded1', 1)}
 
 		padding: ${({ theme, $deviceType }) =>
-			`${theme.layout.section.padding.default} ${getDeviceTypePadding(
+			`${theme.layout.container.padding.lg} ${getDeviceTypePadding(
 				theme,
 				$deviceType,
 				'container',
@@ -35,16 +35,23 @@ export const PartnershipFormContainer = styled(SectionContainer)`
 			flex-direction: column;
 			align-items: center;
 
+			#partnership-form-icon {
+				font-size: 2rem;
+				color: ${({ theme }) =>
+					hexToRgba(getColour(theme, 'neutral', 'primary', 'active'), 0.75)};
+				margin: ${({ theme }) => `${theme.layout.container.gutter} 0`};
+			}
+
 			h3#partnership-form-heading {
 				${({ theme }) => getTypography(theme, 'heading1')}
 				color: ${({ theme }) =>
-					getColour(theme, 'neutral', 'secondary', 'active')};
+					getColour(theme, 'neutral', 'primary', 'active')};
 			}
 
 			p#partnership-form-body {
 				${({ theme }) => getTypography(theme, 'body')}
 				color: ${({ theme }) =>
-					hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
+					hexToRgba(getColour(theme, 'neutral', 'primary', 'active'), 0.75)};
 			}
 		}
 
@@ -106,10 +113,7 @@ export const PartnershipFormContainer = styled(SectionContainer)`
 
 					${({ theme }) => getTypography(theme, 'caption')}
 					color: ${({ theme }) =>
-						hexToRgba(
-							getColour(theme, 'neutral', 'secondary', 'active'),
-							0.75,
-						)};
+						hexToRgba(getColour(theme, 'neutral', 'primary', 'active'), 0.75)};
 				}
 			}
 		}

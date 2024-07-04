@@ -46,7 +46,7 @@ export const usePartnershipContentsStore = create<PartnershipContentsState>(
 		],
 		contact: {
 			heading: 'Contact Us',
-			body: '파트너십 관련 문의는 아래 양식을 작성해 주세요.',
+			body: '파트너십 관련 문의는 아래 양식을 작성한 뒤, 문의하기 버튼을 클릭해 주세요.',
 		},
 		caption:
 			'제공하신 개인정보(이메일, 성명, 전화번호 등)는 저장되지 않고 바로 폐기되며, 오직 파트너십 관련 소통 용도로만 사용됩니다.',

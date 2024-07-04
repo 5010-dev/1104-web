@@ -19,7 +19,7 @@ export default function VerificationInput(props: VerificationInputProps) {
 		const numericValue = inputValue.replace(/[^0-9]/g, '')
 
 		if (numericValue.length <= maxLength) {
-			updateAuthData(inputName, numericValue)
+			updateAuthData(inputName, numericValue.slice(0, maxLength))
 		}
 	}
 
@@ -82,12 +82,12 @@ export default function VerificationInput(props: VerificationInputProps) {
 	return (
 		<VerificationInputContainer $isFocused={isFocused}>
 			<Input
-				id="verification-input"
+				id="verification-input-container"
+				inputId="verification-input"
 				name="verificationCode"
 				type="tel"
 				pattern="\d*"
 				autoComplete={false}
-				maxLength={maxLength}
 				value={verificationCode}
 				handleClick={setCursorPosition}
 				handleKeyDown={handleKeyDown}

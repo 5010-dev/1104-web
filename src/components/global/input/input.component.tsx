@@ -6,7 +6,9 @@ import { InputContainer } from './input.styles'
 export default function Input(props: InputProps) {
 	const {
 		id,
+		inputId,
 		className,
+		inputClassName,
 		name,
 		type,
 		pattern,
@@ -39,22 +41,33 @@ export default function Input(props: InputProps) {
 		<InputContainer
 			id={id}
 			className={className}
-			type={type}
-			pattern={pattern}
-			autoComplete={autoComplete ? 'on' : 'off'}
-			maxLength={maxLength}
-			name={name}
-			value={value}
-			onFocus={handleInputFocus}
-			onBlur={handleInputBlur}
-			onClick={handleClick}
-			onKeyDown={handleKeyDown}
-			onChange={handleChange}
-			placeholder={placeholder}
 			$isFocused={isFocused}
 			$isValid={isValid}
 			$hierarchy={hierarchy}
-			required={isRequired}
-		/>
+		>
+			<input
+				id={inputId}
+				className={inputClassName}
+				type={type}
+				pattern={pattern}
+				autoComplete={autoComplete ? 'on' : 'off'}
+				maxLength={maxLength && maxLength - 1}
+				name={name}
+				value={value}
+				onFocus={handleInputFocus}
+				onBlur={handleInputBlur}
+				onClick={handleClick}
+				onKeyDown={handleKeyDown}
+				onChange={handleChange}
+				placeholder={placeholder}
+				required={isRequired}
+			/>
+
+			{maxLength ? (
+				<span>
+					{value?.toString().length} / {maxLength}
+				</span>
+			) : null}
+		</InputContainer>
 	)
 }

@@ -4,7 +4,9 @@ import { ComponentHierarchy } from '../../../styles/design-system/design-system.
 
 export type InputProps = {
 	id?: string
+	inputId?: string
 	className?: string
+	inputClassName?: string
 	name?: string
 	type?: string
 	pattern?: string
