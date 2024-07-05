@@ -27,18 +27,12 @@ export default function PartnershipForm() {
 
 	const [formData, setFormData] = useState<FormData>({
 		name: '',
-		tel: '',
-		org: '',
 		email: '',
-		title: '',
 		body: '',
 	})
 	const [isValid, setIsValid] = useState({
 		name: false,
-		tel: false,
-		org: false,
 		email: false,
-		title: false,
 		body: false,
 	})
 
@@ -88,7 +82,7 @@ export default function PartnershipForm() {
 							className="partnership-form-input"
 							type="text"
 							name="name"
-							placeholder="이름을 입력해 주세요."
+							placeholder="문의하시는 분의 이름을 입력해 주세요."
 							hierarchy="primary"
 							value={formData.name}
 							handleChange={handleInputChange}
@@ -99,48 +93,15 @@ export default function PartnershipForm() {
 							className="partnership-form-input"
 							type="email"
 							name="email"
-							placeholder="이메일을 입력해 주세요."
+							placeholder="연락받으실 이메일을 입력해 주세요."
 							hierarchy="primary"
 							value={formData.email}
 							handleChange={handleInputChange}
 							isValid={formData.email.length === 0 || isValid.email}
 							isRequired
 						/>
-						<Input
-							className="partnership-form-input"
-							type="tel"
-							name="tel"
-							placeholder="핸드폰 번호를 입력해 주세요."
-							hierarchy="primary"
-							value={formData.tel}
-							handleChange={handleInputChange}
-							isValid={formData.tel.length === 0 || isValid.tel}
-							isRequired
-						/>
-						<Input
-							className="partnership-form-input"
-							type="text"
-							name="org"
-							placeholder="회사 및 소속을 입력해 주세요 (선택)."
-							hierarchy="primary"
-							value={formData.org}
-							handleChange={handleInputChange}
-							isValid={formData.org.length === 0 || isValid.org}
-						/>
 					</div>
-					<div id="partnership-form-textarea-container">
-						<Input
-							className="partnership-form-input"
-							type="text"
-							name="title"
-							placeholder="제목을 입력해 주세요. (50자 이내)"
-							hierarchy="primary"
-							value={formData.title}
-							handleChange={handleInputChange}
-							maxLength={50}
-							isValid={formData.title.length === 0 || isValid.title}
-						/>
-					</div>
+					{/* TODO: textarea, 500자 이내로 문의 내용을 작성해 주세요. */}
 					<div id="partnership-form-button-container">
 						<Button
 							id="partnership-form-button"
