@@ -12,7 +12,8 @@ export const InputContainer = styled.div<InputContainerProps>`
 	align-items: center;
 	gap: 0.25rem;
 
-	& > input {
+	& > input,
+	textarea {
 		all: unset;
 
 		&::-ms-clear,
@@ -34,6 +35,18 @@ export const InputContainer = styled.div<InputContainerProps>`
 
 		cursor: text;
 		box-sizing: border-box;
+
+		${({ $isTextfield }) =>
+			$isTextfield &&
+			css`
+				height: 25vh;
+				max-height: 15rem;
+				min-height: 10rem;
+
+				overflow-y: auto;
+				word-wrap: break-word;
+				white-space: pre-wrap;
+			`}
 
 		width: ${({ theme }) => theme.layout.component.width};
 

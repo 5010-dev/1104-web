@@ -1,5 +1,4 @@
-import { useState, FocusEvent } from 'react'
-
+import React, { useState } from 'react'
 import { InputProps } from './input.types'
 import { InputContainer } from './input.styles'
 
@@ -24,18 +23,12 @@ export default function Input(props: InputProps) {
 		handleFocus,
 		handleBlur,
 		isRequired,
+		isTextfield = false,
 	} = props
 
-	const [isFocused, setIsFocused] = useState<boolean>(false)
+	const [isFocused, setIsFocused] = useState(false)
 
-	const handleInputFocus = (e: FocusEvent<HTMLInputElement>) => {
-		setIsFocused(true)
-		handleFocus && handleFocus(e)
-	}
-	const handleInputBlur = (e: FocusEvent<HTMLInputElement>) => {
-		setIsFocused(false)
-		handleBlur && handleBlur(e)
-	}
+	const InputElement = isTextfield ? 'textarea' : 'input'
 
 	return (
 		<InputContainer
@@ -44,8 +37,9 @@ export default function Input(props: InputProps) {
 			$isFocused={isFocused}
 			$isValid={isValid}
 			$hierarchy={hierarchy}
+			$isTextfield={isTextfield}
 		>
-			<input
+			<InputElement
 				id={inputId}
 				className={inputClassName}
 				type={type}
@@ -54,20 +48,25 @@ export default function Input(props: InputProps) {
 				maxLength={maxLength && maxLength - 1}
 				name={name}
 				value={value}
-				onFocus={handleInputFocus}
-				onBlur={handleInputBlur}
+				onFocus={(e) => {
+					setIsFocused(true)
+					handleFocus?.(e)
+				}}
+				onBlur={(e) => {
+					setIsFocused(false)
+					handleBlur?.(e)
+				}}
 				onClick={handleClick}
 				onKeyDown={handleKeyDown}
 				onChange={handleChange}
 				placeholder={placeholder}
 				required={isRequired}
 			/>
-
-			{maxLength ? (
+			{maxLength && (
 				<span>
 					{value?.toString().length} / {maxLength}
 				</span>
-			) : null}
+			)}
 		</InputContainer>
 	)
 }

@@ -63,7 +63,7 @@ export const PartnershipFormContainer = styled(SectionContainer)`
 			flex-direction: column;
 			justify-content: flex-start;
 			align-items: center;
-			gap: ${({ theme }) => theme.layout.section.gutter};
+			gap: ${({ theme }) => theme.layout.container.gutter};
 
 			div#partnership-form-inputs-container {
 				width: ${({ theme }) => theme.layout.container.width};

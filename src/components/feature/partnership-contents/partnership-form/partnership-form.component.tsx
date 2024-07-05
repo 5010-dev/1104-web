@@ -36,7 +36,9 @@ export default function PartnershipForm() {
 		body: false,
 	})
 
-	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (
+		e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+	) => {
 		const inputValue = e.target.value
 		const inputName = e.target.name
 
@@ -100,8 +102,20 @@ export default function PartnershipForm() {
 							isValid={formData.email.length === 0 || isValid.email}
 							isRequired
 						/>
+						<Input
+							className="partnership-form-input"
+							isTextfield
+							type="text"
+							name="body"
+							placeholder="500자 이내로 파트너십 문의 내용을 작성해 주세요."
+							hierarchy="primary"
+							value={formData.body}
+							handleChange={handleInputChange}
+							isValid={formData.body.length === 0 || isValid.body}
+							isRequired
+							maxLength={500}
+						/>
 					</div>
-					{/* TODO: textarea, 500자 이내로 문의 내용을 작성해 주세요. */}
 					<div id="partnership-form-button-container">
 						<Button
 							id="partnership-form-button"

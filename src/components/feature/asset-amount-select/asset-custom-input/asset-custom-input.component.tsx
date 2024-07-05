@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FocusEvent } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
@@ -21,6 +21,11 @@ export default function AssetCustomInput(props: AssetCustomInputProps) {
 	const [isSelected, setIsSelected] = useState<boolean>(false)
 	const [isFocused, setIsFocused] = useState<boolean>(false)
 
+	const handleInputFocus = (e: FocusEvent<HTMLInputElement>) => {
+		handleFocus(e)
+		setIsFocused(true)
+	}
+
 	useEffect(() => {
 		setIsSelected(isCustomInputSelected)
 	}, [isCustomInputSelected])
@@ -41,10 +46,7 @@ export default function AssetCustomInput(props: AssetCustomInputProps) {
 				placeholder={placeholder}
 				isValid={isValid}
 				handleChange={handleChange}
-				handleFocus={(e) => {
-					handleFocus && handleFocus(e)
-					setIsFocused(true)
-				}}
+				handleFocus={handleInputFocus}
 				handleBlur={() => setIsFocused(false)}
 			/>
 			{isSelected ? (
