@@ -1,9 +1,12 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
+import emailjs from '@emailjs/browser'
 
 import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { usePartnershipContentsStore } from '../../../../store/contents/partnershipContentsStore'
+import { useLoadingStore } from '../../../../store/loadingStore'
+import { useToastMessageStore } from '../../../../store/globalUiStore'
 
 import {
 	validateWithRegex,
@@ -24,6 +27,8 @@ export default function PartnershipForm() {
 	const { heading, body } = usePartnershipContentsStore(
 		(state) => state.contact,
 	)
+	const { updateIsLoading } = useLoadingStore()
+	const { updateToastMessage } = useToastMessageStore()
 
 	const [formData, setFormData] = useState<FormData>({
 		name: '',
@@ -63,8 +68,34 @@ export default function PartnershipForm() {
 
 	const allFieldsValid = isAllValid(isValid)
 
-	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
+		if (!allFieldsValid) return
+
+		try {
+			updateIsLoading(true)
+
+			const result = await emailjs.send(
+				process.env.REACT_APP_EMAILJS_SERVICE_ID!,
+				process.env.REACT_APP_EMAILJS_TEMPLATE_ID!,
+				{
+					name: formData.name,
+					email: formData.email,
+					body: formData.body,
+				},
+				process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
+			)
+
+			if (result.text === 'OK') {
+				updateToastMessage('파트너십 문의가 성공적으로 전송되었습니다.')
+				setFormData({ name: '', email: '', body: '' })
+			}
+		} catch (error: any) {
+			updateToastMessage(error.message)
+		} finally {
+			updateIsLoading(false)
+		}
 	}
 
 	return (
