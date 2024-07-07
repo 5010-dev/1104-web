@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAnglesDown } from '@fortawesome/free-solid-svg-icons'
-
 import { ServiceItemDetailsProps } from './service-item-details.types'
 import { ServiceItemDetailsContainer } from './service-item-details.styles'
 
@@ -11,9 +8,10 @@ export default function ServiceItemDetails(props: ServiceItemDetailsProps) {
 
 	return (
 		<ServiceItemDetailsContainer>
-			<div id="service-details-heading-container">
-				<h3 id="service-details-heading">서비스 상세보기</h3>
-				<FontAwesomeIcon icon={faAnglesDown} id="down-icon" />
+			<div id="service-item-details-title-container">
+				<hr id="service-item-details-vertical-line" />
+				<span id="service-item-details-caption">SERVICE DETAILS</span>
+				<h3 id="service-item-details-heading">서비스 상세보기</h3>
 			</div>
 			<div id="service-details-img-container">
 				{detailsImgUrls.map((item, index) => (

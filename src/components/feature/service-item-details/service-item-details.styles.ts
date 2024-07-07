@@ -15,31 +15,36 @@ export const ServiceItemDetailsContainer = styled.div`
 	align-items: center;
 	gap: 0;
 
-	div#service-details-heading-container {
-		position: absolute;
-		top: 1rem;
-
-		width: ${({ theme }) => theme.layout.container.width};
-
+	div#service-item-details-title-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 0.5rem;
 
-		opacity: 0.5;
+		padding: ${({ theme }) => `${theme.layout.section.gutter} 0`};
 
-		/* margin-top: ${({ theme }) => theme.layout.page.gutter}; */
+		hr#service-item-details-vertical-line {
+			width: 0.0625rem;
+			height: 6rem;
 
-		h3#service-details-heading {
-			flex: 0 0 auto;
-			${({ theme }) => getTypography(theme, 'heading3')}
-			color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'active')};
+			border: none;
+			background-color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'inactive')};
+
+			margin-bottom: 1rem;
 		}
 
-		#down-icon {
-			font-size: 2rem;
+		span#service-item-details-caption {
+			${({ theme }) => getTypography(theme, 'caption')}
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'inactive')};
+		}
+
+		h3#service-item-details-heading {
+			flex: 0 0 auto;
+			${({ theme }) => getTypography(theme, 'heading2')}
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 	}
 
