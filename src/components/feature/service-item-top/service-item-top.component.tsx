@@ -79,7 +79,9 @@ const ServiceItemTop = forwardRef<HTMLDivElement, ServiceItemTopProps>(
 						</ul>
 					</Card>
 					<div id="service-item-price-container">
-						<span id="service-item-price">₩ {item.price.toLocaleString()}</span>
+						<span id="service-item-price">
+							₩ {Number(item.price).toLocaleString()}
+						</span>
 						<span id="service-item-price-caption">{item.price_caption}</span>
 					</div>
 					<Button
