@@ -1,7 +1,7 @@
 import { useSearchParams, Navigate } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import backgroundImage from '../../../assets/img/pre-order-image.webp'
 

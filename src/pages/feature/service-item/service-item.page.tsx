@@ -3,13 +3,16 @@ import { useParams } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 import { Helmet } from 'react-helmet-async'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useServiceDataStore, Service } from '../../../store/serviceDataStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import {
 	useToastMessageStore,
 	useNavigationStore,
-} from '../../../store/globalUiStore'
+} from '../../../store/layout/global-ui.store'
+import { useLoadingStore } from '../../../store/layout/loading.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+
+import { getProductById } from '../../../services/product/product-service'
+import { Product } from '../../../services/product/product-service.types'
 
 import {
 	ServiceItemContainer,
@@ -24,7 +27,7 @@ import ServiceItemNotes from '../../../components/feature/service-item-notes/ser
 export default function ServiceItem() {
 	const { id } = useParams<{ id: string }>()
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { service } = useServiceDataStore()
+	const { updateIsLoading } = useLoadingStore()
 	const updateToastMessage = useToastMessageStore(
 		(state) => state.updateToastMessage,
 	)
@@ -32,7 +35,7 @@ export default function ServiceItem() {
 
 	const navigate = useNavigateWithScroll()
 
-	const [item, setItem] = useState<Service>()
+	const [item, setItem] = useState<Product>()
 	const [showBar, setShowBar] = useState<boolean>(false)
 	const [elementAHeight, setElementAHeight] = useState(0)
 	const [topElement, setTopElement] = useState<HTMLDivElement | null>(null)
@@ -48,21 +51,31 @@ export default function ServiceItem() {
 		window.scrollTo({ top: 0 })
 		const numberedId = Number(id)
 
-		// HACK: D2C에서 5010 매매 전략 판매 전까지 강제 리디렉션 처리
-		if (numberedId === 0 || numberedId === 999) {
+		if (numberedId === 1) {
 			updateToastMessage('서비스를 찾을 수 없습니다.')
 			navigate(ROUTES.HOME)
+			return
 		}
 
-		const foundItem = service.find((item) => item.id === numberedId)
+		const fetchProductData = async () => {
+			try {
+				updateIsLoading(true)
+				const foundItem = await getProductById(numberedId)
 
-		if (foundItem) {
-			setItem(foundItem)
-		} else {
-			updateToastMessage('서비스를 찾을 수 없습니다.')
-			navigate(ROUTES.HOME)
+				if (foundItem) {
+					setItem(foundItem)
+				} else {
+					updateToastMessage('서비스를 찾을 수 없습니다.')
+					navigate(ROUTES.HOME)
+				}
+			} catch (error: any) {
+				updateToastMessage(error)
+			} finally {
+				updateIsLoading(false)
+			}
 		}
-	}, [id, service, updateToastMessage, navigate])
+		fetchProductData()
+	}, [id, updateToastMessage, navigate, updateIsLoading])
 
 	useEffect(() => {
 		if (!topElement) return
@@ -101,7 +114,7 @@ export default function ServiceItem() {
 			<ServiceItemBar item={item} showBar={showBar} />
 			<ServiceItemTop item={item} ref={refCallback} />
 			<ServiceItemDetails detailsImgUrls={item.details ? item.details : []} />
-			<ServiceItemNotes item={item} />
+			<ServiceItemNotes />
 		</ServiceItemContainer>
 	)
 }

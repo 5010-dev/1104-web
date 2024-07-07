@@ -1,5 +1,5 @@
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
-import { useAboutUsContentsStore } from '../../../../store/contents/aboutUsContentsStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
+import { useAboutUsContentsStore } from '../../../../store/contents/about-us-contents/about-us-contents.store'
 import usePointerCoarseAndSafari from '../../../../hooks/usePointerCoarseAndSafari'
 
 import { ObjectiveSectionContainer } from './objective-section.styles'

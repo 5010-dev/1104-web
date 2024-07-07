@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'react-responsive'
 import { useState, useEffect } from 'react'
 
-import { DeviceType } from '../store/deviceTypeStore'
+import { DeviceType } from '../store/layout/device-type.store'
 import designTokens from '../styles/degisn-tokens/design-tokens.tokens'
 
 /**

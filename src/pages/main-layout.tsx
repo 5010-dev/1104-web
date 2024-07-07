@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import { useNavigationStore } from '../store/globalUiStore'
+import { useNavigationStore } from '../store/layout/global-ui.store'
 
 import Navigation from '../components/global/navigation/navigation.component'
 import Footer from '../components/global/footer/footer.component'

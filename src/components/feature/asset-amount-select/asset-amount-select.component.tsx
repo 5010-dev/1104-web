@@ -3,8 +3,8 @@ import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
-import { useAuthDataStore } from '../../../store/authDataStore'
-import { useAssetOptionStore } from '../../../store/serviceDataStore'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { useAssetOptionStore } from '../../../store/data/service-data/service-data.store'
 
 import { AssetAmountSelectProps } from './asset-amount-select.types'
 import { AssetAmountSelectContainer } from './asset-amount-select.styles'

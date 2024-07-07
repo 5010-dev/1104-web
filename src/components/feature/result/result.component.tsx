@@ -1,5 +1,5 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useHomeContentsStore } from '../../../store/contents/home-contents/home-contents.store'
 
 import ResultItem from './result-item/result-item.component'
 

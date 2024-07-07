@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChild } from '@fortawesome/free-solid-svg-icons'
 
 import { useExchangeDataStore } from '../../../../../store/exchangeDataStore'
-import { useAuthDataStore } from '../../../../../store/authDataStore'
+import { useAuthDataStore } from '../../../../../store/data/auth-data/auth-data.store'
 
 import { ExchangeSelectProps } from './exchange-select.types'
 import { ExchangeSelectContainer } from './exchange-select.styles'

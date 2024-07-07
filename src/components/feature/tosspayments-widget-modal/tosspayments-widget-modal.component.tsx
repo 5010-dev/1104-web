@@ -9,9 +9,9 @@ import { ROUTES } from '../../../routes/routes'
 import Lottie from 'lottie-react'
 import spinnerAnim from '../../../assets/lottie/spinner-anim-dark.json'
 
-import { useAuthDataStore } from '../../../store/authDataStore'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { usePaymentStore } from '../../../store/paymentStore'
-import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import { checkoutProduct } from '../../../services/payment/payment-service'
 import { CheckoutResponse } from '../../../services/payment/payment-service.types'
 
@@ -54,7 +54,7 @@ export default function TosspaymentsWidgetModal(
 			// 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
 			await paymentWidget?.requestPayment({
 				orderId: nanoid(),
-				orderName: `${item.name} | ${item.plan}`,
+				orderName: `${item.title} | ${item.plan}`,
 				customerEmail: userId,
 				successUrl: `${BASE_URL}${ROUTES.CHECKOUT_SUCCESS}`,
 				failUrl: `${BASE_URL}${ROUTES.CEHCKOUT_FAIL}`,
@@ -132,7 +132,7 @@ export default function TosspaymentsWidgetModal(
 
 	return (
 		<Modal
-			title={`${item.name} 결제`}
+			title={`${item.title} 결제`}
 			children={
 				<>
 					{isLoadingWidget || isLoadingCheckout ? (

@@ -1,4 +1,4 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import { ChipProps } from './chip.types'
 import { ChipContainer } from './chip.styles'

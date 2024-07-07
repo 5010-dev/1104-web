@@ -7,6 +7,8 @@ import {
 	CheckCouponResponse,
 	CheckoutPayload,
 	CheckoutResponse,
+	SubscribedItem,
+	PaidItem,
 } from './payment-service.types'
 
 /**
@@ -79,6 +81,38 @@ export const checkoutProduct = async ({
 			status: status,
 			created: created,
 		}
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+/**
+ * 사용자의 구독 아이템 정보를 가져옵니다.
+ *
+ * @returns {Promise<SubscribedItem>} 구독 아이템 정보를 담은 Promise 객체
+ * @throws {Error} API 요청 실패 시 에러를 던집니다.
+ */
+export const getUserSubscribedItemData = async (): Promise<SubscribedItem> => {
+	try {
+		const response = await axiosInstance.get('/users/me/subscriptions')
+		const { data } = response.data
+		return data
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+/**
+ * 사용자의 결제 아이템 목록을 가져옵니다.
+ *
+ * @returns {Promise<PaidItem[]>} 결제 아이템 목록을 담은 Promise 객체
+ * @throws {Error} API 요청 실패 시 에러를 던집니다.
+ */
+export const getUserPaiedItemData = async (): Promise<PaidItem[]> => {
+	try {
+		const response = await axiosInstance.get('/users/me/payments')
+		const { data } = response.data
+		return data
 	} catch (error) {
 		throw new Error(handleError(error))
 	}

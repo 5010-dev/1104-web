@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesDown } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 

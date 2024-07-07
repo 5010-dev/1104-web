@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelopeCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
-import { useLoadingStore } from '../../../../store/loadingStore'
-import { useToastMessageStore } from '../../../../store/globalUiStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
+import { useLoadingStore } from '../../../../store/layout/loading.store'
+import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
 import {

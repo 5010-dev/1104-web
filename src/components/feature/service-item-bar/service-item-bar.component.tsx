@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { ServiceItemBarProps } from './service-item-bar.types'
@@ -21,7 +21,7 @@ export default function ServiceItemBar(props: ServiceItemBarProps) {
 
 	const handleCheckout = (e: MouseEvent<HTMLButtonElement>) => {
 		navigate(
-			`${ROUTES.CHECKOUT}?id=${item.id}&name=${item.name}&plan=${item.plan}`,
+			`${ROUTES.CHECKOUT}?id=${item.id}&name=${item.title}&plan=${item.plan}`,
 		)
 	}
 
@@ -39,12 +39,12 @@ export default function ServiceItemBar(props: ServiceItemBarProps) {
 					<div id="service-item-bar-left-column">
 						<img
 							id="service-item-bar-img"
-							src={item.thumbnailImg}
+							src={item.thumbnail_image_url}
 							alt="service-item-bar-img"
 						/>
 						<div id="service-item-bar-text-container">
 							<h2 id="service-item-bar-heading">
-								{item.name} | {item.plan}
+								{item.title} | {item.plan}
 							</h2>
 							<span id="service-item-bar-price">
 								₩{item.price.toLocaleString()}

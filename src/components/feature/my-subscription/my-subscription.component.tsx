@@ -1,4 +1,4 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import { MySubscriptionContainer } from './my-subscription.styles'
 

@@ -3,8 +3,8 @@ import { MouseEvent } from 'react'
 import { motion, useMotionTemplate } from 'framer-motion'
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useHomeContentsStore } from '../../../store/contents/home-contents/home-contents.store'
 
 import { ReviewContainer } from './review.styles'
 

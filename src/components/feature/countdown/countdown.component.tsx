@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import {
 	calculateRemainingTime,
 	calculateDays,

@@ -1,11 +1,12 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import { CheckoutItemProps } from './checkout-item.types'
 import { CheckoutItemContainer } from './checkout-item.styles'
 
 export default function CheckoutItem(props: CheckoutItemProps) {
 	const { item } = props
-	const { name, plan, thumbnailImg, price, priceCaption } = item
+	const { title, plan, thumbnail_image_url, price, price_caption } = item
+	const numberedPrice = Number(price)
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -14,14 +15,18 @@ export default function CheckoutItem(props: CheckoutItemProps) {
 			<div className="container-row">
 				<h2 className="heading-2">주문 상품</h2>
 				<div className="item-row" id="subscribe-plan-container">
-					<img src={thumbnailImg} alt="thumbnail-img" id="thumbnail-img" />
+					<img
+						src={thumbnail_image_url}
+						alt="thumbnail-img"
+						id="thumbnail-img"
+					/>
 					<div id="item-text-container">
 						<p className="body">
-							{name} | {plan}
+							{title} | {plan}
 						</p>
 						<span className="caption">디지털 상품 및 서비스</span>
 						<h3 className="heading-3">
-							₩{price.toLocaleString()} <span>({priceCaption})</span>
+							₩{numberedPrice.toLocaleString()} <span>({price_caption})</span>
 						</h3>
 					</div>
 				</div>

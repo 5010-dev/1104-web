@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useRegistrationStore } from '../../../store/registrationStore'
 
 import { RegistrationFormContainer } from './registration-form.styles'

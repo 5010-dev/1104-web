@@ -3,7 +3,7 @@ import { useState, useEffect, ChangeEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import {
 	ServiceTermsList,
 	useServiceTermsStore,

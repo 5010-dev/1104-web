@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { useAuthDataStore } from '../../../store/authDataStore'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 
 import AuthLayout from '../../global/auth-layout/auth-layout.component'
 import LoginForm from '../../../components/feature/login-form/login-form.component'

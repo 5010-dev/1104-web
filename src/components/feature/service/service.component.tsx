@@ -1,8 +1,8 @@
 import { MouseEvent } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useHomeContentsStore } from '../../../store/contents/home-contents/home-contents.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { ServiceContainer } from './service.styles'
@@ -24,15 +24,8 @@ export default function Service() {
 				'_blank',
 				'noopener,noreferrer',
 			)
-		} else if (id === 0) {
-			// HACK: 5010 매매 전략 D2C 판매 준비 전까지
-			window.open(
-				'https://kmong.com/gig/455172',
-				'_blank',
-				'noopener,noreferrer',
-			)
 		} else {
-			navigate(`${ROUTES.SERVICE_ITEM.createPath(id)}`)
+			navigate(ROUTES.SERVICE_ITEM.createPath(id))
 		}
 	}
 

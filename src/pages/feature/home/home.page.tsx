@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useScrollStore } from '../../../store/globalUiStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useScrollStore } from '../../../store/layout/global-ui.store'
 
 import HomeHero from '../../../components/feature/home-hero/home-hero.component'
 import About from '../../../components/feature/about/about.component'

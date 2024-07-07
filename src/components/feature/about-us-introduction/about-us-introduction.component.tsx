@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAboutUsContentsStore } from '../../../store/contents/aboutUsContentsStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useAboutUsContentsStore } from '../../../store/contents/about-us-contents/about-us-contents.store'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
 
 import { AboutUsIntroductionContainer } from './about-us-introduction.styles'

@@ -2,8 +2,8 @@ import { MouseEvent, useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ROUTES } from '../../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
-import { useToastMessageStore } from '../../../../store/globalUiStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
+import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
 import {

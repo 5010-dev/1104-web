@@ -1,9 +1,9 @@
 import { MouseEvent } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useLoadingStore } from '../../../store/loadingStore'
-import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useLoadingStore } from '../../../store/layout/loading.store'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import { sendPasswordResetVerification } from '../../../services/auth/auth-service'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 import { getAccessToken } from '../../../utils/token.utils'

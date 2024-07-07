@@ -4,7 +4,7 @@ import { faCirclePlus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 import AnimatedWrapper from '../../../global/animated-wrapper/animated-wraper'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { ResultItemProps } from './result-item.types'
 
 import Button from '../../../global/button/button.component'

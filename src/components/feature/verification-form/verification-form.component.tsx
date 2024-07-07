@@ -2,15 +2,15 @@ import { useState, useEffect, FormEvent, MouseEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
-import { useAuthDataStore } from '../../../store/authDataStore'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import {
 	sendVerification,
 	confirmSignup,
 	sendPasswordResetVerification,
 	confirmPasswordReset,
 } from '../../../services/auth/auth-service'
-import { useLoadingStore } from '../../../store/loadingStore'
-import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useLoadingStore } from '../../../store/layout/loading.store'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 import {
 	getAccessToken,

@@ -4,8 +4,8 @@ import { ROUTES } from '../../../routes/routes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
-import { useAuthDataStore } from '../../../store/authDataStore'
-import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 import { logout } from '../../../services/auth/auth-service'
 

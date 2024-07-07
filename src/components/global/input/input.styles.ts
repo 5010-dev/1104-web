@@ -40,7 +40,7 @@ export const InputContainer = styled.div<InputContainerProps>`
 			$isTextfield &&
 			css`
 				height: 25vh;
-				max-height: 15rem;
+				max-height: 12rem;
 				min-height: 10rem;
 
 				overflow-y: auto;

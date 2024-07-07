@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
-import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 
 import { getAccessToken, getRefreshToken } from '../../../utils/token.utils'
 

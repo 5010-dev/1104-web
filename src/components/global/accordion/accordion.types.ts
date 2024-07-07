@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { DeviceType } from '../../../store/deviceTypeStore'
+import { DeviceType } from '../../../store/layout/device-type.store'
 // import { Faq } from '../../../store/serviceDataStore'
 
 // export type AccordionProps = Faq

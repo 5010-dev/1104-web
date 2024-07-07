@@ -1,6 +1,6 @@
 import { FormattedNumberingProps } from './formatted-numbering.types'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 
 import { ReactComponent as NumFrameSvg } from '../../../../assets/svg/formatted-numbering/formatted-numbering-frame.svg'
 import { ReactComponent as NumSvg } from '../../../../assets/svg/formatted-numbering/formatted-numbering-num.svg'

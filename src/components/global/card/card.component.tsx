@@ -1,4 +1,4 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import { CardProps } from './card.types'
 import { CardContainer } from './card.styles'

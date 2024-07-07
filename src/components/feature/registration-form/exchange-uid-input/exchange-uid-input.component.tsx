@@ -3,7 +3,7 @@ import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
-import { useAuthDataStore } from '../../../../store/authDataStore'
+import { useAuthDataStore } from '../../../../store/data/auth-data/auth-data.store'
 import { useExchangeDataStore } from '../../../../store/exchangeDataStore'
 
 import { ExchangeUidInputProps } from './exchange-uid-input.types'

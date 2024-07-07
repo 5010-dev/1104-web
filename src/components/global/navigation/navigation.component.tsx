@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useScroll } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import useOnClickOutside from '../../../hooks/useOnClickOutside'
 // import { useAuthDataStore } from '../../../store/authDataStore'
 // import { useBannerStore } from '../../../store/globalUiStore'

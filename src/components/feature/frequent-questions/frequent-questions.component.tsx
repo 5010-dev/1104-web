@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useFaqDataStore } from '../../../store/serviceDataStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useFaqDataStore } from '../../../store/data/service-data/service-data.store'
 
 import { FrequentQuestionsContainer } from './frequent-questions.styles'
 

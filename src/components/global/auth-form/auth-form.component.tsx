@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 
-import { useAuthDataStore } from '../../../store/authDataStore'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 
 import { AuthFormProps, AuthValidity } from './ayth-form.types'
 import { AuthFormContainer } from './auth-form.styles'

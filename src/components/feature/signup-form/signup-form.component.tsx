@@ -2,9 +2,9 @@ import { useState, FormEvent, MouseEvent } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
 import { signUp, sendVerification } from '../../../services/auth/auth-service'
-import { useAuthDataStore } from '../../../store/authDataStore'
-import { useLoadingStore } from '../../../store/loadingStore'
-import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { useLoadingStore } from '../../../store/layout/loading.store'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import {

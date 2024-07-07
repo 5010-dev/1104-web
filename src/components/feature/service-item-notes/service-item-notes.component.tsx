@@ -1,20 +1,19 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useServiceDataStore } from '../../../store/data/service-data/service-data.store'
 
-import { ServiceItemNotesProps } from './service-item-notes.types'
 import { ServiceItemNotesContainer } from './service-item-notes.styles'
 
 import Card from '../../global/card/card.component'
 import Accordion from '../../global/accordion/accordion.component'
 import ServiceTerms from '../service-terms/service-terms.component'
 
-export default function ServiceItemNotes(props: ServiceItemNotesProps) {
-	const { item } = props
-
+export default function ServiceItemNotes() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { notes, info } = useServiceDataStore((state) => state.serviceFooter)
 
 	return (
 		<ServiceItemNotesContainer $deviceType={deviceType}>
-			{item.notes ? (
+			{notes ? (
 				<Card
 					className="service-item-notes-card"
 					appearance="neutral"
@@ -22,7 +21,7 @@ export default function ServiceItemNotes(props: ServiceItemNotesProps) {
 					opacity={1}
 				>
 					<ul className="service-item-notes-ul">
-						{item.notes.map((item, index) => (
+						{notes.map((item, index) => (
 							<li key={index} className="service-item-notes-li">
 								{item}
 							</li>
@@ -43,9 +42,9 @@ export default function ServiceItemNotes(props: ServiceItemNotesProps) {
 					<h3 className="service-item-accordion-heading">상품 정보 고시</h3>
 				}
 				body={
-					item.serviceInfo ? (
+					info ? (
 						<ul className="service-item-notes-ul">
-							{item.serviceInfo.map((item, index) => (
+							{info.map((item, index) => (
 								<li key={index} className="service-item-notes-li">
 									{item}
 								</li>

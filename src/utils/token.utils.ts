@@ -1,4 +1,4 @@
-import { useAuthDataStore } from '../store/authDataStore'
+import { useAuthDataStore } from '../store/data/auth-data/auth-data.store'
 import CryptoJS from 'crypto-js'
 
 const REFRESH_TOKEN_KEY = 'refresh'

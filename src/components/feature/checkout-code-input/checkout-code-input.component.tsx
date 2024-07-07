@@ -2,9 +2,9 @@ import { useState, ChangeEvent, MouseEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { usePaymentStore } from '../../../store/paymentStore'
-import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import { checkCoupon } from '../../../services/payment/payment-service'
 
 import { CheckoutCodeInputContainer } from './checkout-code-input.styles'

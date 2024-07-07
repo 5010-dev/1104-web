@@ -1,4 +1,4 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import { CheckoutBillingProps } from './checkout-billing.types'
 import { CheckoutBillingContainer } from './checkout-billing.styles'
@@ -8,6 +8,7 @@ import Chip from '../../global/chip/chip.component'
 export default function CheckoutBilling(props: CheckoutBillingProps) {
 	const { item, discount } = props
 	const { price } = item
+	const numberedPrice = Number(price)
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 
@@ -20,7 +21,7 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 				<h2 className="heading-2">결제 금액</h2>
 				<div className="item-row">
 					<span className="price-label">상품 금액</span>
-					<p className="body">₩{price.toLocaleString()}</p>
+					<p className="body">₩{numberedPrice.toLocaleString()}</p>
 				</div>
 				<div className="item-row">
 					<span className="price-label">할인 금액</span>
@@ -37,7 +38,7 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 						<p className="body">
 							- ₩
 							{(discount
-								? calcDiscountPrice(discount, price)
+								? calcDiscountPrice(discount, numberedPrice)
 								: 0
 							).toLocaleString()}
 						</p>
@@ -53,8 +54,8 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 					<h3 className="heading-3" id="billing-price-text">
 						₩
 						{(discount
-							? price - calcDiscountPrice(discount, price)
-							: price
+							? numberedPrice - calcDiscountPrice(discount, numberedPrice)
+							: numberedPrice
 						).toLocaleString()}
 					</h3>
 				</div>

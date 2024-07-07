@@ -2,9 +2,9 @@ import { MouseEvent } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
-import { useAuthDataStore } from '../../../store/authDataStore'
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useScrollStore } from '../../../store/globalUiStore'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useScrollStore } from '../../../store/layout/global-ui.store'
 
 import { NavigationMenuContainer } from './navigation-menu.styles'
 

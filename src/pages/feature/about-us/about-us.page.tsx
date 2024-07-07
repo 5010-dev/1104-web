@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAboutUsContentsStore } from '../../../store/contents/aboutUsContentsStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useAboutUsContentsStore } from '../../../store/contents/about-us-contents/about-us-contents.store'
 
 import { AboutUsContainer } from './about-us.styles'
 

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 
 import { ReviewItemProps } from '../review.types'
 import { ReviewItemContainer } from './review-item.styles'

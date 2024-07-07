@@ -1,5 +1,5 @@
-import { Service } from '../../../store/serviceDataStore'
+import { Product } from '../../../services/product/product-service.types'
 
 export type CheckoutItemProps = {
-	item: Service
+	item: Product
 }

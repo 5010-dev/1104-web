@@ -1,10 +1,10 @@
-import { DeviceType } from '../../../../store/deviceTypeStore'
-import { Service } from '../../../../store/serviceDataStore'
+import { DeviceType } from '../../../../store/layout/device-type.store'
+import { ProductListItem } from '../../../../services/product/product-service.types'
 
 type ItemHierarchy = 'primary' | 'secondary'
 
 export type SubscriptionItemProps = {
-	item: Service
+	item: ProductListItem
 	hierarchy: ItemHierarchy
 }
 

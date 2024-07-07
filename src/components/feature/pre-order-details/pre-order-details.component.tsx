@@ -3,7 +3,7 @@ import { ROUTES } from '../../../routes/routes'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 import useFadeIn from '../../../hooks/useFadeIn'
 

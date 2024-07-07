@@ -2,7 +2,7 @@ import { MouseEvent } from 'react'
 import { ROUTES } from '../../../../routes/routes'
 import { motion } from 'framer-motion'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { usePreOrderContentsStore } from '../../../../store/contents/preOrderContentsStore'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 import useFadeIn from '../../../../hooks/useFadeIn'

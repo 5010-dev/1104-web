@@ -4,12 +4,15 @@ import { ROUTES } from '../../../routes/routes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAuthDataStore } from '../../../store/authDataStore'
-import { useToastMessageStore } from '../../../store/globalUiStore'
-import { useServiceDataStore, Service } from '../../../store/serviceDataStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
+import { useLoadingStore } from '../../../store/layout/loading.store'
 import { usePaymentStore } from '../../../store/paymentStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+
+import { getProductById } from '../../../services/product/product-service'
+import { Product } from '../../../services/product/product-service.types'
 
 import { CheckoutContainer } from './checkout.styles'
 
@@ -26,17 +29,15 @@ export default function Checkout() {
 	const { isUserDataLoaded } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
-	const service = useServiceDataStore((state) => state.service)
 	const { checkoutItem } = usePaymentStore()
+	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
 
-	const [item, setItem] = useState<Service>()
+	const [item, setItem] = useState<Product>()
 	const [showModal, setShowModal] = useState<boolean>(false)
 
 	const id = searchParams.get('id')
-	// const name = searchParams.get('name')
-	// const plan = searchParams.get('plan')
 
 	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
 
@@ -47,7 +48,6 @@ export default function Checkout() {
 	// 페이지 초기화 및 userId가 잘못되었거나 제품 id가 제공되지 않았을 때, 메인 화면으로 리디렉션
 	useEffect(() => {
 		window.scrollTo({ top: 0 })
-
 		if (isUserDataLoaded) {
 			if (userId.length === 0 || !id) {
 				updateToastMessage('잘못된 요청입니다.')
@@ -58,22 +58,39 @@ export default function Checkout() {
 			const numberedId = Number(id)
 
 			// HACK: D2C에서 5010 매매 전략 판매 전까지 강제 리디렉션 처리
-			if (numberedId === 0 || numberedId === 999) {
+			if (numberedId === 1) {
 				updateToastMessage('서비스를 찾을 수 없습니다.')
 				navigate(ROUTES.HOME)
 				return
 			}
 
-			const foundItem = service.find((item) => item.id === numberedId)
+			const fetchProductData = async () => {
+				try {
+					updateIsLoading(true)
+					const foundItem = await getProductById(numberedId)
 
-			if (foundItem) {
-				setItem(foundItem)
-			} else {
-				updateToastMessage('서비스를 찾을 수 없습니다.')
-				navigate(ROUTES.HOME)
+					if (foundItem) {
+						setItem(foundItem)
+					} else {
+						updateToastMessage('서비스를 찾을 수 없습니다.')
+						navigate(ROUTES.HOME)
+					}
+				} catch (error: any) {
+					updateToastMessage(error)
+				} finally {
+					updateIsLoading(false)
+				}
 			}
+			fetchProductData()
 		}
-	}, [userId, navigate, updateToastMessage, isUserDataLoaded, id, service])
+	}, [
+		userId,
+		navigate,
+		updateToastMessage,
+		isUserDataLoaded,
+		id,
+		updateIsLoading,
+	])
 
 	return (
 		<>

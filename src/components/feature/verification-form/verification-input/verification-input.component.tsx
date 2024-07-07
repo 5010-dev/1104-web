@@ -1,6 +1,6 @@
 import { useState, useCallback, ChangeEvent, FocusEvent } from 'react'
 
-import { useAuthDataStore } from '../../../../store/authDataStore'
+import { useAuthDataStore } from '../../../../store/data/auth-data/auth-data.store'
 
 import { VerificationInputProps } from './verification-input.types'
 import { VerificationInputContainer } from './verification-input.styles'

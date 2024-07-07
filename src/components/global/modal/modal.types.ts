@@ -1,5 +1,5 @@
 import { ReactNode, MouseEvent } from 'react'
-import { DeviceType } from '../../../store/deviceTypeStore'
+import { DeviceType } from '../../../store/layout/device-type.store'
 
 export type ModalProps = {
 	id?: string

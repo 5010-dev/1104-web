@@ -4,11 +4,15 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 import useDeviceType from './hooks/useDeviceType'
-import { useDeviceTypeStore } from './store/deviceTypeStore'
-import { useAuthDataStore } from './store/authDataStore'
-import { useLoadingStore } from './store/loadingStore'
+import { useDeviceTypeStore } from './store/layout/device-type.store'
+import { useAuthDataStore } from './store/data/auth-data/auth-data.store'
+import { useServiceDataStore } from './store/data/service-data/service-data.store'
+import { useLoadingStore } from './store/layout/loading.store'
 import { getLoginUserData, logout } from './services/auth/auth-service'
-import { useToastMessageStore } from './store/globalUiStore'
+import { useToastMessageStore } from './store/layout/global-ui.store'
+
+import { getRefreshToken } from './utils/token.utils'
+import { getProductList } from './services/product/product-service'
 
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
@@ -18,13 +22,14 @@ import Loading from './components/global/loading/loading.component'
 import Toast from './components/global/toast/toast.component'
 
 import './App.css'
-import { getRefreshToken } from './utils/token.utils'
 
 function App() {
 	const deviceType = useDeviceType()
 	const updateDeviceType = useDeviceTypeStore((state) => state.updateDeviceType)
 	const { updateLoginUser, updateIsUserDataLoaded, resetLoginUser } =
 		useAuthDataStore()
+	const { updateServiceList, updateIsServiceListDataLoaded } =
+		useServiceDataStore()
 	const { toastMessgae, resetToastMessage } = useToastMessageStore()
 	const { isLoading, updateIsLoading } = useLoadingStore()
 
@@ -33,37 +38,46 @@ function App() {
 	}, [deviceType, updateDeviceType])
 
 	useEffect(() => {
-		const fetchLoginUserData = async () => {
-			if (!getRefreshToken()) {
-				return
-			}
-
+		const fetchData = async () => {
 			try {
 				updateIsLoading(true)
-				updateIsUserDataLoaded(false)
 
-				const { email: loginEmail, is_email_verified } =
-					await getLoginUserData()
+				// 서비스 리스트 데이터 fetch (무조건 실행)
+				const serviceListResponse = await getProductList()
+				updateServiceList(serviceListResponse)
+				updateIsServiceListDataLoaded(true)
 
-				if (is_email_verified) {
-					updateLoginUser('userId', loginEmail)
-					updateLoginUser('isEmailValified', is_email_verified)
-					updateIsUserDataLoaded(true)
-				} else {
-					logout()
-					resetLoginUser()
+				// 로그인 유저 데이터 fetch (조건부 실행)
+				if (getRefreshToken()) {
+					const { email: loginEmail, is_email_verified } =
+						await getLoginUserData()
+					if (is_email_verified) {
+						updateLoginUser('userId', loginEmail)
+						updateLoginUser('isEmailValified', is_email_verified)
+						updateIsUserDataLoaded(true)
+					} else {
+						logout()
+						resetLoginUser()
+					}
 				}
 			} catch (error: any) {
+				console.log(error.message)
 				logout()
 				resetLoginUser()
-				console.log(error.message)
 			} finally {
 				updateIsLoading(false)
 			}
 		}
 
-		fetchLoginUserData()
-	}, [updateIsLoading, updateLoginUser, resetLoginUser, updateIsUserDataLoaded])
+		fetchData()
+	}, [
+		updateIsLoading,
+		updateServiceList,
+		updateLoginUser,
+		resetLoginUser,
+		updateIsUserDataLoaded,
+		updateIsServiceListDataLoaded,
+	])
 
 	return (
 		<HelmetProvider>

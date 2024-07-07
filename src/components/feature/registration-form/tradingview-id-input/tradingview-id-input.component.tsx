@@ -3,7 +3,7 @@ import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChild } from '@fortawesome/free-solid-svg-icons'
 
-import { useAuthDataStore } from '../../../../store/authDataStore'
+import { useAuthDataStore } from '../../../../store/data/auth-data/auth-data.store'
 
 import { TradingviewIdInputProps } from './tradingview-id-input.types'
 import { TradingviewIdInputContainer } from './tradingview-id-input.styles'

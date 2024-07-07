@@ -1,8 +1,8 @@
 import { useEffect, MouseEvent } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAuthDataStore } from '../../../store/authDataStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { AccountContainer } from './account.styles'

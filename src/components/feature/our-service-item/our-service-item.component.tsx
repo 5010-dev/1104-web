@@ -1,4 +1,4 @@
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import { OurServiceItemProps } from './our-service-item.types'
 import { OurServiceItemContainer } from './our-service-item.styles'

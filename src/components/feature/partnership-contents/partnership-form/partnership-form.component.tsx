@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
 import emailjs from '@emailjs/browser'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { usePartnershipContentsStore } from '../../../../store/contents/partnershipContentsStore'
-import { useLoadingStore } from '../../../../store/loadingStore'
-import { useToastMessageStore } from '../../../../store/globalUiStore'
+import { useLoadingStore } from '../../../../store/layout/loading.store'
+import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
 
 import {
 	validateWithRegex,

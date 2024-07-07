@@ -1,7 +1,7 @@
 // import { useState, MouseEvent } from 'react'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAuthDataStore } from '../../../store/authDataStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 
 import { CheckoutOptionContainer } from './checkout-option.styles'
 

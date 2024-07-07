@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { usePreOrderContentsStore } from '../../../../store/contents/preOrderContentsStore'
-import { useToastMessageStore } from '../../../../store/globalUiStore'
-import { useLoadingStore } from '../../../../store/loadingStore'
+import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
+import { useLoadingStore } from '../../../../store/layout/loading.store'
 import useFadeIn from '../../../../hooks/useFadeIn'
 
 import { PreOrderFormContainer } from './pre-order-form.styles'

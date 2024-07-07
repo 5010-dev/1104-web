@@ -1,7 +1,9 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { useFreeTrialContentStore } from '../../../../store/contents/freeTrialContentsStore'
+import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
 import { FreeTrialTitleSectionContainer } from './free-trial-title-section.styles'
 
@@ -10,10 +12,11 @@ import Button from '../../../global/button/button.component'
 export default function FreeTrialTitleSection() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { heading, subheading, image } = useFreeTrialContentStore()
+	const navigate = useNavigateWithScroll()
 
 	// HACK: 추후 D2C에서 5010 매매 전략 판매시 변경 필요, 그 전까지는 크몽으로 리디렉션 형태
 	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) =>
-		window.open('https://kmong.com/gig/455172', '_blank', 'noopener,noreferrer')
+		navigate(ROUTES.SERVICE_ITEM.createPath(2))
 
 	return (
 		<FreeTrialTitleSectionContainer $deviceType={deviceType}>

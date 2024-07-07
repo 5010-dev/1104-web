@@ -2,10 +2,11 @@ import { MouseEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
-import { useOurServiceContentsStore } from '../../../store/contents/ourServiceContentsStore'
-import { useScrollStore } from '../../../store/globalUiStore'
+import { useOurServiceContentsStore } from '../../../store/contents/our-service-contents/our-service-contents.store'
+import { useServiceDataStore } from '../../../store/data/service-data/service-data.store'
+import { useScrollStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { OurServiceContainer } from './our-service.styles'
@@ -17,7 +18,7 @@ import Button from '../../../components/global/button/button.component'
 export default function OurService() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useOurServiceContentsStore((state) => state.hero)
-	const serviceList = useOurServiceContentsStore((state) => state.serviceList)
+	const serviceList = useServiceDataStore((state) => state.serviceList)
 	const subscribeService = useOurServiceContentsStore(
 		(state) => state.subscribeService,
 	)
@@ -75,19 +76,21 @@ export default function OurService() {
 			/>
 			<div id="our-service-contents-container">
 				<div className="our-service-contents-row">
-					{serviceList.map((item, index) => (
-						<OurServiceItem
-							key={index}
-							imageUrl={item.image}
-							heading={item.heading}
-							subheading={item.subheading}
-							body={item.body}
-							freeTrial={item.freeTrial}
-							features={item.features}
-							handleSeeDetails={(e) => handleNavigate(e, item.id)}
-							handleFreeTrial={handleFreeTrial}
-						/>
-					))}
+					{serviceList.map((item, index) =>
+						item.id !== 1 ? (
+							<OurServiceItem
+								key={index}
+								imageUrl={item.background_image_url}
+								heading={item.title}
+								subheading={item.sub_title}
+								body={item.description}
+								freeTrial={item.id === 2 ? true : false}
+								features={item.labels}
+								handleSeeDetails={(e) => handleNavigate(e, item.id)}
+								handleFreeTrial={handleFreeTrial}
+							/>
+						) : null,
+					)}
 				</div>
 				<div className="our-service-contents-row">
 					<div id="our-service-subscribe-service-container">

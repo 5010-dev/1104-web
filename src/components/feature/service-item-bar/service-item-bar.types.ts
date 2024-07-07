@@ -1,6 +1,6 @@
-import { Service } from '../../../store/serviceDataStore'
+import { Product } from '../../../services/product/product-service.types'
 
 export type ServiceItemBarProps = {
-	item: Service
+	item: Product
 	showBar: boolean
 }

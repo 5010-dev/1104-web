@@ -1,8 +1,8 @@
 import { MouseEvent } from 'react'
-import { Service } from '../../../store/serviceDataStore'
+import { Product } from '../../../services/product/product-service.types'
 
 export type TosspaymentsWidgetModalProps = {
 	id: number
-	item: Service
+	item: Product
 	handleClose: (e: MouseEvent<HTMLButtonElement> | KeyboardEvent) => void
 }

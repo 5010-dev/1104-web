@@ -1,4 +1,4 @@
-import { useDeviceTypeStore } from '../../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../../store/layout/device-type.store'
 import { useFreeTrialContentStore } from '../../../../../store/contents/freeTrialContentsStore'
 
 import { FreeTrialOverviewSectionContainer } from './free-trial-overview-section.styles'

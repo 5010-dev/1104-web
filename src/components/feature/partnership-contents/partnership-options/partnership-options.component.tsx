@@ -1,4 +1,4 @@
-import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { usePartnershipContentsStore } from '../../../../store/contents/partnershipContentsStore'
 
 import { PartnershipOptionsContainer } from './partnership-options.styles'

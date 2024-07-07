@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
-import { useAuthDataStore } from '../../../store/authDataStore'
-import { useToastMessageStore } from '../../../store/globalUiStore'
+import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { IndicatorRegistrationContainer } from './indicator-registration.styles'

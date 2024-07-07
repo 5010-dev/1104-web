@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { SectionContainer } from '../section/section.styles'
-import { DeviceType } from '../../../store/deviceTypeStore'
+import { DeviceType } from '../../../store/layout/device-type.store'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
 import { getColour } from '../../../utils/colour.utils'
