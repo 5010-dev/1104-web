@@ -1,4 +1,4 @@
-import { MouseEvent, useState, useEffect, useRef } from 'react'
+import { MouseEvent, useState, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ROUTES } from '../../../../routes/routes'
 
@@ -26,21 +26,91 @@ export default function CheckoutSuccess() {
 	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
-	const hasRun = useRef(false)
-
-	// TODO: 아래의 세 가지 데이터를 서버로 전송하여 체크
-	// 쿼리 파라미터 값이 결제 요청할 때 보낸 데이터와 동일한지 반드시 확인하세요.
-	// 클라이언트에서 결제 금액을 조작하는 행위를 방지할 수 있습니다.
-	// const paymentKey = searchParams.get('paymentKey')
-	// const orderId = searchParams.get('orderId')
-	// const amount = searchParams.get('amount')
-
-	const [isValid, setIdValid] = useState<boolean>(false)
+	const [isValid, setIsValid] = useState<boolean>(false)
 
 	const handleHome = (e: MouseEvent<HTMLSpanElement>) => navigate(ROUTES.HOME)
 
 	// const handleRegistration = (e: MouseEvent<HTMLButtonElement>) =>
 	// 	navigate(ROUTES.REGISTRATION)
+
+	// useEffect(() => {
+	// 	const paymentKey = searchParams.get('paymentKey')
+	// 	const orderId = searchParams.get('orderId')
+	// 	const amount = searchParams.get('amount')
+
+	// 	if (!paymentKey || !orderId || !amount) {
+	// 		updateToastMessage('잘못된 요청입니다.')
+	// 		navigate(ROUTES.HOME)
+	// 	} else {
+	// 		const fetchPaymentConfirm = async () => {
+	// 			try {
+	// 				updateIsLoading(true)
+
+	// 				const { code, pg_data } = await confirmPayment({
+	// 					payment_key: paymentKey,
+	// 					order_number: orderId,
+	// 					total_price: amount,
+	// 				})
+
+	// 				if (code === 200) {
+	// 					const response = await proceedPayment({
+	// 						number: orderId,
+	// 						payment_key: paymentKey,
+	// 						status: 'READY',
+	// 						pg_data: pg_data,
+	// 					})
+
+	// 					if (response === 200) {
+	// 						setIsValid(true)
+	// 					}
+	// 				}
+	// 			} catch (error: any) {
+	// 				updateToastMessage(error.message)
+	// 				navigate(ROUTES.HOME)
+	// 			} finally {
+	// 				updateIsLoading(false)
+	// 			}
+	// 		}
+	// 		fetchPaymentConfirm()
+	// 	}
+	// }, [searchParams, navigate, updateToastMessage, updateIsLoading])
+
+	const fetchPaymentConfirm = useCallback(
+		async (paymentKey: string, orderId: string, amount: string) => {
+			try {
+				updateIsLoading(true)
+
+				const { code, pg_data } = await confirmPayment({
+					payment_key: paymentKey,
+					order_number: orderId,
+					total_price: amount,
+				})
+
+				if (code === 200) {
+					const response = await proceedPayment({
+						number: orderId,
+						payment_key: paymentKey,
+						status: 'READY',
+						pg_data: pg_data,
+					})
+
+					if (response === 200) {
+						setIsValid(true)
+					}
+				}
+			} catch (error) {
+				if (error instanceof Error) {
+					updateToastMessage(error.message)
+				} else {
+					updateToastMessage('알 수 없는 오류가 발생했습니다.')
+				}
+				navigate(ROUTES.HOME)
+			} finally {
+				updateIsLoading(false)
+			}
+		},
+		[updateIsLoading, setIsValid, updateToastMessage, navigate],
+	)
 
 	useEffect(() => {
 		const paymentKey = searchParams.get('paymentKey')
@@ -51,50 +121,9 @@ export default function CheckoutSuccess() {
 			updateToastMessage('잘못된 요청입니다.')
 			navigate(ROUTES.HOME)
 		} else {
-			if (!hasRun.current) {
-				const fetchPaymentConfirm = async () => {
-					try {
-						updateIsLoading(true)
-
-						const { code, pg_data } = await confirmPayment({
-							payment_key: paymentKey,
-							order_number: orderId,
-							total_price: amount,
-						})
-						console.log(code)
-						console.log(pg_data)
-
-						if (code === 200) {
-							const response = await proceedPayment({
-								number: orderId,
-								payment_key: paymentKey,
-								status: 'READY',
-								pg_data: pg_data,
-							})
-
-							if (response === 200) {
-								setIdValid(true)
-							}
-						}
-					} catch (error: any) {
-						updateToastMessage(error.message)
-						navigate(ROUTES.CEHCKOUT_FAIL)
-					} finally {
-						updateIsLoading(false)
-					}
-				}
-				fetchPaymentConfirm()
-			}
+			fetchPaymentConfirm(paymentKey, orderId, amount)
 		}
-	}, [
-		// paymentKey,
-		// orderId,
-		// amount,
-		searchParams,
-		navigate,
-		updateToastMessage,
-		updateIsLoading,
-	])
+	}, [searchParams, navigate, updateToastMessage, fetchPaymentConfirm])
 
 	return (
 		<CheckoutSuccessContainer $deviceType={deviceType}>
