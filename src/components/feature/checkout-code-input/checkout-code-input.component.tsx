@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import { usePaymentStore } from '../../../store/paymentStore'
+import { usePaymentStore } from '../../../store/payment/payment.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import { checkCoupon } from '../../../services/payment/payment-service'
 
@@ -14,10 +14,8 @@ import Button from '../../global/button/button.component'
 
 export default function CheckoutCodeInput() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { updateCheckoutItem, updateCoupon } = usePaymentStore()
-	const { code, isValid } = usePaymentStore(
-		(state) => state.checkoutItem.coupon,
-	)
+	const { updateCoupon, updateDiscount } = usePaymentStore()
+	const { code, isValid } = usePaymentStore((state) => state.coupon)
 	const updateToastMessage = useToastMessageStore(
 		(state) => state.updateToastMessage,
 	)
@@ -34,7 +32,7 @@ export default function CheckoutCodeInput() {
 			setIsChecking(true)
 			const { discount_percentage } = await checkCoupon(code)
 			updateCoupon('isValid', true)
-			updateCheckoutItem('discount', discount_percentage)
+			updateDiscount(Number(discount_percentage))
 		} catch (error: any) {
 			updateToastMessage(error.message)
 			updateCoupon('isValid', false)

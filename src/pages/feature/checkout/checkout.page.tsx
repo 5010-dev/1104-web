@@ -8,7 +8,7 @@ import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
-import { usePaymentStore } from '../../../store/paymentStore'
+import { usePaymentStore } from '../../../store/payment/payment.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { getProductById } from '../../../services/product/product-service'
@@ -29,7 +29,7 @@ export default function Checkout() {
 	const { isUserDataLoaded } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
-	const { checkoutItem } = usePaymentStore()
+	const { discount } = usePaymentStore()
 	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
@@ -123,10 +123,7 @@ export default function Checkout() {
 							</div>
 							<div className="item-column" id="right-column">
 								<h2 className="column-heading">결제 정보</h2>
-								<CheckoutBilling
-									item={item}
-									discount={checkoutItem.discount && checkoutItem.discount}
-								/>
+								<CheckoutBilling item={item} discount={discount && discount} />
 								<CheckoutTerms handleCheckout={toggleModal} />
 							</div>
 						</div>

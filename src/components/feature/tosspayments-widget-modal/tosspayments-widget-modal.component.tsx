@@ -2,18 +2,15 @@ import { useState, useEffect, useRef, MouseEvent } from 'react'
 import {
 	loadPaymentWidget,
 	PaymentWidgetInstance,
-	ANONYMOUS,
 } from '@tosspayments/payment-widget-sdk'
-import { nanoid } from 'nanoid'
 import { ROUTES } from '../../../routes/routes'
 import Lottie from 'lottie-react'
 import spinnerAnim from '../../../assets/lottie/spinner-anim-dark.json'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
-import { usePaymentStore } from '../../../store/paymentStore'
+import { usePaymentStore } from '../../../store/payment/payment.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import { checkoutProduct } from '../../../services/payment/payment-service'
-import { CheckoutResponse } from '../../../services/payment/payment-service.types'
 
 import { TosspaymentsWidgetModalProps } from './tosspayments-widget-modal.types'
 import { TosspaymentsWidgetContentsContainer } from './tosspayments-widget-modal.styles'
@@ -28,32 +25,31 @@ export default function TosspaymentsWidgetModal(
 	const { item, id, handleClose } = props
 
 	const { userId } = useAuthDataStore((state) => state.loginUser)
-	const { checkoutItem } = usePaymentStore()
+	const { coupon, checkoutData, updateCheckoutData, resetPaymentStore } =
+		usePaymentStore()
 	const { updateToastMessage } = useToastMessageStore()
 
 	const [paymentWidget, setPaymentWidget] =
 		useState<PaymentWidgetInstance | null>(null)
-	const [checkoutData, setCheckoutData] = useState<CheckoutResponse | null>(
-		null,
-	)
-	const [isLoadingWidget, setIsLoadingWidget] = useState(true)
-	const [isLoadingCheckout, setIsLoadingCheckout] = useState(true)
-	const [isInitiated, setIsInitiated] = useState(true)
+	const [isLoadingWidget, setIsLoadingWidget] = useState<boolean>(true)
+	const [isInitiated, setIsInitiated] = useState<boolean>(true)
+
 	const paymentMethodsWidgetRef = useRef<ReturnType<
 		PaymentWidgetInstance['renderPaymentMethods']
 	> | null>(null)
 
 	const BASE_URL = window.location.origin
 	const widgetClientKey = process.env.REACT_APP_CLIENT_KEY
-	const customerKey = ANONYMOUS // TODO: 사용자 UUID로 변경 필요
 
 	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		try {
-			// TODO: 결제 요청 및 확인 API 호출 구현
-			// 결제를 요청하기 전에 orderId, amount를 서버에 저장하세요.
-			// 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
+			if (!checkoutData?.user_uuid) {
+				updateToastMessage('주문 번호가 없습니다.')
+				return
+			}
+
 			await paymentWidget?.requestPayment({
-				orderId: nanoid(),
+				orderId: checkoutData?.user_uuid,
 				orderName: `${item.title} | ${item.plan}`,
 				customerEmail: userId,
 				successUrl: `${BASE_URL}${ROUTES.CHECKOUT_SUCCESS}`,
@@ -65,44 +61,40 @@ export default function TosspaymentsWidgetModal(
 	}
 
 	useEffect(() => {
-		const fetchPaymentWidget = async () => {
+		const initializePayment = async () => {
 			setIsLoadingWidget(true)
+
 			try {
-				const loadedWidget = await loadPaymentWidget(
-					widgetClientKey,
-					customerKey,
-				)
-				setPaymentWidget(loadedWidget)
+				// 먼저 checkoutProduct를 실행하여 checkoutData를 얻습니다.
+				const checkoutResponse = await checkoutProduct({
+					id: Number(id),
+					coupon: coupon.code && coupon.code,
+				})
+				updateCheckoutData(checkoutResponse)
+
+				// checkoutResponse에서 customerKey를 얻어 loadPaymentWidget을 실행합니다.
+				if (checkoutResponse.user_uuid) {
+					const loadedWidget = await loadPaymentWidget(
+						widgetClientKey,
+						checkoutResponse.user_uuid,
+					)
+					setPaymentWidget(loadedWidget)
+				} else {
+					throw new Error('사용자 UUID를 찾을 수 없습니다.')
+				}
+
+				setIsInitiated(true)
 			} catch (error) {
-				console.error('Error fetching payment widget:', error)
+				console.error('Error initializing payment:', error)
+				updateToastMessage('결제 초기화에 실패했습니다.')
+				setIsInitiated(false)
 			} finally {
 				setIsLoadingWidget(false)
 			}
 		}
 
-		fetchPaymentWidget()
-	}, [customerKey, widgetClientKey])
-
-	useEffect(() => {
-		const initiateCheckout = async () => {
-			setIsLoadingCheckout(true)
-			try {
-				const checkoutResponse = await checkoutProduct({
-					id: Number(id),
-					coupon: checkoutItem.coupon.code && checkoutItem.coupon.code,
-				})
-				setCheckoutData(checkoutResponse)
-			} catch (error) {
-				console.error('Error initiating checkout:', error)
-				updateToastMessage('결제 초기화에 실패했습니다.')
-				setIsInitiated(false)
-			} finally {
-				setIsLoadingCheckout(false)
-			}
-		}
-
-		initiateCheckout()
-	}, [id, checkoutItem, updateToastMessage])
+		initializePayment()
+	}, [id, coupon, widgetClientKey, updateToastMessage, updateCheckoutData])
 
 	useEffect(() => {
 		if (paymentWidget == null || !checkoutData) {
@@ -130,12 +122,17 @@ export default function TosspaymentsWidgetModal(
 		paymentMethodsWidget.updateAmount(Number(checkoutData.total_price))
 	}, [checkoutData])
 
+	useEffect(() => {
+		resetPaymentStore()
+		return () => resetPaymentStore()
+	}, [resetPaymentStore])
+
 	return (
 		<Modal
 			title={`${item.title} 결제`}
 			children={
 				<>
-					{isLoadingWidget || isLoadingCheckout ? (
+					{isLoadingWidget ? (
 						<Lottie animationData={spinnerAnim} />
 					) : (
 						<TosspaymentsWidgetContentsContainer id="tosspayments-widget-contents-container">

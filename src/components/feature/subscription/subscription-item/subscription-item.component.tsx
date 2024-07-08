@@ -7,7 +7,6 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { useAuthDataStore } from '../../../../store/data/auth-data/auth-data.store'
 import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
-import { usePaymentStore } from '../../../../store/paymentStore'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
 import { SubscriptionItemProps } from './subscription-item.typs'
@@ -25,13 +24,10 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
-	const { updateCheckoutItem } = usePaymentStore()
 	const navigate = useNavigateWithScroll()
 
 	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
 		if (userId) {
-			// TODO: updateCheckoutItem 유지할 필요 있는지 체크 필요
-			updateCheckoutItem('id', id)
 			navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${title}&plan=${plan}`)
 		} else {
 			navigate(ROUTES.LOGIN, { routeState: 'signup' })
