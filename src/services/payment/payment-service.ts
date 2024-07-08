@@ -3,34 +3,15 @@ import axiosInstance from '../../api/api'
 import { handleError } from '../service-error'
 
 import {
-	Product,
 	CheckCouponResponse,
 	CheckoutPayload,
 	CheckoutResponse,
+	ConfirmPaymentPayload,
+	ConfirmPaymentResponse,
+	ProceedPaymentPayload,
 	SubscribedItem,
 	PaidItem,
 } from './payment-service.types'
-
-/**
- * 상품 정보를 가져오는 비동기 함수
- * @returns {Promise<Product>} 상품 정보를 담은 Promise 객체
- */
-export const getProduct = async (): Promise<Product> => {
-	try {
-		const response = await axiosInstance.get('/products')
-		const { data } = response.data
-		const { id, title, price, subscription_price, description } = data
-		return {
-			id: id,
-			title: title,
-			price: price,
-			subscription_price: subscription_price,
-			description: description,
-		}
-	} catch (error) {
-		throw new Error(handleError(error))
-	}
-}
 
 /**
  * 쿠폰 코드를 확인하는 비동기 함수
@@ -72,15 +53,78 @@ export const checkoutProduct = async ({
 			requestData,
 		)
 		const { data } = response.data
-		const { product, coupon_id, number, total_price, status, created } = data
+		const { number, user_uuid, user_email, product_title, total_price } = data
 		return {
-			product: product,
-			coupon_id: coupon_id,
 			number: number,
+			user_uuid: user_uuid,
+			user_email: user_email,
+			product_title: product_title,
 			total_price: total_price,
-			status: status,
-			created: created,
 		}
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+/**
+ * 결제를 확인하고 처리합니다.
+ *
+ * @param {ConfirmPaymentPayload} payload - 결제 확인에 필요한 데이터
+ * @param {string} payload.payment_key - 결제 키
+ * @param {string} payload.order_number - 주문 번호
+ * @param {number} payload.total_price - 총 결제 금액
+ *
+ * @returns {Promise<ConfirmPaymentResponse>} 결제 확인 결과를 담은 Promise 객체
+ * @returns {string} response.code - 결제 확인 결과 코드
+ * @returns {unknown} response.pg_data - PG사에서 반환한 결제 데이터
+ *
+ * @throws {Error} API 요청 실패 시 에러를 던집니다.
+ */
+export const confirmPayment = async ({
+	payment_key,
+	order_number,
+	total_price,
+}: ConfirmPaymentPayload): Promise<ConfirmPaymentResponse> => {
+	try {
+		const response = await axiosInstance.post('/payments/confirm', {
+			payment_key: payment_key,
+			order_number: order_number,
+			total_price: total_price,
+		})
+		const { code, data } = response.data
+		return { code: code, pg_data: data }
+	} catch (error) {
+		throw new Error(handleError(error))
+	}
+}
+
+/**
+ * 주문에 대한 결제를 진행합니다.
+ *
+ * @param {ProceedPaymentPayload} payload - 결제 진행에 필요한 데이터
+ * @param {string} payload.number - 주문 번호
+ * @param {string} payload.payment_key - 결제 키
+ * @param {string} payload.status - 결제 상태
+ * @param {unknown} payload.pg_data - PG사에서 반환한 결제 데이터
+ *
+ * @returns {Promise<number>} 결제 진행 결과 코드를 담은 Promise 객체
+ *
+ * @throws {Error} API 요청 실패 시 에러를 던집니다.
+ */
+export const ProceedPayment = async ({
+	number,
+	payment_key,
+	status,
+	pg_data,
+}: ProceedPaymentPayload): Promise<number> => {
+	try {
+		const response = await axiosInstance.post(`/orders/${number}/payment`, {
+			payment_key: payment_key,
+			status: status,
+			pg_data: pg_data,
+		})
+		const { code } = response.data
+		return code
 	} catch (error) {
 		throw new Error(handleError(error))
 	}

@@ -1,11 +1,3 @@
-export type Product = {
-	id: number
-	title: string
-	price: string
-	subscription_price: string
-	description: string
-}
-
 export type CheckCouponResponse = {
 	id: number
 	discount_price: string
@@ -18,12 +10,29 @@ export type CheckoutPayload = {
 }
 
 export type CheckoutResponse = {
-	product: number
-	coupon_id: number
 	number: string
+	user_uuid: string
+	user_email: string
+	product_title: string
 	total_price: string
+}
+
+export type ConfirmPaymentPayload = {
+	payment_key: string
+	order_number: string
+	total_price: string
+}
+
+export type ConfirmPaymentResponse = {
+	code: number
+	pg_data: unknown // tosspayments PG data 객체
+}
+
+export type ProceedPaymentPayload = {
+	number: string
+	payment_key: string
 	status: string
-	created: string
+	pg_data: unknown // tosspayments PG data 객체
 }
 
 export type SubscribedItem = {

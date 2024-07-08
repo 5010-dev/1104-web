@@ -45,7 +45,7 @@ export default function TosspaymentsWidgetModal(
 
 	const BASE_URL = window.location.origin
 	const widgetClientKey = process.env.REACT_APP_CLIENT_KEY
-	const customerKey = ANONYMOUS
+	const customerKey = ANONYMOUS // TODO: 사용자 UUID로 변경 필요
 
 	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		try {
