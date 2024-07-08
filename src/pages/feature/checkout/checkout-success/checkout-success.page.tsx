@@ -41,38 +41,45 @@ export default function CheckoutSuccess() {
 		if (!paymentKey || !orderId || !amount) {
 			updateToastMessage('잘못된 요청입니다.')
 			navigate(ROUTES.HOME)
-		} else {
-			const fetchPaymentConfirm = async () => {
-				try {
-					updateIsLoading(true)
+			return
+		}
 
-					const { code, pg_data } = await confirmPayment({
+		const fetchPaymentConfirm = async () => {
+			try {
+				updateIsLoading(true)
+
+				const { code, pg_data } = await confirmPayment({
+					payment_key: paymentKey,
+					order_number: orderId,
+					total_price: amount,
+				})
+
+				if (code === 200) {
+					const response = await proceedPayment({
+						number: orderId,
 						payment_key: paymentKey,
-						order_number: orderId,
-						total_price: amount,
+						status: 'READY',
+						pg_data: pg_data,
 					})
 
-					if (code === 200) {
-						const response = await proceedPayment({
-							number: orderId,
-							payment_key: paymentKey,
-							status: 'READY',
-							pg_data: pg_data,
-						})
-
-						if (response === 200) {
-							setIsValid(true)
-						}
+					if (response === 201) {
+						setIsValid(true)
 					}
-				} catch (error: any) {
-					updateToastMessage(error.message)
-					navigate(ROUTES.HOME)
-				} finally {
-					updateIsLoading(false)
 				}
+			} catch (error) {
+				if (error instanceof Error) {
+					updateToastMessage(error.message)
+				} else {
+					updateToastMessage(
+						'알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.',
+					)
+				}
+				navigate(ROUTES.HOME)
+			} finally {
+				updateIsLoading(false)
 			}
-			fetchPaymentConfirm()
 		}
+		fetchPaymentConfirm()
 	}, [searchParams, navigate, updateToastMessage, updateIsLoading])
 
 	return (
