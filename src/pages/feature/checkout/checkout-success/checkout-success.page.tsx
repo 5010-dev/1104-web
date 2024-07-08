@@ -1,4 +1,4 @@
-import { MouseEvent, useState, useEffect, useCallback } from 'react'
+import { MouseEvent, useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ROUTES } from '../../../../routes/routes'
 
@@ -33,11 +33,11 @@ export default function CheckoutSuccess() {
 	// const handleRegistration = (e: MouseEvent<HTMLButtonElement>) =>
 	// 	navigate(ROUTES.REGISTRATION)
 
-	useEffect(() => {
-		const paymentKey = searchParams.get('paymentKey')
-		const orderId = searchParams.get('orderId')
-		const amount = searchParams.get('amount')
+	const paymentKey = searchParams.get('paymentKey')
+	const orderId = searchParams.get('orderId')
+	const amount = searchParams.get('amount')
 
+	useEffect(() => {
 		if (!paymentKey || !orderId || !amount) {
 			updateToastMessage('잘못된 요청입니다.')
 			navigate(ROUTES.HOME)
@@ -80,7 +80,14 @@ export default function CheckoutSuccess() {
 			}
 		}
 		fetchPaymentConfirm()
-	}, [searchParams, navigate, updateToastMessage, updateIsLoading])
+	}, [
+		paymentKey,
+		orderId,
+		amount,
+		navigate,
+		updateToastMessage,
+		updateIsLoading,
+	])
 
 	return (
 		<CheckoutSuccessContainer $deviceType={deviceType}>
