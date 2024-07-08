@@ -111,7 +111,7 @@ export const confirmPayment = async ({
  *
  * @throws {Error} API 요청 실패 시 에러를 던집니다.
  */
-export const ProceedPayment = async ({
+export const proceedPayment = async ({
 	number,
 	payment_key,
 	status,

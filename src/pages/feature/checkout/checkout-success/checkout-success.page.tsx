@@ -4,6 +4,11 @@ import { ROUTES } from '../../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
+import { useLoadingStore } from '../../../../store/layout/loading.store'
+import {
+	confirmPayment,
+	proceedPayment,
+} from '../../../../services/payment/payment-service'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
 import {
@@ -18,6 +23,7 @@ import Complete from '../../../../components/global/complete/complete.component'
 export default function CheckoutSuccess() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { updateToastMessage } = useToastMessageStore()
+	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
 
@@ -44,9 +50,48 @@ export default function CheckoutSuccess() {
 			updateToastMessage('잘못된 요청입니다.')
 			navigate(ROUTES.HOME)
 		} else {
-			setIdValid(true)
+			const fetchPaymentConfirm = async () => {
+				try {
+					updateIsLoading(true)
+
+					const { code, pg_data } = await confirmPayment({
+						payment_key: paymentKey,
+						order_number: orderId,
+						total_price: amount,
+					})
+					console.log(code)
+					console.log(pg_data)
+
+					// if (code === 200) {
+					// 	const response = await proceedPayment({
+					// 		number: orderId,
+					// 		payment_key: paymentKey,
+					// 		status: 'READY',
+					// 		pg_data: pg_data,
+					// 	})
+
+					// 	if (response === 200) {
+					// 		setIdValid(true)
+					// 	}
+					// }
+				} catch (error: any) {
+					updateToastMessage(error.message)
+					navigate(ROUTES.CEHCKOUT_FAIL)
+				} finally {
+					updateIsLoading(false)
+				}
+			}
+			fetchPaymentConfirm()
 		}
-	}, [paymentKey, orderId, amount, searchParams, navigate, updateToastMessage])
+	}, [
+		paymentKey,
+		orderId,
+		amount,
+		searchParams,
+		navigate,
+		updateToastMessage,
+		updateIsLoading,
+	])
 
 	return (
 		<CheckoutSuccessContainer $deviceType={deviceType}>

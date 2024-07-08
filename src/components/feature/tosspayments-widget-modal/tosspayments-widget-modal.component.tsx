@@ -43,13 +43,13 @@ export default function TosspaymentsWidgetModal(
 
 	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		try {
-			if (!checkoutData?.user_uuid) {
+			if (!checkoutData?.number) {
 				updateToastMessage('주문 번호가 없습니다.')
 				return
 			}
 
 			await paymentWidget?.requestPayment({
-				orderId: checkoutData?.user_uuid,
+				orderId: checkoutData?.number,
 				orderName: `${item.title} | ${item.plan}`,
 				customerEmail: userId,
 				successUrl: `${BASE_URL}${ROUTES.CHECKOUT_SUCCESS}`,

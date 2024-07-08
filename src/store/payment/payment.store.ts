@@ -18,5 +18,5 @@ export const usePaymentStore = create<PaymentState & PaymentAction>((set) => ({
 	updateCoupon: (key, value) =>
 		set((state) => ({ ...state, coupon: { ...state.coupon, [key]: value } })),
 	updateDiscount: (value) => set((state) => ({ ...state, discount: value })),
-	resetPaymentStore: () => set(initialState),
+	resetPaymentStore: () => set({ ...initialState }),
 }))
