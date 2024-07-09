@@ -1,7 +1,7 @@
 import { BillingItemProps } from './billing-item.types'
 import { BillingItemContainer } from './billing-item.styles'
 
-import Button from '../../../global/button/button.component'
+import Button from '../../../../global/button/button.component'
 
 export default function BillingItem(props: BillingItemProps) {
 	const { date, service, price } = props

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { getTypography } from '../../../../utils/typo.utils'
-import { getColour } from '../../../../utils/colour.utils'
+import { getTypography } from '../../../../../utils/typo.utils'
+import { getColour } from '../../../../../utils/colour.utils'
 
 export const BillingItemContainer = styled.div`
 	width: ${({ theme }) => theme.layout.component.width};

@@ -57,8 +57,6 @@ export default function CheckoutSuccess() {
 				if (code === 200) {
 					const response = await proceedPayment({
 						number: orderId,
-						payment_key: paymentKey,
-						status: 'READY',
 						pg_data: pg_data,
 					})
 

@@ -7,11 +7,16 @@ const initialState: AccountDataState = {
 		subscribedItemData: [],
 		isSubscribedItemDataLoaded: false,
 	},
+	paidItem: {
+		paidItemData: [],
+		isPaidItemDataLoaded: false,
+	},
 }
 
 export const useAccountDataStore = create<AccountDataState & AccounDataAction>(
 	(set) => ({
 		...initialState,
+
 		updateSubscribedItemData: (data) =>
 			set((state) => ({
 				...state,
@@ -26,5 +31,20 @@ export const useAccountDataStore = create<AccountDataState & AccounDataAction>(
 				},
 			})),
 		resetSubscribedItem: () => set(initialState),
+
+		updatePaidItemData: (data) =>
+			set((state) => ({
+				...state,
+				paidItem: { ...state.paidItem, paidItemData: data },
+			})),
+		updateIsPaidItemDataLoaded: (value) =>
+			set((state) => ({
+				...state,
+				paidItem: {
+					...state.paidItem,
+					isPaidItemDataLoaded: value,
+				},
+			})),
+		resetPaidItem: () => set(initialState),
 	}),
 )

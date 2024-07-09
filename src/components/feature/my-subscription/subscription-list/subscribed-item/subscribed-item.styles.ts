@@ -58,7 +58,7 @@ export const SubscribedItemContainer = styled.div<SubscribedItemContainerProps>`
 			gap: ${({ theme }) => theme.layout.container.gutter};
 			flex-wrap: wrap;
 
-			margin-top: ${({ theme }) => theme.layout.container.gutter};
+			margin-top: ${({ theme }) => theme.layout.component.gutter};
 
 			& > * {
 				flex: 0 0 auto;
@@ -91,6 +91,6 @@ export const SubscribedItemContainer = styled.div<SubscribedItemContainerProps>`
 
 	.repurchase-button {
 		align-self: center;
-		margin-top: ${({ theme }) => theme.layout.container.gutter};
+		margin-top: ${({ theme }) => theme.layout.component.gutter};
 	}
 `

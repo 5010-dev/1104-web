@@ -7,7 +7,10 @@ import { useAccountDataStore } from '../../../store/data/account-data/account-da
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
-import { getUserSubscribedItemData } from '../../../services/payment/payment-service'
+import {
+	getUserSubscribedItemData,
+	getUserPaidItemData,
+} from '../../../services/payment/payment-service'
 
 import { AccountContainer } from './account.styles'
 
@@ -26,6 +29,9 @@ export default function Account() {
 		updateSubscribedItemData,
 		updateIsSubscribedItemDataLoaded,
 		resetSubscribedItem,
+		updatePaidItemData,
+		updateIsPaidItemDataLoaded,
+		resetPaidItem,
 	} = useAccountDataStore()
 
 	const handleCustomerServiceLink = (e: MouseEvent<HTMLSpanElement>) => {
@@ -46,30 +52,35 @@ export default function Account() {
 	}, [])
 
 	useEffect(() => {
-		if (isUserDataLoaded) {
-			if (userId.length === 0) {
-				resetSubscribedItem()
-				navigate(ROUTES.HOME)
-				return
-			}
-
-			const fetchUserSubscriptionItemData = async () => {
+		if (isUserDataLoaded && userId.length > 0) {
+			const fetchUserData = async () => {
 				try {
 					updateIsLoading(true)
 
-					const response = await getUserSubscribedItemData()
+					const [subscribedItemData, paidItemData] = await Promise.all([
+						getUserSubscribedItemData(),
+						getUserPaidItemData(),
+					])
 
-					updateSubscribedItemData(response)
+					updateSubscribedItemData(subscribedItemData)
 					updateIsSubscribedItemDataLoaded(true)
+
+					updatePaidItemData(paidItemData)
+					updateIsPaidItemDataLoaded(true)
 				} catch (error: any) {
-					console.log(error.message)
+					console.error('데이터 fetch 중 오류 발생:', error.message)
 					updateIsSubscribedItemDataLoaded(false)
+					updateIsPaidItemDataLoaded(false)
 				} finally {
 					updateIsLoading(false)
 				}
 			}
 
-			fetchUserSubscriptionItemData()
+			fetchUserData()
+		} else if (userId.length === 0) {
+			resetSubscribedItem()
+			resetPaidItem()
+			navigate(ROUTES.HOME)
 		}
 	}, [
 		userId,
@@ -79,7 +90,54 @@ export default function Account() {
 		updateIsSubscribedItemDataLoaded,
 		updateIsLoading,
 		resetSubscribedItem,
+		updatePaidItemData,
+		updateIsPaidItemDataLoaded,
+		resetPaidItem,
 	])
+
+	// useEffect(() => {
+	// 	if (isUserDataLoaded) {
+	// 		if (userId.length === 0) {
+	// 			resetSubscribedItem()
+	// 			resetPaidItem()
+	// 			navigate(ROUTES.HOME)
+	// 			return
+	// 		}
+
+	// 		const fetchUserSubscriptionItemData = async () => {
+	// 			try {
+	// 				updateIsLoading(true)
+
+	// 				const subscribedItemData = await getUserSubscribedItemData()
+	// 				updateSubscribedItemData(subscribedItemData)
+	// 				updateIsSubscribedItemDataLoaded(true)
+
+	// 				const paidItemData = await getUserPaidItemData()
+	// 				updatePaidItemData(paidItemData)
+	// 				updateIsPaidItemDataLoaded(true)
+	// 			} catch (error: any) {
+	// 				console.log(error.message)
+	// 				updateIsSubscribedItemDataLoaded(false)
+	// 				updateIsPaidItemDataLoaded(false)
+	// 			} finally {
+	// 				updateIsLoading(false)
+	// 			}
+	// 		}
+
+	// 		fetchUserSubscriptionItemData()
+	// 	}
+	// }, [
+	// 	userId,
+	// 	navigate,
+	// 	isUserDataLoaded,
+	// 	updateSubscribedItemData,
+	// 	updateIsSubscribedItemDataLoaded,
+	// 	updateIsLoading,
+	// 	resetSubscribedItem,
+	// 	updatePaidItemData,
+	// 	updateIsPaidItemDataLoaded,
+	// 	resetPaidItem,
+	// ])
 
 	return (
 		<AccountContainer $deviceType={deviceType}>

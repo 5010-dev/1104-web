@@ -103,8 +103,6 @@ export const confirmPayment = async ({
  *
  * @param {ProceedPaymentPayload} payload - 결제 진행에 필요한 데이터
  * @param {string} payload.number - 주문 번호
- * @param {string} payload.payment_key - 결제 키
- * @param {string} payload.status - 결제 상태
  * @param {unknown} payload.pg_data - PG사에서 반환한 결제 데이터
  *
  * @returns {Promise<number>} 결제 진행 결과 코드를 담은 Promise 객체
@@ -113,14 +111,10 @@ export const confirmPayment = async ({
  */
 export const proceedPayment = async ({
 	number,
-	payment_key,
-	status,
 	pg_data,
 }: ProceedPaymentPayload): Promise<number> => {
 	try {
 		const response = await axiosInstance.post(`/orders/${number}/payment`, {
-			payment_key: payment_key,
-			status: status,
 			pg_data: pg_data,
 		})
 		const { code } = response.data
@@ -154,7 +148,7 @@ export const getUserSubscribedItemData = async (): Promise<
  * @returns {Promise<PaidItem[]>} 결제 아이템 목록을 담은 Promise 객체
  * @throws {Error} API 요청 실패 시 에러를 던집니다.
  */
-export const getUserPaiedItemData = async (): Promise<PaidItem[]> => {
+export const getUserPaidItemData = async (): Promise<PaidItem[]> => {
 	try {
 		// TODO: 추후 수정 필요
 		const response = await axiosInstance.get('/users/me/payments')

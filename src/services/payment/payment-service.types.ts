@@ -30,8 +30,6 @@ export type ConfirmPaymentResponse = {
 
 export type ProceedPaymentPayload = {
 	number: string
-	payment_key: string
-	status: string
 	pg_data: unknown // tosspayments PG data 객체
 }
 
@@ -47,13 +45,12 @@ export type SubscribedItem = {
 }
 
 export type PaidItem = {
-	id: string
+	id: number
 	product_title: string
+	product_plan: string
 	total_price: string
+	receipt_url: string
 	status: string
-	prepared_at: string
-	failed_at: string
-	paid_at: string
-	partial_cancelled_at: string
-	cancelled_at: string
+	done_at: string | null
+	cancelled_at: string | null
 }
