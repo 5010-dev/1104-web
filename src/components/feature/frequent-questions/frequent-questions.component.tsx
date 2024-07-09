@@ -3,6 +3,8 @@ import { MouseEvent } from 'react'
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useFaqDataStore } from '../../../store/data/service-data/service-data.store'
 
+import { getHelp } from '../../../utils/customer-service.utils'
+
 import { FrequentQuestionsContainer } from './frequent-questions.styles'
 
 import FrequentQuestionsItem from './frequent-questions-item/frequent-questions-item.component'
@@ -14,12 +16,7 @@ export default function FrequentQuestions() {
 
 	const handleGetHelp = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '5010 매매 전략 관련 문의사항'
-		const recipient = '5010.cs.kr@5010.tech'
-		const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
-			subject,
-		)}`
-
-		window.location.href = mailtoUrl
+		getHelp(subject)
 	}
 
 	return (

@@ -7,6 +7,8 @@ import verificationAnim from '../../../assets/lottie/verification-anim.json'
 
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
+import { getHelp } from '../../../utils/customer-service.utils'
+
 import AuthLayout from '../../global/auth-layout/auth-layout.component'
 import { EmailVerificationContainer } from './email-verification.styles'
 
@@ -20,12 +22,7 @@ export default function EmailVerification() {
 
 	const handleHelpLink = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '회원가입 인증 관련 문의'
-		const recipient = '5010.cs.kr@5010.tech'
-		const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
-			subject,
-		)}`
-
-		window.location.href = mailtoUrl
+		getHelp(subject)
 	}
 
 	useEffect(() => {

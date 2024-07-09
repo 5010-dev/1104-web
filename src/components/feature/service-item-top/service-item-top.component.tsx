@@ -6,6 +6,8 @@ import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
+import { getHelp } from '../../../utils/customer-service.utils'
+
 import { ServiceItemTopProps } from './service-item-top.types'
 import { ServiceItemTopContainer } from './service-item-top.styles'
 
@@ -23,12 +25,7 @@ const ServiceItemTop = forwardRef<HTMLDivElement, ServiceItemTopProps>(
 
 		const handleGetHelp = (e: MouseEvent<HTMLSpanElement>) => {
 			const subject = '서비스 구매 관련 문의사항'
-			const recipient = '5010.cs.kr@5010.tech'
-			const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
-				subject,
-			)}`
-
-			window.location.href = mailtoUrl
+			getHelp(subject)
 		}
 
 		const handleCheckout = (e: MouseEvent<HTMLButtonElement>) => {

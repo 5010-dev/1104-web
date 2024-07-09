@@ -11,6 +11,7 @@ import {
 	getUserSubscribedItemData,
 	getUserPaidItemData,
 } from '../../../services/payment/payment-service'
+import { getHelp } from '../../../utils/customer-service.utils'
 
 import { AccountContainer } from './account.styles'
 
@@ -36,12 +37,7 @@ export default function Account() {
 
 	const handleCustomerServiceLink = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '회원 및 구독 관련 문의사항'
-		const recipient = '5010.cs.kr@5010.tech'
-		const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
-			subject,
-		)}`
-
-		window.location.href = mailtoUrl
+		getHelp(subject)
 	}
 
 	useEffect(() => {

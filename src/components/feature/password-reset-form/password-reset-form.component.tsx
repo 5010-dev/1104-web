@@ -8,6 +8,7 @@ import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
+import { getHelp } from '../../../utils/customer-service.utils'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
 
@@ -27,12 +28,7 @@ export default function PasswordResetForm() {
 
 	const handleGetHelp = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '비밀번호 변경 관련 문의사항'
-		const recipient = '5010.cs.kr@5010.tech'
-		const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
-			subject,
-		)}`
-
-		window.location.href = mailtoUrl
+		getHelp(subject)
 	}
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
