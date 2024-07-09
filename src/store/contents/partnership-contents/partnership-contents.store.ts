@@ -1,27 +1,8 @@
 import { create } from 'zustand'
 
-import partnershipHeroImage from '../../assets/img/partnership-hero-image.webp'
+import partnershipHeroImage from '../../../assets/img/partnership-hero-image.webp'
 
-export type ParternshipHero = {
-	image: string
-	text: {
-		category: string
-		heading: string
-		subheading: string
-	}
-}
-
-export type Partnership = {
-	heading: string
-	body: string
-}
-
-export interface PartnershipContentsState {
-	hero: ParternshipHero
-	partnershipList: Partnership[]
-	contact: { heading: string; body: string }
-	caption: string
-}
+import { PartnershipContentsState } from './partnership-contents.types'
 
 export const usePartnershipContentsStore = create<PartnershipContentsState>(
 	() => ({

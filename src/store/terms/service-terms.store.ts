@@ -1,47 +1,24 @@
 import { create } from 'zustand'
-import { fetchMarkdownFile } from '../utils/markdown.utils'
+import { fetchMarkdownFile } from '../../utils/markdown.utils'
 
-import privacyAgreement from '../data/privacy-agreement.md'
-import policyTerms from '../data/policy-terms.md'
-import privacyTerms from '../data/privacy-terms.md'
-import ageVerification from '../data/age-verification.md'
+import privacyAgreement from '../../data/privacy-agreement.md'
+import policyTerms from '../../data/policy-terms.md'
+import privacyTerms from '../../data/privacy-terms.md'
+import ageVerification from '../../data/age-verification.md'
 
-import ecommerce from '../data/ecommerce.md'
-import privacyThirdParty from '../data/privacy-third-party.md'
-import purchaseAgreement from '../data/purchase-agreement.md'
-import subscription from '../data/subscription.md'
-import refundPolicy from '../data/refund-policy.md'
+import ecommerce from '../../data/ecommerce.md'
+import privacyThirdParty from '../../data/privacy-third-party.md'
+import purchaseAgreement from '../../data/purchase-agreement.md'
+import subscription from '../../data/subscription.md'
+import refundPolicy from '../../data/refund-policy.md'
 
-import eventTerms from '../data/event-terms.md'
+import eventTerms from '../../data/event-terms.md'
 
-type Terms = {
-	data: string
-	agreement: boolean
-}
-
-export interface ServiceTermsList {
-	privacyAgreement: Terms
-	privacyTerms: Terms
-	policyTerms: Terms
-	ageVerification: Terms
-	ecommerce: Terms
-	privacyThirdParty: Terms
-	purchaseAgreement: Terms
-	subscription: Terms
-	eventTerms: Terms
-	refundPolicy: Terms
-}
-
-export interface ServiceTermsState {
-	serviceTermsList: ServiceTermsList
-}
-
-export interface ServiceTermsAction {
-	fetchTermsData: (key: keyof ServiceTermsList) => Promise<void>
-	updateTermsAgreement: (key: keyof ServiceTermsList, value: boolean) => void
-	toggleAllTermsAgreement: (value: boolean) => void
-	resetServiceTermsStore: () => void
-}
+import {
+	ServiceTermsState,
+	ServiceTermsAction,
+	ServiceTermsList,
+} from './service-terms.types'
 
 const initialState: ServiceTermsList = {
 	privacyAgreement: { data: '', agreement: false },

@@ -1,7 +1,7 @@
 import { useState, MouseEvent } from 'react'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import { useFooterContentsStore } from '../../../store/contents/footerContentsStore'
+import { useFooterContentsStore } from '../../../store/contents/footer-contents/footer-contents.store'
 
 import { FooterTerms } from './footer.types'
 import { FooterContainer } from './footer.styles'

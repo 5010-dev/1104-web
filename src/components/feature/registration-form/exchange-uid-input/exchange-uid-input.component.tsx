@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
 import { useAuthDataStore } from '../../../../store/data/auth-data/auth-data.store'
-import { useExchangeDataStore } from '../../../../store/exchangeDataStore'
+import { useExchangeDataStore } from '../../../../store/data/exchange-data/exchange-data.store'
 
 import { ExchangeUidInputProps } from './exchange-uid-input.types'
 import { ExchangeUidInputContainer } from './exchange-uid-input.styles'

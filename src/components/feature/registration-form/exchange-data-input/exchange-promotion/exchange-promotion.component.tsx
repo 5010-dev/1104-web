@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import Lottie from 'lottie-react'
 import shiningAnim from '../../../../../assets/lottie/shining-anim.json'
 
-import { useExchangePromotionDataStore } from '../../../../../store/exchangePromotionDataStore'
+import { useExchangePromotionDataStore } from '../../../../../store/data/exchange-promotion-data/exchange-promotion-data.store'
 
 import { ExchangePromotionProps } from './exchange-promotion.types'
 import { ExchangePromotionContainer } from './exchange-promotion.styles'

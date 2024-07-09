@@ -4,7 +4,7 @@ import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
 import emailjs from '@emailjs/browser'
 
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
-import { usePartnershipContentsStore } from '../../../../store/contents/partnershipContentsStore'
+import { usePartnershipContentsStore } from '../../../../store/contents/partnership-contents/partnership-contents.store'
 import { useLoadingStore } from '../../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
 

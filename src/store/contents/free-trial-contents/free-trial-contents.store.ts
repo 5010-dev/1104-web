@@ -1,21 +1,9 @@
 import { create } from 'zustand'
 
-import mockupImage from '../../assets/img/free-trial/free-trial-mockup-img.webp'
-import backgroundImage from '../../assets/img/free-trial/free-trial-background-img.webp'
+import mockupImage from '../../../assets/img/free-trial/free-trial-mockup-img.webp'
+import backgroundImage from '../../../assets/img/free-trial/free-trial-background-img.webp'
 
-export interface FreeTrialContentState {
-	image: {
-		mockupImage: string
-		backgroundImage: string
-	}
-	heading: string[]
-	subheading: string
-	overview: {
-		caption: string
-		features: { body: string; caption: string }[]
-		summary: string[]
-	}
-}
+import { FreeTrialContentState } from './free-trial-contetns.types'
 
 export const useFreeTrialContentStore = create<FreeTrialContentState>(() => ({
 	image: {

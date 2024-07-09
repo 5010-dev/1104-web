@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Markdown from 'react-markdown'
 
-import { useServiceTermsStore } from '../../../store/serviceTermsStore'
+import { useServiceTermsStore } from '../../../store/terms/service-terms.store'
 
 import { TermsModalProps } from './terms-modal.types'
 import { TermsModalContainer } from './terms-modal.styles'

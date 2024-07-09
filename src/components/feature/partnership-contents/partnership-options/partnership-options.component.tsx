@@ -1,5 +1,5 @@
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
-import { usePartnershipContentsStore } from '../../../../store/contents/partnershipContentsStore'
+import { usePartnershipContentsStore } from '../../../../store/contents/partnership-contents/partnership-contents.store'
 
 import { PartnershipOptionsContainer } from './partnership-options.styles'
 

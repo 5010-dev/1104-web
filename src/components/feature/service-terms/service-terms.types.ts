@@ -1,4 +1,4 @@
-import { ServiceTermsList } from '../../../store/serviceTermsStore'
+import { ServiceTermsList } from '../../../store/terms/service-terms.types'
 
 export type ServiceTermsProps = {
 	id?: string

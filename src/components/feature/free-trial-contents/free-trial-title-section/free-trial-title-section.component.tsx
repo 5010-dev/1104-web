@@ -2,7 +2,7 @@ import { MouseEvent } from 'react'
 import { ROUTES } from '../../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
-import { useFreeTrialContentStore } from '../../../../store/contents/freeTrialContentsStore'
+import { useFreeTrialContentStore } from '../../../../store/contents/free-trial-contents/free-trial-contents.store'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 
 import { FreeTrialTitleSectionContainer } from './free-trial-title-section.styles'

@@ -1,6 +1,6 @@
 import Hero from '../../../global/hero/hero.component'
 
-import { usePartnershipContentsStore } from '../../../../store/contents/partnershipContentsStore'
+import { usePartnershipContentsStore } from '../../../../store/contents/partnership-contents/partnership-contents.store'
 
 export default function PartnershipHero() {
 	const { image, text } = usePartnershipContentsStore((state) => state.hero)

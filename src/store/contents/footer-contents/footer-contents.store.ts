@@ -1,23 +1,8 @@
 import { create } from 'zustand'
 
-import logoImage from '../../assets/logo/1104-logo-white.svg'
+import logoImage from '../../../assets/logo/1104-logo-white.svg'
 
-export interface FooterContentsState {
-	logoUrl: string
-	companyInfo: {
-		name: string
-		ceo: string
-		address: string
-		tel: string
-		regNum: string
-		onlineBizNum: string
-		privacyOfficer: string
-		csNum: string
-		csMail: string
-		hosting: string
-	}
-	simpleDisclaimer: string[]
-}
+import { FooterContentsState } from './footer-contents.types'
 
 export const useFooterContentsStore = create<FooterContentsState>(() => ({
 	logoUrl: logoImage,

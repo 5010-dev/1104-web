@@ -4,10 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import {
-	ServiceTermsList,
-	useServiceTermsStore,
-} from '../../../store/serviceTermsStore'
+import { useServiceTermsStore } from '../../../store/terms/service-terms.store'
+import { ServiceTermsList } from '../../../store/terms/service-terms.types'
 
 import { CheckoutTermsProps } from './checkout-terms.types'
 import { CheckoutTermsContainer } from './checkout-terms.styles'

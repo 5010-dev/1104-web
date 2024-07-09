@@ -1,18 +1,6 @@
 import { create } from 'zustand'
 
-export type Exchange = {
-	name: string
-	koName: string
-	referralCode: string
-	url: string
-}
-
-export type ExchangeName = (typeof exchangeList)[number]['name']
-
-export interface ExchangeDataState {
-	defaultExchange: Exchange['name']
-	exchangeList: Exchange[]
-}
+import { ExchangeDataState, Exchange } from './exchange-data.types'
 
 export const exchangeList: Exchange[] = [
 	{ name: 'binance', koName: '바이낸스', referralCode: '', url: '' },

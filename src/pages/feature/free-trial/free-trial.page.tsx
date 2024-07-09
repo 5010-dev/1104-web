@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import { useFreeTrialContentStore } from '../../../store/contents/freeTrialContentsStore'
+import { useFreeTrialContentStore } from '../../../store/contents/free-trial-contents/free-trial-contents.store'
 
 import { FreeTrialContainer } from './free-trial.styles'
 

@@ -1,4 +1,4 @@
-import { ExchangeName } from '../../exchangeDataStore'
+import { ExchangeName } from '../exchange-data/exchange-data.types'
 
 export type User = {
 	userId: string

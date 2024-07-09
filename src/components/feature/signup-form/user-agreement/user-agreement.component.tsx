@@ -1,9 +1,7 @@
 import { useState, useEffect, ChangeEvent } from 'react'
 
-import {
-	ServiceTermsList,
-	useServiceTermsStore,
-} from '../../../../store/serviceTermsStore'
+import { useServiceTermsStore } from '../../../../store/terms/service-terms.store'
+import { ServiceTermsList } from '../../../../store/terms/service-terms.types'
 
 import { UserAgreementProps } from './user-agreement.types'
 import { UserAgreementContainer } from './user-agreement.styles'

@@ -5,7 +5,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
-import { usePreOrderContentsStore } from '../../../../store/contents/preOrderContentsStore'
+import { usePreOrderContentsStore } from '../../../../store/contents/pre-order-contents/pre-order-contents.store'
 import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
 import { useLoadingStore } from '../../../../store/layout/loading.store'
 import useFadeIn from '../../../../hooks/useFadeIn'

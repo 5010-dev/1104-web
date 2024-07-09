@@ -1,14 +1,6 @@
 import { create } from 'zustand'
 
-export type ExchangePromotion = {
-	benefit: string
-	description: string
-}
-
-export interface ExchangePromotionDataState {
-	mainPromotion: ExchangePromotion
-	subPromotion: ExchangePromotion[]
-}
+import { ExchangePromotionDataState } from './exchange-promotion-data.types'
 
 export const useExchangePromotionDataStore = create<ExchangePromotionDataState>(
 	(set) => ({

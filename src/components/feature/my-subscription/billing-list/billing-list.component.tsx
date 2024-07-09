@@ -22,15 +22,7 @@ export default function BillingList() {
 				<p id="subscription-list-body">결제 내역이 없습니다.</p>
 			) : (
 				paidItemData.map((item, index) => (
-					// TODO: 결제 ID도 표시해주면 좋음!
-					// TODO: receipt_url 를 인자로 넣어서, 영수증 버튼 누르면 새 창에서 열리게끔!
-					<BillingItem
-						key={index}
-						item={item}
-						// date={item.done_at ? item.done_at : ''}
-						// service={`${item.product_title} | ${item.product_plan}`}
-						// price={Number(item.total_price)}
-					/>
+					<BillingItem key={index} item={item} />
 				))
 			)}
 		</BillingListContainer>
