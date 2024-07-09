@@ -95,50 +95,6 @@ export default function Account() {
 		resetPaidItem,
 	])
 
-	// useEffect(() => {
-	// 	if (isUserDataLoaded) {
-	// 		if (userId.length === 0) {
-	// 			resetSubscribedItem()
-	// 			resetPaidItem()
-	// 			navigate(ROUTES.HOME)
-	// 			return
-	// 		}
-
-	// 		const fetchUserSubscriptionItemData = async () => {
-	// 			try {
-	// 				updateIsLoading(true)
-
-	// 				const subscribedItemData = await getUserSubscribedItemData()
-	// 				updateSubscribedItemData(subscribedItemData)
-	// 				updateIsSubscribedItemDataLoaded(true)
-
-	// 				const paidItemData = await getUserPaidItemData()
-	// 				updatePaidItemData(paidItemData)
-	// 				updateIsPaidItemDataLoaded(true)
-	// 			} catch (error: any) {
-	// 				console.log(error.message)
-	// 				updateIsSubscribedItemDataLoaded(false)
-	// 				updateIsPaidItemDataLoaded(false)
-	// 			} finally {
-	// 				updateIsLoading(false)
-	// 			}
-	// 		}
-
-	// 		fetchUserSubscriptionItemData()
-	// 	}
-	// }, [
-	// 	userId,
-	// 	navigate,
-	// 	isUserDataLoaded,
-	// 	updateSubscribedItemData,
-	// 	updateIsSubscribedItemDataLoaded,
-	// 	updateIsLoading,
-	// 	resetSubscribedItem,
-	// 	updatePaidItemData,
-	// 	updateIsPaidItemDataLoaded,
-	// 	resetPaidItem,
-	// ])
-
 	return (
 		<AccountContainer $deviceType={deviceType}>
 			<div id="contents-container">

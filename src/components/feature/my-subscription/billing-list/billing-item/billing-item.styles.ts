@@ -18,6 +18,8 @@ export const BillingItemContainer = styled.div`
 		justify-content: flex-start;
 		align-items: flex-start;
 
+		text-align: left;
+
 		span.caption {
 			${({ theme }) => getTypography(theme, 'caption')}
 			color: ${({ theme }) =>

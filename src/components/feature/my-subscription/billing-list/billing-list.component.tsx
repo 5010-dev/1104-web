@@ -26,9 +26,10 @@ export default function BillingList() {
 					// TODO: receipt_url 를 인자로 넣어서, 영수증 버튼 누르면 새 창에서 열리게끔!
 					<BillingItem
 						key={index}
-						date={item.done_at ? item.done_at : ''}
-						service={`${item.product_title} | ${item.product_plan}`}
-						price={Number(item.total_price)}
+						item={item}
+						// date={item.done_at ? item.done_at : ''}
+						// service={`${item.product_title} | ${item.product_plan}`}
+						// price={Number(item.total_price)}
 					/>
 				))
 			)}

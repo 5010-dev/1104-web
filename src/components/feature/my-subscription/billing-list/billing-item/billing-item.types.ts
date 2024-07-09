@@ -1,5 +1,5 @@
+import { PaidItem } from '../../../../../services/payment/payment-service.types'
+
 export type BillingItemProps = {
-	date: string
-	service: string
-	price: number
+	item: PaidItem
 }

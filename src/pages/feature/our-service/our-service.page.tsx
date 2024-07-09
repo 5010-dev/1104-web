@@ -37,16 +37,8 @@ export default function OurService() {
 		updateScrollState('isScrollToSubscription', true)
 	}
 
-	const handleNavigate = (e: MouseEvent<HTMLButtonElement>, itemId: number) => {
-		// HACK: 5010 매매 전략 D2C 판매 준비 전까지
-		if (itemId === 0) {
-			window.open(
-				'https://kmong.com/gig/455172',
-				'_blank',
-				'noopener,noreferrer',
-			)
-		} else navigate(`${ROUTES.SERVICE_ITEM.createPath(itemId)}`)
-	}
+	const handleNavigate = (e: MouseEvent<HTMLButtonElement>, itemId: number) =>
+		navigate(`${ROUTES.SERVICE_ITEM.createPath(itemId)}`)
 
 	return (
 		<OurServiceContainer

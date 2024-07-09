@@ -57,7 +57,7 @@ export default function Checkout() {
 
 			const numberedId = Number(id)
 
-			// HACK: D2C에서 5010 매매 전략 판매 전까지 강제 리디렉션 처리
+			// 체험판의 경우 리디렉션 처리
 			if (numberedId === 1) {
 				updateToastMessage('서비스를 찾을 수 없습니다.')
 				navigate(ROUTES.HOME)
