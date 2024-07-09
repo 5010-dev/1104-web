@@ -38,7 +38,7 @@ export const SubscribedItemContainer = styled.div<SubscribedItemContainerProps>`
 		gap: 0.5rem;
 
 		p.subscribed-item-heading {
-			${({ theme }) => getTypography(theme, 'heading3')}
+			${({ theme }) => getTypography(theme, 'subheading')}
 			color: ${({ theme, $isExpired }) =>
 				getColour(
 					theme,
