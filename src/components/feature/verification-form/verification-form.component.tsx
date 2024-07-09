@@ -11,7 +11,7 @@ import {
 } from '../../../services/auth/auth-service'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import {
 	getAccessToken,
 	setAccessToken,

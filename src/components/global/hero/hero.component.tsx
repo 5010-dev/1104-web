@@ -3,7 +3,7 @@ import { faAnglesDown } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
-import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
+import usePointerCoarseAndSafari from '../../../hooks/use-pointer-coarse-and-safari'
 
 import { HeroProps } from './hero.types'
 import { HeroContainer } from './hero.styles'

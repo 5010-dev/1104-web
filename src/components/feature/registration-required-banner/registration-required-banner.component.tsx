@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { RegistrationRequiredBannerContentsContainer } from './registration-required-banner.styles'
 

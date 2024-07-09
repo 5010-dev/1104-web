@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { ServiceItemTopProps } from './service-item-top.types'
 import { ServiceItemTopContainer } from './service-item-top.styles'

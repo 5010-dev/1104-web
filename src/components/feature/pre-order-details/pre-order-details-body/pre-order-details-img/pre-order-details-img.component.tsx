@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-import useFadeIn from '../../../../../hooks/useFadeIn'
+import useFadeIn from '../../../../../hooks/use-fade-in'
 
 import { PreOrderDetailsImgProps } from './pre-order-details-img.types'
 

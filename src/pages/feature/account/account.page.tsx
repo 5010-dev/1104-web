@@ -5,7 +5,7 @@ import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useAccountDataStore } from '../../../store/data/account-data/account-data.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import {
 	getUserSubscribedItemData,

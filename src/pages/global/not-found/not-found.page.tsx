@@ -2,7 +2,7 @@ import { MouseEvent } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { NotFoundContainer } from './not-found.styles'
 

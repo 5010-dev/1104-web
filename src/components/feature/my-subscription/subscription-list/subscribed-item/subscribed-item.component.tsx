@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 import { ROUTES } from '../../../../../routes/routes'
 
-import useNavigateWithScroll from '../../../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../../../hooks/use-navigate-with-scroll'
 
 import { SubscribedItemProps } from './subscribed-item.types'
 import { SubscribedItemContainer } from './subscribed-item.styles'

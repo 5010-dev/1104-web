@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import useOnClickOutside from '../../../hooks/useOnClickOutside'
+import useOnClickOutside from '../../../hooks/use-on-click-outside'
 // import { useAuthDataStore } from '../../../store/authDataStore'
 // import { useBannerStore } from '../../../store/globalUiStore'
 

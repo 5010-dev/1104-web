@@ -6,7 +6,7 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 import Complete from '../../global/complete/complete.component'
 
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 
 import { RgistrationCompleteContainer } from './registration-complete.styles'

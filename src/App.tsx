@@ -3,7 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
-import useDeviceType from './hooks/useDeviceType'
+import useDeviceType from './hooks/use-device-type'
 import { useDeviceTypeStore } from './store/layout/device-type.store'
 import { useAuthDataStore } from './store/data/auth-data/auth-data.store'
 import { useServiceDataStore } from './store/data/service-data/service-data.store'

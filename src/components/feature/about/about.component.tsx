@@ -3,7 +3,7 @@ import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useHomeContentsStore } from '../../../store/contents/home-contents/home-contents.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import Button from '../../global/button/button.component'
 

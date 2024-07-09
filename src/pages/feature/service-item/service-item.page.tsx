@@ -9,7 +9,7 @@ import {
 	useNavigationStore,
 } from '../../../store/layout/global-ui.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { getProductById } from '../../../services/product/product-service'
 import { Product } from '../../../services/product/product-service.types'

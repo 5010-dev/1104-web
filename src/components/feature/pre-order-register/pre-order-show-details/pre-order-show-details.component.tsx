@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { usePreOrderContentsStore } from '../../../../store/contents/pre-order-contents/pre-order-contents.store'
-import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
-import useFadeIn from '../../../../hooks/useFadeIn'
+import useNavigateWithScroll from '../../../../hooks/use-navigate-with-scroll'
+import useFadeIn from '../../../../hooks/use-fade-in'
 
 import { PreOrderShowDetailsContainer } from './pre-order-show-details.styles'
 

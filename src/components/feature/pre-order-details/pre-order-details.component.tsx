@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
-import useFadeIn from '../../../hooks/useFadeIn'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
+import useFadeIn from '../../../hooks/use-fade-in'
 
 import { ReactComponent as QuantLogoSm } from '../../../assets/svg/quant/quant-logo-sm.svg'
 

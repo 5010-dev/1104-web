@@ -5,7 +5,7 @@ import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import { sendPasswordResetVerification } from '../../../services/auth/auth-service'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import { getAccessToken } from '../../../utils/token.utils'
 
 import { MyAccountProps } from './my-account.types'

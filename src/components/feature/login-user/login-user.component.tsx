@@ -6,7 +6,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import { logout } from '../../../services/auth/auth-service'
 
 import { LoginUserContainer } from './login-user.styles'

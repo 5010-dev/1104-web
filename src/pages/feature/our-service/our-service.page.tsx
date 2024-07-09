@@ -7,7 +7,7 @@ import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useOurServiceContentsStore } from '../../../store/contents/our-service-contents/our-service-contents.store'
 import { useServiceDataStore } from '../../../store/data/service-data/service-data.store'
 import { useScrollStore } from '../../../store/layout/global-ui.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { OurServiceContainer } from './our-service.styles'
 

@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 
 import { motion, useMotionTemplate } from 'framer-motion'
-import { useScrollAnimation } from '../../../hooks/useScrollAnimation'
+import { useScrollAnimation } from '../../../hooks/use-scroll-animation'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useHomeContentsStore } from '../../../store/contents/home-contents/home-contents.store'

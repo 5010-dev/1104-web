@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { usePreOrderContentsStore } from '../../../store/contents/pre-order-contents/pre-order-contents.store'
-import useFadeIn from '../../../hooks/useFadeIn'
+import useFadeIn from '../../../hooks/use-fade-in'
 
 import { ReactComponent as QuantLogo } from '../../../assets/svg/quant/quant-logo.svg'
 import backgroundImage from '../../../assets/img/pre-order-image.webp'

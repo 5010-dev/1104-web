@@ -1,5 +1,5 @@
 import Lottie from 'lottie-react'
-import usePreventEvent from '../../../hooks/usePreventEvent'
+import usePreventEvent from '../../../hooks/use-prevent-event'
 
 import { AnimationPanelProps } from './animation-panel.types'
 import { AnimationPanelContainer } from './animation-panel.styles'

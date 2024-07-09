@@ -5,7 +5,7 @@ import { login } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
 

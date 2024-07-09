@@ -6,7 +6,7 @@ import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { ServiceItemBarProps } from './service-item-bar.types'
 import { ServiceItemBarContainer } from './service-item-bar.styles'

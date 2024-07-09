@@ -5,7 +5,7 @@ import { ROUTES } from '../../../routes/routes'
 import Lottie from 'lottie-react'
 import verificationAnim from '../../../assets/lottie/verification-anim.json'
 
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import AuthLayout from '../../global/auth-layout/auth-layout.component'
 import { EmailVerificationContainer } from './email-verification.styles'

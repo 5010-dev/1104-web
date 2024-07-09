@@ -4,7 +4,7 @@ import { ROUTES } from '../../../routes/routes'
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
-import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { IndicatorRegistrationContainer } from './indicator-registration.styles'
 

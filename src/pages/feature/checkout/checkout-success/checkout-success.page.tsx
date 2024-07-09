@@ -9,7 +9,7 @@ import {
 	confirmPayment,
 	proceedPayment,
 } from '../../../../services/payment/payment-service'
-import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
+import useNavigateWithScroll from '../../../../hooks/use-navigate-with-scroll'
 
 import {
 	CheckoutSuccessContainer,
