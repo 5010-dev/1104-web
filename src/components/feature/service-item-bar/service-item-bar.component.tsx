@@ -47,7 +47,7 @@ export default function ServiceItemBar(props: ServiceItemBarProps) {
 								{item.title} | {item.plan}
 							</h2>
 							<span id="service-item-bar-price">
-								₩{item.price.toLocaleString()}
+								₩{Number(item.price).toLocaleString()}
 							</span>
 						</div>
 					</div>

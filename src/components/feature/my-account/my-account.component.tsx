@@ -45,9 +45,10 @@ export default function MyAccount(props: MyAccountProps) {
 		<MyAccountContainer $deviceType={deviceType}>
 			<div className="container-row">
 				<h2 className="heading-2">아이디</h2>
-				<div className="item-row">
+				<div className="item-row" id="my-account-container-row">
 					<p className="body">{userId}</p>
 					<Button
+						id="change-password-button"
 						accessibleName="account-info-container"
 						text="비밀번호 변경"
 						appearance="neutral"

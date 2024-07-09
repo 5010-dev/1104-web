@@ -3,7 +3,11 @@ import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { useAccountDataStore } from '../../../store/data/account-data/account-data.store'
+import { useLoadingStore } from '../../../store/layout/loading.store'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
+
+import { getUserSubscribedItemData } from '../../../services/payment/payment-service'
 
 import { AccountContainer } from './account.styles'
 
@@ -15,7 +19,14 @@ export default function Account() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { isUserDataLoaded } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
+	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
+
+	const {
+		updateSubscribedItemData,
+		updateIsSubscribedItemDataLoaded,
+		resetSubscribedItem,
+	} = useAccountDataStore()
 
 	const handleCustomerServiceLink = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '회원 및 구독 관련 문의사항'
@@ -37,10 +48,38 @@ export default function Account() {
 	useEffect(() => {
 		if (isUserDataLoaded) {
 			if (userId.length === 0) {
+				resetSubscribedItem()
 				navigate(ROUTES.HOME)
+				return
 			}
+
+			const fetchUserSubscriptionItemData = async () => {
+				try {
+					updateIsLoading(true)
+
+					const response = await getUserSubscribedItemData()
+
+					updateSubscribedItemData(response)
+					updateIsSubscribedItemDataLoaded(true)
+				} catch (error: any) {
+					console.log(error.message)
+					updateIsSubscribedItemDataLoaded(false)
+				} finally {
+					updateIsLoading(false)
+				}
+			}
+
+			fetchUserSubscriptionItemData()
 		}
-	}, [userId, navigate, isUserDataLoaded])
+	}, [
+		userId,
+		navigate,
+		isUserDataLoaded,
+		updateSubscribedItemData,
+		updateIsSubscribedItemDataLoaded,
+		updateIsLoading,
+		resetSubscribedItem,
+	])
 
 	return (
 		<AccountContainer $deviceType={deviceType}>

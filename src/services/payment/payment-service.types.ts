@@ -37,7 +37,7 @@ export type ProceedPaymentPayload = {
 
 export type SubscribedItem = {
 	id: number
-	product: number
+	product: number // product ID
 	product_title: string
 	product_plan: string
 	payment_status: string

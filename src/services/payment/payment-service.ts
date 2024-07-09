@@ -136,7 +136,9 @@ export const proceedPayment = async ({
  * @returns {Promise<SubscribedItem>} 구독 아이템 정보를 담은 Promise 객체
  * @throws {Error} API 요청 실패 시 에러를 던집니다.
  */
-export const getUserSubscribedItemData = async (): Promise<SubscribedItem> => {
+export const getUserSubscribedItemData = async (): Promise<
+	SubscribedItem[]
+> => {
 	try {
 		const response = await axiosInstance.get('/users/me/subscriptions')
 		const { data } = response.data
@@ -154,6 +156,7 @@ export const getUserSubscribedItemData = async (): Promise<SubscribedItem> => {
  */
 export const getUserPaiedItemData = async (): Promise<PaidItem[]> => {
 	try {
+		// TODO: 추후 수정 필요
 		const response = await axiosInstance.get('/users/me/payments')
 		const { data } = response.data
 		return data

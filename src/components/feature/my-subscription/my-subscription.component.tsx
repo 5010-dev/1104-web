@@ -2,6 +2,7 @@ import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 
 import { MySubscriptionContainer } from './my-subscription.styles'
 
+import SubscribtionList from './subscription-list/subscription-list.component'
 import BillingItem from './billing-item/billing-item.component'
 
 export default function MySubscription() {
@@ -12,7 +13,7 @@ export default function MySubscription() {
 			<div className="container-row">
 				<h2 className="heading-2">구독중인 서비스</h2>
 				<div className="item-row">
-					<p className="body">구독중인 서비스가 없습니다.</p>
+					<SubscribtionList />
 				</div>
 			</div>
 			<hr />
