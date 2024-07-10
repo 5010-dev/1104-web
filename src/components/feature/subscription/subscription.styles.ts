@@ -17,6 +17,8 @@ export const SubscriptionContainer = styled(SectionContainer)<Props>`
 
 	div#section-heading-container {
 		width: ${({ theme }) => theme.layout.container.width};
+		padding: ${({ theme, $deviceType }) =>
+			`0 ${getDeviceTypePadding(theme, $deviceType, 'section')}`};
 
 		text-align: center;
 

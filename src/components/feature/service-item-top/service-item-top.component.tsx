@@ -84,7 +84,7 @@ const ServiceItemTop = forwardRef<HTMLDivElement, ServiceItemTopProps>(
 					<Button
 						id="service-item-purchase-button"
 						accessibleName="service-item-title-container"
-						appearance="accent"
+						appearance={item.is_subscribed ? 'neutral' : 'accent'}
 						hierarchy="primary"
 						stroke="filled"
 						shape="rounding"

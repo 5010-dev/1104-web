@@ -53,9 +53,9 @@ export default function ServiceItemBar(props: ServiceItemBarProps) {
 					</div>
 				) : null}
 				<Button
-					accessibleName="service-item-bar-container"
 					id="service-item-bar-button"
-					appearance="accent"
+					accessibleName="service-item-bar-container"
+					appearance={item.is_subscribed ? 'neutral' : 'accent'}
 					hierarchy="primary"
 					stroke="filled"
 					shape="rounding"
