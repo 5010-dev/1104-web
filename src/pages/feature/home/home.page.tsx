@@ -44,7 +44,7 @@ export default function Home() {
 				<Review />
 			</div>
 			<Subscription ref={ref} />
-			<FrequentQuestions />
+			<FrequentQuestions variant="INDICATOR" showTabs />
 			<Community />
 		</HomeContainer>
 	)

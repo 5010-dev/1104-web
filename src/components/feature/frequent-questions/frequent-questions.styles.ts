@@ -29,6 +29,23 @@ export const FrequentQuestionsContainer = styled(SectionContainer)`
 		}
 	}
 
+	div#questions-tabs-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: ${({ theme }) => theme.layout.component.gutter};
+
+		& > .questions-tab {
+			gap: 0.5rem;
+
+			span {
+				font-weight: 600;
+				font-size: 0.875rem;
+			}
+		}
+	}
+
 	div#questions-container {
 		width: ${({ theme }) => theme.layout.container.width};
 
