@@ -70,6 +70,11 @@ export default function Checkout() {
 					const foundItem = await getProductById(numberedId)
 
 					if (foundItem) {
+						if (foundItem.is_subscribed) {
+							updateToastMessage('이미 이용중인 서비스 입니다.')
+							navigate(ROUTES.HOME)
+							return
+						}
 						setItem(foundItem)
 					} else {
 						updateToastMessage('서비스를 찾을 수 없습니다.')
