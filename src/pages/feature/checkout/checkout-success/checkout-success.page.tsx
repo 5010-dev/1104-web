@@ -18,6 +18,7 @@ import {
 
 import Button from '../../../../components/global/button/button.component'
 import Complete from '../../../../components/global/complete/complete.component'
+import Loading from '../../../../components/global/loading/loading.component'
 
 export default function CheckoutSuccess() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -135,7 +136,9 @@ export default function CheckoutSuccess() {
 					/>
 				</div> */}
 				</CheckoutSuccessSectionContainer>
-			) : null}
+			) : (
+				<Loading />
+			)}
 		</CheckoutSuccessContainer>
 	)
 }
