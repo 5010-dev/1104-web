@@ -14,7 +14,6 @@ export type ProductListItem = {
 	overviews: string[]
 	is_flagship: boolean
 	background_image_url: string
-	is_subscribed: boolean
 }
 
 export type Product = {
@@ -27,4 +26,5 @@ export type Product = {
 	badges: string[]
 	overviews: string[]
 	thumbnail_image_url: string
+	is_subscribed: boolean
 }

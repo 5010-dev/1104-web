@@ -7,6 +7,8 @@ import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
+import { useAuthNavigationStore } from '../../../store/auth-navigation/auth-navigation.store'
+// import { useAuthNavigation } from '../../../hooks/use-auth-navigation'
 
 import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
 
@@ -23,6 +25,7 @@ export default function LoginForm() {
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigateWithScroll()
 	const location = useLocation()
+	const { authDestination, setAuthDestination } = useAuthNavigationStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 
 	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) =>
@@ -49,15 +52,26 @@ export default function LoginForm() {
 				updateToastMessage('성공적으로 로그인 했습니다.')
 				resetAuthData()
 
-				const destination = location.state?.from
+				console.log(authDestination)
 
-				if (destination) {
-					navigate(destination, { replace: true })
+				if (authDestination) {
+					navigate(authDestination)
+					setAuthDestination(null)
 				} else if (window.history.length > 2) {
 					navigate(-1)
 				} else {
-					navigate(ROUTES.HOME, { replace: true })
+					navigate(ROUTES.HOME)
 				}
+
+				// const destination = location.state?.from
+
+				// if (destination) {
+				// 	navigate(destination, { replace: true })
+				// } else if (window.history.length > 2) {
+				// 	navigate(-1)
+				// } else {
+				// 	navigate(ROUTES.HOME, { replace: true })
+				// }
 			} else {
 				updateToastMessage('이메일 인증이 필요합니다.')
 				navigate(`${ROUTES.VERIFICATION}?email=${loginEmail}`, {

@@ -89,8 +89,9 @@ const ServiceItemTop = forwardRef<HTMLDivElement, ServiceItemTopProps>(
 						stroke="filled"
 						shape="rounding"
 						icon={<FontAwesomeIcon icon={faCreditCard} />}
-						text="서비스 구매하기"
+						text={item.is_subscribed ? '서비스 이용중' : '서비스 구매하기'}
 						handleClick={handleCheckout}
+						disabled={item.is_subscribed}
 					/>
 					<TextLink
 						appearance="neutral"

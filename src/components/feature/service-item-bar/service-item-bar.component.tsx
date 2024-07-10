@@ -60,9 +60,10 @@ export default function ServiceItemBar(props: ServiceItemBarProps) {
 					stroke="filled"
 					shape="rounding"
 					icon={<FontAwesomeIcon icon={faCreditCard} />}
-					text="서비스 구매하기"
+					text={item.is_subscribed ? '서비스 이용중' : '서비스 구매하기'}
 					size={deviceType === 'mobile' ? 'md' : 'sm'}
 					handleClick={handleCheckout}
+					disabled={item.is_subscribed}
 				/>
 			</div>
 		</ServiceItemBarContainer>
