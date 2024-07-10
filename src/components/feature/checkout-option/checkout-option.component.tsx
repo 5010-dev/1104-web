@@ -29,19 +29,28 @@ export default function CheckoutOption() {
 			<div className="container-row">
 				<h2 className="heading-2">주문 관련 상품 정보</h2>
 				<div className="checkout-option-container">
-					<h3 className="heading-3">31일간 이용 가능</h3>
+					<h3 className="heading-3">평생 이용</h3>
 					<ul id="checkout-options-list">
 						<li className="body-sm">
-							서비스는 결제일로부터 31일간 사용 가능합니다.
+							구매한 서비스는 초기 셋팅이 완료된 시점부터 바로 이용 가능합니다.
 						</li>
 						<li className="body-sm">
+							서비스 초기 셋팅은 결제일로부터 다음 날인 익일 09:00부터
+							순차적으로 진행됩니다.
+						</li>
+						<li className="body-sm">
+							서비스 셋팅 상태는 구매 후 '내 정보' 페이지에서 확인하실 수
+							있습니다.
+						</li>
+
+						{/* <li className="body-sm">
 							사용 기간 종료 이후에는 재구매를 통해 서비스를 계속해서 이용할 수
 							있습니다.
 						</li>
 						<li className="body-sm">
 							첫 구매 이후 재구매 시에는 초기 설치 비용을 제외한 비용만
 							청구됩니다.
-						</li>
+						</li> */}
 						{/* <li className="body-sm">
 							주문 후 7일 이내에 취소하는 경우 전액 환불됩니다. 그 외 자세한
 							환불 관련 내용은 환불 정책 전문을 참고해 주세요.{' '}

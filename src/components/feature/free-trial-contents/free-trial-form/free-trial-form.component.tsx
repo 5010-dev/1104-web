@@ -95,7 +95,10 @@ export default function FreeTrialForm() {
 				},
 			)
 			if (response.status === 200 && response.data.Ok) {
-				navigate(ROUTES.FREE_TRIAL, { replace: true, routeState: 'complete' })
+				navigate(ROUTES.FREE_TRIAL, {
+					replace: true,
+					state: { mode: 'complete' },
+				})
 			} else {
 				updateToastMessage(
 					'문제가 발생했습니다. 잠시 후 다시 시도하시거나, 고객 지원 센터로 연락주세요.',

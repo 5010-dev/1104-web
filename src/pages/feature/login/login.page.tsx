@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import AuthLayout from '../../global/auth-layout/auth-layout.component'
 import LoginForm from '../../../components/feature/login-form/login-form.component'
@@ -11,6 +13,7 @@ import PasswordResetForm from '../../../components/feature/password-reset-form/p
 export default function Login() {
 	const { resetAuthData } = useAuthDataStore()
 	const location = useLocation()
+	const navigate = useNavigateWithScroll()
 	const state = location.state as
 		| { mode: 'login' | 'signup' | 'verification' | 'password-reset' }
 		| undefined
@@ -19,6 +22,12 @@ export default function Login() {
 		resetAuthData()
 		return () => resetAuthData()
 	}, [resetAuthData])
+
+	useEffect(() => {
+		if (location.key === 'default') {
+			navigate(ROUTES.HOME, { replace: true })
+		}
+	}, [navigate, location])
 
 	return (
 		<AuthLayout>

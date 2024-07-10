@@ -27,7 +27,7 @@ export default function EmailVerification() {
 
 	useEffect(() => {
 		if (!email) {
-			navigate(ROUTES.LOGIN, { routeState: 'login', replace: true })
+			navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'login' } })
 		}
 	}, [email, navigate])
 

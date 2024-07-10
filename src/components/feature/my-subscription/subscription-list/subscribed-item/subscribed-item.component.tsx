@@ -16,7 +16,7 @@ export default function SubscribedItem(props: SubscribedItemProps) {
 		product_title,
 		product_plan,
 		is_setup_completed,
-		started,
+		// started,
 		ended,
 	} = item
 	const navigate = useNavigateWithScroll()
@@ -32,20 +32,20 @@ export default function SubscribedItem(props: SubscribedItemProps) {
 		return currentDate > targetDate
 	}
 
-	const calculateDaysLeft = (): number => {
-		const targetDate = new Date(ended)
-		const currentDate = new Date()
+	// const calculateDaysLeft = (): number => {
+	// 	const targetDate = new Date(ended)
+	// 	const currentDate = new Date()
 
-		// 날짜만 비교하기 위해 시간을 00:00:00으로 설정
-		targetDate.setHours(0, 0, 0, 0)
-		currentDate.setHours(0, 0, 0, 0)
+	// 	// 날짜만 비교하기 위해 시간을 00:00:00으로 설정
+	// 	targetDate.setHours(0, 0, 0, 0)
+	// 	currentDate.setHours(0, 0, 0, 0)
 
-		// 밀리초 차이를 일 단위로 변환
-		const timeDiff = targetDate.getTime() - currentDate.getTime()
-		const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24))
+	// 	// 밀리초 차이를 일 단위로 변환
+	// 	const timeDiff = targetDate.getTime() - currentDate.getTime()
+	// 	const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24))
 
-		return Math.max(daysDiff, 0)
-	}
+	// 	return Math.max(daysDiff, 0)
+	// }
 
 	const handleRepurchase = (e: MouseEvent<HTMLButtonElement>) =>
 		navigate(ROUTES.SERVICE_ITEM.createPath(product))
@@ -67,19 +67,19 @@ export default function SubscribedItem(props: SubscribedItemProps) {
 				<p className="subscribed-item-heading">
 					{product_title} | {product_plan}
 				</p>
-				<div className="subscribed-item-period-container">
+				{/* <div className="subscribed-item-period-container">
 					<p className="subscribed-item-timer">
 						{isDatePassed() ? '기간 만료' : `${calculateDaysLeft()}일 남음`}
 					</p>
 					<div className="subscribed-item-date-container">
 						<span className="subscribed-item-date">
-							이용 시작일 <span>{started}</span>
+							구독 시작일 <span>{started}</span>
 						</span>
 						<span className="subscribed-item-date">
-							이용 만료일 <span>{ended}</span>
+							구독 만료일 <span>{ended}</span>
 						</span>
 					</div>
-				</div>
+				</div> */}
 			</div>
 			{isDatePassed() ? (
 				<Button

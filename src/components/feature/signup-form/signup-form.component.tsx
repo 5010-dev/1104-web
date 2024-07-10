@@ -25,7 +25,7 @@ export default function SignupForm() {
 	const navigate = useNavigateWithScroll()
 
 	const handleLoginLink = (e: MouseEvent<HTMLSpanElement>) => {
-		navigate(ROUTES.LOGIN, { replace: true, routeState: 'login' })
+		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'login' } })
 	}
 
 	const handleAgreeButton = (e: MouseEvent<HTMLButtonElement>) =>
@@ -45,7 +45,7 @@ export default function SignupForm() {
 			updateToastMessage('가입하신 이메일로 인증 코드를 전송했습니다.')
 			navigate(`${ROUTES.VERIFICATION}?email=${signedUpEmail}`, {
 				replace: true,
-				routeState: 'signup',
+				state: { mode: 'signup' },
 			})
 		} catch (error: any) {
 			updateToastMessage(error.message)

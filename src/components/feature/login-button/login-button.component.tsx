@@ -23,12 +23,12 @@ export default function LoginButton(props: LoginButtonProps) {
 			window.scrollTo({
 				top: 0,
 			})
-			navigate(ROUTES.LOGIN, { routeState: 'signup' })
+			navigate(ROUTES.LOGIN, { state: { mode: 'signup' } })
 		} else {
 			window.scrollTo({
 				top: 0,
 			})
-			navigate(ROUTES.LOGIN, { routeState: 'login' })
+			navigate(ROUTES.LOGIN, { state: { mode: 'login' } })
 		}
 	}
 

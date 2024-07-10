@@ -1,4 +1,5 @@
 import { FormEvent, MouseEvent } from 'react'
+import { useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
 import { login } from '../../../services/auth/auth-service'
@@ -21,10 +22,11 @@ export default function LoginForm() {
 	} = useAuthDataStore()
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigateWithScroll()
+	const location = useLocation()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 
 	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) =>
-		navigate(ROUTES.LOGIN, { replace: true, routeState: 'signup' })
+		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'signup' } })
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -46,12 +48,21 @@ export default function LoginForm() {
 				updateIsUserDataLoaded(true)
 				updateToastMessage('성공적으로 로그인 했습니다.')
 				resetAuthData()
-				navigate(ROUTES.HOME)
+
+				const destination = location.state?.from
+
+				if (destination) {
+					navigate(destination, { replace: true })
+				} else if (window.history.length > 2) {
+					navigate(-1)
+				} else {
+					navigate(ROUTES.HOME, { replace: true })
+				}
 			} else {
 				updateToastMessage('이메일 인증이 필요합니다.')
 				navigate(`${ROUTES.VERIFICATION}?email=${loginEmail}`, {
 					replace: true,
-					routeState: 'signup',
+					state: { mode: 'signup' },
 				})
 			}
 		} catch (error: any) {

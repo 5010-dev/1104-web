@@ -5,7 +5,13 @@ import { CheckoutItemContainer } from './checkout-item.styles'
 
 export default function CheckoutItem(props: CheckoutItemProps) {
 	const { item } = props
-	const { title, plan, thumbnail_image_url, price, price_caption } = item
+	const {
+		title,
+		plan,
+		thumbnail_image_url,
+		price,
+		// price_caption
+	} = item
 	const numberedPrice = Number(price)
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -26,7 +32,8 @@ export default function CheckoutItem(props: CheckoutItemProps) {
 						</p>
 						<span className="caption">디지털 상품 및 서비스</span>
 						<h3 className="heading-3">
-							₩{numberedPrice.toLocaleString()} <span>({price_caption})</span>
+							₩{numberedPrice.toLocaleString()}
+							{/* <span>({price_caption})</span> */}
 						</h3>
 					</div>
 				</div>

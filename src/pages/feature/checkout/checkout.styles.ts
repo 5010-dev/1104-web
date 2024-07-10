@@ -105,7 +105,7 @@ export const CheckoutContainer = styled(PageLayoutContainer)`
 			}
 
 			div#right-column {
-				width: ${({ $deviceType }) => $deviceType === 'desktop' && '20rem'};
+				width: ${({ $deviceType }) => $deviceType === 'desktop' && '21rem'};
 
 				margin-top: ${({ $deviceType }) =>
 					$deviceType === 'mobile' ? '1rem' : '0'};

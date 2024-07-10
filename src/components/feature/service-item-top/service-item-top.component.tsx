@@ -79,7 +79,7 @@ const ServiceItemTop = forwardRef<HTMLDivElement, ServiceItemTopProps>(
 						<span id="service-item-price">
 							₩ {Number(item.price).toLocaleString()}
 						</span>
-						<span id="service-item-price-caption">{item.price_caption}</span>
+						{/* <span id="service-item-price-caption">{item.price_caption}</span> */}
 					</div>
 					<Button
 						id="service-item-purchase-button"

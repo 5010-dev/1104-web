@@ -17,8 +17,16 @@ import Button from '../../../global/button/button.component'
 
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
-	const { plan, id, title, badges, summary, overviews, price, price_caption } =
-		item
+	const {
+		plan,
+		id,
+		title,
+		badges,
+		summary,
+		overviews,
+		price,
+		// price_caption
+	} = item
 	const numberedPrice = Number(price)
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -30,7 +38,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 		if (userId) {
 			navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${title}&plan=${plan}`)
 		} else {
-			navigate(ROUTES.LOGIN, { routeState: 'signup' })
+			navigate(ROUTES.LOGIN, { state: { mode: 'signup' } })
 			updateToastMessage('회원가입 및 로그인이 필요합니다.')
 		}
 	}
@@ -66,7 +74,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 							'무료'
 						)}
 					</h1>
-					<span id="price-text-caption">{price_caption}</span>
+					{/* <span id="price-text-caption">{price_caption}</span> */}
 				</div>
 				<div id="description-text-container">
 					<p id="body">{summary}</p>

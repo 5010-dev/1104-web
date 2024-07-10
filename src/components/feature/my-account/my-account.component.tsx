@@ -32,7 +32,7 @@ export default function MyAccount(props: MyAccountProps) {
 			)
 			navigate(`${ROUTES.VERIFICATION}?email=${userId}`, {
 				replace: true,
-				routeState: 'password-reset',
+				state: { mode: 'password-reset' },
 			})
 		} catch (error: any) {
 			updateToastMessage(error.message)
