@@ -14,6 +14,7 @@ import { FrequentQuestionsContainer } from './frequent-questions.styles'
 import FrequentQuestionsItem from './frequent-questions-item/frequent-questions-item.component'
 import Button from '../../global/button/button.component'
 import TextLink from '../../global/text-link/text-link.component'
+import Card from '../../global/card/card.component'
 
 export default function FrequentQuestions(props: FrequentQuestionsProps) {
 	const { variant, showTabs } = props
@@ -96,6 +97,11 @@ export default function FrequentQuestions(props: FrequentQuestionsProps) {
 						details={item.details ? item.details : undefined}
 					/>
 				))}
+				{faqList.disclaimer ? (
+					<Card hierarchy="tertiary" opacity={0.5} id="quetions-disclaimer">
+						{faqList.disclaimer}
+					</Card>
+				) : null}
 			</div>
 
 			<TextLink

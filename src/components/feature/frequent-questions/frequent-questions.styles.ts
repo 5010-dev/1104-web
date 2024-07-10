@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { getTypography } from '../../../utils/typo.utils'
+import { getColour } from '../../../utils/colour.utils'
 
 import { SectionContainer } from '../../global/section/section.styles'
 
@@ -54,5 +55,13 @@ export const FrequentQuestionsContainer = styled(SectionContainer)`
 		justify-content: flex-start;
 		align-items: center;
 		gap: ${({ theme }) => theme.layout.component.gutter};
+
+		#quetions-disclaimer {
+			${({ theme }) => getTypography(theme, 'caption')}
+			font-size: 0.875rem;
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'inactive')};
+			text-align: left;
+		}
 	}
 `

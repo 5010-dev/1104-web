@@ -12,7 +12,6 @@ export default function FrequentQuestionsItem(
 			heading={<h3 id="heading">{heading}</h3>}
 			body={
 				<>
-					<p id="body">{body}</p>
 					{details ? (
 						<ul id="details-container">
 							{details.map((item, index) => (
@@ -22,6 +21,7 @@ export default function FrequentQuestionsItem(
 							))}
 						</ul>
 					) : null}
+					<p id="body">{body}</p>
 				</>
 			}
 			container
