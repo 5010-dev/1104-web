@@ -18,7 +18,6 @@ import {
 
 import Button from '../../../../components/global/button/button.component'
 import Complete from '../../../../components/global/complete/complete.component'
-// import TextLink from '../../global/text-link/text-link.component'
 
 export default function CheckoutSuccess() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
