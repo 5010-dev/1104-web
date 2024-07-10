@@ -18,6 +18,7 @@ import {
 
 import Button from '../../../../components/global/button/button.component'
 import Complete from '../../../../components/global/complete/complete.component'
+import Loading from '../../../../components/global/loading/loading.component'
 // import TextLink from '../../global/text-link/text-link.component'
 
 export default function CheckoutSuccess() {
@@ -136,7 +137,9 @@ export default function CheckoutSuccess() {
 					/>
 				</div> */}
 				</CheckoutSuccessSectionContainer>
-			) : null}
+			) : (
+				<Loading />
+			)}
 		</CheckoutSuccessContainer>
 	)
 }

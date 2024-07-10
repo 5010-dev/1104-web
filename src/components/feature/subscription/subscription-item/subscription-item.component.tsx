@@ -36,12 +36,6 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 
 	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
 		navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${title}&plan=${plan}`)
-		// if (userId) {
-		// 	navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${title}&plan=${plan}`)
-		// } else {
-		// 	navigate(ROUTES.LOGIN, { state: { mode: 'signup' } })
-		// 	updateToastMessage('회원가입 및 로그인이 필요합니다.')
-		// }
 	}
 	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) =>
 		navigate(ROUTES.FREE_TRIAL)

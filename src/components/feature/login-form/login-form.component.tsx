@@ -1,5 +1,4 @@
 import { FormEvent, MouseEvent } from 'react'
-import { useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
 import { login } from '../../../services/auth/auth-service'
@@ -8,7 +7,6 @@ import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import { useAuthNavigationStore } from '../../../store/auth-navigation/auth-navigation.store'
-// import { useAuthNavigation } from '../../../hooks/use-auth-navigation'
 
 import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
 
@@ -23,10 +21,9 @@ export default function LoginForm() {
 		resetAuthData,
 	} = useAuthDataStore()
 	const { updateToastMessage } = useToastMessageStore()
-	const navigate = useNavigateWithScroll()
-	const location = useLocation()
 	const { authDestination, setAuthDestination } = useAuthNavigationStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
+	const navigate = useNavigateWithScroll()
 
 	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) =>
 		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'signup' } })
@@ -52,26 +49,14 @@ export default function LoginForm() {
 				updateToastMessage('성공적으로 로그인 했습니다.')
 				resetAuthData()
 
-				console.log(authDestination)
-
 				if (authDestination) {
-					navigate(authDestination)
+					navigate(authDestination, { replace: true })
 					setAuthDestination(null)
 				} else if (window.history.length > 2) {
-					navigate(-1)
+					navigate(-1, { replace: true })
 				} else {
-					navigate(ROUTES.HOME)
+					navigate(ROUTES.HOME, { replace: true })
 				}
-
-				// const destination = location.state?.from
-
-				// if (destination) {
-				// 	navigate(destination, { replace: true })
-				// } else if (window.history.length > 2) {
-				// 	navigate(-1)
-				// } else {
-				// 	navigate(ROUTES.HOME, { replace: true })
-				// }
 			} else {
 				updateToastMessage('이메일 인증이 필요합니다.')
 				navigate(`${ROUTES.VERIFICATION}?email=${loginEmail}`, {

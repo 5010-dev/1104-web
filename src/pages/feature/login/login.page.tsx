@@ -12,6 +12,7 @@ import PasswordResetForm from '../../../components/feature/password-reset-form/p
 
 export default function Login() {
 	const { resetAuthData } = useAuthDataStore()
+
 	const location = useLocation()
 	const navigate = useNavigateWithScroll()
 	const state = location.state as
@@ -20,6 +21,7 @@ export default function Login() {
 
 	useEffect(() => {
 		resetAuthData()
+
 		return () => resetAuthData()
 	}, [resetAuthData])
 

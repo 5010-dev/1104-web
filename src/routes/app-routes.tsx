@@ -27,8 +27,6 @@ export default function AppRoutes() {
 	return (
 		<Routes>
 			{/* <Route path={ROUTES.PRE_ORDER} element={<PreOrder />} /> */}
-			<Route path={ROUTES.FREE_TRIAL} element={<FreeTrial />} />
-
 			{/* <Route element={<EventRoute />}> */}
 			<Route path={ROUTES.HOME} element={<MainLayout />}>
 				<Route index element={<Home />} />
@@ -42,6 +40,8 @@ export default function AppRoutes() {
 					<Route path={ROUTES.ACCOUNT} element={<Account />} />
 				</Route>
 			</Route>
+
+			<Route path={ROUTES.FREE_TRIAL} element={<FreeTrial />} />
 
 			<Route element={<GuestOnlyRoute />}>
 				<Route path={ROUTES.LOGIN} element={<Login />} />
