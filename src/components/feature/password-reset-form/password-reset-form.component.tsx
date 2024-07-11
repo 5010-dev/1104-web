@@ -22,9 +22,9 @@ export default function PasswordResetForm() {
 		resetPasswordResetToken,
 	} = useAuthDataStore()
 	const { updateToastMessage } = useToastMessageStore()
-	const navigate = useNavigateWithScroll()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const isReallyUnmounting = useRef(false)
+	const navigate = useNavigateWithScroll()
 
 	const handleGetHelp = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '비밀번호 변경 관련 문의사항'
@@ -51,7 +51,7 @@ export default function PasswordResetForm() {
 				updateToastMessage('비밀번호 변경이 완료되었습니다.')
 				resetAuthData()
 				resetPasswordResetToken()
-				navigate(ROUTES.HOME, { replace: true })
+				navigate(ROUTES.ACCOUNT, { replace: true })
 			}
 		} catch (error: any) {
 			updateToastMessage(error.message)

@@ -5,8 +5,9 @@ import { login } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
-import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import { useAuthNavigationStore } from '../../../store/auth-navigation/auth-navigation.store'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
+import useNavigateAfterAuth from '../../../hooks/use-navigate-after-auth'
 
 import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
 
@@ -21,9 +22,10 @@ export default function LoginForm() {
 		resetAuthData,
 	} = useAuthDataStore()
 	const { updateToastMessage } = useToastMessageStore()
-	const { authDestination, setAuthDestination } = useAuthNavigationStore()
+	const { authDestination } = useAuthNavigationStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const navigate = useNavigateWithScroll()
+	const navigateAfterAuth = useNavigateAfterAuth()
 
 	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) =>
 		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'signup' } })
@@ -49,14 +51,7 @@ export default function LoginForm() {
 				updateToastMessage('성공적으로 로그인 했습니다.')
 				resetAuthData()
 
-				if (authDestination) {
-					navigate(authDestination, { replace: true })
-					setAuthDestination(null)
-				} else if (window.history.length > 2) {
-					navigate(-1, { replace: true })
-				} else {
-					navigate(ROUTES.HOME, { replace: true })
-				}
+				navigateAfterAuth(authDestination)
 			} else {
 				updateToastMessage('이메일 인증이 필요합니다.')
 				navigate(`${ROUTES.VERIFICATION}?email=${loginEmail}`, {

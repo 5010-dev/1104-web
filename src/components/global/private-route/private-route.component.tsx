@@ -22,6 +22,8 @@ export default function PrivateRoute() {
 	const location = useLocation()
 
 	useEffect(() => {
+		setAuthDestination(null)
+
 		if (!isAuthenticated()) {
 			updateToastMessage('회원가입 및 로그인이 필요합니다.')
 			setAuthDestination(location.pathname + location.search)

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useAuthNavigationStore } from '../../../store/auth-navigation/auth-navigation.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { AuthLayoutProps } from './auth-layout.types'
@@ -19,8 +20,12 @@ export default function AuthLayout(props: AuthLayoutProps) {
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const navigate = useNavigateWithScroll()
+	const { setAuthDestination } = useAuthNavigationStore()
 
-	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
+	const handleClose = (e: MouseEvent<HTMLButtonElement>) => {
+		setAuthDestination(null)
+		navigate(-1)
+	}
 
 	return (
 		<AuthLayoutContainer $deviceType={deviceType}>

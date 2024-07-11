@@ -35,10 +35,10 @@ export const FrequentQuestionsContainer = styled(SectionContainer)`
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		gap: ${({ theme }) => theme.layout.component.gutter};
+		gap: 0.5rem;
 
 		& > .questions-tab {
-			gap: 0.5rem;
+			gap: 0.4rem;
 
 			span {
 				font-weight: 600;

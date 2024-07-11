@@ -33,7 +33,6 @@ export default function AppRoutes() {
 				<Route path={ROUTES.ABOUT} element={<AboutUs />} />
 				<Route path={ROUTES.SERVICE} element={<OurService />} />
 				<Route path={ROUTES.SERVICE_ITEM.path} element={<ServiceItem />} />
-				<Route path={ROUTES.VERIFICATION} element={<EmailVerification />} />
 				<Route path={ROUTES.PARTNERSHIP} element={<Partnership />} />
 
 				<Route element={<PrivateRoute />}>
@@ -41,6 +40,7 @@ export default function AppRoutes() {
 				</Route>
 			</Route>
 
+			<Route path={ROUTES.VERIFICATION} element={<EmailVerification />} />
 			<Route path={ROUTES.FREE_TRIAL} element={<FreeTrial />} />
 
 			<Route element={<GuestOnlyRoute />}>
