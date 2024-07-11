@@ -1,4 +1,8 @@
-import React, { useState } from 'react'
+import { useState, MouseEvent } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'
+
 import { InputProps } from './input.types'
 import { InputContainer } from './input.styles'
 
@@ -20,15 +24,20 @@ export default function Input(props: InputProps) {
 		handleClick,
 		handleKeyDown,
 		handleChange,
+		handleReset,
 		handleFocus,
 		handleBlur,
 		isRequired,
 		isTextfield = false,
 	} = props
 
-	const [isFocused, setIsFocused] = useState(false)
+	const [isFocused, setIsFocused] = useState<boolean>(false)
+	const [showPassword, setShowPassword] = useState<boolean>(false)
 
 	const InputElement = isTextfield ? 'textarea' : 'input'
+
+	const handleShowPassword = (e: MouseEvent<SVGSVGElement>) =>
+		setShowPassword((state) => !state)
 
 	return (
 		<InputContainer
@@ -42,7 +51,7 @@ export default function Input(props: InputProps) {
 			<InputElement
 				id={inputId}
 				className={inputClassName}
-				type={type}
+				type={showPassword ? 'text' : type}
 				pattern={pattern}
 				autoComplete={autoComplete ? 'on' : 'off'}
 				maxLength={maxLength && maxLength - 1}
@@ -62,6 +71,23 @@ export default function Input(props: InputProps) {
 				placeholder={placeholder}
 				required={isRequired}
 			/>
+
+			<div id="input-buttons-container">
+				{name === 'password' ? (
+					<FontAwesomeIcon
+						icon={showPassword ? faEye : faEyeSlash}
+						onClick={handleShowPassword}
+						className="input-function-button"
+					/>
+				) : null}
+				{value?.toString().length !== 0 && handleReset ? (
+					<FontAwesomeIcon
+						icon={faCircleXmark}
+						onClick={handleReset}
+						className="input-function-button"
+					/>
+				) : null}
+			</div>
 			{maxLength && (
 				<span>
 					{value?.toString().length} / {maxLength}

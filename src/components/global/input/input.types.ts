@@ -23,6 +23,7 @@ export type InputProps = {
 	handleClick?: MouseEventHandler<HTMLElement>
 	handleKeyDown?: KeyboardEventHandler<HTMLElement>
 	handleChange?: ChangeEventHandler<HTMLElement>
+	handleReset?: MouseEventHandler<SVGSVGElement>
 	handleFocus?: FocusEventHandler<HTMLElement>
 	handleBlur?: FocusEventHandler<HTMLElement>
 	isRequired?: boolean

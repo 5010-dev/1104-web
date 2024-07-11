@@ -6,6 +6,8 @@ import { getColour } from '../../../utils/colour.utils'
 import { getTypography } from '../../../utils/typo.utils'
 
 export const InputContainer = styled.div<InputContainerProps>`
+	position: relative;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -52,6 +54,7 @@ export const InputContainer = styled.div<InputContainerProps>`
 
 		border: none;
 		border-radius: ${({ theme }) => theme.shape.outlined.rounded3.borderRadii};
+		// TODO: 버튼 있을때 패딩 조절 필요
 		padding: ${({ theme }) => theme.layout.component.padding.default};
 
 		background-color: transparent;
@@ -105,6 +108,39 @@ export const InputContainer = styled.div<InputContainerProps>`
 		&:-ms-input-placeholder {
 			background-color: white;
 			color: black;
+		}
+	}
+
+	div#input-buttons-container {
+		position: absolute;
+
+		right: 0.25rem;
+		top: 50%;
+		transform: translateY(-50%);
+
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+
+		z-index: 5;
+
+		.input-function-button {
+			font-size: 1rem;
+
+			padding: 0.5rem 0.4rem;
+
+			color: ${({ theme, $isFocused, $isValid, $hierarchy }) => {
+				if ($isValid) {
+					return $isFocused
+						? getColour(theme, 'neutral', $hierarchy, 'active')
+						: getColour(theme, 'neutral', $hierarchy, 'inactive')
+				} else {
+					return $isFocused
+						? getColour(theme, 'system', $hierarchy, 'active')
+						: getColour(theme, 'system', $hierarchy, 'inactive')
+				}
+			}};
 		}
 	}
 
