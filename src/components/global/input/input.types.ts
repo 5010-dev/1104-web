@@ -35,4 +35,6 @@ export type InputContainerProps = {
 	$isValid: boolean
 	$hierarchy: ComponentHierarchy
 	$isTextfield: boolean
+	$name?: string
+	$handleReset?: MouseEventHandler<SVGSVGElement>
 }

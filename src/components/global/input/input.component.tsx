@@ -47,6 +47,8 @@ export default function Input(props: InputProps) {
 			$isValid={isValid}
 			$hierarchy={hierarchy}
 			$isTextfield={isTextfield}
+			$name={name}
+			$handleReset={handleReset}
 		>
 			<InputElement
 				id={inputId}

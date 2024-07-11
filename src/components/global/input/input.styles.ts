@@ -54,8 +54,9 @@ export const InputContainer = styled.div<InputContainerProps>`
 
 		border: none;
 		border-radius: ${({ theme }) => theme.shape.outlined.rounded3.borderRadii};
-		// TODO: 버튼 있을때 패딩 조절 필요
 		padding: ${({ theme }) => theme.layout.component.padding.default};
+		padding-right: ${({ $handleReset, $name }) =>
+			$handleReset && ($name === 'password' ? '4rem' : '2rem')};
 
 		background-color: transparent;
 		text-align: left;
@@ -127,6 +128,7 @@ export const InputContainer = styled.div<InputContainerProps>`
 
 		.input-function-button {
 			font-size: 1rem;
+			cursor: pointer;
 
 			padding: 0.5rem 0.4rem;
 

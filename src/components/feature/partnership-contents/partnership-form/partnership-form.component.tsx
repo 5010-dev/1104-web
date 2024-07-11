@@ -66,6 +66,9 @@ export default function PartnershipForm() {
 		}))
 	}
 
+	const handleReset = (key: string) =>
+		setFormData((state) => ({ ...state, [key]: '' }))
+
 	const allFieldsValid = isAllValid(isValid)
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -121,6 +124,7 @@ export default function PartnershipForm() {
 							handleChange={handleInputChange}
 							isValid={formData.name.length === 0 || isValid.name}
 							isRequired
+							handleReset={() => handleReset('name')}
 						/>
 						<Input
 							className="partnership-form-input"
@@ -132,6 +136,7 @@ export default function PartnershipForm() {
 							handleChange={handleInputChange}
 							isValid={formData.email.length === 0 || isValid.email}
 							isRequired
+							handleReset={() => handleReset('email')}
 						/>
 						<Input
 							className="partnership-form-input"
