@@ -6,6 +6,7 @@ import { handleError } from '../service-error'
 import {
 	UserAuthToken,
 	UserAuthData,
+	SignupPayload,
 	EmailVerification,
 	SignUpResponse,
 	LoginResponse,
@@ -44,17 +45,18 @@ export const login = async ({
 
 /**
  * 회원가입을 수행하는 비동기 함수
- * @param {Object} userData - 사용자 인증 정보 (이메일, 비밀번호)
+ * @param {Object} userData - 사용자 인증 정보 (이메일, 비밀번호, 셀러코드)
  * @returns {Promise<{ token: UserAuthToken, email: string }>} - 토큰, 이메일을 포함한 객체를 반환하는 Promise 객체
  */
 export const signUp = async ({
 	email,
 	password,
-}: UserAuthData): Promise<{ token: UserAuthToken; email: string }> => {
+	referral_code,
+}: SignupPayload): Promise<{ token: UserAuthToken; email: string }> => {
 	try {
 		const response = await axios.post<SignUpResponse>(
 			`${BASE_URL}/users/signup`,
-			{ email, password },
+			{ email, password, referral_code },
 		)
 		const { data } = response.data
 		const { token, email: signedUpEmail } = data

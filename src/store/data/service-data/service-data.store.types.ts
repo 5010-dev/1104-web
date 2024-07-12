@@ -18,10 +18,17 @@ export type Faq = {
 	heading: string
 	body: string
 	details?: string[]
+	image?: string
+}
+
+export type FaqList = {
+	list: Faq[]
+	disclaimer?: string
 }
 
 export interface FaqDataState {
-	faq: Faq[]
+	indicatorFaq: FaqList
+	quantFaq: FaqList
 }
 
 type AssetOption = { title: string; value: string }

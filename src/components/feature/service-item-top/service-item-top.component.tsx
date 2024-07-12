@@ -84,13 +84,14 @@ const ServiceItemTop = forwardRef<HTMLDivElement, ServiceItemTopProps>(
 					<Button
 						id="service-item-purchase-button"
 						accessibleName="service-item-title-container"
-						appearance="accent"
+						appearance={item.is_subscribed ? 'neutral' : 'accent'}
 						hierarchy="primary"
 						stroke="filled"
 						shape="rounding"
 						icon={<FontAwesomeIcon icon={faCreditCard} />}
-						text="서비스 구매하기"
+						text={item.is_subscribed ? '서비스 이용중' : '서비스 구매하기'}
 						handleClick={handleCheckout}
+						disabled={item.is_subscribed}
 					/>
 					<TextLink
 						appearance="neutral"

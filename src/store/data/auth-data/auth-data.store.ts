@@ -5,6 +5,7 @@ import { AuthDataState, AuthDataAction } from './auth-data.types'
 const initialState: AuthDataState = {
 	email: '',
 	password: '',
+	sellerCode: '',
 	verificationCode: '',
 	isUserDataLoaded: false,
 	passwordResetToken: '',

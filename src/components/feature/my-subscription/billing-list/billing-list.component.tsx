@@ -19,7 +19,7 @@ export default function BillingList() {
 	return (
 		<BillingListContainer>
 			{paidItemData.length === 0 ? (
-				<p id="subscription-list-body">결제 내역이 없습니다.</p>
+				<p id="billing-list-body">결제 내역이 없습니다.</p>
 			) : (
 				paidItemData.map((item, index) => (
 					<BillingItem key={index} item={item} />

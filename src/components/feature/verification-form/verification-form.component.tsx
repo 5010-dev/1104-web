@@ -3,15 +3,18 @@ import { useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { useAuthNavigationStore } from '../../../store/auth-navigation/auth-navigation.store'
+import { useLoadingStore } from '../../../store/layout/loading.store'
+import { useToastMessageStore } from '../../../store/layout/global-ui.store'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
+import useNavigateAfterAuth from '../../../hooks/use-navigate-after-auth'
+
 import {
 	sendVerification,
 	confirmSignup,
 	sendPasswordResetVerification,
 	confirmPasswordReset,
 } from '../../../services/auth/auth-service'
-import { useLoadingStore } from '../../../store/layout/loading.store'
-import { useToastMessageStore } from '../../../store/layout/global-ui.store'
-import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import {
 	getAccessToken,
 	setAccessToken,
@@ -37,9 +40,11 @@ export default function VerificationForm(props: VerificationFormProps) {
 		updateIsUserDataLoaded,
 		resetAuthData,
 	} = useAuthDataStore()
+	const { authDestination } = useAuthNavigationStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const [isValid, setIsValid] = useState<boolean>(false)
 	const navigate = useNavigateWithScroll()
+	const navigateAfterAuth = useNavigateAfterAuth()
 	const location = useLocation()
 	const routeState = location.state as
 		| { mode: 'signup' | 'password-reset' }
@@ -77,7 +82,10 @@ export default function VerificationForm(props: VerificationFormProps) {
 		setRefreshToken(token.refresh)
 		updateCommonState(email, is_email_verified)
 		updateToastMessage('회원 가입이 완료되었습니다.')
-		navigate(ROUTES.HOME, { replace: true })
+
+		// TODO: 확인필요
+		navigateAfterAuth(authDestination)
+		// navigate(ROUTES.HOME, { replace: true })
 	}
 
 	const handlePasswordResetConfirmation = async () => {

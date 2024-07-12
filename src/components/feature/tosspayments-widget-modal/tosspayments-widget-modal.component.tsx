@@ -10,7 +10,6 @@ import spinnerAnim from '../../../assets/lottie/spinner-anim-dark.json'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { usePaymentStore } from '../../../store/payment/payment.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
-import { checkoutProduct } from '../../../services/payment/payment-service'
 
 import { TosspaymentsWidgetModalProps } from './tosspayments-widget-modal.types'
 import { TosspaymentsWidgetContentsContainer } from './tosspayments-widget-modal.styles'
@@ -22,11 +21,10 @@ import WarningText from '../warning-text/warning-text.component'
 export default function TosspaymentsWidgetModal(
 	props: TosspaymentsWidgetModalProps,
 ) {
-	const { item, id, handleClose } = props
+	const { handleClose } = props
 
 	const { userId } = useAuthDataStore((state) => state.loginUser)
-	const { coupon, checkoutData, updateCheckoutData, resetPaymentStore } =
-		usePaymentStore()
+	const { checkoutData } = usePaymentStore()
 	const { updateToastMessage } = useToastMessageStore()
 
 	const [paymentWidget, setPaymentWidget] =
@@ -49,8 +47,8 @@ export default function TosspaymentsWidgetModal(
 			}
 
 			await paymentWidget?.requestPayment({
-				orderId: checkoutData?.number,
-				orderName: `${item.title} | ${item.plan}`,
+				orderId: checkoutData.number,
+				orderName: checkoutData.product_title,
 				customerEmail: userId,
 				successUrl: `${BASE_URL}${ROUTES.CHECKOUT_SUCCESS}`,
 				failUrl: `${BASE_URL}${ROUTES.CEHCKOUT_FAIL}`,
@@ -65,24 +63,15 @@ export default function TosspaymentsWidgetModal(
 			setIsLoadingWidget(true)
 
 			try {
-				// 먼저 checkoutProduct를 실행하여 checkoutData를 얻습니다.
-				const checkoutResponse = await checkoutProduct({
-					id: Number(id),
-					coupon: coupon.code && coupon.code,
-				})
-				updateCheckoutData(checkoutResponse)
-
-				// checkoutResponse에서 customerKey를 얻어 loadPaymentWidget을 실행합니다.
-				if (checkoutResponse.user_uuid) {
+				if (checkoutData?.user_uuid) {
 					const loadedWidget = await loadPaymentWidget(
 						widgetClientKey,
-						checkoutResponse.user_uuid,
+						checkoutData.user_uuid,
 					)
 					setPaymentWidget(loadedWidget)
 				} else {
 					throw new Error('사용자 UUID를 찾을 수 없습니다.')
 				}
-
 				setIsInitiated(true)
 			} catch (error) {
 				console.error('Error initializing payment:', error)
@@ -94,7 +83,7 @@ export default function TosspaymentsWidgetModal(
 		}
 
 		initializePayment()
-	}, [id, coupon, widgetClientKey, updateToastMessage, updateCheckoutData])
+	}, [widgetClientKey, updateToastMessage, checkoutData])
 
 	useEffect(() => {
 		if (paymentWidget == null || !checkoutData) {
@@ -122,14 +111,9 @@ export default function TosspaymentsWidgetModal(
 		paymentMethodsWidget.updateAmount(Number(checkoutData.total_price))
 	}, [checkoutData])
 
-	useEffect(() => {
-		resetPaymentStore()
-		return () => resetPaymentStore()
-	}, [resetPaymentStore])
-
 	return (
 		<Modal
-			title={`${item.title} 결제`}
+			title={`${checkoutData?.product_title} 결제`}
 			children={
 				<>
 					{isLoadingWidget ? (

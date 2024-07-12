@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import axiosInstance from '../../api/api'
+import axiosInstance from '../../api/api'
 
 import { handleError } from '../service-error'
 
@@ -32,7 +32,7 @@ export const getProductList = async (): Promise<ProductListItem[]> => {
  */
 export const getProductById = async (id: number): Promise<Product> => {
 	try {
-		const response = await axios.get(`${BASE_URL}/products/${id}`)
+		const response = await axiosInstance.get(`/products/${id}`)
 		const { data } = response.data
 		return data
 	} catch (error) {

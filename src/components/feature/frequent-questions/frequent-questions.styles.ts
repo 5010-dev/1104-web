@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { getTypography } from '../../../utils/typo.utils'
+import { getColour } from '../../../utils/colour.utils'
 
 import { SectionContainer } from '../../global/section/section.styles'
 
@@ -29,6 +30,23 @@ export const FrequentQuestionsContainer = styled(SectionContainer)`
 		}
 	}
 
+	div#questions-tabs-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+
+		& > .questions-tab {
+			gap: 0.4rem;
+
+			span {
+				font-weight: 600;
+				font-size: 0.875rem;
+			}
+		}
+	}
+
 	div#questions-container {
 		width: ${({ theme }) => theme.layout.container.width};
 
@@ -37,5 +55,13 @@ export const FrequentQuestionsContainer = styled(SectionContainer)`
 		justify-content: flex-start;
 		align-items: center;
 		gap: ${({ theme }) => theme.layout.component.gutter};
+
+		#quetions-disclaimer {
+			${({ theme }) => getTypography(theme, 'caption')}
+			font-size: 0.875rem;
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'inactive')};
+			text-align: left;
+		}
 	}
 `

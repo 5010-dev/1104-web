@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
-import { useAuthDataStore } from '../../../../store/data/auth-data/auth-data.store'
-import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
+// import { useAuthDataStore } from '../../../../store/data/auth-data/auth-data.store'
+// import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../../hooks/use-navigate-with-scroll'
 
 import { SubscriptionItemProps } from './subscription-item.typs'
@@ -30,17 +30,12 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const numberedPrice = Number(price)
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { userId } = useAuthDataStore((state) => state.loginUser)
-	const { updateToastMessage } = useToastMessageStore()
+	// const { userId } = useAuthDataStore((state) => state.loginUser)
+	// const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigateWithScroll()
 
 	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
-		if (userId) {
-			navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${title}&plan=${plan}`)
-		} else {
-			navigate(ROUTES.LOGIN, { state: { mode: 'signup' } })
-			updateToastMessage('회원가입 및 로그인이 필요합니다.')
-		}
+		navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${title}&plan=${plan}`)
 	}
 	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) =>
 		navigate(ROUTES.FREE_TRIAL)

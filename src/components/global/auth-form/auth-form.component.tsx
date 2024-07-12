@@ -45,6 +45,11 @@ export default function AuthForm(props: AuthFormProps) {
 		}
 	}
 
+	const handleInputReset = (key: string) => {
+		updateAuthData(key, '')
+		setIsAuthValid((prevState) => ({ ...prevState, [key]: false }))
+	}
+
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
@@ -103,6 +108,7 @@ export default function AuthForm(props: AuthFormProps) {
 							handleChange={handleInputChange}
 							isValid={email.length === 0 || isAuthValid.email}
 							placeholder="이메일 주소를 입력해 주세요."
+							handleReset={() => handleInputReset('email')}
 						/>
 					) : null}
 					<Input
@@ -118,6 +124,7 @@ export default function AuthForm(props: AuthFormProps) {
 								? '변경할 비밀번호를 입력해 주세요.'
 								: '비밀번호를 입력해 주세요.'
 						}
+						handleReset={() => handleInputReset('password')}
 					/>
 					{variant === 'password-reset' && isAuthValid.password ? (
 						<Input
@@ -129,6 +136,7 @@ export default function AuthForm(props: AuthFormProps) {
 							hierarchy="secondary"
 							isValid={retypedPassword.length === 0 || isRetypedPasswordValid}
 							placeholder="비밀번호를 다시 한 번 입력해 주세요."
+							handleReset={() => handleInputReset('retypedPassword')}
 						/>
 					) : null}
 					<Button

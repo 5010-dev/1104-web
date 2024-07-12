@@ -27,21 +27,21 @@ export default function AppRoutes() {
 	return (
 		<Routes>
 			{/* <Route path={ROUTES.PRE_ORDER} element={<PreOrder />} /> */}
-			<Route path={ROUTES.FREE_TRIAL} element={<FreeTrial />} />
-
 			{/* <Route element={<EventRoute />}> */}
 			<Route path={ROUTES.HOME} element={<MainLayout />}>
 				<Route index element={<Home />} />
 				<Route path={ROUTES.ABOUT} element={<AboutUs />} />
 				<Route path={ROUTES.SERVICE} element={<OurService />} />
 				<Route path={ROUTES.SERVICE_ITEM.path} element={<ServiceItem />} />
-				<Route path={ROUTES.VERIFICATION} element={<EmailVerification />} />
 				<Route path={ROUTES.PARTNERSHIP} element={<Partnership />} />
 
 				<Route element={<PrivateRoute />}>
 					<Route path={ROUTES.ACCOUNT} element={<Account />} />
 				</Route>
 			</Route>
+
+			<Route path={ROUTES.VERIFICATION} element={<EmailVerification />} />
+			<Route path={ROUTES.FREE_TRIAL} element={<FreeTrial />} />
 
 			<Route element={<GuestOnlyRoute />}>
 				<Route path={ROUTES.LOGIN} element={<Login />} />

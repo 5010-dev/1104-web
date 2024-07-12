@@ -5,6 +5,7 @@ import { CheckoutBillingContainer } from './checkout-billing.styles'
 
 import Chip from '../../global/chip/chip.component'
 
+// TODO: 퍼센트 할인 외에 절대가격 할인도 적용해야함
 export default function CheckoutBilling(props: CheckoutBillingProps) {
 	const { item, discount } = props
 	const { price } = item

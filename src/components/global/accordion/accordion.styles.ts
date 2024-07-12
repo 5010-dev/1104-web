@@ -95,7 +95,7 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 			gap: ${({ theme }) => theme.layout.component.gutter};
 
 			padding-left: 1.25rem;
-			margin-top: ${({ theme }) => theme.layout.section.gutter};
+			margin-bottom: ${({ theme }) => theme.layout.section.gutter};
 
 			li.detail-text {
 				${({ theme }) => getTypography(theme, 'body')}

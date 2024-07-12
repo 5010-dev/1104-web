@@ -22,6 +22,7 @@ import {
 import ServiceItemBar from '../../../components/feature/service-item-bar/service-item-bar.component'
 import ServiceItemTop from '../../../components/feature/service-item-top/service-item-top.component'
 import ServiceItemDetails from '../../../components/feature/service-item-details/service-item-details.component'
+import FrequentQuestions from '../../../components/feature/frequent-questions/frequent-questions.component'
 import ServiceItemNotes from '../../../components/feature/service-item-notes/service-item-notes.component'
 
 export default function ServiceItem() {
@@ -114,6 +115,9 @@ export default function ServiceItem() {
 			<ServiceItemBar item={item} showBar={showBar} />
 			<ServiceItemTop item={item} ref={refCallback} />
 			<ServiceItemDetails detailsImgUrls={item.details ? item.details : []} />
+			<FrequentQuestions
+				variant={Number(item.id) === 3 ? 'QUANT' : 'INDICATOR'}
+			/>
 			<ServiceItemNotes />
 		</ServiceItemContainer>
 	)

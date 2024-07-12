@@ -12,6 +12,7 @@ import { usePaymentStore } from '../../../store/payment/payment.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { getProductById } from '../../../services/product/product-service'
+import { checkoutProduct } from '../../../services/payment/payment-service'
 import { Product } from '../../../services/product/product-service.types'
 
 import { CheckoutContainer } from './checkout.styles'
@@ -29,7 +30,8 @@ export default function Checkout() {
 	const { isUserDataLoaded } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
-	const { discount } = usePaymentStore()
+	const { coupon, discount, updateCheckoutData, resetPaymentStore } =
+		usePaymentStore()
 	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
@@ -41,13 +43,35 @@ export default function Checkout() {
 
 	const handleClose = (e: MouseEvent<HTMLButtonElement>) => navigate(-1)
 
-	const toggleModal = (e: MouseEvent<HTMLButtonElement> | KeyboardEvent) => {
-		setShowModal((state) => !state)
+	const toggleModal = async (
+		e: MouseEvent<HTMLButtonElement> | KeyboardEvent,
+	) => {
+		if (!showModal) {
+			try {
+				updateIsLoading(true)
+				const checkoutResponse = await checkoutProduct({
+					id: Number(id),
+					coupon: coupon.code && coupon.code,
+				})
+				updateCheckoutData(checkoutResponse)
+
+				setShowModal(true)
+			} catch (error) {
+				console.error('Error creating order:', error)
+				updateToastMessage('주문 생성 중 오류가 발생했습니다.')
+			} finally {
+				updateIsLoading(false)
+			}
+		} else {
+			setShowModal(false)
+		}
 	}
 
 	// 페이지 초기화 및 userId가 잘못되었거나 제품 id가 제공되지 않았을 때, 메인 화면으로 리디렉션
 	useEffect(() => {
 		window.scrollTo({ top: 0 })
+		resetPaymentStore()
+
 		if (isUserDataLoaded) {
 			if (userId.length === 0 || !id) {
 				updateToastMessage('잘못된 요청입니다.')
@@ -70,6 +94,11 @@ export default function Checkout() {
 					const foundItem = await getProductById(numberedId)
 
 					if (foundItem) {
+						if (foundItem.is_subscribed) {
+							updateToastMessage('이미 이용중인 서비스 입니다.')
+							navigate(ROUTES.HOME)
+							return
+						}
 						setItem(foundItem)
 					} else {
 						updateToastMessage('서비스를 찾을 수 없습니다.')
@@ -83,6 +112,8 @@ export default function Checkout() {
 			}
 			fetchProductData()
 		}
+
+		return () => resetPaymentStore()
 	}, [
 		userId,
 		navigate,
@@ -90,16 +121,13 @@ export default function Checkout() {
 		isUserDataLoaded,
 		id,
 		updateIsLoading,
+		resetPaymentStore,
 	])
 
 	return (
 		<>
 			{item && showModal ? (
-				<TosspaymentsWidgetModal
-					id={Number(id)}
-					item={item}
-					handleClose={toggleModal}
-				/>
+				<TosspaymentsWidgetModal handleClose={toggleModal} />
 			) : null}
 			<CheckoutContainer $deviceType={deviceType}>
 				{item ? (

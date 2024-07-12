@@ -23,6 +23,7 @@ export type InputProps = {
 	handleClick?: MouseEventHandler<HTMLElement>
 	handleKeyDown?: KeyboardEventHandler<HTMLElement>
 	handleChange?: ChangeEventHandler<HTMLElement>
+	handleReset?: MouseEventHandler<SVGSVGElement>
 	handleFocus?: FocusEventHandler<HTMLElement>
 	handleBlur?: FocusEventHandler<HTMLElement>
 	isRequired?: boolean
@@ -34,4 +35,6 @@ export type InputContainerProps = {
 	$isValid: boolean
 	$hierarchy: ComponentHierarchy
 	$isTextfield: boolean
+	$name?: string
+	$handleReset?: MouseEventHandler<SVGSVGElement>
 }
