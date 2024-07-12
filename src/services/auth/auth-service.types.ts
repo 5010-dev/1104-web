@@ -8,6 +8,12 @@ export interface UserAuthData {
 	password: string
 }
 
+export interface SignupPayload {
+	email: string
+	password: string
+	referral_code: string
+}
+
 export interface EmailVerification {
 	access: string
 	code: string

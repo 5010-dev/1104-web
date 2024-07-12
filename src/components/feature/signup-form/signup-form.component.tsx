@@ -19,7 +19,7 @@ import UserAgreement from './user-agreement/user-agreement.component'
 export default function SignupForm() {
 	const [isAgreed, setIsAgreed] = useState<boolean>(false)
 
-	const { email, password } = useAuthDataStore()
+	const { email, password, sellerCode } = useAuthDataStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const { updateToastMessage } = useToastMessageStore()
 	const navigate = useNavigateWithScroll()
@@ -37,7 +37,11 @@ export default function SignupForm() {
 		try {
 			updateIsLoading(true)
 
-			const { token, email: signedUpEmail } = await signUp({ email, password })
+			const { token, email: signedUpEmail } = await signUp({
+				email,
+				password,
+				referral_code: sellerCode,
+			})
 			setAccessToken(token.access)
 			setRefreshToken(token.refresh)
 
