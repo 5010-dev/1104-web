@@ -20,6 +20,7 @@
     "axios": "^1.7.2",
     "crypto-js": "^4.2.0",
     "framer-motion": "^11.1.7",
+    "lodash.debounce": "^4.0.8",
     "lottie-react": "^2.4.0",
     "postcss": "^8.4.31",
     "react": "^18.3.1",
@@ -63,6 +64,7 @@
   "devDependencies": {
     "@tosspayments/payment-widget-types": "^0.0.5",
     "@types/crypto-js": "^4.2.2",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/styled-components": "^5.1.34"
   }
 }

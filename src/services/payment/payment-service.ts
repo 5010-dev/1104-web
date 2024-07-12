@@ -1,4 +1,3 @@
-import axios from 'axios'
 import axiosInstance from '../../api/api'
 
 import { handleError } from '../service-error'
@@ -41,34 +40,28 @@ export const checkCoupon = async (
 /**
  * 상품 결제를 진행하는 비동기 함수
  * @param {CheckoutPayload} { id, coupon } - 상품 ID와 쿠폰 정보를 담은 객체
- * @param {AbortSignal} [signal] - 요청을 취소할 수 있는 AbortSignal 객체
  * @returns {Promise<CheckoutResponse>} 결제 응답 정보를 담은 Promise 객체
  */
-export const checkoutProduct = async (
-	{ id, coupon }: CheckoutPayload,
-	signal?: AbortSignal,
-): Promise<CheckoutResponse> => {
+export const checkoutProduct = async ({
+	id,
+	coupon,
+}: CheckoutPayload): Promise<CheckoutResponse> => {
 	try {
 		const requestData = coupon ? { coupon_code: coupon } : {}
 		const response = await axiosInstance.post(
 			`/products/${id}/order`,
 			requestData,
-			{ signal }, // AbortSignal을 axios 요청 설정에 추가
 		)
 		const { data } = response.data
 		const { number, user_uuid, user_email, product_title, total_price } = data
 		return {
-			number,
-			user_uuid,
-			user_email,
-			product_title,
-			total_price,
+			number: number,
+			user_uuid: user_uuid,
+			user_email: user_email,
+			product_title: product_title,
+			total_price: total_price,
 		}
 	} catch (error) {
-		if (axios.isCancel(error)) {
-			// 요청이 취소된 경우
-			throw new Error('요청이 취소되었습니다.')
-		}
 		throw new Error(handleError(error))
 	}
 }
