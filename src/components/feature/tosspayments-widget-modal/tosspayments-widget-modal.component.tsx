@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, MouseEvent } from 'react'
+import { useState, useEffect, useRef, useCallback, MouseEvent } from 'react'
 import {
 	loadPaymentWidget,
 	PaymentWidgetInstance,
@@ -37,9 +37,14 @@ export default function TosspaymentsWidgetModal(
 	const paymentMethodsWidgetRef = useRef<ReturnType<
 		PaymentWidgetInstance['renderPaymentMethods']
 	> | null>(null)
+	const isApiCalledRef = useRef<boolean>(false)
 
 	const BASE_URL = window.location.origin
 	const widgetClientKey = process.env.REACT_APP_CLIENT_KEY
+
+	const memoizedUpdateCheckoutData = useCallback(updateCheckoutData, [
+		updateCheckoutData,
+	])
 
 	const handleCheckout = async (e: MouseEvent<HTMLButtonElement>) => {
 		try {
@@ -61,16 +66,23 @@ export default function TosspaymentsWidgetModal(
 	}
 
 	useEffect(() => {
+		const abortController = new AbortController()
+
 		const initializePayment = async () => {
+			if (isApiCalledRef.current) return
+			isApiCalledRef.current = true
 			setIsLoadingWidget(true)
 
 			try {
 				// 먼저 checkoutProduct를 실행하여 checkoutData를 얻습니다.
-				const checkoutResponse = await checkoutProduct({
-					id: Number(id),
-					coupon: coupon.code && coupon.code,
-				})
-				updateCheckoutData(checkoutResponse)
+				const checkoutResponse = await checkoutProduct(
+					{
+						id: Number(id),
+						coupon: coupon.code && coupon.code,
+					},
+					abortController.signal,
+				)
+				memoizedUpdateCheckoutData(checkoutResponse)
 
 				// checkoutResponse에서 customerKey를 얻어 loadPaymentWidget을 실행합니다.
 				if (checkoutResponse.user_uuid) {
@@ -84,7 +96,8 @@ export default function TosspaymentsWidgetModal(
 				}
 
 				setIsInitiated(true)
-			} catch (error) {
+			} catch (error: any) {
+				if (error.name === 'AbortError') return
 				console.error('Error initializing payment:', error)
 				updateToastMessage('결제 초기화에 실패했습니다.')
 				setIsInitiated(false)
@@ -94,7 +107,19 @@ export default function TosspaymentsWidgetModal(
 		}
 
 		initializePayment()
-	}, [id, coupon, widgetClientKey, updateToastMessage, updateCheckoutData])
+
+		return () => {
+			abortController.abort()
+			isApiCalledRef.current = false
+		}
+	}, [
+		id,
+		coupon,
+		widgetClientKey,
+		memoizedUpdateCheckoutData,
+		updateToastMessage,
+		updateCheckoutData,
+	])
 
 	useEffect(() => {
 		if (paymentWidget == null || !checkoutData) {
