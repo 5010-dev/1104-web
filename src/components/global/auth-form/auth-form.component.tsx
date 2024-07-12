@@ -47,6 +47,7 @@ export default function AuthForm(props: AuthFormProps) {
 
 	const handleInputReset = (key: string) => {
 		updateAuthData(key, '')
+		setIsAuthValid((prevState) => ({ ...prevState, [key]: false }))
 	}
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

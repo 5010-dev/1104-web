@@ -66,8 +66,10 @@ export default function PartnershipForm() {
 		}))
 	}
 
-	const handleReset = (key: string) =>
+	const handleReset = (key: string) => {
 		setFormData((state) => ({ ...state, [key]: '' }))
+		setIsValid((state) => ({ ...state, [key]: false }))
+	}
 
 	const allFieldsValid = isAllValid(isValid)
 
