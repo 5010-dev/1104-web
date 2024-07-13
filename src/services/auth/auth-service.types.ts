@@ -11,7 +11,7 @@ export interface UserAuthData {
 export interface SignupPayload {
 	email: string
 	password: string
-	referral_code: string
+	referral_code?: string
 }
 
 export interface EmailVerification {

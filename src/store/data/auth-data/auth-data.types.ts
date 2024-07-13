@@ -13,7 +13,7 @@ export type User = {
 export interface AuthDataState {
 	email: string
 	password: string
-	sellerCode: string
+	sellerCode?: string
 	verificationCode: string
 	isUserDataLoaded: boolean
 	passwordResetToken: string
