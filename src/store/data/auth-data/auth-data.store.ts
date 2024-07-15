@@ -5,7 +5,7 @@ import { AuthDataState, AuthDataAction } from './auth-data.types'
 const initialState: AuthDataState = {
 	email: '',
 	password: '',
-	sellerCode: undefined,
+	sellerCode: '',
 	verificationCode: '',
 	isUserDataLoaded: false,
 	passwordResetToken: '',
@@ -38,6 +38,7 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 				email: '',
 				password: '',
 				verificationCode: '',
+				sellerCode: '',
 				// isUserDataLoaded: false,
 			})),
 		resetPasswordResetToken: () =>

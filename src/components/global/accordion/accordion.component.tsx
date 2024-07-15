@@ -29,14 +29,13 @@ export default function Accordion(props: AccordionProps) {
 			$container={container}
 			$size={size}
 			as={motion.div}
-			onClick={handleOnOff}
 		>
 			<motion.div
 				id="background-container"
 				layout
 				transition={{ duration: 0.15 }}
 			/>
-			<div id="heading-container">
+			<div id="heading-container" onClick={handleOnOff}>
 				{heading}
 				<motion.span
 					id="handle-icon"

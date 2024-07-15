@@ -16,4 +16,5 @@ export type AuthFormProps = {
 	}
 	handleAuthSubmit: (e: FormEvent<HTMLFormElement>) => void
 	children?: ReactNode | null
+	sellerCodeInput?: boolean
 }
