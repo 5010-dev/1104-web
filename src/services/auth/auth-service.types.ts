@@ -35,6 +35,18 @@ export interface LoginResponse {
 	}
 }
 
+/**
+ * 로그인한 사용자 데이터의 응답 타입 정의
+ */
+export interface GetLoginUserDataResponse {
+	id: number
+	email: string
+	is_email_verified: boolean
+	seller: number
+	first_purchase_discount_percentage: string
+	is_first_purchased: boolean
+}
+
 export interface ChangePassword {
 	password_reset_token: string
 	password: string
