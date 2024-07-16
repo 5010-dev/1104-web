@@ -104,22 +104,11 @@ export default function VerificationForm(props: VerificationFormProps) {
 			code: verificationCode,
 		})
 		updateAuthData('passwordResetToken', password_reset_token)
-		// updateCommonState()
 		resetAuthData()
 
 		updateToastMessage('인증에 성공했습니다.')
 		navigate(ROUTES.AUTH, { replace: true, state: { mode: 'password-reset' } })
 	}
-
-	// const updateCommonState = async () => {
-	// 	const userData = await getLoginUserData()
-	// 	const processedData = processUserData(userData)
-
-	// 	if (processedData) {
-	// 		updateUserStore(processedData, updateLoginUser, updateIsUserDataLoaded)
-	// 	}
-	// 	resetAuthData()
-	// }
 
 	const handleResendCode = async (e: MouseEvent<HTMLSpanElement>) => {
 		try {
