@@ -13,10 +13,10 @@ export default function SellerCodeInput() {
 	const [isValid, setIsValid] = useState<boolean>(false)
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const inputValue = e.target.value
+		const inputValue = e.target.value.replace(/\D/g, '') // 숫자가 아닌 모든 문자 제거
 		const inputName = e.target.name
 
-		if (inputValue.length <= 6) updateAuthData(inputName, inputValue)
+		if (inputValue.length < 6) updateAuthData(inputName, inputValue)
 	}
 
 	const handleReset = (e: MouseEvent<SVGSVGElement>) => {
