@@ -151,7 +151,12 @@ export default function Checkout() {
 							</div>
 							<div className="item-column" id="right-column">
 								<h2 className="column-heading">결제 정보</h2>
-								<CheckoutBilling item={item} discount={discount && discount} />
+								<CheckoutBilling
+									item={item}
+									discount={
+										discount.price ? discount.price : discount.percentage
+									}
+								/>
 								<CheckoutTerms handleCheckout={toggleModal} />
 							</div>
 						</div>

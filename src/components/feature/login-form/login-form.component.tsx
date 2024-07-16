@@ -28,7 +28,7 @@ export default function LoginForm() {
 	const navigateAfterAuth = useNavigateAfterAuth()
 
 	const handleSignupLink = (e: MouseEvent<HTMLSpanElement>) =>
-		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'signup' } })
+		navigate(`${ROUTES.AUTH}?state=signup`, { replace: true })
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()

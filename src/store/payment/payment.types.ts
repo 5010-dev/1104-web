@@ -6,12 +6,15 @@ export interface PaymentState {
 		code: string
 		isValid: boolean | undefined
 	}
-	discount: number | undefined
+	discount: { price: number | undefined; percentage: number | undefined }
 }
 
 export interface PaymentAction {
 	updateCheckoutData: (data: CheckoutResponse) => void
 	updateCoupon: (key: string, value: string | boolean) => void
-	updateDiscount: (value: number) => void
+	updateDiscount: (
+		price: number | undefined,
+		percentage: number | undefined,
+	) => void
 	resetPaymentStore: () => void
 }

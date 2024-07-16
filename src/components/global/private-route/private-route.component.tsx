@@ -36,7 +36,7 @@ export default function PrivateRoute() {
 	])
 
 	if (!isAuthenticated()) {
-		return <Navigate to={ROUTES.LOGIN} replace={true} />
+		return <Navigate to={`${ROUTES.AUTH}?state=login`} replace={true} />
 	}
 
 	return <Outlet />

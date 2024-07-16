@@ -96,7 +96,7 @@ export default function VerificationForm(props: VerificationFormProps) {
 		updateAuthData('passwordResetToken', password_reset_token)
 		updateCommonState(email, true)
 		updateToastMessage('인증에 성공했습니다.')
-		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'password-reset' } })
+		navigate(ROUTES.AUTH, { replace: true, state: { mode: 'password-reset' } })
 	}
 
 	const updateCommonState = (email: string, isEmailVerified: boolean) => {

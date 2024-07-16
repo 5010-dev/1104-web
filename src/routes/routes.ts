@@ -8,7 +8,7 @@ export const ROUTES = {
 	},
 	PARTNERSHIP: '/partnership',
 	ACCOUNT: '/account',
-	LOGIN: '/login',
+	AUTH: '/auth',
 	VERIFICATION: '/verification',
 	CHECKOUT: '/checkout',
 	CHECKOUT_SUCCESS: '/checkout/success',

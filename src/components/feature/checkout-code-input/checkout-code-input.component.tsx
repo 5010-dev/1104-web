@@ -30,9 +30,9 @@ export default function CheckoutCodeInput() {
 	const handleApplyCode = async (e: MouseEvent<HTMLButtonElement>) => {
 		try {
 			setIsChecking(true)
-			const { discount_percentage } = await checkCoupon(code)
+			const { discount_price, discount_percentage } = await checkCoupon(code)
 			updateCoupon('isValid', true)
-			updateDiscount(Number(discount_percentage))
+			updateDiscount(Number(discount_price), Number(discount_percentage))
 		} catch (error: any) {
 			updateToastMessage(error.message)
 			updateCoupon('isValid', false)

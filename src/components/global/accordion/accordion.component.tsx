@@ -15,10 +15,10 @@ const handleIconVariants = {
 }
 
 export default function Accordion(props: AccordionProps) {
-	const { heading, body, container, size } = props
+	const { heading, body, container, size, defaultOpen = false } = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const [isOpen, setIsOpen] = useState<boolean>(false)
+	const [isOpen, setIsOpen] = useState<boolean>(defaultOpen)
 
 	const handleOnOff = (e: MouseEvent<HTMLDivElement>) =>
 		setIsOpen((state) => !state)

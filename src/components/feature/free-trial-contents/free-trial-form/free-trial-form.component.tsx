@@ -1,4 +1,4 @@
-import { useState, FormEvent, MouseEvent, ChangeEvent } from 'react'
+import { useState, useEffect, FormEvent, MouseEvent, ChangeEvent } from 'react'
 import { ROUTES } from '../../../../routes/routes'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,7 +12,6 @@ import useNavigateWithScroll from '../../../../hooks/use-navigate-with-scroll'
 
 import {
 	validateWithRegex,
-	RegexKey,
 	formatTelNumber,
 } from '../../../../utils/regex.utils'
 
@@ -49,18 +48,10 @@ export default function FreeTrialForm() {
 			const formattedValue = formatTelNumber(numericValue)
 
 			setFormData((state) => ({ ...state, tel: formattedValue }))
-			setIsValid((state) => ({
-				...state,
-				[inputName]: validateWithRegex('tel', formattedValue),
-			}))
 			return
 		}
 
 		setFormData((state) => ({ ...state, [inputName]: inputValue }))
-		setIsValid((state) => ({
-			...state,
-			[inputName]: validateWithRegex(inputName as RegexKey, inputValue),
-		}))
 	}
 
 	const handleShowTerms = (
@@ -109,6 +100,16 @@ export default function FreeTrialForm() {
 		}
 		updateIsLoading(false)
 	}
+
+	useEffect(() => {
+		setIsValid({
+			email:
+				formData.email === ''
+					? false
+					: validateWithRegex('email', formData.email),
+			tel: formData.tel === '' ? false : validateWithRegex('tel', formData.tel),
+		})
+	}, [formData])
 
 	return (
 		<FreeTrialFormContainer $deviceType={deviceType} onSubmit={handleSubmit}>

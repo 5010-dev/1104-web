@@ -25,7 +25,7 @@ export default function SignupForm() {
 	const navigate = useNavigateWithScroll()
 
 	const handleLoginLink = (e: MouseEvent<HTMLSpanElement>) => {
-		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'login' } })
+		navigate(`${ROUTES.AUTH}?state=login`, { replace: true })
 	}
 
 	const handleAgreeButton = (e: MouseEvent<HTMLButtonElement>) =>

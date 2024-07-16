@@ -1,7 +1,7 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
-import { validateWithRegex, RegexKey } from '../../../utils/regex.utils'
+import { validateWithRegex } from '../../../utils/regex.utils'
 
 import { AuthFormProps, AuthValidity } from './ayth-form.types'
 import { AuthFormContainer } from './auth-form.styles'
@@ -40,10 +40,6 @@ export default function AuthForm(props: AuthFormProps) {
 			setRetypedPassword(inputValue)
 		} else {
 			updateAuthData(inputName, inputValue)
-			setIsAuthValid((prevState) => ({
-				...prevState,
-				[inputName]: validateWithRegex(inputName as RegexKey, inputValue),
-			}))
 		}
 	}
 
@@ -80,6 +76,14 @@ export default function AuthForm(props: AuthFormProps) {
 			validateRetypedPassword(password, retypedPassword),
 		)
 	}, [password, retypedPassword])
+
+	useEffect(() => {
+		setIsAuthValid({
+			email: email.length === 0 ? false : validateWithRegex('email', email),
+			password:
+				password.length === 0 ? false : validateWithRegex('password', password),
+		})
+	}, [email, password])
 
 	return (
 		<>

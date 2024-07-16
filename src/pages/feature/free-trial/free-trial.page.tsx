@@ -27,12 +27,11 @@ export default function FreeTrial() {
 			{state?.mode !== 'complete' ? (
 				<>
 					<FreeTrialTopBar />
-					{/* <div id="free-trial-contents-container"> */}
 					<FreeTrialTitleSection />
 					<hr className="free-trial-vertical-line" />
 					<FreeTrialOverviewSection />
+					{/* 회원가입으로 변경 필요 ↓ */}
 					<FreeTrialForm />
-					{/* </div> */}
 					<Footer />
 				</>
 			) : (
