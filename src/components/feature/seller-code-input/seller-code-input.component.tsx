@@ -37,7 +37,7 @@ export default function SellerCodeInput() {
 				body={
 					<Input
 						name="sellerCode"
-						type="number"
+						type="tel"
 						pattern="\d*"
 						autoComplete={false}
 						value={sellerCode}
