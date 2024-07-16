@@ -1,13 +1,20 @@
 import { useEffect, useRef, FormEvent, MouseEvent } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
-import { changePassword } from '../../../services/auth/auth-service'
+import {
+	changePassword,
+	getLoginUserData,
+} from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
+import {
+	processUserData,
+	updateUserStore,
+} from '../../../utils/auth-data.utils'
 import { getHelp } from '../../../utils/customer-service.utils'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
@@ -37,7 +44,7 @@ export default function PasswordResetForm() {
 		try {
 			updateIsLoading(true)
 
-			const { token, email, is_email_verified } = await changePassword({
+			const { token, is_email_verified } = await changePassword({
 				password_reset_token: passwordResetToken,
 				password,
 			})
@@ -45,10 +52,18 @@ export default function PasswordResetForm() {
 			setRefreshToken(token.refresh)
 
 			if (is_email_verified) {
-				updateLoginUser('userId', email)
-				updateLoginUser('isEmailVerified', is_email_verified)
-				updateIsUserDataLoaded(true)
+				const userData = await getLoginUserData()
+				const processedData = processUserData(userData)
+
+				if (processedData) {
+					updateUserStore(
+						processedData,
+						updateLoginUser,
+						updateIsUserDataLoaded,
+					)
+				}
 				updateToastMessage('비밀번호 변경이 완료되었습니다.')
+
 				resetAuthData()
 				resetPasswordResetToken()
 				navigate(ROUTES.ACCOUNT, { replace: true })

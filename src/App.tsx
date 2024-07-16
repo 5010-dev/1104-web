@@ -8,11 +8,12 @@ import { useDeviceTypeStore } from './store/layout/device-type.store'
 import { useAuthDataStore } from './store/data/auth-data/auth-data.store'
 import { useServiceDataStore } from './store/data/service-data/service-data.store'
 import { useLoadingStore } from './store/layout/loading.store'
-import { getLoginUserData, logout } from './services/auth/auth-service'
 import { useToastMessageStore } from './store/layout/global-ui.store'
 
 import { getRefreshToken } from './utils/token.utils'
 import { getProductList } from './services/product/product-service'
+import { getLoginUserData, logout } from './services/auth/auth-service'
+import { processUserData, updateUserStore } from './utils/auth-data.utils'
 
 import DesignSystem from './styles/design-system/design-system.theme'
 import GlobalStyle from './styles/global-style.styles'
@@ -49,12 +50,15 @@ function App() {
 
 				// 로그인 유저 데이터 fetch (조건부 실행)
 				if (getRefreshToken()) {
-					const { email: loginEmail, is_email_verified } =
-						await getLoginUserData()
-					if (is_email_verified) {
-						updateLoginUser('userId', loginEmail)
-						updateLoginUser('isEmailValified', is_email_verified)
-						updateIsUserDataLoaded(true)
+					const userData = await getLoginUserData()
+					const processedData = processUserData(userData)
+
+					if (processedData) {
+						updateUserStore(
+							processedData,
+							updateLoginUser,
+							updateIsUserDataLoaded,
+						)
 					} else {
 						logout()
 						resetLoginUser()

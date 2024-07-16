@@ -3,6 +3,7 @@ import { useLocation, useSearchParams, Navigate } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { LoginState } from './login.page.types'
 
@@ -12,8 +13,9 @@ import SignupForm from '../../../components/feature/signup-form/signup-form.comp
 import PasswordResetForm from '../../../components/feature/password-reset-form/password-reset-form.component'
 
 export default function Login() {
-	const { updateAuthData, resetAuthData } = useAuthDataStore()
+	const { loginUser, updateAuthData, resetAuthData } = useAuthDataStore()
 
+	const navigate = useNavigateWithScroll()
 	const location = useLocation()
 	const [searchParams] = useSearchParams()
 
@@ -48,11 +50,11 @@ export default function Login() {
 		}
 	}, [codeUrl, updateAuthData, resetAuthData])
 
-	// useEffect(() => {
-	// 	if (location.key === 'default') {
-	// 		navigate(ROUTES.HOME, { replace: true })
-	// 	}
-	// }, [navigate, location])
+	useEffect(() => {
+		if (location.key === 'default' && loginUser.userId.length !== 0) {
+			navigate(ROUTES.HOME, { replace: true })
+		}
+	}, [loginUser.userId, navigate, location])
 
 	return <AuthLayout>{authComponent(authState)}</AuthLayout>
 }

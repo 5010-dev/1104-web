@@ -1,7 +1,7 @@
 import { FormEvent, MouseEvent } from 'react'
 import { ROUTES } from '../../../routes/routes'
 
-import { login } from '../../../services/auth/auth-service'
+import { login, getLoginUserData } from '../../../services/auth/auth-service'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
@@ -10,6 +10,10 @@ import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import useNavigateAfterAuth from '../../../hooks/use-navigate-after-auth'
 
 import { setAccessToken, setRefreshToken } from '../../../utils/token.utils'
+import {
+	processUserData,
+	updateUserStore,
+} from '../../../utils/auth-data.utils'
 
 import AuthForm from '../../global/auth-form/auth-form.component'
 
@@ -45,9 +49,16 @@ export default function LoginForm() {
 			setRefreshToken(token.refresh)
 
 			if (is_email_verified) {
-				updateLoginUser('userId', loginEmail)
-				updateLoginUser('isEmailVerified', is_email_verified)
-				updateIsUserDataLoaded(true)
+				const userData = await getLoginUserData()
+				const processedData = processUserData(userData)
+
+				if (processedData) {
+					updateUserStore(
+						processedData,
+						updateLoginUser,
+						updateIsUserDataLoaded,
+					)
+				}
 				updateToastMessage('성공적으로 로그인 했습니다.')
 				resetAuthData()
 

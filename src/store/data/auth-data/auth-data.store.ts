@@ -12,6 +12,9 @@ const initialState: AuthDataState = {
 	loginUser: {
 		userId: '',
 		isEmailVerified: false,
+		seller: undefined,
+		first_purchase_discount_percentage: undefined,
+		is_first_purchased: false,
 		access: '',
 		tradingviewId: '',
 		exchange: '',

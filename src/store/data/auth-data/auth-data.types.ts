@@ -3,6 +3,9 @@ import { ExchangeName } from '../exchange-data/exchange-data.types'
 export type User = {
 	userId: string
 	isEmailVerified: boolean
+	seller: number | undefined
+	first_purchase_discount_percentage: string | undefined
+	is_first_purchased: boolean
 	access: string
 	tradingviewId: string
 	exchange: ExchangeName | ''

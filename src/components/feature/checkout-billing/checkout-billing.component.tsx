@@ -1,4 +1,5 @@
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
+import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 
 import { CheckoutBillingProps } from './checkout-billing.types'
 import { CheckoutBillingContainer } from './checkout-billing.styles'
@@ -12,6 +13,9 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 	const numberedPrice = Number(price)
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
+	const { first_purchase_discount_percentage } = useAuthDataStore(
+		(state) => state.loginUser,
+	)
 
 	const calcDiscountPrice = (discount: number, price: number): number =>
 		price * (discount / 100)
@@ -45,6 +49,29 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 						</p>
 					</div>
 				</div>
+				{first_purchase_discount_percentage ? (
+					<div className="item-row">
+						<span className="price-label">첫구매 할인 금액</span>
+						<div className="price-body-container">
+							{discount ? (
+								<Chip
+									appearance="neutral"
+									hierarchy="secondary"
+									stroke="filled"
+									shape="rounded3"
+									text={`${Math.floor(discount)}% OFF`}
+								/>
+							) : null}
+							<p className="body">
+								- ₩
+								{(discount
+									? calcDiscountPrice(discount, numberedPrice)
+									: 0
+								).toLocaleString()}
+							</p>
+						</div>
+					</div>
+				) : null}
 			</div>
 			<hr />
 			<div className="container-row" id="billing-price-container">

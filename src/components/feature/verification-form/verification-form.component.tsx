@@ -14,12 +14,17 @@ import {
 	confirmSignup,
 	sendPasswordResetVerification,
 	confirmPasswordReset,
+	getLoginUserData,
 } from '../../../services/auth/auth-service'
 import {
 	getAccessToken,
 	setAccessToken,
 	setRefreshToken,
 } from '../../../utils/token.utils'
+import {
+	processUserData,
+	updateUserStore,
+} from '../../../utils/auth-data.utils'
 
 import { VerificationFormProps } from './verification-form.types'
 import { VerificationFormContainer } from './verification-form.styles'
@@ -74,18 +79,23 @@ export default function VerificationForm(props: VerificationFormProps) {
 	}
 
 	const handleSignupConfirmation = async () => {
-		const { token, email, is_email_verified } = await confirmSignup({
+		const { token } = await confirmSignup({
 			access: getAccessToken(),
 			code: verificationCode,
 		})
 		setAccessToken(token.access)
 		setRefreshToken(token.refresh)
-		updateCommonState(email, is_email_verified)
-		updateToastMessage('회원 가입이 완료되었습니다.')
 
-		// TODO: 확인필요
+		const userData = await getLoginUserData()
+		const processedData = processUserData(userData)
+
+		if (processedData) {
+			updateUserStore(processedData, updateLoginUser, updateIsUserDataLoaded)
+		}
+		resetAuthData()
+
+		updateToastMessage('회원 가입이 완료되었습니다.')
 		navigateAfterAuth(authDestination)
-		// navigate(ROUTES.HOME, { replace: true })
 	}
 
 	const handlePasswordResetConfirmation = async () => {
@@ -94,16 +104,22 @@ export default function VerificationForm(props: VerificationFormProps) {
 			code: verificationCode,
 		})
 		updateAuthData('passwordResetToken', password_reset_token)
-		updateCommonState(email, true)
+		// updateCommonState()
+		resetAuthData()
+
 		updateToastMessage('인증에 성공했습니다.')
 		navigate(ROUTES.AUTH, { replace: true, state: { mode: 'password-reset' } })
 	}
 
-	const updateCommonState = (email: string, isEmailVerified: boolean) => {
-		updateLoginUser('userId', email)
-		updateLoginUser('isEmailVerified', isEmailVerified)
-		resetAuthData()
-	}
+	// const updateCommonState = async () => {
+	// 	const userData = await getLoginUserData()
+	// 	const processedData = processUserData(userData)
+
+	// 	if (processedData) {
+	// 		updateUserStore(processedData, updateLoginUser, updateIsUserDataLoaded)
+	// 	}
+	// 	resetAuthData()
+	// }
 
 	const handleResendCode = async (e: MouseEvent<HTMLSpanElement>) => {
 		try {
