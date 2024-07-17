@@ -12,7 +12,8 @@ export default function GuestOnlyRoute() {
 		return <Outlet />
 	} else {
 		if (authDestination) {
-			return <Navigate to={authDestination} />
+			return <Outlet />
+			// <Navigate to={authDestination} />
 		}
 		return <Navigate to={ROUTES.HOME} />
 	}

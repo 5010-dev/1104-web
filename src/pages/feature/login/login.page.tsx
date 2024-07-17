@@ -10,6 +10,7 @@ import { LoginState } from './login.page.types'
 import AuthLayout from '../../global/auth-layout/auth-layout.component'
 import LoginForm from '../../../components/feature/login-form/login-form.component'
 import SignupForm from '../../../components/feature/signup-form/signup-form.component'
+import SingupSuccess from '../../../components/feature/signup-success/signup-success.component'
 import PasswordResetForm from '../../../components/feature/password-reset-form/password-reset-form.component'
 
 export default function Login() {
@@ -21,7 +22,10 @@ export default function Login() {
 
 	const authState = searchParams.get('state') as LoginState
 	const codeUrl = searchParams.get('code')
-	const pageState = location.state as { mode: undefined | 'password-reset' }
+	const routeState = location.state as {
+		mode: undefined | 'password-reset'
+		status: undefined | 'success'
+	}
 
 	const authComponent = (state: LoginState) => {
 		switch (state) {
@@ -30,7 +34,7 @@ export default function Login() {
 			case 'signup':
 				return <SignupForm />
 			default:
-				if (pageState?.mode === 'password-reset') {
+				if (routeState?.mode === 'password-reset') {
 					return <PasswordResetForm />
 				} else {
 					return <Navigate to={ROUTES.HOME} />
@@ -56,5 +60,9 @@ export default function Login() {
 		}
 	}, [loginUser.userId, navigate, location])
 
-	return <AuthLayout>{authComponent(authState)}</AuthLayout>
+	if (routeState?.status === 'success') {
+		return <SingupSuccess />
+	} else {
+		return <AuthLayout>{authComponent(authState)}</AuthLayout>
+	}
 }

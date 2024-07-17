@@ -6,6 +6,7 @@ interface NavigateOptions {
 	state?: {
 		mode?: string
 		from?: string
+		status?: string
 	}
 	smooth?: boolean
 }

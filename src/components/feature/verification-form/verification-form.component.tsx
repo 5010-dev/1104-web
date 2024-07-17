@@ -3,11 +3,9 @@ import { useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
-import { useAuthNavigationStore } from '../../../store/auth-navigation/auth-navigation.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
-import useNavigateAfterAuth from '../../../hooks/use-navigate-after-auth'
 
 import {
 	sendVerification,
@@ -45,16 +43,15 @@ export default function VerificationForm(props: VerificationFormProps) {
 		updateIsUserDataLoaded,
 		resetAuthData,
 	} = useAuthDataStore()
-	const { authDestination } = useAuthNavigationStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const [isValid, setIsValid] = useState<boolean>(false)
+	const maxLength = 6
+
 	const navigate = useNavigateWithScroll()
-	const navigateAfterAuth = useNavigateAfterAuth()
 	const location = useLocation()
 	const routeState = location.state as
 		| { mode: 'signup' | 'password-reset' }
 		| undefined
-	const maxLength = 6
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -95,7 +92,11 @@ export default function VerificationForm(props: VerificationFormProps) {
 		resetAuthData()
 
 		updateToastMessage('회원 가입이 완료되었습니다.')
-		navigateAfterAuth(authDestination)
+		navigate(ROUTES.AUTH, {
+			replace: true,
+			state: { mode: undefined, status: 'success' },
+		})
+		// navigateAfterAuth(authDestination)
 	}
 
 	const handlePasswordResetConfirmation = async () => {
