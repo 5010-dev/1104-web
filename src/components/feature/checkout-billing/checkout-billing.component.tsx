@@ -12,9 +12,8 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 	const numberedPrice = Number(price)
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { first_purchase_discount_percentage } = useAuthDataStore(
-		(state) => state.loginUser,
-	)
+	const { is_first_purchased, first_purchase_discount_percentage } =
+		useAuthDataStore((state) => state.loginUser)
 	const numberedFirstPurchaseDiscount = Number(
 		first_purchase_discount_percentage,
 	)
@@ -51,7 +50,7 @@ export default function CheckoutBilling(props: CheckoutBillingProps) {
 						</p>
 					</div>
 				</div>
-				{first_purchase_discount_percentage ? (
+				{!is_first_purchased && first_purchase_discount_percentage ? (
 					<div className="item-row">
 						<span className="price-label">첫구매 할인 금액</span>
 						<div className="price-body-container">
