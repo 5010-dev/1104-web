@@ -16,8 +16,20 @@ export const useFreeTrialContentStore = create<FreeTrialContentState>(() => ({
 	overview: {
 		caption: '체험판 구성품',
 		features: [
-			{ body: '5010 매매 전략 전자책 체험판 (PDF)', caption: '평생 소장' },
-			{ body: '5010 인디케이터 (트레이딩뷰 지표)', caption: '3일 무료 이용' },
+			{
+				body: '5010 매매 전략 전자책 체험판',
+				subtitle: 'PDF',
+				caption: '평생 소장',
+				button: true,
+				form: false,
+			},
+			{
+				body: '5010 인디케이터 체험판',
+				subtitle: '트레이딩뷰 지표',
+				caption: '3일 무료 이용',
+				button: false,
+				form: true,
+			},
 		],
 		summary: ['백문이 불여일견', '직접 살펴보시고 결정하세요!'],
 	},

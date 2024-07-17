@@ -3,7 +3,6 @@ import { ROUTES } from '../../../../routes/routes'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { faEnvelopeCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { useLoadingStore } from '../../../../store/layout/loading.store'
@@ -121,14 +120,6 @@ export default function FreeTrialForm() {
 				/>
 			) : null}
 			<div id="free-trial-form-input-container">
-				<FontAwesomeIcon
-					icon={faEnvelopeCircleCheck}
-					id="free-trial-form-icon"
-				/>
-				<p id="free-trial-form-body">
-					원활한 이용을 위해 1:1 무료 상담 후 체험판을 제공해 드리고 있어요.
-					연락 가능한 이메일과 핸드폰 번호를 남겨주세요!
-				</p>
 				<Input
 					className="free-trial-form-input"
 					type="email"
@@ -174,11 +165,12 @@ export default function FreeTrialForm() {
 					id="free-trial-form-button"
 					type="submit"
 					accessibleName="quant-logo-section-contents-container"
-					text="체험판 1:1 무료 상담 신청하기"
-					appearance="accent"
-					hierarchy="primary"
+					text="인디케이터 체험판 사용 신청하기"
+					appearance="neutral"
+					hierarchy="secondary"
 					stroke="filled"
 					shape="rounding"
+					size="sm"
 					disabled={!isValid.email || !isValid.tel}
 				/>
 			</div>

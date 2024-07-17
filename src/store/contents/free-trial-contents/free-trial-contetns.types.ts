@@ -7,7 +7,13 @@ export interface FreeTrialContentState {
 	subheading: string
 	overview: {
 		caption: string
-		features: { body: string; caption: string }[]
+		features: {
+			body: string
+			subtitle: string
+			caption: string
+			button: boolean
+			form: boolean
+		}[]
 		summary: string[]
 	}
 }
