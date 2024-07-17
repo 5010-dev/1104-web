@@ -8,7 +8,7 @@ const initialState: PaymentState = {
 		code: '',
 		isValid: undefined,
 	},
-	discount: undefined,
+	discount: { price: undefined, percentage: undefined },
 }
 
 export const usePaymentStore = create<PaymentState & PaymentAction>((set) => ({
@@ -17,6 +17,10 @@ export const usePaymentStore = create<PaymentState & PaymentAction>((set) => ({
 		set((state) => ({ ...state, checkoutData: data })),
 	updateCoupon: (key, value) =>
 		set((state) => ({ ...state, coupon: { ...state.coupon, [key]: value } })),
-	updateDiscount: (value) => set((state) => ({ ...state, discount: value })),
+	updateDiscount: (price, percentage) =>
+		set((state) => ({
+			...state,
+			discount: { price: price, percentage: percentage },
+		})),
 	resetPaymentStore: () => set(initialState),
 }))

@@ -10,6 +10,7 @@ import {
 	EmailVerification,
 	SignUpResponse,
 	LoginResponse,
+	GetLoginUserDataResponse,
 	ChangePassword,
 	ChangePasswordResponse,
 } from './auth-service.types'
@@ -109,17 +110,28 @@ export const confirmSignup = async ({
 
 /**
  * 로그인한 사용자의 데이터를 가져오는 비동기 함수
- * @returns {Promise<{ email: string, is_email_verified: boolean }>} - 이메일과 이메일 인증 여부를 포함한 객체를 반환하는 Promise 객체
+ * @returns {Promise<GetLoginUserDataResponse>} 사용자 데이터를 포함한 객체
  */
-export const getLoginUserData = async (): Promise<{
-	email: string
-	is_email_verified: boolean
-}> => {
+export const getLoginUserData = async (): Promise<GetLoginUserDataResponse> => {
 	try {
 		const response = await axiosInstance.get('/users/me')
 		const { data } = response.data
-		const { email: loginEmail, is_email_verified } = data
-		return { email: loginEmail, is_email_verified }
+		const {
+			id,
+			email: loginEmail,
+			is_email_verified,
+			seller,
+			first_purchase_discount_percentage,
+			is_first_purchased,
+		} = data
+		return {
+			id,
+			email: loginEmail,
+			is_email_verified,
+			seller,
+			first_purchase_discount_percentage,
+			is_first_purchased,
+		}
 	} catch (error) {
 		throw new Error(handleError(error))
 	}

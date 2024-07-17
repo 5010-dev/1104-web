@@ -41,14 +41,4 @@ export const FreeTrialContainer = styled(PageLayoutContainer)<Props>`
 		background-color: ${({ theme }) =>
 			getColour(theme, 'neutral', 'secondary', 'inactive')};
 	}
-
-	div#free-trial-contents-container {
-		width: ${({ theme }) => theme.layout.section.width};
-
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		gap: ${({ theme }) => theme.layout.page.gutter};
-	}
 `

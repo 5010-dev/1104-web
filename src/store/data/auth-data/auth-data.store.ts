@@ -5,13 +5,16 @@ import { AuthDataState, AuthDataAction } from './auth-data.types'
 const initialState: AuthDataState = {
 	email: '',
 	password: '',
-	sellerCode: undefined,
+	sellerCode: '',
 	verificationCode: '',
 	isUserDataLoaded: false,
 	passwordResetToken: '',
 	loginUser: {
 		userId: '',
 		isEmailVerified: false,
+		seller: undefined,
+		first_purchase_discount_percentage: undefined,
+		is_first_purchased: false,
 		access: '',
 		tradingviewId: '',
 		exchange: '',
@@ -38,6 +41,7 @@ export const useAuthDataStore = create<AuthDataState & AuthDataAction>(
 				email: '',
 				password: '',
 				verificationCode: '',
+				sellerCode: '',
 				// isUserDataLoaded: false,
 			})),
 		resetPasswordResetToken: () =>

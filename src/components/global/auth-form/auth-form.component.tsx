@@ -1,11 +1,13 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
+import { validateWithRegex } from '../../../utils/regex.utils'
 
 import { AuthFormProps, AuthValidity } from './ayth-form.types'
 import { AuthFormContainer } from './auth-form.styles'
 
 import Input from '../../global/input/input.component'
+import SellerCodeInput from '../../feature/seller-code-input/seller-code-input.component'
 import Button from '../../global/button/button.component'
 import WarningText from '../../feature/warning-text/warning-text.component'
 import TextLink from '../text-link/text-link.component'
@@ -18,9 +20,10 @@ export default function AuthForm(props: AuthFormProps) {
 		handleAuthSubmit,
 		children,
 		textLink,
+		sellerCodeInput,
 	} = props
 
-	const { email, password, updateAuthData } = useAuthDataStore((state) => state)
+	const { email, password, updateAuthData } = useAuthDataStore()
 	const [retypedPassword, setRetypedPassword] = useState<string>('')
 	const [isAuthValid, setIsAuthValid] = useState<AuthValidity>({
 		email: false,
@@ -32,16 +35,11 @@ export default function AuthForm(props: AuthFormProps) {
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
 		const inputName = e.target.name
-		const inputRegex = inputName === 'email' ? emailRegex : passwordRegex
 
 		if (inputName === 'retypedPassword') {
 			setRetypedPassword(inputValue)
 		} else {
 			updateAuthData(inputName, inputValue)
-			setIsAuthValid((prevState) => ({
-				...prevState,
-				[inputName]: validateInput(inputValue, inputRegex),
-			}))
 		}
 	}
 
@@ -55,12 +53,6 @@ export default function AuthForm(props: AuthFormProps) {
 
 		handleAuthSubmit(e)
 	}
-
-	const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/
-	const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}$/
-
-	const validateInput = (input: string, regex: RegExp): boolean =>
-		regex.test(input)
 
 	const validateRetypedPassword = (
 		password: string,
@@ -84,6 +76,14 @@ export default function AuthForm(props: AuthFormProps) {
 			validateRetypedPassword(password, retypedPassword),
 		)
 	}, [password, retypedPassword])
+
+	useEffect(() => {
+		setIsAuthValid({
+			email: email.length === 0 ? false : validateWithRegex('email', email),
+			password:
+				password.length === 0 ? false : validateWithRegex('password', password),
+		})
+	}, [email, password])
 
 	return (
 		<>
@@ -139,6 +139,7 @@ export default function AuthForm(props: AuthFormProps) {
 							handleReset={() => handleInputReset('retypedPassword')}
 						/>
 					) : null}
+					{sellerCodeInput ? <SellerCodeInput /> : null}
 					<Button
 						id="submit-button"
 						type="submit"

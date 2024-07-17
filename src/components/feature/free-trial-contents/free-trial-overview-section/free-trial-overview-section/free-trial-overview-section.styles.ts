@@ -24,6 +24,7 @@ export const FreeTrialOverviewSectionContainer = styled(SectionContainer)`
 			width: ${({ theme }) => theme.layout.component.width};
 
 			display: flex;
+			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			gap: 0.5rem;
@@ -38,15 +39,22 @@ export const FreeTrialOverviewSectionContainer = styled(SectionContainer)`
 					'rounded1',
 					0.15,
 				)}
-			padding: ${({ theme }) =>
-				`${theme.layout.component.padding.default} ${theme.layout.container.padding.default}`};
+			padding: ${({ theme }) => theme.layout.container.padding.default};
 
-			${({ theme, $deviceType }) =>
-				$deviceType === 'mobile'
-					? getTypography(theme, 'subheading')
-					: getTypography(theme, 'heading3')}
-			color: ${({ theme }) =>
-				hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
+			& > p {
+				${({ theme }) => getTypography(theme, 'heading3')}
+				color: ${({ theme }) =>
+					hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
+			}
+
+			span.free-trial-overview-li-subtitle {
+				${({ theme }) => getTypography(theme, 'body')}
+				font-size: 0.875rem;
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'inactive')};
+				margin-top: -0.5rem;
+				margin-bottom: ${({ theme }) => theme.layout.container.gutter};
+			}
 
 			${({ theme }) => css`
 				-webkit-filter: drop-shadow(
@@ -58,9 +66,6 @@ export const FreeTrialOverviewSectionContainer = styled(SectionContainer)`
 						${hexToRgba(getColour(theme, 'accent', 'primary', 'active'), 0.75)}
 				);
 			`}
-
-			.free-trial-overview-li-chip {
-			}
 		}
 	}
 

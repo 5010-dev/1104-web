@@ -24,7 +24,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 			subheading:
 				'금융 전문가와 수학자들이 설계한 최첨단 기술을 통해 여러분의 거래 경험을 향상해 보세요.',
 			ctaButtonText: '지금 바로 서비스 이용하기 →',
-			linkText: '1:1 무료 상담받고 5010 전자책 체험판 받아보세요!',
+			linkText: '회원가입하고 5010 전자책 체험판 받아보세요!',
 		},
 	},
 	about: {

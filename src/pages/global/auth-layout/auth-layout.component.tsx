@@ -24,7 +24,7 @@ export default function AuthLayout(props: AuthLayoutProps) {
 
 	const handleClose = (e: MouseEvent<HTMLButtonElement>) => {
 		setAuthDestination(null)
-		navigate(-1)
+		navigate(-1, { replace: true })
 	}
 
 	return (

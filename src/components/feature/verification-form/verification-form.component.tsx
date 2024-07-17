@@ -3,23 +3,26 @@ import { useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../routes/routes'
 
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
-import { useAuthNavigationStore } from '../../../store/auth-navigation/auth-navigation.store'
 import { useLoadingStore } from '../../../store/layout/loading.store'
 import { useToastMessageStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
-import useNavigateAfterAuth from '../../../hooks/use-navigate-after-auth'
 
 import {
 	sendVerification,
 	confirmSignup,
 	sendPasswordResetVerification,
 	confirmPasswordReset,
+	getLoginUserData,
 } from '../../../services/auth/auth-service'
 import {
 	getAccessToken,
 	setAccessToken,
 	setRefreshToken,
 } from '../../../utils/token.utils'
+import {
+	processUserData,
+	updateUserStore,
+} from '../../../utils/auth-data.utils'
 
 import { VerificationFormProps } from './verification-form.types'
 import { VerificationFormContainer } from './verification-form.styles'
@@ -40,16 +43,15 @@ export default function VerificationForm(props: VerificationFormProps) {
 		updateIsUserDataLoaded,
 		resetAuthData,
 	} = useAuthDataStore()
-	const { authDestination } = useAuthNavigationStore()
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const [isValid, setIsValid] = useState<boolean>(false)
+	const maxLength = 6
+
 	const navigate = useNavigateWithScroll()
-	const navigateAfterAuth = useNavigateAfterAuth()
 	const location = useLocation()
 	const routeState = location.state as
 		| { mode: 'signup' | 'password-reset' }
 		| undefined
-	const maxLength = 6
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -74,18 +76,27 @@ export default function VerificationForm(props: VerificationFormProps) {
 	}
 
 	const handleSignupConfirmation = async () => {
-		const { token, email, is_email_verified } = await confirmSignup({
+		const { token } = await confirmSignup({
 			access: getAccessToken(),
 			code: verificationCode,
 		})
 		setAccessToken(token.access)
 		setRefreshToken(token.refresh)
-		updateCommonState(email, is_email_verified)
-		updateToastMessage('회원 가입이 완료되었습니다.')
 
-		// TODO: 확인필요
-		navigateAfterAuth(authDestination)
-		// navigate(ROUTES.HOME, { replace: true })
+		const userData = await getLoginUserData()
+		const processedData = processUserData(userData)
+
+		if (processedData) {
+			updateUserStore(processedData, updateLoginUser, updateIsUserDataLoaded)
+		}
+		resetAuthData()
+
+		updateToastMessage('회원 가입이 완료되었습니다.')
+		navigate(ROUTES.AUTH, {
+			replace: true,
+			state: { mode: undefined, status: 'success' },
+		})
+		// navigateAfterAuth(authDestination)
 	}
 
 	const handlePasswordResetConfirmation = async () => {
@@ -94,15 +105,10 @@ export default function VerificationForm(props: VerificationFormProps) {
 			code: verificationCode,
 		})
 		updateAuthData('passwordResetToken', password_reset_token)
-		updateCommonState(email, true)
-		updateToastMessage('인증에 성공했습니다.')
-		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'password-reset' } })
-	}
-
-	const updateCommonState = (email: string, isEmailVerified: boolean) => {
-		updateLoginUser('userId', email)
-		updateLoginUser('isEmailVerified', isEmailVerified)
 		resetAuthData()
+
+		updateToastMessage('인증에 성공했습니다.')
+		navigate(ROUTES.AUTH, { replace: true, state: { mode: 'password-reset' } })
 	}
 
 	const handleResendCode = async (e: MouseEvent<HTMLSpanElement>) => {

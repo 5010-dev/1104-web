@@ -44,7 +44,7 @@ export default function AppRoutes() {
 			<Route path={ROUTES.FREE_TRIAL} element={<FreeTrial />} />
 
 			<Route element={<GuestOnlyRoute />}>
-				<Route path={ROUTES.LOGIN} element={<Login />} />
+				<Route path={ROUTES.AUTH} element={<Login />} />
 			</Route>
 
 			<Route element={<PrivateRoute />}>

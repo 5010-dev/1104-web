@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from 'react'
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
 import emailjs from '@emailjs/browser'
@@ -10,7 +10,6 @@ import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
 
 import {
 	validateWithRegex,
-	RegexKey,
 	formatTelNumber,
 	isAllValid,
 } from '../../../../utils/regex.utils'
@@ -52,18 +51,10 @@ export default function PartnershipForm() {
 			const formattedValue = formatTelNumber(numericValue)
 
 			setFormData((state) => ({ ...state, tel: formattedValue }))
-			setIsValid((state) => ({
-				...state,
-				[inputName]: validateWithRegex('tel', formattedValue),
-			}))
 			return
 		}
 
 		setFormData((state) => ({ ...state, [inputName]: inputValue }))
-		setIsValid((state) => ({
-			...state,
-			[inputName]: validateWithRegex(inputName as RegexKey, inputValue),
-		}))
 	}
 
 	const handleReset = (key: string) => {
@@ -95,6 +86,7 @@ export default function PartnershipForm() {
 			if (result.text === 'OK') {
 				updateToastMessage('파트너십 문의가 성공적으로 전송되었습니다.')
 				setFormData({ name: '', email: '', body: '' })
+				setIsValid({ name: false, email: false, body: false })
 			}
 		} catch (error: any) {
 			updateToastMessage(error.message)
@@ -102,6 +94,19 @@ export default function PartnershipForm() {
 			updateIsLoading(false)
 		}
 	}
+
+	useEffect(() => {
+		setIsValid({
+			name:
+				formData.name === '' ? false : validateWithRegex('name', formData.name),
+			email:
+				formData.email === ''
+					? false
+					: validateWithRegex('email', formData.email),
+			body:
+				formData.body === '' ? false : validateWithRegex('body', formData.body),
+		})
+	}, [formData])
 
 	return (
 		<PartnershipFormContainer $deviceType={deviceType}>
@@ -114,7 +119,7 @@ export default function PartnershipForm() {
 					<h3 id="partnership-form-heading">{heading}</h3>
 					<p id="partnership-form-body">{body}</p>
 				</div>
-				<form id="partnership-form-container" onClick={handleSubmit}>
+				<form id="partnership-form-container" onSubmit={handleSubmit}>
 					<div id="partnership-form-inputs-container">
 						<Input
 							className="partnership-form-input"

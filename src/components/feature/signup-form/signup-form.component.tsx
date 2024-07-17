@@ -25,7 +25,7 @@ export default function SignupForm() {
 	const navigate = useNavigateWithScroll()
 
 	const handleLoginLink = (e: MouseEvent<HTMLSpanElement>) => {
-		navigate(ROUTES.LOGIN, { replace: true, state: { mode: 'login' } })
+		navigate(`${ROUTES.AUTH}?state=login`, { replace: true })
 	}
 
 	const handleAgreeButton = (e: MouseEvent<HTMLButtonElement>) =>
@@ -40,7 +40,7 @@ export default function SignupForm() {
 			const { token, email: signedUpEmail } = await signUp({
 				email,
 				password,
-				referral_code: sellerCode,
+				referral_code: sellerCode.length !== 0 ? sellerCode : undefined,
 			})
 			setAccessToken(token.access)
 			setRefreshToken(token.refresh)
@@ -70,6 +70,7 @@ export default function SignupForm() {
 						linkMessage: '로그인하기',
 						handleTextLink: handleLoginLink,
 					}}
+					sellerCodeInput
 				/>
 			) : (
 				<UserAgreement
