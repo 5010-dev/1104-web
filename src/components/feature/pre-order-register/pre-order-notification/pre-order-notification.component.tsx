@@ -24,7 +24,7 @@ export default function PreOrderNotification() {
 
 	const handleSeeNotification = (e: MouseEvent<HTMLButtonElement>) =>
 		window.open(
-			'https://trapezoidal-ghoul-840.notion.site/5010-ff683695613d4625a565b607c2dc356c',
+			'https://trapezoidal-ghoul-840.notion.site/5010-Renaissance-Quant-Whitepaper-fda7b73f37f64b57a97c84f245957cc8',
 			'_blank',
 			'noopener,noreferrer',
 		)
@@ -56,7 +56,7 @@ export default function PreOrderNotification() {
 				<p className="pre-order-notification-body">{body}</p>
 				<div id="pre-order-notification-button-container">
 					<span id="pre-order-notification-button-caption">
-						사전예약 공지사항
+						우리 적어도 이 정도는 공부하고 이용해요!
 					</span>
 					<Button
 						id="pre-order-notification-button"
@@ -66,7 +66,7 @@ export default function PreOrderNotification() {
 						stroke="filled"
 						shape="rounding"
 						icon={<FontAwesomeIcon icon={faMagnifyingGlassChart} />}
-						text="르네상스 모델 이해하기"
+						text="르네상스 퀀트 R&D 백서 보기"
 						handleClick={handleSeeNotification}
 					/>
 				</div>

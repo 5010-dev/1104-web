@@ -9,6 +9,7 @@ import { usePreOrderContentsStore } from '../../../../store/contents/preOrderCon
 import { useToastMessageStore } from '../../../../store/globalUiStore'
 import { useLoadingStore } from '../../../../store/loadingStore'
 import { useEventReferralStore } from '../../../../store/eventReferralStore'
+import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 import useFadeIn from '../../../../hooks/useFadeIn'
 
 import { PreOrderFormContainer } from './pre-order-form.styles'
@@ -29,6 +30,7 @@ export default function PreOrderForm() {
 		(state) => state.formData,
 	)
 	const { code } = useEventReferralStore()
+	const navigate = useNavigateWithScroll()
 
 	const [email, setEmail] = useState<string>('')
 	const [tel, setTel] = useState<string>('')
@@ -66,7 +68,7 @@ export default function PreOrderForm() {
 
 		try {
 			const emailList =
-				code === '12308'
+				code === '59420'
 					? process.env.REACT_APP_STIBEE_CO_OP_EMAIL_LIST_ID
 					: process.env.REACT_APP_STIBEE_EMAIL_LIST_ID
 
@@ -90,7 +92,8 @@ export default function PreOrderForm() {
 				},
 			)
 			if (response.status === 200 && response.data.Ok) {
-				updateToastMessage('사전예약 신청이 완료되었습니다.')
+				// updateToastMessage('사전예약 신청이 완료되었습니다.')
+				navigate('/success', { routeState: 'success' })
 			} else {
 				updateToastMessage(
 					'문제가 발생했습니다. 잠시 후 다시 시도하시거나, 고객 지원 센터로 연락주세요.',
@@ -191,7 +194,7 @@ export default function PreOrderForm() {
 						id="quant-pre-order-button"
 						type="submit"
 						accessibleName="quant-logo-section-contents-container"
-						text="사전예약 신청하기"
+						text="이벤트 참여하기 →"
 						appearance="accent"
 						hierarchy="primary"
 						stroke="filled"

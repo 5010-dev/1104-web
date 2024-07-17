@@ -31,8 +31,8 @@ export default function PreOrderDetails() {
 	const titleRightLetters = titleRight.split('')
 
 	const handleRegister = (e: MouseEvent<HTMLButtonElement>) => {
-		if (code.length !== 0) navigate(`/pre-order?register&code=${code}`)
-		else navigate('/pre-order?register')
+		if (code.length !== 0) navigate(`/?register&code=${code}`)
+		else navigate('/?register')
 	}
 
 	return (
@@ -75,7 +75,7 @@ export default function PreOrderDetails() {
 						hierarchy="primary"
 						stroke="filled"
 						shape="rounding"
-						text="← 사전예약 신청하러 가기"
+						text="← 이벤트 참여하러 가기"
 						handleClick={handleRegister}
 					/>
 				</div>

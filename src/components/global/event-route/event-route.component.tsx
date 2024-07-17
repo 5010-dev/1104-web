@@ -4,6 +4,6 @@ export default function EventRoute() {
 	return process.env.REACT_APP_ENV !== 'event' ? (
 		<Outlet />
 	) : (
-		<Navigate to="/pre-order" />
+		<Navigate to="/" />
 	)
 }

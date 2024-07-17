@@ -25,8 +25,8 @@ export default function PreOrderService() {
 	})
 
 	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) => {
-		if (code.length !== 0) navigate(`/pre-order?details&code=${code}`)
-		else navigate('/pre-order?details')
+		if (code.length !== 0) navigate(`/?details&code=${code}`)
+		else navigate('/?details')
 	}
 
 	return (

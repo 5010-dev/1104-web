@@ -11,7 +11,7 @@ import backgroundImage from '../../../assets/img/pre-order-image.webp'
 
 import { PreOrderRegisterContainer } from './pre-order-register.styles'
 
-import Countdown from '../../../components/feature/countdown/countdown.component'
+// import Countdown from '../../../components/feature/countdown/countdown.component'
 import PreOrderService from './pre-order-service/pre-order-service.component'
 import PreOrderNotification from './pre-order-notification/pre-order-notification.component'
 import PreOrderForm from './pre-order-form/pre-order-form.component'
@@ -19,7 +19,10 @@ import Footer from '../../../components/global/footer/footer.component'
 
 export default function PreOrderRegister() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { launchingDate, title } = usePreOrderContentsStore()
+	const {
+		// launchingDate,
+		title,
+	} = usePreOrderContentsStore()
 	const { heading, subheading } = title
 
 	const { ref, controls, fadeInVariants } = useFadeIn({ duration: 3 })
@@ -58,7 +61,8 @@ export default function PreOrderRegister() {
 								))}
 							</span>
 						</div>
-						<Countdown targetDate={launchingDate} />
+						{/* <Countdown targetDate={launchingDate} /> */}
+						<span id="quant-text-display">런칭 감사 이벤트</span>
 						<FontAwesomeIcon icon={faAnglesDown} id="down-icon" />
 					</div>
 				</div>

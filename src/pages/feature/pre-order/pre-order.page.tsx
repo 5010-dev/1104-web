@@ -25,7 +25,7 @@ export default function PreOrder() {
 		} else if (details) {
 			return <PreOrderDetails />
 		} else {
-			return <Navigate to="/pre-order?register" replace />
+			return <Navigate to="/?register" replace />
 		}
 	}
 
