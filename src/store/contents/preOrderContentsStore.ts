@@ -39,6 +39,7 @@ export interface PreOrderContentsState {
 	title: {
 		heading: string
 		subheading: string
+		eventName: string
 	}
 	service: Service
 	notification: Notification
@@ -47,10 +48,11 @@ export interface PreOrderContentsState {
 
 export const usePreOrderContentsStore = create<PreOrderContentsState>(
 	(set) => ({
-		launchingDate: new Date('2024-07-10T00:00:00Z'),
+		launchingDate: new Date('2024-08-31T00:00:00Z'),
 		title: {
 			heading: 'QUANT SOLUTION',
 			subheading: '1104 R&I 퀀트 솔루션 | 2024. 07. 10. 출시',
+			eventName: '런칭 감사 이벤트',
 		},
 		service: {
 			caption: '사전예약 진행중',

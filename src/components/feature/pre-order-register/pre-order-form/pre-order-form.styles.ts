@@ -39,7 +39,7 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			`${theme.layout.section.padding.lg} ${getDeviceTypePadding(
 				theme,
 				$deviceType,
-				'section',
+				'container',
 			)}`};
 
 		z-index: 1;
@@ -235,7 +235,8 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 
 			.quant-pre-order-input {
 				width: ${({ theme }) => theme.layout.component.width};
-				max-width: 28rem;
+				max-width: ${({ $deviceType }) =>
+					$deviceType === 'mobile' ? '18rem' : '20rem'};
 			}
 
 			p#quant-pre-oder-button-description {

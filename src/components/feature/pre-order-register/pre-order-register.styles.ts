@@ -77,30 +77,6 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 							margin-top: 5rem;
 					  `}
 
-			span#quant-text-display {
-				${({ theme }) => getTypography(theme, 'display')}
-				font-size: ${({ $deviceType }) =>
-					$deviceType === 'mobile' && '2.75rem'};
-				margin-top: ${({ theme }) => theme.layout.section.gutter};
-
-				${({ theme }) => css`
-					-webkit-filter: drop-shadow(
-						0 0 2rem
-							${hexToRgba(
-								getColour(theme, 'neutral', 'secondary', 'active'),
-								1,
-							)}
-					);
-					filter: drop-shadow(
-						0 0 2rem
-							${hexToRgba(
-								getColour(theme, 'neutral', 'secondary', 'active'),
-								1,
-							)}
-					);
-				`}
-			}
-
 			#quant-logo {
 				position: absolute;
 				top: 50%;
@@ -198,6 +174,37 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 						)})`};
 
 					padding: 0.25rem 0;
+				}
+
+				span#quant-text-display {
+					width: ${({ theme }) => theme.layout.component.width};
+					display: flex;
+					justify-content: space-between;
+
+					${({ theme }) => getTypography(theme, 'display')}
+					font-size: ${({ $deviceType }) =>
+						$deviceType === 'mobile' ? '1.75rem' : '2.5rem'};
+					color: ${({ theme }) =>
+						hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.75,
+						)};
+					${({ theme }) => css`
+						-webkit-filter: drop-shadow(
+							0 0 2rem
+								${hexToRgba(
+									getColour(theme, 'neutral', 'secondary', 'active'),
+									1,
+								)}
+						);
+						filter: drop-shadow(
+							0 0 2rem
+								${hexToRgba(
+									getColour(theme, 'neutral', 'secondary', 'active'),
+									1,
+								)}
+						);
+					`};
 				}
 
 				span.quant-text-letter {

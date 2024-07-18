@@ -20,10 +20,7 @@ export const PreOrderServiceContainer = styled.div<PreOrderServiceContainerProps
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'section')};
 
-	margin-top: ${({ theme, $deviceType }) =>
-		$deviceType === 'mobile'
-			? theme.layout.container.gutter
-			: theme.layout.section.gutter};
+	margin-top: ${({ theme }) => theme.layout.page.gutter};
 	margin-bottom: ${({ theme }) => theme.layout.container.gutter};
 
 	div#pre-order-service-contents-container {
