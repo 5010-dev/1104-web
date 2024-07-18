@@ -5,29 +5,29 @@ import { ROUTES } from '../../../routes/routes'
 import { useAuthDataStore } from '../../../store/data/auth-data/auth-data.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
-import { LoginState } from './login.page.types'
+import { AuthState } from './auth.page.types'
 
 import AuthLayout from '../../global/auth-layout/auth-layout.component'
 import LoginForm from '../../../components/feature/login-form/login-form.component'
 import SignupForm from '../../../components/feature/signup-form/signup-form.component'
-import SingupSuccess from '../../../components/feature/signup-success/signup-success.component'
+import SingupSuccess from './signup-success/signup-success.page'
 import PasswordResetForm from '../../../components/feature/password-reset-form/password-reset-form.component'
 
-export default function Login() {
+export default function Auth() {
 	const { loginUser, updateAuthData, resetAuthData } = useAuthDataStore()
 
 	const navigate = useNavigateWithScroll()
 	const location = useLocation()
 	const [searchParams] = useSearchParams()
 
-	const authState = searchParams.get('state') as LoginState
+	const authState = searchParams.get('state') as AuthState
 	const codeUrl = searchParams.get('code')
 	const routeState = location.state as {
 		mode: undefined | 'password-reset'
 		status: undefined | 'success'
 	}
 
-	const authComponent = (state: LoginState) => {
+	const authComponent = (state: AuthState) => {
 		switch (state) {
 			case 'login':
 				return <LoginForm />

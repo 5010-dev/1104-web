@@ -1,18 +1,18 @@
 import { MouseEvent } from 'react'
-import { ROUTES } from '../../../routes/routes'
+import { ROUTES } from '../../../../routes/routes'
 
-import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
-import { useAuthNavigationStore } from '../../../store/auth-navigation/auth-navigation.store'
-import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
-import useNavigateAfterAuth from '../../../hooks/use-navigate-after-auth'
+import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
+import { useAuthNavigationStore } from '../../../../store/auth-navigation/auth-navigation.store'
+import useNavigateWithScroll from '../../../../hooks/use-navigate-with-scroll'
+import useNavigateAfterAuth from '../../../../hooks/use-navigate-after-auth'
 
 import { SignupReward } from './signup-success.types'
 import { SignupSuccessContainer } from './signup-success.styles'
 
-import Complete from '../../global/complete/complete.component'
-import Card from '../../global/card/card.component'
-import Chip from '../../global/chip/chip.component'
-import Button from '../../global/button/button.component'
+import Complete from '../../../../components/global/complete/complete.component'
+import Card from '../../../../components/global/card/card.component'
+import Chip from '../../../../components/global/chip/chip.component'
+import Button from '../../../../components/global/button/button.component'
 
 const signupRewards: SignupReward[] = [
 	{

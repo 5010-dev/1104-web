@@ -9,7 +9,7 @@ import MainLayout from '../pages/main-layout'
 import NotFound from '../pages/global/not-found/not-found.page'
 
 import Home from '../pages/feature/home/home.page'
-import Login from '../pages/feature/login/login.page'
+import Auth from '../pages/feature/auth/auth.page'
 import EmailVerification from '../pages/feature/email-verification/email-verification.page'
 import Checkout from '../pages/feature/checkout/checkout.page'
 import CheckoutSuccess from '../pages/feature/checkout/checkout-success/checkout-success.page'
@@ -44,7 +44,7 @@ export default function AppRoutes() {
 			<Route path={ROUTES.FREE_TRIAL} element={<FreeTrial />} />
 
 			<Route element={<GuestOnlyRoute />}>
-				<Route path={ROUTES.AUTH} element={<Login />} />
+				<Route path={ROUTES.AUTH} element={<Auth />} />
 			</Route>
 
 			<Route element={<PrivateRoute />}>

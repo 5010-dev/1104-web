@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components'
 
-import { getDeviceTypePadding } from '../../../utils/device.utils'
-import { getContainerStyle } from '../../../utils/style.utils'
-import { getTypography } from '../../../utils/typo.utils'
-import { hexToRgba, getColour } from '../../../utils/colour.utils'
+import { getDeviceTypePadding } from '../../../../utils/device.utils'
+import { getContainerStyle } from '../../../../utils/style.utils'
+import { getTypography } from '../../../../utils/typo.utils'
+import { hexToRgba, getColour } from '../../../../utils/colour.utils'
 
 import { SignupSuccessContainerProps } from './signup-success.types'
 
-import PageLayoutContainer from '../../../pages/global/page-layout/page-layout.styles'
+import PageLayoutContainer from '../../../../pages/global/page-layout/page-layout.styles'
 
 type Props = SignupSuccessContainerProps
 
