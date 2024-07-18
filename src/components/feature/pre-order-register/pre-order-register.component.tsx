@@ -20,13 +20,14 @@ import Footer from '../../../components/global/footer/footer.component'
 export default function PreOrderRegister() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { launchingDate, title } = usePreOrderContentsStore()
-	const { heading, subheading, eventName } = title
+	const { heading, subheading, eventName, eventPeriod } = title
 
 	const { ref, controls, fadeInVariants } = useFadeIn({ duration: 3 })
 
 	const headingLetters = heading.split('')
 	const subheadingLetters = subheading.split('')
 	const eventNameLetters = eventName.split('')
+	const eventPeriodLetters = eventPeriod.split('')
 
 	return (
 		<PreOrderRegisterContainer
@@ -65,8 +66,16 @@ export default function PreOrderRegister() {
 									</span>
 								))}
 							</span>
+							<span id="quant-text-caption">
+								{eventPeriodLetters.map((letter, index) => (
+									<span key={index} className="quant-text-letter">
+										{letter}
+									</span>
+								))}
+							</span>
 						</div>
 
+						<p id="quant-text-body">이벤트 종료까지 남은 시간</p>
 						<Countdown targetDate={launchingDate} />
 						<FontAwesomeIcon icon={faAnglesDown} id="down-icon" />
 					</div>
