@@ -23,7 +23,6 @@ import CheckoutCodeInput from '../../../components/feature/checkout-code-input/c
 import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
 import CheckoutTerms from '../../../components/feature/checkout-terms/checkout-terms.component'
 import Footer from '../../../components/global/footer/footer.component'
-import TosspaymentsWidgetModal from '../../../components/feature/tosspayments-widget-modal/tosspayments-widget-modal.component'
 
 export default function Checkout() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -127,7 +126,9 @@ export default function Checkout() {
 	return (
 		<>
 			{item && showModal ? (
-				<TosspaymentsWidgetModal handleClose={toggleModal} />
+				// <TosspaymentsWidgetModal handleClose={toggleModal} />
+				// TODO: 여기에 주문 확인 모달 등장 필요
+				<></>
 			) : null}
 			<CheckoutContainer $deviceType={deviceType}>
 				{item ? (
