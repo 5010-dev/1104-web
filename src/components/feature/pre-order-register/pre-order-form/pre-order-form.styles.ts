@@ -74,11 +74,33 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 				line-height: 120%;
 			}
 
-			p.pre-order-form-body {
-				${({ theme }) => getTypography(theme, 'body')}
-				color: ${({ theme }) =>
-					hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
-				text-align: center;
+			div#pre-order-form-body-container {
+				width: ${({ theme }) => theme.layout.container.width};
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 0.25rem;
+
+				p.pre-order-form-body {
+					${({ theme }) => getTypography(theme, 'subheading')}
+					color: ${({ theme }) =>
+						hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.75,
+						)};
+					text-align: center;
+				}
+
+				img.pre-order-form-mockup-img {
+					width: 12rem;
+					margin-left: 0.25rem;
+				}
+
+				.pre-order-form-body-chip {
+					font-size: 0.875rem;
+				}
 			}
 		}
 

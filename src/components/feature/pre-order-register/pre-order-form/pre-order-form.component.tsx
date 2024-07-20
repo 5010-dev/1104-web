@@ -26,9 +26,8 @@ export default function PreOrderForm() {
 		(state) => state.updateToastMessage,
 	)
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
-	const { heading, body, terms, agreement, event } = usePreOrderContentsStore(
-		(state) => state.formData,
-	)
+	const { heading, mockupImg, body, terms, agreement, event } =
+		usePreOrderContentsStore((state) => state.formData)
 	const { code } = useEventReferralStore()
 	const navigate = useNavigateWithScroll()
 
@@ -145,7 +144,23 @@ export default function PreOrderForm() {
 			<div id="pre-order-form-contents-container">
 				<div id="pre-order-form-text-container">
 					<h1 id="pre-order-form-heading">{heading}</h1>
-					<p className="pre-order-form-body">{body}</p>
+					<div id="pre-order-form-body-container">
+						<p className="pre-order-form-body">{body[0]}</p>
+						<img
+							className="pre-order-form-mockup-img"
+							src={mockupImg}
+							alt="pre-order-form-mockup"
+						/>
+						<Chip
+							className="pre-order-form-body-chip"
+							appearance="neutral"
+							hierarchy="secondary"
+							stroke="filled"
+							shape="rounded3"
+							// inverted
+							text={body[1]}
+						/>
+					</div>
 				</div>
 
 				<div id="quant-pre-order-input-container">

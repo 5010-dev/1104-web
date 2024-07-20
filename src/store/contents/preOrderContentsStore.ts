@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 import backgroundImg from '../../assets/img/banner-background-img.webp'
+import freeTrialMockupImg from '../../assets/img/free-trial/free-trial-mockup-img.webp'
 
 type Service = {
 	caption: string
@@ -28,7 +29,8 @@ type Event = {
 
 type FormData = {
 	heading: string
-	body: string
+	mockupImg: string
+	body: string[]
 	terms: string
 	agreement: string
 	event: Event[]
@@ -72,7 +74,8 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 		},
 		formData: {
 			heading: '런칭 감사 이벤트',
-			body: '지금 바로 이벤트 참여하고 다양한 혜택을 받아 보세요!',
+			mockupImg: freeTrialMockupImg,
+			body: ['이벤트 신청만 해도 전자책 체험판을 드려요!', '정상가 100,000원'],
 			terms: '개인정보 제공 동의: 1104 R&I 이벤트',
 			agreement:
 				'내용을 확인하였으며, 이벤트 참여를 위해 정보 제공 등에 동의합니다.',
