@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { ROUTES } from './routes'
 
-// import EventRoute from '../components/global/event-route/event-route.component'
 import GuestOnlyRoute from '../components/global/guest-only-route/guest-only-route.component'
 import PrivateRoute from '../components/global/private-route/private-route.component'
 
@@ -18,14 +17,14 @@ import OurService from '../pages/feature/our-service/our-service.page'
 import Account from '../pages/feature/account/account.page'
 import FreeTrial from '../pages/feature/free-trial/free-trial.page'
 import IndicatorRegistration from '../pages/feature/indicator-registration/indicator-registration.page'
-// import PreOrder from '../pages/feature/pre-order/pre-order.page'
+import PreOrder from '../pages/feature/pre-order/pre-order.page'
 import Partnership from '../pages/feature/partnership/partnership.page'
 import ServiceItem from '../pages/feature/service-item/service-item.page'
 
 export default function AppRoutes() {
 	return (
 		<Routes>
-			{/* <Route path={ROUTES.PRE_ORDER} element={<PreOrder />} /> */}
+			<Route path={ROUTES.EVENT} element={<PreOrder />} />
 			{/* <Route element={<EventRoute />}> */}
 			<Route path={ROUTES.HOME} element={<MainLayout />}>
 				<Route index element={<Home />} />
