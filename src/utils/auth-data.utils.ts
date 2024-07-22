@@ -11,12 +11,12 @@ export const processUserData = (userData: any): Partial<User> | null => {
 		return {
 			userId: userData.email,
 			isEmailVerified: userData.is_email_verified,
-			seller: userData.seller !== null ? userData.seller.toString() : null,
-			first_purchase_discount_percentage:
-				userData.first_purchase_discount_percentage !== null
-					? userData.first_purchase_discount_percentage.toString()
-					: null,
-			is_first_purchased: userData.is_first_purchased,
+			// seller: userData.seller !== null ? userData.seller.toString() : null,
+			// first_purchase_discount_percentage:
+			// 	userData.first_purchase_discount_percentage !== null
+			// 		? userData.first_purchase_discount_percentage.toString()
+			// 		: null,
+			// is_first_purchased: userData.is_first_purchased,
 		}
 	}
 	return null
