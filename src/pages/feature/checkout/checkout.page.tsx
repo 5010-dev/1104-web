@@ -12,7 +12,7 @@ import { usePaymentStore } from '../../../store/payment/payment.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { getProductById } from '../../../services/product/product-service'
-import { checkoutProduct } from '../../../services/payment/payment-service'
+import { purchaseProduct } from '../../../services/payment/payment-service'
 import { Product } from '../../../services/product/product-service.types'
 
 import { CheckoutContainer } from './checkout.styles'
@@ -30,9 +30,9 @@ export default function Checkout() {
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
 	const {
-		coupon,
+		// coupon,
 		// discount,
-		updateCheckoutData,
+		// updateCheckoutData,
 		resetPaymentStore,
 	} = usePaymentStore()
 	const { updateIsLoading } = useLoadingStore()
@@ -52,13 +52,19 @@ export default function Checkout() {
 		if (!showModal) {
 			try {
 				updateIsLoading(true)
-				const checkoutResponse = await checkoutProduct({
-					id: Number(id),
-					coupon: coupon.code && coupon.code,
-				})
-				updateCheckoutData(checkoutResponse)
+				const purchaseResponse = await purchaseProduct({ id: Number(id) })
+				// const checkoutResponse = await checkoutProduct({
+				// 	id: Number(id),
+				// 	coupon: coupon.code && coupon.code,
+				// })
+				// updateCheckoutData(checkoutResponse)
 
-				setShowModal(true)
+				navigate(
+					`${ROUTES.CHECKOUT_SUCCESS}?order_number=${purchaseResponse.order_number}&payment_status=${purchaseResponse.payment_status}`,
+					{ replace: true },
+				)
+
+				// setShowModal(true)
 			} catch (error) {
 				console.error('Error creating order:', error)
 				updateToastMessage('주문 생성 중 오류가 발생했습니다.')

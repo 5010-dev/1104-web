@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import { PaymentState, PaymentAction } from './payment.types'
 
 const initialState: PaymentState = {
-	checkoutData: undefined,
+	// checkoutData: undefined,
 	coupon: {
 		code: '',
 		isValid: undefined,
@@ -13,8 +13,8 @@ const initialState: PaymentState = {
 
 export const usePaymentStore = create<PaymentState & PaymentAction>((set) => ({
 	...initialState,
-	updateCheckoutData: (data) =>
-		set((state) => ({ ...state, checkoutData: data })),
+	// updateCheckoutData: (data) =>
+	// 	set((state) => ({ ...state, checkoutData: data })),
 	updateCoupon: (key, value) =>
 		set((state) => ({ ...state, coupon: { ...state.coupon, [key]: value } })),
 	updateDiscount: (price, percentage) =>
