@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { getContainerStyle } from '../../../utils/style.utils'
 import { getDeviceTypePadding } from '../../../utils/device.utils'
 import { getTypography } from '../../../utils/typo.utils'
-import { hexToRgba, getColour } from '../../../utils/colour.utils'
+import { getColour } from '../../../utils/colour.utils'
 
 import { EventBannerContainerProps } from './event-banner.types'
 
@@ -29,7 +29,7 @@ export const EventBannerContainer = styled.div<EventBannerContainerProps>`
 	background-size: cover;
 
 	h3.event-banner-heading {
-		${({ theme }) => getTypography(theme, 'heading3')}
+		${({ theme }) => getTypography(theme, 'heading2')}
 		color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
 	}
 
@@ -38,6 +38,6 @@ export const EventBannerContainer = styled.div<EventBannerContainerProps>`
 		font-size: 0.875rem;
 		font-weight: normal;
 		color: ${({ theme }) =>
-			hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
+			getColour(theme, 'neutral', 'secondary', 'inactive')};
 	}
 `
