@@ -10,8 +10,8 @@ import {
 export type ChipProps = {
 	appearance: ComponentAppearance
 	hierarchy: ComponentHierarchy
-	stroke: ComponentStroke
-	shape: ComponentShape
+	stroke?: ComponentStroke
+	shape?: ComponentShape
 	size?: ComponentSize
 	inverted?: boolean
 	text: string

@@ -1,7 +1,8 @@
 import { useState, useEffect, ChangeEvent } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
+// import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useServiceTermsStore } from '../../../store/terms/service-terms.store'
@@ -13,6 +14,7 @@ import { CheckoutTermsContainer } from './checkout-terms.styles'
 import CheckBox from '../../../components/global/check-box/check-box.component'
 import Accordion from '../../../components/global/accordion/accordion.component'
 import ServiceTerms from '../../../components/feature/service-terms/service-terms.component'
+import EventBanner from '../event-banner/event-banner.component'
 import Button from '../../global/button/button.component'
 
 export default function CheckoutTerms(props: CheckoutTermsProps) {
@@ -192,6 +194,7 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 					/> */}
 				</div>
 			</CheckoutTermsContainer>
+			<EventBanner variants="inline" />
 			<Button
 				accessibleName="item-column"
 				id="checkout-button"
@@ -199,8 +202,8 @@ export default function CheckoutTerms(props: CheckoutTermsProps) {
 				hierarchy="primary"
 				stroke="filled"
 				shape="rounding"
-				icon={<FontAwesomeIcon icon={faCreditCard} />}
-				text="결제하기"
+				icon={<FontAwesomeIcon icon={faCheck} />}
+				text="주문 요청하기"
 				disabled={!isAllChecked}
 				handleClick={handleCheckout}
 			/>

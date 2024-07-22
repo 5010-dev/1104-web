@@ -19,8 +19,8 @@ import { CheckoutContainer } from './checkout.styles'
 
 import CheckoutItem from '../../../components/feature/checkout-item/checkout-item.component'
 import CheckoutOption from '../../../components/feature/checkout-option/checkout-option.component'
-import CheckoutCodeInput from '../../../components/feature/checkout-code-input/checkout-code-input.component'
-import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
+// import CheckoutCodeInput from '../../../components/feature/checkout-code-input/checkout-code-input.component'
+// import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
 import CheckoutTerms from '../../../components/feature/checkout-terms/checkout-terms.component'
 import Footer from '../../../components/global/footer/footer.component'
 
@@ -29,8 +29,12 @@ export default function Checkout() {
 	const { isUserDataLoaded } = useAuthDataStore()
 	const { userId } = useAuthDataStore((state) => state.loginUser)
 	const { updateToastMessage } = useToastMessageStore()
-	const { coupon, discount, updateCheckoutData, resetPaymentStore } =
-		usePaymentStore()
+	const {
+		coupon,
+		// discount,
+		updateCheckoutData,
+		resetPaymentStore,
+	} = usePaymentStore()
 	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
@@ -134,7 +138,7 @@ export default function Checkout() {
 				{item ? (
 					<div id="contents-container">
 						<div id="top-row">
-							<h1 id="heading">주문 결제</h1>
+							<h1 id="heading">주문 요청</h1>
 							<button
 								id="close-button"
 								onClick={handleClose}
@@ -148,16 +152,17 @@ export default function Checkout() {
 								<h2 className="column-heading">주문 정보</h2>
 								<CheckoutItem item={item} />
 								<CheckoutOption />
-								<CheckoutCodeInput />
+								{/* <CheckoutCodeInput /> */}
+								{/* <CheckoutTerms handleCheckout={toggleModal} /> */}
 							</div>
 							<div className="item-column" id="right-column">
-								<h2 className="column-heading">결제 정보</h2>
-								<CheckoutBilling
+								<h2 className="column-heading">약관 동의</h2>
+								{/* <CheckoutBilling
 									item={item}
 									discount={
 										discount.price ? discount.price : discount.percentage
 									}
-								/>
+								/> */}
 								<CheckoutTerms handleCheckout={toggleModal} />
 							</div>
 						</div>

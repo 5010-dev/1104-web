@@ -14,6 +14,7 @@ export const CheckoutContainer = styled(PageLayoutContainer)`
 	div#contents-container {
 		width: ${({ theme }) => theme.layout.section.width};
 		max-width: ${({ theme }) => theme.layout.section.maxWidth};
+		/* max-width: 30rem; */
 
 		margin-top: ${({ $deviceType }) =>
 			$deviceType === 'mobile' ? '1.5rem' : '4rem'};
@@ -113,8 +114,11 @@ export const CheckoutContainer = styled(PageLayoutContainer)`
 
 			#checkout-button {
 				width: 80%;
+				max-width: 20rem;
 
 				align-self: center;
+
+				margin-top: ${({ theme }) => theme.layout.container.gutter};
 
 				${({ theme }) => css`
 					-webkit-filter: drop-shadow(
