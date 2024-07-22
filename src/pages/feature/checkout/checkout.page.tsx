@@ -19,6 +19,7 @@ import { CheckoutContainer } from './checkout.styles'
 
 import CheckoutItem from '../../../components/feature/checkout-item/checkout-item.component'
 import CheckoutOption from '../../../components/feature/checkout-option/checkout-option.component'
+import CheckoutInput from '../../../components/feature/checkout-input/checkout-input.component'
 // import CheckoutCodeInput from '../../../components/feature/checkout-code-input/checkout-code-input.component'
 // import CheckoutBilling from '../../../components/feature/checkout-billing/checkout-billing.component'
 import CheckoutTerms from '../../../components/feature/checkout-terms/checkout-terms.component'
@@ -35,6 +36,7 @@ export default function Checkout() {
 		// updateCheckoutData,
 		resetPaymentStore,
 	} = usePaymentStore()
+	const { name, tel } = usePaymentStore((state) => state.checkoutData.data)
 	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
 	const [searchParams] = useSearchParams()
@@ -52,19 +54,15 @@ export default function Checkout() {
 		if (!showModal) {
 			try {
 				updateIsLoading(true)
-				const purchaseResponse = await purchaseProduct({ id: Number(id) })
-				// const checkoutResponse = await checkoutProduct({
-				// 	id: Number(id),
-				// 	coupon: coupon.code && coupon.code,
-				// })
-				// updateCheckoutData(checkoutResponse)
-
+				const purchaseResponse = await purchaseProduct({
+					id: Number(id),
+					username: name,
+					phone: tel,
+				})
 				navigate(
 					`${ROUTES.CHECKOUT_SUCCESS}?order_number=${purchaseResponse.order_number}&payment_status=${purchaseResponse.payment_status}`,
 					{ replace: true },
 				)
-
-				// setShowModal(true)
 			} catch (error) {
 				console.error('Error creating order:', error)
 				updateToastMessage('주문 생성 중 오류가 발생했습니다.')
@@ -135,11 +133,6 @@ export default function Checkout() {
 
 	return (
 		<>
-			{item && showModal ? (
-				// <TosspaymentsWidgetModal handleClose={toggleModal} />
-				// TODO: 여기에 주문 확인 모달 등장 필요
-				<></>
-			) : null}
 			<CheckoutContainer $deviceType={deviceType}>
 				{item ? (
 					<div id="contents-container">
@@ -158,6 +151,7 @@ export default function Checkout() {
 								<h2 className="column-heading">주문 정보</h2>
 								<CheckoutItem item={item} />
 								<CheckoutOption />
+								<CheckoutInput />
 								{/* <CheckoutCodeInput /> */}
 								{/* <CheckoutTerms handleCheckout={toggleModal} /> */}
 							</div>

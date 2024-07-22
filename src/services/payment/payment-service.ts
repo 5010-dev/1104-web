@@ -35,18 +35,25 @@ export const checkCoupon = async (
 }
 
 /**
- * 제품을 구매하는 비동기 함수
+ * 제품 구매 API를 호출하는 비동기 함수
  *
- * @param {Object} params - 함수 파라미터
- * @param {string} params.id - 구매할 제품의 ID
- * @returns {Promise<PurchaseProductResponse>} 구매 결과 정보를 담은 Promise 객체
- * @throws {Error} API 요청 실패 시 에러
+ * @param {Object} params - 구매에 필요한 정보를 담은 객체
+ * @param {string} params.id - 구매할 제품의 고유 ID
+ * @param {string} params.phone - 구매자의 전화번호
+ * @param {string} params.username - 구매자의 이름
+ * @returns {Promise<PurchaseProductResponse>} 구매 결과 정보를 담은 Promise
+ * @throws {Error} API 요청 실패 시 발생하는 에러
  */
 export const purchaseProduct = async ({
 	id,
+	phone,
+	username,
 }: PurchaseProductPayload): Promise<PurchaseProductResponse> => {
 	try {
-		const response = await axiosInstance.post(`/products/${id}/purchase`, {})
+		const response = await axiosInstance.post(`/products/${id}/purchase`, {
+			phone: phone,
+			username: username,
+		})
 		const { data } = response.data
 		const { id: productId, order_number, total_price, payment_status } = data
 		return { id: productId, order_number, total_price, payment_status }

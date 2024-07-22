@@ -6,6 +6,8 @@ export type CheckCouponResponse = {
 
 export type PurchaseProductPayload = {
 	id: number
+	phone: string
+	username: string
 }
 
 export type PurchaseProductResponse = {
