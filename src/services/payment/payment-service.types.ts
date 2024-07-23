@@ -17,24 +17,39 @@ export type PurchaseProductResponse = {
 	payment_status: string
 }
 
-export type SubscribedItem = {
+type PurchasedProduct = {
 	id: number
-	product: number // product ID
-	product_title: string
-	product_plan: string
-	payment_status: string
-	is_setup_completed: boolean
-	started: string
-	ended: string
+	plan: string
+	price: string
+	title: string
+	sub_title: string
+	subscription_price: string
 }
 
-export type PaidItem = {
+export type PaymentStatus =
+	| 'PENDING'
+	| 'COMPLETED'
+	| 'PARTIAL_PAYMENT'
+	| 'CANCELED'
+
+export type PurchasesListItem = {
 	id: number
-	product_title: string
-	product_plan: string
+	product: PurchasedProduct
+	order_number: string
 	total_price: string
-	receipt_url: string
-	status: string
-	done_at: string | null
-	cancelled_at: string | null
+	payment_status: PaymentStatus
+	pending: string
+	completed: string
+	partial_payment: string
+	canceled: string
 }
+
+export type GetPurchasesResponse = PurchasesListItem[]
+
+export type PurchasedListItem = {
+	id: number
+	product: PurchasedProduct
+	is_setup_completed: boolean
+}
+
+export type GetPurchasedProductsResponse = PurchasedListItem[]

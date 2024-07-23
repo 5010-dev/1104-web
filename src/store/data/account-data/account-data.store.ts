@@ -3,13 +3,13 @@ import { create } from 'zustand'
 import { AccountDataState, AccounDataAction } from './account-data.types'
 
 const initialState: AccountDataState = {
-	subscribedItem: {
-		subscribedItemData: [],
-		isSubscribedItemDataLoaded: false,
+	purchasesList: {
+		purchasesListData: [],
+		isPurchasesListDataLoaded: false,
 	},
-	paidItem: {
-		paidItemData: [],
-		isPaidItemDataLoaded: false,
+	purchasedList: {
+		purchasedListData: [],
+		isPurchasedListDataLoaded: false,
 	},
 }
 
@@ -17,34 +17,34 @@ export const useAccountDataStore = create<AccountDataState & AccounDataAction>(
 	(set) => ({
 		...initialState,
 
-		updateSubscribedItemData: (data) =>
+		updatePurchasesListData: (data) =>
 			set((state) => ({
 				...state,
-				subscribedItem: { ...state.subscribedItem, subscribedItemData: data },
+				purchasesList: { ...state.purchasesList, purchasesListData: data },
 			})),
-		updateIsSubscribedItemDataLoaded: (value) =>
+		updateIsPurchasesListDataLoaded: (value) =>
 			set((state) => ({
 				...state,
-				subscribedItem: {
-					...state.subscribedItem,
-					isSubscribedItemDataLoaded: value,
+				purchasesList: {
+					...state.purchasesList,
+					isPurchasesListDataLoaded: value,
 				},
 			})),
-		resetSubscribedItem: () => set(initialState),
+		resetPurchasesList: () => set(initialState),
 
-		updatePaidItemData: (data) =>
+		updatePurchasedListData: (data) =>
 			set((state) => ({
 				...state,
-				paidItem: { ...state.paidItem, paidItemData: data },
+				purchasedList: { ...state.purchasedList, purchasedListData: data },
 			})),
-		updateIsPaidItemDataLoaded: (value) =>
+		updateIsPurchasedListDataLoaded: (value) =>
 			set((state) => ({
 				...state,
-				paidItem: {
-					...state.paidItem,
-					isPaidItemDataLoaded: value,
+				purchasedList: {
+					...state.purchasedList,
+					isPurchasedListDataLoaded: value,
 				},
 			})),
-		resetPaidItem: () => set(initialState),
+		resetPurchasedList: () => set(initialState),
 	}),
 )

@@ -1,14 +1,26 @@
-import { MouseEvent } from 'react'
+// import { MouseEvent } from 'react'
+
+import { PaymentStatus } from '../../../../../services/payment/payment-service.types'
 
 import { BillingItemProps } from './billing-item.types'
 import { BillingItemContainer } from './billing-item.styles'
 
-import Button from '../../../../global/button/button.component'
+// import Button from '../../../../global/button/button.component'
+import Chip from '../../../../global/chip/chip.component'
 
 export default function BillingItem(props: BillingItemProps) {
 	const { item } = props
-	const { product_title, product_plan, total_price, receipt_url, done_at } =
-		item
+	const {
+		product,
+		order_number,
+		total_price,
+		payment_status,
+		pending,
+		completed,
+		partial_payment,
+		canceled,
+	} = item
+	// const { product_title, product_plan, total_price, receipt_url, done_at } = item
 
 	const formatNumber = (num: number): string => {
 		return num.toLocaleString()
@@ -16,34 +28,65 @@ export default function BillingItem(props: BillingItemProps) {
 
 	const getFormattedDate = (date: string): string[] => {
 		const [datePart, timePart] = date.split('T')
-		return [datePart, timePart]
+		const formattedTime = timePart.split('.')[0]
+		return [datePart, formattedTime]
 	}
 
-	const handleSeeReceipt = (e: MouseEvent<HTMLButtonElement>) =>
-		window.open(receipt_url, '_blank', 'noopener,noreferrer')
+	const getPaymentStatusDescription = (status: PaymentStatus) => {
+		switch (status) {
+			case 'PENDING':
+				return '주문 진행중'
+			case 'COMPLETED':
+				return '결제 완료'
+			case 'PARTIAL_PAYMENT':
+				return '부분 결제'
+			case 'CANCELED':
+				return '주문 취소'
+		}
+	}
+
+	const getPaymentDate = (status: PaymentStatus) => {
+		switch (status) {
+			case 'PENDING':
+				return `주문 요청일: ${getFormattedDate(pending)[0]} ${
+					getFormattedDate(pending)[1]
+				}`
+			case 'COMPLETED':
+				return `주문 완료일: ${getFormattedDate(completed)[0]} ${
+					getFormattedDate(completed)[1]
+				}`
+			case 'PARTIAL_PAYMENT':
+				return `부분 결제일: ${getFormattedDate(partial_payment)[0]} ${
+					getFormattedDate(partial_payment)[1]
+				}`
+			case 'CANCELED':
+				return `주문 취소일: ${getFormattedDate(canceled)[0]} ${
+					getFormattedDate(canceled)[1]
+				}`
+		}
+	}
 
 	return (
 		<BillingItemContainer>
 			<div className="text-container">
-				{done_at ? (
-					<span className="caption">
-						{getFormattedDate(done_at)[0]} {getFormattedDate(done_at)[1]}
-					</span>
-				) : null}
-				<p className="subheading">
-					{product_title} | {product_plan}
-				</p>
+				<span className="caption">주문번호: {order_number}</span>
+				{/* {done_at ? (
+					
+				) : null} */}
+				<div className="subheading-container">
+					<p className="subheading">
+						{product.title} | {product.plan}
+					</p>
+					<Chip
+						appearance="neutral"
+						hierarchy="secondary"
+						text={getPaymentStatusDescription(payment_status)}
+						className="subheading-chip"
+					/>
+				</div>
 				<p className="body">₩{formatNumber(Number(total_price))}</p>
+				<span className="caption">{getPaymentDate(payment_status)}</span>
 			</div>
-			<Button
-				text="영수증"
-				appearance="neutral"
-				hierarchy="tertiary"
-				stroke="filled"
-				shape="rounding"
-				size="sm"
-				handleClick={handleSeeReceipt}
-			/>
 		</BillingItemContainer>
 	)
 }

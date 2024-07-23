@@ -6,8 +6,8 @@ import {
 	CheckCouponResponse,
 	PurchaseProductPayload,
 	PurchaseProductResponse,
-	SubscribedItem,
-	PaidItem,
+	GetPurchasesResponse,
+	GetPurchasedProductsResponse,
 } from './payment-service.types'
 
 /**
@@ -63,16 +63,14 @@ export const purchaseProduct = async ({
 }
 
 /**
- * 사용자의 구독 아이템 정보를 가져옵니다.
+ * 사용자가 결제한 상품 리스트를 가져오는 비동기 함수
  *
- * @returns {Promise<SubscribedItem>} 구독 아이템 정보를 담은 Promise 객체
- * @throws {Error} API 요청 실패 시 에러를 던집니다.
+ * @returns {Promise<GetPurchasesResponse>} 결제한 상품 리스트를 담은 Promise
+ * @throws {Error} API 요청 실패 시 발생하는 에러
  */
-export const getUserSubscribedItemData = async (): Promise<
-	SubscribedItem[]
-> => {
+export const getPurchases = async (): Promise<GetPurchasesResponse> => {
 	try {
-		const response = await axiosInstance.get('/users/me/subscriptions')
+		const response = await axiosInstance.get('/users/me/purchases')
 		const { data } = response.data
 		return data
 	} catch (error) {
@@ -81,18 +79,18 @@ export const getUserSubscribedItemData = async (): Promise<
 }
 
 /**
- * 사용자의 결제 아이템 목록을 가져옵니다.
+ * 사용자가 구매한 상품 리스트를 가져오는 비동기 함수
  *
- * @returns {Promise<PaidItem[]>} 결제 아이템 목록을 담은 Promise 객체
- * @throws {Error} API 요청 실패 시 에러를 던집니다.
+ * @returns {Promise<GetPurchasesResponse>} 구매한 상품 리스트를 담은 Promise
+ * @throws {Error} API 요청 실패 시 발생하는 에러
  */
-export const getUserPaidItemData = async (): Promise<PaidItem[]> => {
-	try {
-		// TODO: 추후 수정 필요
-		const response = await axiosInstance.get('/users/me/payments')
-		const { data } = response.data
-		return data
-	} catch (error) {
-		throw new Error(handleError(error))
+export const getPurchasedProducts =
+	async (): Promise<GetPurchasedProductsResponse> => {
+		try {
+			const response = await axiosInstance.get('/users/me/purchased-products')
+			const { data } = response.data
+			return data
+		} catch (error) {
+			throw new Error(handleError(error))
+		}
 	}
-}

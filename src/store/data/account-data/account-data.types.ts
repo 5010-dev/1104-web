@@ -1,25 +1,25 @@
 import {
-	SubscribedItem,
-	PaidItem,
+	PurchasesListItem,
+	PurchasedListItem,
 } from '../../../services/payment/payment-service.types'
 
 export interface AccountDataState {
-	subscribedItem: {
-		subscribedItemData: SubscribedItem[]
-		isSubscribedItemDataLoaded: boolean
+	purchasesList: {
+		purchasesListData: PurchasesListItem[]
+		isPurchasesListDataLoaded: boolean
 	}
-	paidItem: {
-		paidItemData: PaidItem[]
-		isPaidItemDataLoaded: boolean
+	purchasedList: {
+		purchasedListData: PurchasedListItem[]
+		isPurchasedListDataLoaded: boolean
 	}
 }
 
 export interface AccounDataAction {
-	updateSubscribedItemData: (data: SubscribedItem[]) => void
-	updateIsSubscribedItemDataLoaded: (value: boolean) => void
-	resetSubscribedItem: () => void
+	updatePurchasesListData: (data: PurchasesListItem[]) => void
+	updateIsPurchasesListDataLoaded: (value: boolean) => void
+	resetPurchasesList: () => void
 
-	updatePaidItemData: (data: PaidItem[]) => void
-	updateIsPaidItemDataLoaded: (value: boolean) => void
-	resetPaidItem: () => void
+	updatePurchasedListData: (data: PurchasedListItem[]) => void
+	updateIsPurchasedListDataLoaded: (value: boolean) => void
+	resetPurchasedList: () => void
 }
