@@ -1,11 +1,8 @@
-// import { MouseEvent } from 'react'
-
 import { PaymentStatus } from '../../../../../services/payment/payment-service.types'
 
 import { BillingItemProps } from './billing-item.types'
 import { BillingItemContainer } from './billing-item.styles'
 
-// import Button from '../../../../global/button/button.component'
 import Chip from '../../../../global/chip/chip.component'
 
 export default function BillingItem(props: BillingItemProps) {
@@ -20,7 +17,6 @@ export default function BillingItem(props: BillingItemProps) {
 		partial_payment,
 		canceled,
 	} = item
-	// const { product_title, product_plan, total_price, receipt_url, done_at } = item
 
 	const formatNumber = (num: number): string => {
 		return num.toLocaleString()
@@ -69,10 +65,9 @@ export default function BillingItem(props: BillingItemProps) {
 	return (
 		<BillingItemContainer>
 			<div className="text-container">
-				<span className="caption">주문번호: {order_number}</span>
-				{/* {done_at ? (
-					
-				) : null} */}
+				<span className="caption order-number-caption">
+					주문번호: {order_number}
+				</span>
 				<div className="subheading-container">
 					<p className="subheading">
 						{product.title} | {product.plan}
@@ -85,7 +80,9 @@ export default function BillingItem(props: BillingItemProps) {
 					/>
 				</div>
 				<p className="body">₩{formatNumber(Number(total_price))}</p>
-				<span className="caption">{getPaymentDate(payment_status)}</span>
+				<span className="caption date-caption">
+					{getPaymentDate(payment_status)}
+				</span>
 			</div>
 		</BillingItemContainer>
 	)

@@ -28,13 +28,23 @@ export const BillingItemContainer = styled.div`
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
+		span.order-number-caption {
+			font-weight: normal;
+		}
+
+		span.date-caption {
+			color: ${({ theme }) =>
+				getColour(theme, 'neutral', 'secondary', 'inactive')};
+		}
+
 		div.subheading-container {
 			width: ${({ theme }) => theme.layout.container.width};
 
 			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
+			justify-content: flex-start;
 			align-items: center;
+			gap: 0.5rem;
 
 			p.subheading {
 				${({ theme }) => getTypography(theme, 'subheading')}
