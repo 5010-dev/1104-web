@@ -26,5 +26,5 @@ export type Product = {
 	badges: string[]
 	overviews: string[]
 	thumbnail_image_url: string
-	is_subscribed: boolean
+	is_purchased: boolean
 }
