@@ -8,7 +8,7 @@ import { useDeviceTypeStore } from '../../../../store/deviceTypeStore'
 import { usePreOrderContentsStore } from '../../../../store/contents/preOrderContentsStore'
 import { useToastMessageStore } from '../../../../store/globalUiStore'
 import { useLoadingStore } from '../../../../store/loadingStore'
-import { useEventReferralStore } from '../../../../store/eventReferralStore'
+// import { useEventReferralStore } from '../../../../store/eventReferralStore'
 import useNavigateWithScroll from '../../../../hooks/useNavigateWithScroll'
 import useFadeIn from '../../../../hooks/useFadeIn'
 
@@ -28,7 +28,7 @@ export default function PreOrderForm() {
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
 	const { heading, mockupImg, body, terms, agreement, event } =
 		usePreOrderContentsStore((state) => state.formData)
-	const { code } = useEventReferralStore()
+	// const { code } = useEventReferralStore()
 	const navigate = useNavigateWithScroll()
 
 	const [email, setEmail] = useState<string>('')
@@ -66,10 +66,7 @@ export default function PreOrderForm() {
 		updateIsLoading(true)
 
 		try {
-			const emailList =
-				code === '59420'
-					? process.env.REACT_APP_STIBEE_CO_OP_EMAIL_LIST_ID
-					: process.env.REACT_APP_STIBEE_EMAIL_LIST_ID
+			const emailList = process.env.REACT_APP_STIBEE_CO_OP_EMAIL_LIST_ID
 
 			const response = await axios.post(
 				`https://api.stibee.com/v1/lists/${emailList}/subscribers`,
