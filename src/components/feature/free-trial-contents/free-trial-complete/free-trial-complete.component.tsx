@@ -33,7 +33,7 @@ export default function FreeTrialComplete() {
 				hierarchy="secondary"
 				stroke="filled"
 				shape="rounding"
-				text="홈으로 돌아가기 →"
+				text="← 홈으로 돌아가기"
 				handleClick={handleGoHome}
 			/>
 		</FreeTrialCompleteContainer>
