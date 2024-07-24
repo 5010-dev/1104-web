@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import logoImage from '../../../assets/logo/1104-logo-white.svg'
+import logoImage from '../../../assets/logo/5010-logo-white.svg'
 
 import { FooterContentsState } from './footer-contents.types'
 

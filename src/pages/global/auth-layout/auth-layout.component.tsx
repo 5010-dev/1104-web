@@ -12,7 +12,7 @@ import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 import { AuthLayoutProps } from './auth-layout.types'
 import { AuthLayoutContainer, AuthGlobalStyle } from './auth-layout.styles'
 
-import logoUrl from '../../../assets/logo/1104-logo-white.svg'
+import logoUrl from '../../../assets/logo/5010-logo-white.svg'
 import Card from '../../../components/global/card/card.component'
 
 export default function AuthLayout(props: AuthLayoutProps) {

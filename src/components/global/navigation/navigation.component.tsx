@@ -12,7 +12,7 @@ import useOnClickOutside from '../../../hooks/use-on-click-outside'
 
 import { NavigationContainer } from './navigation.styles'
 
-import { ReactComponent as Logo } from '../../../assets/logo/1104-logo-white.svg'
+import { ReactComponent as Logo } from '../../../assets/logo/5010-logo-white.svg'
 import NavigationMenu from '../../feature/navigation-menu/navigation-menu.component'
 // import RegistrationRequiredBanner from '../../feature/registration-required-banner/registration-required-banner.component'
 
