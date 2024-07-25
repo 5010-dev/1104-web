@@ -145,7 +145,7 @@ export default function FreeTrialForm() {
 				<TextLink
 					id="pre-order-terms-see-details"
 					size="sm"
-					description="개인정보 제공 동의 : 1104 R&I 이벤트 "
+					description="개인정보 제공 동의 : TEAM 5010 이벤트 "
 					text="상세보기"
 					handleClick={handleShowTerms}
 					appearance="neutral"

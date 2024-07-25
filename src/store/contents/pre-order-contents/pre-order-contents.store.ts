@@ -10,16 +10,16 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 		launchingDate: new Date('2024-08-31T00:00:00Z'),
 		title: {
 			heading: 'QUANT SOLUTION',
-			subheading: '1104 R&I 퀀트 솔루션 | 지금 바로 구매 가능',
+			subheading: 'TEAM 5010 퀀트 솔루션 | 지금 바로 구매 가능',
 			eventName: '런칭 감사 이벤트',
 			eventPeriod: '2024. 07. 10. - 2024. 08. 31.',
 		},
 		service: {
 			caption: '사전예약 진행중',
 			heading: '르네상스 퀀트 솔루션',
-			subheading: 'Devloped & Provided by 1104 R&I',
+			subheading: 'Devloped & Provided by TEAM 5010',
 			body: [
-				'1104 R&I가 새롭게 선보이는 르네상스 퀀트 솔루션은 리스크 관리에 초점을 맞춘 개량적 투자 전략과 자동 매매 시스템을 제공합니다.',
+				'TEAM 5010이 새롭게 선보이는 르네상스 퀀트 솔루션은 리스크 관리에 초점을 맞춘 개량적 투자 전략과 자동 매매 시스템을 제공합니다.',
 				'저위험 및 스윙 전략을 통해 안정적인 복리 수익을 달성하고, 장기적인 관점에서의 투자를 지향합니다.',
 			],
 		},
@@ -32,7 +32,7 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 			heading: '런칭 감사 이벤트',
 			mockupImg: freeTrialMockupImg,
 			body: ['이벤트 신청만 해도 전자책 체험판을 드려요!', '정상가 100,000원'],
-			terms: '개인정보 제공 동의: 1104 R&I 이벤트',
+			terms: '개인정보 제공 동의: TEAM 5010 이벤트',
 			agreement:
 				'내용을 확인하였으며, 이벤트 참여를 위해 정보 제공 등에 동의합니다.',
 			event: [

@@ -10,7 +10,7 @@ export const useExchangePromotionDataStore = create<ExchangePromotionDataState>(
 		},
 		subPromotion: [
 			{
-				benefit: '1104 R&I 커뮤니티 대회',
+				benefit: 'TEAM 5010 커뮤니티 대회',
 				description: '대회 수상자 상금 지급',
 			},
 			{

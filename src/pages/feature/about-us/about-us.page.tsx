@@ -43,7 +43,7 @@ export default function AboutUs() {
 				<div id="letter-to-investors">
 					<div id="show-letter-button-container">
 						<span id="show-letter-button-caption">
-							1104 R&I와 함께해 주신, 그리고 또 앞으로도 함께해주실
+							TEAM 5010과 함께해 주신, 그리고 또 앞으로도 함께해주실
 						</span>
 						<Button
 							id="show-letter-button"

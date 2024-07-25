@@ -31,7 +31,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 		text: {
 			heading:
 				'우리는 모든 투자자들이 사용할 수 있는 전략적 투자 시스템을 만들고 있어요.',
-			body: '1104 R&I는 교육과 IT 기술을 접목, 각 분야의 전문가들과 함께 투자 시장의 모든 것을 총망라한 5010 매매 전략을 개발하고 보급했어요. 나아가 1104 R&I는 최신 기술과 응용 수학을 통해 획기적인 계량적 투자 시스템을 만들고자 노력하고 있어요.',
+			body: 'TEAM 5010은 교육과 IT 기술을 접목, 각 분야의 전문가들과 함께 투자 시장의 모든 것을 총망라한 5010 매매 전략을 개발하고 보급했어요. 나아가 TEAM 5010은 최신 기술과 응용 수학을 통해 획기적인 계량적 투자 시스템을 만들고자 노력하고 있어요.',
 			caption: '2023. 3. ~ 현재까지',
 		},
 		items: [
@@ -70,7 +70,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 			{
 				imgUrl: serviceImage3,
 				id: null,
-				caption: '1104 R&I 공식 커뮤니티',
+				caption: 'TEAM 5010 공식 커뮤니티',
 				heading: '투자는 단거리 경주가 아닌 끝없는 마라톤',
 				body: '여러분이 초심을 잃지 않고 나아갈 수 있도록, 잘못된 투자 방식 교정과 동기부여 지속 제공을 통해 페이스 페이커가 되어 여러분과 함께 합니다.',
 				buttonText: '커뮤니티 참여하기 →',
@@ -78,7 +78,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 		],
 	},
 	achievement: {
-		heading: '1104 R&I가 지금까지 달성한 성과들',
+		heading: 'TEAM 5010이 지금까지 달성한 성과들',
 		items: [
 			{
 				caption: '2023 KMONG AWARDS',
@@ -107,7 +107,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 		],
 	},
 	result: {
-		heading: '1104 R&I를 만나고 달라진 투자자들',
+		heading: 'TEAM 5010을 만나고 달라진 투자자들',
 		items: [
 			{
 				voice:
@@ -142,7 +142,7 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 				result: '200%',
 				note: '1주간 $15,000 수익',
 				comment:
-					'기본기가 탄탄한 수강생이 1104 R&I를 만나면 그 시너지는 더욱 극대화될 수 있습니다.',
+					'기본기가 탄탄한 수강생이 TEAM 5010을 만나면 그 시너지는 더욱 극대화될 수 있습니다.',
 				linkUrl: '',
 			},
 			{
@@ -221,9 +221,9 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 	community: {
 		image: communityImage,
 		text: {
-			caption: 'JOIN 1104 R&I TODAY',
+			caption: 'JOIN TEAM 5010 TODAY',
 			heading: '커뮤니티에 참여하고 최신 정보를 받아보세요.',
-			body: '아래 버튼을 클릭하시면 1104 R&I 공식 텔레그램 커뮤니티로 이동합니다.',
+			body: '아래 버튼을 클릭하시면 TEAM 5010 공식 텔레그램 커뮤니티로 이동합니다.',
 		},
 		linkUrl: '',
 	},
