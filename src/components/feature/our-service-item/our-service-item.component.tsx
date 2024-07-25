@@ -53,32 +53,30 @@ export default function OurServiceItem(props: OurServiceItemProps) {
 				</div>
 
 				<div className="our-service-item-buttons-container">
-					<Button
-						className="our-service-item-button"
-						accessibleName="our-service-item-buttons-container"
-						appearance="neutral"
-						hierarchy="secondary"
-						stroke="outlined"
-						shape="rounding"
-						text="서비스 자세히 보기 →"
-						handleClick={handleSeeDetails}
-					/>
 					{freeTrial || whitePaper ? (
 						<Button
 							className="our-service-item-button"
 							accessibleName="our-service-item-buttons-container"
 							appearance="neutral"
 							hierarchy="secondary"
-							stroke="filled"
+							stroke="outlined"
 							shape="rounding"
 							text={
-								freeTrial
-									? '무료 체험판 신청하기 →'
-									: '퀀트 R&D 백서 보러가기 →'
+								freeTrial ? '무료 체험판 신청하기 →' : '퀀트 R&D 백서 보기 →'
 							}
 							handleClick={freeTrial ? handleFreeTrial : handleSeeWhitePaper}
 						/>
 					) : null}
+					<Button
+						className="our-service-item-button"
+						accessibleName="our-service-item-buttons-container"
+						appearance="neutral"
+						hierarchy="secondary"
+						stroke="filled"
+						shape="rounding"
+						text="서비스 자세히 보기 →"
+						handleClick={handleSeeDetails}
+					/>
 				</div>
 			</div>
 		</OurServiceItemContainer>
