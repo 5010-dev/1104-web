@@ -28,3 +28,14 @@ export type Product = {
 	thumbnail_image_url: string
 	is_purchased: boolean
 }
+
+export type Faq = {
+	id: number
+	image_url: string
+	title: string
+	description: string
+	details: string[]
+	order: number
+}
+
+export type GetProductFaqsResponse = Faq[]

@@ -5,11 +5,11 @@ import { FrequentQuestionsItemProps } from './frequent-questions-item.types'
 export default function FrequentQuestionsItem(
 	props: FrequentQuestionsItemProps,
 ) {
-	const { heading, body, details } = props
+	const { title, description, details } = props
 
 	return (
 		<Accordion
-			heading={<h3 id="heading">{heading}</h3>}
+			heading={<h3 id="heading">{title}</h3>}
 			body={
 				<>
 					{details ? (
@@ -21,7 +21,7 @@ export default function FrequentQuestionsItem(
 							))}
 						</ul>
 					) : null}
-					<p id="body">{body}</p>
+					<p id="body">{description}</p>
 				</>
 			}
 			container
