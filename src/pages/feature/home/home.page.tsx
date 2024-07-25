@@ -12,6 +12,7 @@ import Review from '../../../components/feature/review/review.component'
 import Subscription from '../../../components/feature/subscription/subscription.component'
 import FrequentQuestions from '../../../components/feature/frequent-questions/frequent-questions.component'
 import Community from '../../../components/feature/community/community.component'
+import WhitePaperBanner from '../../../components/feature/white-paper-banner/white-paper-banner.component'
 import EventBanner from '../../../components/feature/event-banner/event-banner.component'
 
 import { HomeContainer } from './home.styles'
@@ -54,7 +55,10 @@ export default function Home() {
 			</div>
 			<Subscription ref={ref} />
 			<FrequentQuestions variant="INDICATOR" showTabs />
-			<Community />
+			<div id="banners-container">
+				<WhitePaperBanner />
+				<Community />
+			</div>
 		</HomeContainer>
 	)
 }

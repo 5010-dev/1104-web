@@ -24,8 +24,8 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 					return '19rem'
 				case 'tablet':
 					return '21rem'
-				case 'mobile':
-					return '24rem'
+				// case 'mobile':
+				// 	return '24rem'
 			}
 		}};
 
