@@ -7,9 +7,9 @@ export default function Chip(props: ChipProps) {
 	const {
 		appearance,
 		hierarchy,
-		stroke,
-		shape,
-		size,
+		stroke = 'filled',
+		shape = 'rounded3',
+		size = 'sm',
 		inverted = false,
 		text,
 		id,

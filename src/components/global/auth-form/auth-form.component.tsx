@@ -7,7 +7,7 @@ import { AuthFormProps, AuthValidity } from './ayth-form.types'
 import { AuthFormContainer } from './auth-form.styles'
 
 import Input from '../../global/input/input.component'
-import SellerCodeInput from '../../feature/seller-code-input/seller-code-input.component'
+// import SellerCodeInput from '../../feature/seller-code-input/seller-code-input.component'
 import Button from '../../global/button/button.component'
 import WarningText from '../../feature/warning-text/warning-text.component'
 import TextLink from '../text-link/text-link.component'
@@ -20,7 +20,7 @@ export default function AuthForm(props: AuthFormProps) {
 		handleAuthSubmit,
 		children,
 		textLink,
-		sellerCodeInput,
+		// sellerCodeInput,
 	} = props
 
 	const { email, password, updateAuthData } = useAuthDataStore()
@@ -139,7 +139,8 @@ export default function AuthForm(props: AuthFormProps) {
 							handleReset={() => handleInputReset('retypedPassword')}
 						/>
 					) : null}
-					{sellerCodeInput ? <SellerCodeInput /> : null}
+					{/* NOTE: 국내 버전에서는 셀러 코드 입력 생략 ↓ */}
+					{/* {sellerCodeInput ? <SellerCodeInput /> : null} */}
 					<Button
 						id="submit-button"
 						type="submit"

@@ -1,3 +1,16 @@
+type Service = {
+	caption: string
+	heading: string
+	subheading: string
+	body: string[]
+}
+
+type Notification = {
+	imageUrl: string
+	quote: string[]
+	body: string
+}
+
 type Event = {
 	heading: string
 	subheading: string[]
@@ -9,21 +22,24 @@ type Event = {
 	caption?: string[]
 }
 
+type FormData = {
+	heading: string
+	mockupImg: string
+	body: string[]
+	terms: string
+	agreement: string
+	event: Event[]
+}
+
 export interface PreOrderContentsState {
 	launchingDate: Date
 	title: {
 		heading: string
 		subheading: string
+		eventName: string
+		eventPeriod: string
 	}
-	formData: {
-		caption: string
-		heading: string
-		subheading: string
-		body: string[]
-		event: Event[]
-	}
-	detailsData: {
-		heading: string
-		body: string
-	}
+	service: Service
+	notification: Notification
+	formData: FormData
 }

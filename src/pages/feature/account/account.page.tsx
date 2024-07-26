@@ -8,8 +8,8 @@ import { useLoadingStore } from '../../../store/layout/loading.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import {
-	getUserSubscribedItemData,
-	getUserPaidItemData,
+	getPurchases,
+	getPurchasedProducts,
 } from '../../../services/payment/payment-service'
 import { getHelp } from '../../../utils/customer-service.utils'
 
@@ -27,12 +27,12 @@ export default function Account() {
 	const navigate = useNavigateWithScroll()
 
 	const {
-		updateSubscribedItemData,
-		updateIsSubscribedItemDataLoaded,
-		resetSubscribedItem,
-		updatePaidItemData,
-		updateIsPaidItemDataLoaded,
-		resetPaidItem,
+		updatePurchasesListData,
+		updateIsPurchasesListDataLoaded,
+		resetPurchasesList,
+		updatePurchasedListData,
+		updateIsPurchasedListDataLoaded,
+		resetPurchasedList,
 	} = useAccountDataStore()
 
 	const handleCustomerServiceLink = (e: MouseEvent<HTMLSpanElement>) => {
@@ -53,20 +53,20 @@ export default function Account() {
 				try {
 					updateIsLoading(true)
 
-					const [subscribedItemData, paidItemData] = await Promise.all([
-						getUserSubscribedItemData(),
-						getUserPaidItemData(),
+					const [purchaseListData, purchasedListData] = await Promise.all([
+						getPurchases(),
+						getPurchasedProducts(),
 					])
 
-					updateSubscribedItemData(subscribedItemData)
-					updateIsSubscribedItemDataLoaded(true)
+					updatePurchasesListData(purchaseListData)
+					updateIsPurchasesListDataLoaded(true)
 
-					updatePaidItemData(paidItemData)
-					updateIsPaidItemDataLoaded(true)
+					updatePurchasedListData(purchasedListData)
+					updateIsPurchasedListDataLoaded(true)
 				} catch (error: any) {
 					console.error('데이터 fetch 중 오류 발생:', error.message)
-					updateIsSubscribedItemDataLoaded(false)
-					updateIsPaidItemDataLoaded(false)
+					updateIsPurchasesListDataLoaded(false)
+					updateIsPurchasedListDataLoaded(false)
 				} finally {
 					updateIsLoading(false)
 				}
@@ -74,21 +74,21 @@ export default function Account() {
 
 			fetchUserData()
 		} else if (userId.length === 0) {
-			resetSubscribedItem()
-			resetPaidItem()
+			resetPurchasesList()
+			resetPurchasedList()
 			navigate(ROUTES.HOME)
 		}
 	}, [
 		userId,
 		navigate,
-		isUserDataLoaded,
-		updateSubscribedItemData,
-		updateIsSubscribedItemDataLoaded,
 		updateIsLoading,
-		resetSubscribedItem,
-		updatePaidItemData,
-		updateIsPaidItemDataLoaded,
-		resetPaidItem,
+		isUserDataLoaded,
+		updatePurchasesListData,
+		updateIsPurchasesListDataLoaded,
+		resetPurchasesList,
+		updatePurchasedListData,
+		updateIsPurchasedListDataLoaded,
+		resetPurchasedList,
 	])
 
 	return (

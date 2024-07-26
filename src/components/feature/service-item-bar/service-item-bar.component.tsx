@@ -55,15 +55,15 @@ export default function ServiceItemBar(props: ServiceItemBarProps) {
 				<Button
 					id="service-item-bar-button"
 					accessibleName="service-item-bar-container"
-					appearance={item.is_subscribed ? 'neutral' : 'accent'}
+					appearance={item.is_purchased ? 'neutral' : 'accent'}
 					hierarchy="primary"
 					stroke="filled"
 					shape="rounding"
 					icon={<FontAwesomeIcon icon={faCreditCard} />}
-					text={item.is_subscribed ? '서비스 이용중' : '서비스 구매하기'}
+					text={item.is_purchased ? '서비스 이용중' : '서비스 구매하기'}
 					size={deviceType === 'mobile' ? 'md' : 'sm'}
 					handleClick={handleCheckout}
-					disabled={item.is_subscribed}
+					disabled={item.is_purchased}
 				/>
 			</div>
 		</ServiceItemBarContainer>

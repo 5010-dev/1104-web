@@ -3,7 +3,7 @@ import { getTypography } from '../../../../../utils/typo.utils'
 import { getColour } from '../../../../../utils/colour.utils'
 
 export const BillingItemContainer = styled.div`
-	width: ${({ theme }) => theme.layout.component.width};
+	width: ${({ theme }) => theme.layout.container.width};
 
 	display: flex;
 	flex-direction: row;
@@ -13,6 +13,8 @@ export const BillingItemContainer = styled.div`
 	padding: ${({ theme }) => `${theme.layout.component.padding.sm} 0`};
 
 	div.text-container {
+		width: ${({ theme }) => theme.layout.container.width};
+
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -26,10 +28,33 @@ export const BillingItemContainer = styled.div`
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
-		p.subheading {
-			${({ theme }) => getTypography(theme, 'subheading')}
+		span.order-number-caption {
+			font-weight: normal;
+		}
+
+		span.date-caption {
 			color: ${({ theme }) =>
-				getColour(theme, 'neutral', 'secondary', 'active')};
+				getColour(theme, 'neutral', 'secondary', 'inactive')};
+		}
+
+		div.subheading-container {
+			width: ${({ theme }) => theme.layout.container.width};
+
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+			gap: 0.5rem;
+
+			p.subheading {
+				${({ theme }) => getTypography(theme, 'subheading')}
+				color: ${({ theme }) =>
+					getColour(theme, 'neutral', 'secondary', 'active')};
+			}
+
+			.subheading-chip {
+				flex: 0 0 auto;
+			}
 		}
 
 		p.body {

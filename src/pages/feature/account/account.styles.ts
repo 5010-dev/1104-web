@@ -13,7 +13,7 @@ export const AccountContainer = styled(PageLayoutContainer)`
 
 	div#contents-container {
 		width: ${({ theme }) => theme.layout.section.width};
-		max-width: ${({ theme }) => theme.layout.section.maxWidth};
+		max-width: ${({ theme }) => theme.layout.container.maxWidth};
 
 		margin-top: ${({ $deviceType }) =>
 			$deviceType === 'mobile' ? '6rem' : '10rem'};

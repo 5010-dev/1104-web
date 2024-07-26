@@ -1,14 +1,10 @@
 import { MouseEvent, useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useLocation } from 'react-router-dom'
 import { ROUTES } from '../../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../../store/layout/device-type.store'
 import { useToastMessageStore } from '../../../../store/layout/global-ui.store'
 import { useLoadingStore } from '../../../../store/layout/loading.store'
-import {
-	confirmPayment,
-	proceedPayment,
-} from '../../../../services/payment/payment-service'
 import useNavigateWithScroll from '../../../../hooks/use-navigate-with-scroll'
 
 import {
@@ -16,6 +12,7 @@ import {
 	CheckoutSuccessSectionContainer,
 } from './checkout-success.styles'
 
+import Chip from '../../../../components/global/chip/chip.component'
 import Button from '../../../../components/global/button/button.component'
 import Complete from '../../../../components/global/complete/complete.component'
 import Loading from '../../../../components/global/loading/loading.component'
@@ -25,6 +22,7 @@ export default function CheckoutSuccess() {
 	const { updateToastMessage } = useToastMessageStore()
 	const { updateIsLoading } = useLoadingStore()
 	const navigate = useNavigateWithScroll()
+	const location = useLocation()
 	const [searchParams] = useSearchParams()
 	const [isValid, setIsValid] = useState<boolean>(false)
 
@@ -33,12 +31,11 @@ export default function CheckoutSuccess() {
 	// const handleRegistration = (e: MouseEvent<HTMLButtonElement>) =>
 	// 	navigate(ROUTES.REGISTRATION)
 
-	const paymentKey = searchParams.get('paymentKey')
-	const orderId = searchParams.get('orderId')
-	const amount = searchParams.get('amount')
+	const orderNumber = searchParams.get('order_number')
+	const paymentStatus = searchParams.get('payment_status')
 
 	useEffect(() => {
-		if (!paymentKey || !orderId || !amount) {
+		if (!orderNumber || !paymentStatus || location.key === 'default') {
 			updateToastMessage('잘못된 요청입니다.')
 			navigate(ROUTES.HOME)
 			return
@@ -47,23 +44,7 @@ export default function CheckoutSuccess() {
 		const fetchPaymentConfirm = async () => {
 			try {
 				updateIsLoading(true)
-
-				const { code, pg_data } = await confirmPayment({
-					payment_key: paymentKey,
-					order_number: orderId,
-					total_price: amount,
-				})
-
-				if (code === 200) {
-					const response = await proceedPayment({
-						number: orderId,
-						pg_data: pg_data,
-					})
-
-					if (response === 201) {
-						setIsValid(true)
-					}
-				}
+				setIsValid(false)
 			} catch (error) {
 				if (error instanceof Error) {
 					updateToastMessage(error.message)
@@ -75,13 +56,14 @@ export default function CheckoutSuccess() {
 				navigate(ROUTES.HOME)
 			} finally {
 				updateIsLoading(false)
+				setIsValid(true)
 			}
 		}
 		fetchPaymentConfirm()
 	}, [
-		paymentKey,
-		orderId,
-		amount,
+		location,
+		orderNumber,
+		paymentStatus,
 		navigate,
 		updateToastMessage,
 		updateIsLoading,
@@ -95,10 +77,15 @@ export default function CheckoutSuccess() {
 					id="contents-container"
 				>
 					<div id="checkout-success-title-container">
-						<Complete text="결제가 완료되었어요!" />
+						<Complete text="주문이 접수되었어요!" />
+						<Chip
+							appearance="neutral"
+							hierarchy="secondary"
+							text={`주문 번호: ${orderNumber}`}
+						/>
 						<p className="checkout-success-subheading">
-							원활한 서비스 초기 셋팅을 위해 독자님께 전담 배정된 트레이딩
-							어드바이저가 직접 연락드릴 예정이에요.
+							조금만 기다리시면 이메일로 입금 계좌 및 할인 혜택, 그리고 주문
+							정보를 발송해 드릴거에요.
 						</p>
 					</div>
 					<div id="checkout-success-body-container">

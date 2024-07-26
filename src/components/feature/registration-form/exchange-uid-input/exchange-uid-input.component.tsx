@@ -69,7 +69,7 @@ export default function ExchangeUidInput(props: ExchangeUidInputProps) {
 					children={
 						<>
 							<Card>
-								1104 R&I에서 제공하는 혜택을 받기 위해서는 바이비트 거래소에
+								TEAM 5010에서 제공하는 혜택을 받기 위해서는 바이비트 거래소에
 								가입해야 합니다. 아래의 가이드를 따라 바이비트 거래소 가입을
 								진행해 주세요.
 							</Card>
@@ -110,7 +110,7 @@ export default function ExchangeUidInput(props: ExchangeUidInputProps) {
 						id="exchange-registration-icon"
 					/>
 				}
-				text={`${defaultExchange.toUpperCase()} 거래소 신규 가입하고 1104 R&I가 제공하는 혜택 받기`}
+				text={`${defaultExchange.toUpperCase()} 거래소 신규 가입하고 TEAM 5010이 제공하는 혜택 받기`}
 				handleClick={() => setIsRegistrationClicked(true)}
 			/>
 			{!isValid && uid.length !== 0 ? (

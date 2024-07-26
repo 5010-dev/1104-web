@@ -7,8 +7,10 @@ export type OurServiceItemProps = {
 	features: string[]
 	body: string[]
 	freeTrial: boolean
+	whitePaper: boolean
 	handleSeeDetails: (e: MouseEvent<HTMLButtonElement>) => void
 	handleFreeTrial?: (e: MouseEvent<HTMLButtonElement>) => void
+	handleSeeWhitePaper?: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
 export type OurServiceItemContainerProps = {

@@ -8,7 +8,7 @@ import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
 import { FreeTrialTopBarContainer } from './free-trial-top-bar.styles'
 
-import { ReactComponent as Logo } from '../../../assets/logo/1104-logo-white.svg'
+import { ReactComponent as Logo } from '../../../assets/logo/5010-logo-white.svg'
 
 export default function FreeTrialTopBar() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)

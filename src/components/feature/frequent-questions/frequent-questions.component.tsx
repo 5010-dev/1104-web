@@ -5,6 +5,7 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { useDeviceTypeStore } from '../../../store/layout/device-type.store'
 import { useFaqDataStore } from '../../../store/data/service-data/service-data.store'
 import { FaqList } from '../../../store/data/service-data/service-data.store.types'
+import { getProductFaqs } from '../../../services/product/product-service'
 
 import { getHelp } from '../../../utils/customer-service.utils'
 
@@ -15,13 +16,17 @@ import FrequentQuestionsItem from './frequent-questions-item/frequent-questions-
 import Button from '../../global/button/button.component'
 import TextLink from '../../global/text-link/text-link.component'
 import Card from '../../global/card/card.component'
+import WarningText from '../warning-text/warning-text.component'
 
 export default function FrequentQuestions(props: FrequentQuestionsProps) {
 	const { variant, showTabs } = props
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { indicatorFaq, quantFaq } = useFaqDataStore((state) => state)
+	const { indicatorFaq, quantFaq, updateFaqData } = useFaqDataStore(
+		(state) => state,
+	)
 	const [faqVariant, setFaqVariant] = useState<string>(variant)
 	const [faqList, setFaqList] = useState<FaqList>(indicatorFaq)
+	const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
 
 	const handleGetHelp = (e: MouseEvent<HTMLSpanElement>) => {
 		const subject = '5010 매매 전략 관련 문의사항'
@@ -32,6 +37,28 @@ export default function FrequentQuestions(props: FrequentQuestionsProps) {
 		e: MouseEvent<HTMLButtonElement>,
 		variant: string,
 	) => setFaqVariant(variant)
+
+	useEffect(() => {
+		const fetchFaqData = async () => {
+			try {
+				setIsDataLoaded(false)
+
+				const [indicatorFaqs, quantFaqs] = await Promise.all([
+					getProductFaqs(2),
+					getProductFaqs(3),
+				])
+
+				updateFaqData('indicatorFaq', indicatorFaqs)
+				updateFaqData('quantFaq', quantFaqs)
+			} catch (error: any) {
+				console.log(error.message)
+			} finally {
+				setIsDataLoaded(true)
+			}
+		}
+
+		fetchFaqData()
+	}, [updateFaqData])
 
 	useEffect(() => {
 		switch (faqVariant) {
@@ -88,21 +115,25 @@ export default function FrequentQuestions(props: FrequentQuestionsProps) {
 				</div>
 			) : null}
 
-			<div id="questions-container">
-				{faqList.list.map((item, index) => (
-					<FrequentQuestionsItem
-						key={index}
-						heading={item.heading}
-						body={item.body}
-						details={item.details ? item.details : undefined}
-					/>
-				))}
-				{faqList.disclaimer ? (
-					<Card hierarchy="tertiary" opacity={0.5} id="quetions-disclaimer">
-						{faqList.disclaimer}
-					</Card>
-				) : null}
-			</div>
+			{!isDataLoaded ? (
+				<WarningText message="오류가 발생했습니다. 새로고침하거나 잠시 후 다시 시도해 주세요." />
+			) : (
+				<div id="questions-container">
+					{faqList.list.map((item, index) => (
+						<FrequentQuestionsItem
+							key={index}
+							title={item.title}
+							description={item.description}
+							details={item.details.length !== 0 ? item.details : undefined}
+						/>
+					))}
+					{faqList.disclaimer ? (
+						<Card hierarchy="tertiary" opacity={0.5} id="quetions-disclaimer">
+							{faqList.disclaimer}
+						</Card>
+					) : null}
+				</div>
+			)}
 
 			<TextLink
 				description="그 외에 다른 궁금한 점들이 있으시다면"

@@ -19,9 +19,10 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 		overflow: hidden;
 
 		width: ${({ theme }) => theme.layout.section.width};
-		height: 100vh;
+		height: ${({ $deviceType }) =>
+			$deviceType === 'mobile' ? '100vh' : '100vh'};
 		min-height: ${({ $deviceType }) =>
-			$deviceType === 'mobile' ? '40rem' : '64rem'};
+			$deviceType === 'mobile' ? '45rem' : '64rem'};
 
 		display: flex;
 		flex-direction: column;
@@ -32,6 +33,11 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
+
+		margin-bottom: ${({ theme, $deviceType }) =>
+			$deviceType === 'mobile'
+				? theme.layout.container.gutter
+				: theme.layout.page.gutter};
 
 		&::before {
 			content: '';
@@ -71,10 +77,10 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 			${({ $deviceType }) =>
 				$deviceType === 'mobile'
 					? css`
-							margin-bottom: 1rem;
+							margin-bottom: 4rem;
 					  `
 					: css`
-							margin-top: 5rem;
+							margin-top: 1rem;
 					  `}
 
 			#quant-logo {
@@ -98,7 +104,7 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				transform: translate(-50%, 12.5%);
+				transform: translate(-50%, 7.5%);
 
 				width: ${({ theme }) => theme.layout.container.width};
 
@@ -176,6 +182,48 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 					padding: 0.25rem 0;
 				}
 
+				span#quant-text-display {
+					width: ${({ theme }) => theme.layout.component.width};
+					display: flex;
+					justify-content: space-between;
+
+					margin-top: 1rem;
+
+					${({ theme }) => getTypography(theme, 'display')}
+					font-size: ${({ $deviceType }) =>
+						$deviceType === 'mobile' ? '1.75rem' : '2.5rem'};
+					color: ${({ theme }) =>
+						hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.75,
+						)};
+					${({ theme }) => css`
+						-webkit-filter: drop-shadow(
+							0 0 2rem
+								${hexToRgba(
+									getColour(theme, 'neutral', 'secondary', 'active'),
+									1,
+								)}
+						);
+						filter: drop-shadow(
+							0 0 2rem
+								${hexToRgba(
+									getColour(theme, 'neutral', 'secondary', 'active'),
+									1,
+								)}
+						);
+					`};
+				}
+
+				span#quant-text-caption {
+					width: ${({ theme }) => theme.layout.component.width};
+					display: flex;
+					justify-content: space-between;
+
+					${({ theme }) => getTypography(theme, 'caption')}
+					font-weight: normal;
+				}
+
 				span.quant-text-letter {
 					${({ theme }) => css`
 						-webkit-filter: drop-shadow(
@@ -196,8 +244,21 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 				}
 			}
 
+			p#quant-text-body {
+				${({ theme, $deviceType }) =>
+					getTypography(
+						theme,
+						$deviceType === 'mobile' ? 'subheading' : 'heading3',
+					)}
+				font-size: ${({ $deviceType }) =>
+					$deviceType === 'mobile' && '0.875rem'};
+				margin-bottom: ${({ $deviceType }) =>
+					$deviceType !== 'mobile' ? '-2.5rem' : '-1.5rem'};
+				margin-top: 1.5rem;
+			}
+
 			#down-icon {
-				margin-top: ${({ theme }) => theme.layout.section.gutter};
+				margin-top: ${({ theme }) => theme.layout.container.gutter};
 				font-size: 2rem;
 				opacity: 0.5;
 			}

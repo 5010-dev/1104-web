@@ -4,53 +4,52 @@ export type CheckCouponResponse = {
 	discount_percentage: string
 }
 
-export type CheckoutPayload = {
+export type PurchaseProductPayload = {
 	id: number
-	coupon?: string
+	phone: string
+	username: string
 }
 
-export type CheckoutResponse = {
-	number: string
-	user_uuid: string
-	user_email: string
-	product_title: string
-	total_price: string
-}
-
-export type ConfirmPaymentPayload = {
-	payment_key: string
+export type PurchaseProductResponse = {
+	id: number
 	order_number: string
 	total_price: string
-}
-
-export type ConfirmPaymentResponse = {
-	code: number
-	pg_data: unknown // tosspayments PG data 객체
-}
-
-export type ProceedPaymentPayload = {
-	number: string
-	pg_data: unknown // tosspayments PG data 객체
-}
-
-export type SubscribedItem = {
-	id: number
-	product: number // product ID
-	product_title: string
-	product_plan: string
 	payment_status: string
-	is_setup_completed: boolean
-	started: string
-	ended: string
 }
 
-export type PaidItem = {
+type PurchasedProduct = {
 	id: number
-	product_title: string
-	product_plan: string
-	total_price: string
-	receipt_url: string
-	status: string
-	done_at: string | null
-	cancelled_at: string | null
+	plan: string
+	price: string
+	title: string
+	sub_title: string
+	subscription_price: string
 }
+
+export type PaymentStatus =
+	| 'PENDING'
+	| 'COMPLETED'
+	| 'PARTIAL_PAYMENT'
+	| 'CANCELED'
+
+export type PurchasesListItem = {
+	id: number
+	product: PurchasedProduct
+	order_number: string
+	total_price: string
+	payment_status: PaymentStatus
+	pending: string
+	completed: string
+	partial_payment: string
+	canceled: string
+}
+
+export type GetPurchasesResponse = PurchasesListItem[]
+
+export type PurchasedListItem = {
+	id: number
+	product: PurchasedProduct
+	is_setup_completed: boolean
+}
+
+export type GetPurchasedProductsResponse = PurchasedListItem[]

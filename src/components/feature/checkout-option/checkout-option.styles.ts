@@ -21,6 +21,12 @@ export const CheckoutOptionContainer = styled(StyledSectionContainer)`
 			${({ theme }) => getTypography(theme, 'heading3')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
+
+			.heading-3-chip {
+				display: inline-block;
+				vertical-align: middle;
+				margin-left: 0.5rem;
+			}
 		}
 
 		ul#checkout-options-list {

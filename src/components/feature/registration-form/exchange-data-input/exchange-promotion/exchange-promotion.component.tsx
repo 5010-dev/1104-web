@@ -31,12 +31,12 @@ export default function ExchangePromotion(props: ExchangePromotionProps) {
 			<h1 id="heading">
 				<span>잠깐만요!</span>
 				<br />
-				1104 R&I에서 드리는 혜택이 있어요.
+				TEAM 5010에서 드리는 혜택이 있어요.
 			</h1>
 			<div id="rows-container">
 				<div className="body-rows">
 					<p className="body">
-						1104 R&I는 여러 거래소들과 제휴 협력하여 여러분께 아래와 같이 이용
+						TEAM 5010은 여러 거래소들과 제휴 협력하여 여러분께 아래와 같이 이용
 						혜택을 드리고 있어요.
 					</p>
 					<Card appearance="accent" className="card">

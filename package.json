@@ -11,7 +11,6 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "@tosspayments/payment-widget-sdk": "^0.10.2",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
@@ -61,7 +60,6 @@
     ]
   },
   "devDependencies": {
-    "@tosspayments/payment-widget-types": "^0.0.5",
     "@types/crypto-js": "^4.2.2",
     "@types/styled-components": "^5.1.34"
   }

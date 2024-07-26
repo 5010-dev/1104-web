@@ -9,6 +9,8 @@ import { useServiceDataStore } from '../../../store/data/service-data/service-da
 import { useScrollStore } from '../../../store/layout/global-ui.store'
 import useNavigateWithScroll from '../../../hooks/use-navigate-with-scroll'
 
+import { openWhitePaper } from '../../../utils/external-links.utils'
+
 import { OurServiceContainer } from './our-service.styles'
 
 import Hero from '../../../components/global/hero/hero.component'
@@ -28,6 +30,9 @@ export default function OurService() {
 
 	const handleFreeTrial = (e: MouseEvent<HTMLButtonElement>) =>
 		navigate(ROUTES.FREE_TRIAL)
+
+	const handleSeeWhitePaper = (e: MouseEvent<HTMLButtonElement>) =>
+		openWhitePaper()
 
 	const handleUseService = (e: MouseEvent<HTMLButtonElement>) => {
 		navigate(ROUTES.HOME)
@@ -77,9 +82,11 @@ export default function OurService() {
 								subheading={item.sub_title}
 								body={item.description}
 								freeTrial={item.id === 2 ? true : false}
+								whitePaper={item.id === 3 ? true : false}
 								features={item.labels}
 								handleSeeDetails={(e) => handleNavigate(e, item.id)}
 								handleFreeTrial={handleFreeTrial}
+								handleSeeWhitePaper={handleSeeWhitePaper}
 							/>
 						) : null,
 					)}

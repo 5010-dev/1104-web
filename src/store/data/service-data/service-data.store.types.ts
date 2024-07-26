@@ -1,4 +1,7 @@
-import { ProductListItem } from '../../../services/product/product-service.types'
+import {
+	ProductListItem,
+	Faq,
+} from '../../../services/product/product-service.types'
 
 export interface ServiceDataState {
 	isServiceListDataLoaded: boolean
@@ -14,13 +17,6 @@ export interface ServiceDataAction {
 	updateIsServiceListDataLoaded: (value: boolean) => void
 }
 
-export type Faq = {
-	heading: string
-	body: string
-	details?: string[]
-	image?: string
-}
-
 export type FaqList = {
 	list: Faq[]
 	disclaimer?: string
@@ -29,6 +25,11 @@ export type FaqList = {
 export interface FaqDataState {
 	indicatorFaq: FaqList
 	quantFaq: FaqList
+}
+
+export interface FaqDataAction {
+	updateFaqData: (key: keyof FaqDataState, data: Faq[]) => void
+	// updateIsFaqDataLoaded: (value: boolean) => void
 }
 
 type AssetOption = { title: string; value: string }

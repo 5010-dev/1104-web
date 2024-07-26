@@ -1,7 +1,15 @@
-import { CheckoutResponse } from '../../services/payment/payment-service.types'
+// import { CheckoutResponse } from '../../services/payment/payment-service.types'
+
+type CheckoutData = {
+	data: { name: string; tel: string }
+	isValid: {
+		name: boolean
+		tel: boolean
+	}
+}
 
 export interface PaymentState {
-	checkoutData: CheckoutResponse | undefined
+	checkoutData: CheckoutData
 	coupon: {
 		code: string
 		isValid: boolean | undefined
@@ -10,7 +18,8 @@ export interface PaymentState {
 }
 
 export interface PaymentAction {
-	updateCheckoutData: (data: CheckoutResponse) => void
+	updateCheckoutData: (key: string, value: string) => void
+	updateCheckoutDataValidity: (key: string, value: boolean) => void
 	updateCoupon: (key: string, value: string | boolean) => void
 	updateDiscount: (
 		price: number | undefined,

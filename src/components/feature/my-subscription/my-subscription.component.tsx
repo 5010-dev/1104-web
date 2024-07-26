@@ -11,12 +11,12 @@ export default function MySubscription() {
 	return (
 		<MySubscriptionContainer $deviceType={deviceType}>
 			<div className="container-row">
-				<h2 className="heading-2">구독중인 서비스</h2>
+				<h2 className="heading-2">이용중인 서비스</h2>
 				<SubscribtionList />
 			</div>
 			<hr />
 			<div className="container-row">
-				<h2 className="heading-2">결제 내역</h2>
+				<h2 className="heading-2">주문 내역</h2>
 				<BillingList />
 			</div>
 		</MySubscriptionContainer>

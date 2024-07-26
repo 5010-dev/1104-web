@@ -13,9 +13,11 @@ export default function OurServiceItem(props: OurServiceItemProps) {
 		subheading,
 		body,
 		freeTrial,
+		whitePaper,
 		features,
 		handleSeeDetails,
 		handleFreeTrial,
+		handleSeeWhitePaper,
 	} = props
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
@@ -51,28 +53,30 @@ export default function OurServiceItem(props: OurServiceItemProps) {
 				</div>
 
 				<div className="our-service-item-buttons-container">
-					<Button
-						className="our-service-item-button"
-						accessibleName="our-service-item-buttons-container"
-						appearance="neutral"
-						hierarchy="secondary"
-						stroke="outlined"
-						shape="rounding"
-						text="서비스 자세히 보기 →"
-						handleClick={handleSeeDetails}
-					/>
-					{freeTrial ? (
+					{freeTrial || whitePaper ? (
 						<Button
 							className="our-service-item-button"
 							accessibleName="our-service-item-buttons-container"
 							appearance="neutral"
 							hierarchy="secondary"
-							stroke="filled"
+							stroke="outlined"
 							shape="rounding"
-							text="무료 체험판 신청하기 →"
-							handleClick={handleFreeTrial}
+							text={
+								freeTrial ? '무료 체험판 신청하기 →' : '퀀트 R&D 백서 보기 →'
+							}
+							handleClick={freeTrial ? handleFreeTrial : handleSeeWhitePaper}
 						/>
 					) : null}
+					<Button
+						className="our-service-item-button"
+						accessibleName="our-service-item-buttons-container"
+						appearance="neutral"
+						hierarchy="secondary"
+						stroke="filled"
+						shape="rounding"
+						text="서비스 자세히 보기 →"
+						handleClick={handleSeeDetails}
+					/>
 				</div>
 			</div>
 		</OurServiceItemContainer>

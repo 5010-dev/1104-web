@@ -105,8 +105,8 @@ export const NavigationContainer = styled(motion.header)<Props>`
 				}
 
 				#logo {
-					width: 4rem;
-					height: auto;
+					width: auto;
+					height: 1.75rem;
 				}
 			}
 

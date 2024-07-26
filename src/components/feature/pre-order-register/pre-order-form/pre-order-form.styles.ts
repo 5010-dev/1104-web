@@ -23,11 +23,6 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 	padding: ${({ theme, $deviceType }) =>
 		getDeviceTypePadding(theme, $deviceType, 'section')};
 
-	margin-top: ${({ theme, $deviceType }) =>
-		$deviceType === 'mobile'
-			? theme.layout.container.gutter
-			: theme.layout.section.gutter};
-
 	div#pre-order-form-contents-container {
 		width: ${({ theme }) => theme.layout.container.width};
 
@@ -44,7 +39,7 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			`${theme.layout.section.padding.lg} ${getDeviceTypePadding(
 				theme,
 				$deviceType,
-				'section',
+				'container',
 			)}`};
 
 		z-index: 1;
@@ -79,11 +74,33 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 				line-height: 120%;
 			}
 
-			p.pre-order-form-body {
-				${({ theme }) => getTypography(theme, 'body')}
-				color: ${({ theme }) =>
-					hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.75)};
-				text-align: left;
+			div#pre-order-form-body-container {
+				width: ${({ theme }) => theme.layout.container.width};
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 0.25rem;
+
+				p.pre-order-form-body {
+					${({ theme }) => getTypography(theme, 'subheading')}
+					color: ${({ theme }) =>
+						hexToRgba(
+							getColour(theme, 'neutral', 'secondary', 'active'),
+							0.75,
+						)};
+					text-align: center;
+				}
+
+				img.pre-order-form-mockup-img {
+					width: 12rem;
+					margin-left: 0.25rem;
+				}
+
+				.pre-order-form-body-chip {
+					font-size: 0.875rem;
+				}
 			}
 		}
 
@@ -116,7 +133,11 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 					)}
 
 				padding: ${({ theme, $deviceType }) =>
-					getDeviceTypePadding(theme, $deviceType, 'container')};
+					`${theme.layout.container.padding.lg} ${getDeviceTypePadding(
+						theme,
+						$deviceType,
+						'container',
+					)}`};
 
 				.quant-pre-order-event-chip {
 					font-size: 1rem;
@@ -236,7 +257,8 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 
 			.quant-pre-order-input {
 				width: ${({ theme }) => theme.layout.component.width};
-				max-width: 28rem;
+				max-width: ${({ $deviceType }) =>
+					$deviceType === 'mobile' ? '18rem' : '20rem'};
 			}
 
 			p#quant-pre-oder-button-description {
@@ -250,6 +272,8 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			#quant-pre-order-button {
 				width: 100%;
 				max-width: 12rem;
+
+				margin-bottom: ${({ theme }) => theme.layout.section.gutter};
 
 				${({ theme }) => css`
 					-webkit-filter: drop-shadow(
