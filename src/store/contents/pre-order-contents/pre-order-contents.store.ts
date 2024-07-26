@@ -15,7 +15,7 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 			eventPeriod: '2024. 07. 10. - 2024. 08. 31.',
 		},
 		service: {
-			caption: '사전예약 진행중',
+			caption: '지금 바로 구매 | 이용 가능',
 			heading: '르네상스 퀀트 솔루션',
 			subheading: 'Devloped & Provided by TEAM 5010',
 			body: [
