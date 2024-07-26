@@ -1,5 +1,7 @@
 import { PaymentStatus } from '../../../../../services/payment/payment-service.types'
 
+import { getFormattedDate } from '../../../../../utils/date.utils'
+
 import { BillingItemProps } from './billing-item.types'
 import { BillingItemContainer } from './billing-item.styles'
 
@@ -20,12 +22,6 @@ export default function BillingItem(props: BillingItemProps) {
 
 	const formatNumber = (num: number): string => {
 		return num.toLocaleString()
-	}
-
-	const getFormattedDate = (date: string): string[] => {
-		const [datePart, timePart] = date.split('T')
-		const formattedTime = timePart.split('.')[0]
-		return [datePart, formattedTime]
 	}
 
 	const getPaymentStatusDescription = (status: PaymentStatus) => {
