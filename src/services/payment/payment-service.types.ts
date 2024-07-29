@@ -42,6 +42,13 @@ export type PurchasesListItem = {
 	completed: string
 	partial_payment: string
 	canceled: string
+	installments: Installment[]
+}
+
+export type Installment = {
+	number: number
+	price: string
+	is_paid: boolean
 }
 
 export type GetPurchasesResponse = PurchasesListItem[]
