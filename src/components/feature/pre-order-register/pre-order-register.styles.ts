@@ -22,7 +22,7 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 		height: ${({ $deviceType }) =>
 			$deviceType === 'mobile' ? '100vh' : '100vh'};
 		min-height: ${({ $deviceType }) =>
-			$deviceType === 'mobile' ? '45rem' : '64rem'};
+			$deviceType === 'mobile' ? '46rem' : '64rem'};
 
 		display: flex;
 		flex-direction: column;
@@ -77,7 +77,7 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 			${({ $deviceType }) =>
 				$deviceType === 'mobile'
 					? css`
-							margin-bottom: 4rem;
+							margin-bottom: 6rem;
 					  `
 					: css`
 							margin-top: 1rem;
@@ -147,7 +147,7 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 					justify-content: space-between;
 				}
 
-				span#quant-text-subheading {
+				span.quant-text-subheading {
 					width: 100%;
 
 					${({ theme }) => getTypography(theme, 'subheading')}
@@ -187,7 +187,7 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 					display: flex;
 					justify-content: space-between;
 
-					margin-top: 1rem;
+					/* margin-top: 1rem; */
 
 					${({ theme }) => getTypography(theme, 'display')}
 					font-size: ${({ $deviceType }) =>
@@ -215,7 +215,7 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 					`};
 				}
 
-				span#quant-text-caption {
+				span.quant-text-caption {
 					width: ${({ theme }) => theme.layout.component.width};
 					display: flex;
 					justify-content: space-between;
@@ -241,6 +241,10 @@ export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 								)}
 						);
 					`}
+				}
+
+				span#affiliate-text {
+					margin-top: 1rem;
 				}
 			}
 

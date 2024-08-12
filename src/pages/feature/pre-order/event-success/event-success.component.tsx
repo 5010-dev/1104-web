@@ -22,7 +22,12 @@ export default function EventSuccess() {
 	const { ref, controls, fadeInVariants } = useFadeIn({ duration: 1 })
 
 	const handleSignup = (e: MouseEvent<HTMLButtonElement>) => {
-		navigate(`${ROUTES.AUTH}?state=signup`)
+		// navigate(`${ROUTES.AUTH}?state=signup`)
+		window.open(
+			'https://1104.kr/auth?state=signup',
+			'_blank',
+			'noopener,noreferrer',
+		)
 	}
 
 	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) =>

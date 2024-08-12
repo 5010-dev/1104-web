@@ -23,6 +23,7 @@ type Event = {
 }
 
 type FormData = {
+	subheading: string[]
 	heading: string
 	mockupImg: string
 	body: string[]
@@ -37,6 +38,7 @@ export interface PreOrderContentsState {
 		heading: string
 		subheading: string
 		eventName: string
+		affiliate: string
 		eventPeriod: string
 	}
 	service: Service

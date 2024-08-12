@@ -41,7 +41,7 @@ export default function PreOrderDetails() {
 	const titleRightLetters = titleRight.split('')
 
 	const handleRegister = (e: MouseEvent<HTMLButtonElement>) => {
-		navigate(`${ROUTES.EVENT}/?register`)
+		navigate(`${ROUTES.HOME}?register`)
 	}
 
 	useEffect(() => {

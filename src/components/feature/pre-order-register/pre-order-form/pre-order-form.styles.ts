@@ -59,11 +59,10 @@ export const PreOrderFormContainer = styled.form<PreOrderFormContainerProps>`
 			}
 
 			span#pre-order-form-subheading {
-				${({ theme }) => getTypography(theme, 'subheading')}
-				font-weight: bold;
-				color: ${({ theme }) =>
-					getColour(theme, 'neutral', 'secondary', 'inactive')};
-				margin-bottom: ${({ theme }) => theme.layout.section.gutter};
+				${({ theme }) => getTypography(theme, 'body')}
+				/* font-weight: bold; */
+				color: ${({ theme }) => getColour(theme, 'neutral', 'secondary', 'active')};
+				/* margin-bottom: -0.5rem; */
 			}
 
 			h1#pre-order-form-heading {

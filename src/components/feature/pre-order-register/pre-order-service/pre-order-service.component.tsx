@@ -24,7 +24,7 @@ export default function PreOrderService() {
 	})
 
 	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) => {
-		navigate(`${ROUTES.EVENT}/?details`)
+		navigate(`${ROUTES.HOME}?details`)
 	}
 
 	return (

@@ -27,7 +27,7 @@ export default function PreOrderForm() {
 		(state) => state.updateToastMessage,
 	)
 	const updateIsLoading = useLoadingStore((state) => state.updateIsLoading)
-	const { heading, mockupImg, body, terms, agreement, event } =
+	const { subheading, heading, mockupImg, body, terms, agreement, event } =
 		usePreOrderContentsStore((state) => state.formData)
 	const navigate = useNavigateWithScroll()
 
@@ -66,7 +66,7 @@ export default function PreOrderForm() {
 		updateIsLoading(true)
 
 		try {
-			const emailList = process.env.REACT_APP_STIBEE_EMAIL_LIST_ID
+			const emailList = process.env.REACT_APP_STIBEE_AFFILIATE_EMAIL_LIST_ID
 
 			const response = await axios.post(
 				`https://api.stibee.com/v1/lists/${emailList}/subscribers`,
@@ -89,7 +89,7 @@ export default function PreOrderForm() {
 			)
 			if (response.status === 200 && response.data.Ok) {
 				// updateToastMessage('사전예약 신청이 완료되었습니다.')
-				navigate(ROUTES.EVENT, { replace: true, state: { mode: 'success' } })
+				navigate(ROUTES.HOME, { replace: true, state: { mode: 'success' } })
 			} else {
 				updateToastMessage(
 					'문제가 발생했습니다. 잠시 후 다시 시도하시거나, 고객 지원 센터로 연락주세요.',
@@ -140,6 +140,9 @@ export default function PreOrderForm() {
 
 			<div id="pre-order-form-contents-container">
 				<div id="pre-order-form-text-container">
+					<span id="pre-order-form-subheading">
+						{subheading[0]} X {subheading[1]}
+					</span>
 					<h1 id="pre-order-form-heading">{heading}</h1>
 					<div id="pre-order-form-body-container">
 						<p className="pre-order-form-body">{body[0]}</p>

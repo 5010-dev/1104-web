@@ -7,12 +7,13 @@ import freeTrialMockupImg from '../../../assets/img/free-trial/free-trial-mockup
 
 export const usePreOrderContentsStore = create<PreOrderContentsState>(
 	(set) => ({
-		launchingDate: new Date('2024-08-31T00:00:00Z'),
+		launchingDate: new Date('2024-09-20T00:00:00Z'),
 		title: {
 			heading: 'QUANT SOLUTION',
 			subheading: 'TEAM 5010 퀀트 솔루션 | 지금 바로 구매 가능',
 			eventName: '런칭 감사 이벤트',
-			eventPeriod: '2024. 07. 10. - 2024. 08. 31.',
+			affiliate: '돈버는 온라인자판기',
+			eventPeriod: '2024. 08. 20. - 2024. 09. 20.',
 		},
 		service: {
 			caption: '지금 바로 구매 | 이용 가능',
@@ -29,6 +30,7 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 			body: '여러분들의 궁금증에 답하고자, R&D 백서를 준비했습니다. 반드시 읽어주시기 바랍니다.',
 		},
 		formData: {
+			subheading: ['5010', '돈버는 온라인자판기'],
 			heading: '런칭 감사 이벤트',
 			mockupImg: freeTrialMockupImg,
 			body: ['이벤트 신청만 해도 전자책 체험판을 드려요!', '정상가 100,000원'],
@@ -39,7 +41,7 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 				{
 					heading: '퀀트 추가 증정!',
 					subheading: ['선착순 50명 한정'],
-					period: { start: '2024.07.10.', end: '2024.08.31.' },
+					period: { start: '2024.08.20.', end: '2024.09.20.' },
 					options: ['출시가 7,500,000원의 모델 추가 증정'],
 					caption: [
 						'총 1,500만 원 상당의 퀀트 모델을 절반 가격으로 구매할 수 있는 기회!',
@@ -49,7 +51,7 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 				{
 					heading: '오픈런 할인!',
 					subheading: ['선착순 200명 한정'],
-					period: { start: '2024.07.10.', end: '2024.08.31.' },
+					period: { start: '2024.08.20.', end: '2024.09.20.' },
 					options: [
 						'런칭 기념 10% (750,000원) 할인',
 						'퀀트 월 구독료 50,000원 → 6개월 동안 면제',
@@ -60,7 +62,7 @@ export const usePreOrderContentsStore = create<PreOrderContentsState>(
 				{
 					heading: '소개 감사합니다!',
 					subheading: ['누구나 오공일공의', '셀러가 될 수 있어요!'],
-					period: { start: '2024.07.10.', end: '2024.08.31.' },
+					period: { start: '2024.08.20.', end: '2024.09.20.' },
 					options: [
 						'르네상스 소개 및 구매 전환 시 인당 10% 커미션 -> 인당 675,000원 지급',
 					],

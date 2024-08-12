@@ -20,7 +20,7 @@ import Footer from '../../../components/global/footer/footer.component'
 export default function PreOrderRegister() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { launchingDate, title } = usePreOrderContentsStore()
-	const { heading, subheading, eventName, eventPeriod } = title
+	const { heading, subheading, eventName, affiliate, eventPeriod } = title
 
 	const { ref, controls, fadeInVariants } = useFadeIn({ duration: 3 })
 
@@ -28,6 +28,9 @@ export default function PreOrderRegister() {
 	const subheadingLetters = subheading.split('')
 	const eventNameLetters = eventName.split('')
 	const eventPeriodLetters = eventPeriod.split('')
+
+	const jointAffilitate = `5010 X ${affiliate}`
+	const jointAffiliateLetters = jointAffilitate.split('')
 
 	return (
 		<PreOrderRegisterContainer
@@ -52,8 +55,15 @@ export default function PreOrderRegister() {
 									</span>
 								))}
 							</h1>
-							<span id="quant-text-subheading">
+							<span className="quant-text-subheading">
 								{subheadingLetters.map((letter, index) => (
+									<span key={index} className="quant-text-letter">
+										{letter}
+									</span>
+								))}
+							</span>
+							<span className="quant-text-caption" id="affiliate-text">
+								{jointAffiliateLetters.map((letter, index) => (
 									<span key={index} className="quant-text-letter">
 										{letter}
 									</span>
@@ -66,7 +76,7 @@ export default function PreOrderRegister() {
 									</span>
 								))}
 							</span>
-							<span id="quant-text-caption">
+							<span className="quant-text-caption">
 								{eventPeriodLetters.map((letter, index) => (
 									<span key={index} className="quant-text-letter">
 										{letter}
