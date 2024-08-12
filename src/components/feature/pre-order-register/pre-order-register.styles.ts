@@ -11,7 +11,6 @@ type Props = PreOrderRegisterContainerProps
 
 export const PreOrderRegisterContainer = styled(PageLayoutContainer)<Props>`
 	position: relative;
-
 	gap: 0;
 
 	div#quant-logo-section {
